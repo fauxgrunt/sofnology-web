@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  --color-canvas: #fafafa;
+  --color-charcoal: #0f172a;
+  --color-cobalt: #2563eb;
+  --color-cyan-highlight: #06b6d4;
+  --color-accent: #2563eb;
+  --color-accent-foreground: #0f172a;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-white font-sans text-neutral-900 antialiased;
+  }
+}
+
+@layer utilities {
+  .section-container {
+    @apply mx-auto max-w-7xl px-8 py-24;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center border border-neutral-900 bg-neutral-900 px-6 py-3 text-sm font-semibold text-white transition-colors duration-200 hover:bg-neutral-800;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center border border-neutral-200 bg-white px-6 py-3 text-sm font-semibold text-neutral-900 transition-colors duration-200 hover:border-neutral-900;
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center justify-center border border-cobalt bg-cobalt px-6 py-3 text-sm font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90;
+  }
+
+  .structural-card {
+    @apply rounded-xl border border-neutral-200 bg-neutral-50 p-8;
+  }
+}
