@@ -2,6 +2,9 @@
 
 @theme {
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
+  /* Vention navbar face = Aeonik Pro; Satoshi is the closest free neo-grotesk match */
+  --font-nav: "Satoshi", var(--font-plus-jakarta), -apple-system, system-ui, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
 
   --color-canvas: #fafafa;
   --color-charcoal: #0f172a;
@@ -19,9 +22,61 @@
   body {
     @apply bg-white font-sans text-neutral-900 antialiased;
   }
+
+  @media (min-width: 1024px) {
+    body {
+      min-width: 1180px;
+      overflow-x: auto;
+    }
+  }
 }
 
 @layer utilities {
+  .max-w-\[1440px\] {
+    max-width: none;
+  }
+
+  @media (min-width: 1024px) {
+    .content-rail {
+      --content-rail-width: 88px;
+    }
+
+    .content-rail > section {
+      position: relative;
+    }
+
+    .content-rail > section > .mx-auto,
+    .content-rail > section > .border-b > .mx-auto {
+      width: calc(100% - var(--content-rail-width));
+      margin-right: 0;
+      margin-left: var(--content-rail-width);
+    }
+
+    .content-rail > section::after {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 30;
+      width: var(--content-rail-width);
+      background: #f4f4f4;
+    }
+
+    .content-rail > section::before {
+      content: "";
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: var(--content-rail-width);
+      z-index: 40;
+      width: 1px;
+      background: rgb(229 229 229);
+    }
+  }
+
   .section-container {
     @apply mx-auto max-w-7xl px-8 py-24;
   }

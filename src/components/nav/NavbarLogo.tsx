@@ -3,7 +3,7 @@ const LOGO_SRC = "/logo-new.png";
 export default function NavbarLogo() {
   return (
     <a
-      href="#"
+      href="/"
       className="flex h-full shrink-0 items-center px-6 md:px-8"
       aria-label="Sofnology home"
     >

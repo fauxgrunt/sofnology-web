@@ -17,15 +17,17 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
-        <HeroTrustBridge />
-        <ExpertiseSection />
-        <OperatingPrinciples />
-        <BusinessUpliftSection />
-        <DeliveryConfidenceSection />
-        <StartYourGrowthSection />
-        <FeaturedWorkSection />
-        <FAQSection />
-        <ContactSection />
+        <div className="content-rail">
+          <HeroTrustBridge />
+          <ExpertiseSection />
+          <OperatingPrinciples />
+          <BusinessUpliftSection />
+          <DeliveryConfidenceSection />
+          <StartYourGrowthSection />
+          <FeaturedWorkSection />
+          <FAQSection />
+          <ContactSection />
+        </div>
       </main>
       <Footer />
     </>

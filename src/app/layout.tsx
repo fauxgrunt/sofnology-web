@@ -1,13 +1,6 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans } from "next/font/google";
+import { plusJakarta } from "./fonts";
 import "./globals.css";
-
-const plusJakarta = Plus_Jakarta_Sans({
-  subsets: ["latin"],
-  variable: "--font-plus-jakarta",
-  display: "swap",
-  fallback: ["system-ui", "arial", "sans-serif"],
-});
 
 export const metadata: Metadata = {
   title: "Sofnology Solutions | Enterprise Software & Automation Systems",
@@ -22,6 +15,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={plusJakarta.variable}>
+      <head>
+        {/* Closest free stand-in for Vention's Aeonik Pro (commercial) */}
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="font-sans">{children}</body>
     </html>
   );

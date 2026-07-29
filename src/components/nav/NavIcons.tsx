@@ -2,12 +2,12 @@ function Chevron({ open }: { open: boolean }) {
   return (
     <svg
       viewBox="0 0 12 12"
-      className={`ml-1 h-2.5 w-2.5 shrink-0 transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+      className={`ml-1.5 h-2 w-2 shrink-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
         open ? "rotate-180" : ""
       }`}
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.5"
+      strokeWidth="1.25"
       aria-hidden="true"
     >
       <path d="M2.5 4.5L6 8l3.5-3.5" strokeLinecap="round" strokeLinejoin="round" />

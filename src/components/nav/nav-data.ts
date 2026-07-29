@@ -45,10 +45,36 @@ export const navItems: NavItemConfig[] = [
   { id: "industries", label: "Industries", href: "#industries", menu: "industries" },
   { id: "engagement", label: "Engagement models", href: "#approach", menu: "engagement" },
   { id: "portfolio", label: "Case Studies", href: "#case-studies" },
-  { id: "company", label: "Company", href: "#company", menu: "company" },
-  { id: "insights", label: "Insights", href: "#insights" },
+  { id: "company", label: "Company", href: "/company", menu: "company" },
 ];
 
+/**
+ * Nav backlog (planned full pages — not built yet):
+ * - Company: partnerships, testimonials page, newsroom, blog (defer until real content)
+ * - Game / AI industry pages (optional later; Other industries hub removed)
+ *
+ * Built:
+ * - /services/technologies
+ * - /company (Who we are)
+ * - /company/how-we-work
+ * - /industries/edtech
+ * - /industries/adtech
+ * - /industries/healthtech
+ * - /industries/proptech
+ * - /industries/automotive
+ * - /engagement/staff-augmentation
+ * - /engagement/dedicated-teams
+ * - /services/cloud-consulting
+ * - /services/quality-assurance
+ * - /engagement/solutions-for-ai-companies (absorbs AI-enabled teams)
+ *
+ * Merged away (no separate route):
+ * - Workflow automation → covered under Software / AI companies
+ * - AI-enabled teams → Solutions for AI companies
+ * - Thin tech/platform micro-pages → /services/technologies (All technologies hub)
+ * - Why Sofnology / Our promise → folded into /company and /company/how-we-work
+ * - Partnerships, Impact, Vibes, Incubator, AI manifesto, Newsroom → discarded for new company
+ */
 export const megaMenus: Record<MenuId, MegaMenuConfig> = {
   expertise: {
     layout: "columns-banner",
@@ -56,80 +82,71 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
       {
         heading: "Services",
         links: [
-          { label: "Software development", href: "#services" },
-          { label: "Web development", href: "#services" },
-          { label: "Mobile development", href: "#services" },
-          { label: "Quality assurance", href: "#services" },
-          { label: "DevOps", href: "#tech-stack" },
-          { label: "Cloud consulting", href: "#tech-stack" },
-          { label: "Workflow automation", href: "#services" },
+          { label: "Software development", href: "/services/software-development" },
+          { label: "Web development", href: "/services/web-development" },
+          { label: "Mobile development", href: "/services/mobile-development" },
+          { label: "Quality assurance", href: "/services/quality-assurance" },
+          { label: "DevOps", href: "/services/devops" },
+          { label: "Cloud consulting", href: "/services/cloud-consulting" },
+          { label: "Cybersecurity", href: "/services/cybersecurity" },
         ],
       },
       {
         heading: "Technologies",
         links: [
-          { label: "AI & automation", href: "#tech-stack" },
-          { label: "Backend", href: "#tech-stack" },
-          { label: "Frontend", href: "#tech-stack" },
-          { label: "Data engineering", href: "#tech-stack" },
-          { label: "Blockchain", href: "#tech-stack" },
-          { label: "Big data", href: "#tech-stack" },
-          { label: "All technologies", href: "#tech-stack" },
+          { label: "Backend", href: "/services/backend-development" },
+          { label: "Frontend", href: "/services/frontend-development" },
+          { label: "AI & automation", href: "/engagement/solutions-for-ai-companies" },
+          { label: "All technologies", href: "/services/technologies" },
         ],
       },
       {
         heading: "Platforms",
         links: [
-          { label: "AWS", href: "#tech-stack" },
-          { label: "Azure", href: "#tech-stack" },
-          { label: "Google Cloud", href: "#tech-stack" },
-          { label: "Salesforce", href: "#tech-stack" },
-          { label: "SharePoint", href: "#tech-stack" },
+          { label: "Cloud platforms", href: "/services/cloud-consulting" },
+          { label: "Enterprise platforms", href: "/services/technologies#platforms" },
         ],
       },
     ],
     banner: {
-      text: "Want to start a project with us but need technical clarity first? Get a free tech assessment in 48 hours.",
-      cta: "Get my free assessment",
+      text: "Want to start a project but need technical clarity first? Talk through scope with Sofnology.",
+      cta: "Talk to us",
       href: "#contact",
     },
   },
   industries: {
     layout: "list-promo",
     links: [
-      { label: "Fintech", href: "#industries" },
-      { label: "Proptech", href: "#industries" },
-      { label: "Automotive", href: "#industries" },
-      { label: "Foodtech", href: "#industries" },
-      { label: "Ecommerce", href: "#industries" },
-      { label: "Healthtech", href: "#industries" },
-      { label: "Edtech", href: "#industries" },
-      { label: "Game dev", href: "#industries" },
-      { label: "Adtech", href: "#industries" },
-      { label: "AI", href: "#industries" },
+      { label: "Fintech", href: "/industries/fintech" },
+      { label: "Proptech", href: "/industries/proptech" },
+      { label: "Foodtech", href: "/industries/foodtech" },
+      { label: "Ecommerce", href: "/industries/ecommerce" },
+      { label: "Automotive", href: "/industries/automotive" },
+      { label: "Healthtech", href: "/industries/healthtech" },
+      { label: "Adtech", href: "/industries/adtech" },
+      { label: "Edtech", href: "/industries/edtech" },
     ],
     promo: {
-      title: "Project cost calculator",
-      subtitle: "Assess your engineering costs in 60 seconds.",
-      cta: "Get my free estimate",
+      title: "Not sure where to start?",
+      subtitle: "Tell us about the product — we’ll point you to the right engagement.",
+      cta: "Start a conversation",
       href: "#contact",
     },
   },
   engagement: {
     layout: "list-promo",
     links: [
-      { label: "AI-enabled teams", href: "#approach" },
-      { label: "Staff augmentation", href: "#approach" },
-      { label: "Dedicated teams", href: "#approach" },
-      { label: "Project outsourcing", href: "#approach" },
-      { label: "Solutions for startups", href: "#approach" },
-      { label: "Solutions for enterprises", href: "#approach" },
-      { label: "Solutions for AI companies", href: "#approach" },
+      { label: "Staff augmentation", href: "/engagement/staff-augmentation" },
+      { label: "Dedicated teams", href: "/engagement/dedicated-teams" },
+      { label: "Project outsourcing", href: "/engagement/project-outsourcing" },
+      { label: "Solutions for startups", href: "/engagement/solutions-for-startups" },
+      { label: "Solutions for enterprises", href: "/engagement/solutions-for-enterprises" },
+      { label: "Solutions for AI companies", href: "/engagement/solutions-for-ai-companies" },
     ],
     promo: {
-      title: "Kickoff in 14 days",
-      subtitle: "Assemble a senior engineering pod inside two weeks.",
-      cta: "Talk to engineering leads",
+      title: "Ready to partner?",
+      subtitle: "Dedicated pods, staff aug, or full project delivery — pick the fit.",
+      cta: "Talk to engineering",
       href: "#contact",
     },
   },
@@ -138,30 +155,11 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     columns: [
       {
         heading: "Company",
-        links: [
-          { label: "Who we are", href: "#company" },
-          { label: "Our partnerships", href: "#company" },
-          { label: "Testimonials", href: "#case-studies" },
-          { label: "Locations", href: "#company" },
-        ],
+        links: [{ label: "Who we are", href: "/company" }],
       },
       {
         heading: "Approach",
-        links: [
-          { label: "Why Sofnology", href: "#approach" },
-          { label: "How we work", href: "#approach" },
-          { label: "AI manifesto", href: "#approach" },
-          { label: "Our promise", href: "#approach" },
-        ],
-      },
-      {
-        heading: "Initiatives & news",
-        links: [
-          { label: "Sofnology impact", href: "#insights" },
-          { label: "Engineering blog", href: "#insights" },
-          { label: "Incubator contest", href: "#insights" },
-          { label: "Newsroom", href: "#insights" },
-        ],
+        links: [{ label: "How we work", href: "/company/how-we-work" }],
       },
     ],
   },

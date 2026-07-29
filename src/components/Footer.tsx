@@ -1,8 +1,8 @@
 const companyLinks = [
-  { label: "About us", href: "#services" },
-  { label: "Our expertise", href: "#expertise" },
-  { label: "Featured work", href: "#case-studies" },
-  { label: "Operating principles", href: "#operating-principles" },
+  { label: "Who we are", href: "/company" },
+  { label: "How we work", href: "/company/how-we-work" },
+  { label: "Featured work", href: "/#case-studies" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 const serviceLinks = [
