@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 /** Clinical lime + forest — distinct from QA #C7FF3D and staff-aug moss. */
 const LIME = "#B8F25A";
@@ -203,7 +204,7 @@ function HealthtechHero() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative min-h-[520px] overflow-hidden border-b border-neutral-200 md:min-h-[580px] lg:min-h-[640px]">
+        <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[640px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={HERO_IMAGE}
@@ -214,12 +215,12 @@ function HealthtechHero() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/35" />
 
-          <div className="relative flex h-full min-h-[520px] items-center justify-end px-6 py-16 md:min-h-[580px] md:px-10 lg:min-h-[640px] lg:px-16">
-            <div className="w-full max-w-xl border border-white/10 bg-[#101413]/72 px-8 py-10 text-white backdrop-blur-md md:px-10 md:py-12">
-              <h1 className="text-4xl leading-[1.06] font-semibold tracking-[-0.055em] md:text-5xl lg:text-[3.5rem]">
+          <div className="relative flex h-full min-h-[320px] items-end justify-end px-5 py-8 sm:min-h-[400px] sm:px-6 sm:py-10 md:min-h-[520px] md:items-center md:px-10 md:py-12 lg:min-h-[640px] lg:px-16">
+            <div className="w-full max-w-xl border border-white/10 bg-[#101413]/72 px-5 py-7 text-white backdrop-blur-md sm:px-8 sm:py-10 md:px-10 md:py-12">
+              <h1 className="text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] sm:text-4xl md:text-5xl lg:text-[3.5rem]">
                 Health innovation, decoded
               </h1>
-              <p className="mt-6 text-[15px] leading-[1.72] tracking-tight text-white/78">
+              <p className="mt-4 text-[14px] leading-[1.65] tracking-tight text-white/78 sm:mt-6 sm:text-[15px] sm:leading-[1.72]">
                 Sofnology helps health organizations accelerate digital transformation —
                 software that makes clinicians more effective, improves patient outcomes,
                 and stays grounded in security and compliance.
@@ -230,7 +231,7 @@ function HealthtechHero() {
 
         <a
           href="#contact-form"
-          className="group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-[#0B3D2E] md:px-10 lg:px-16"
+          className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden px-5 py-5 text-lg font-semibold tracking-[-0.04em] text-[#0B3D2E] sm:min-h-[88px] sm:px-6 sm:py-6 sm:text-xl md:px-10 lg:px-16"
           style={{ backgroundColor: LIME }}
         >
           <span
@@ -255,7 +256,7 @@ function HelpSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               How we can help
             </h2>
           </div>
@@ -274,7 +275,8 @@ function HelpSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.22fr_0.78fr] border-neutral-200 transition-[min-height,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.28fr_0.72fr] lg:grid-cols-[0.36fr_0.64fr] ${
@@ -283,7 +285,7 @@ function HelpSection() {
               >
                 <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
                   <span
-                    className="text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl"
+                    className="text-[2.35rem] sm:text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl"
                     style={{ color: isActive ? DEEP : "#a3a3a3" }}
                   >
                     {String(index + 1).padStart(2, "0")}
@@ -318,8 +320,8 @@ function TelehealthSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Transform care with telehealth
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -335,7 +337,8 @@ function TelehealthSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-[210px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 md:px-8 lg:px-12 ${
@@ -372,8 +375,8 @@ function BeyondSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             Challenge conventional care
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/70">
@@ -390,7 +393,8 @@ function BeyondSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-[240px] cursor-pointer border-white/14 px-6 py-9 transition-colors duration-500 md:px-8 lg:px-10 ${
@@ -423,7 +427,7 @@ function TrustSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="relative min-h-[360px] overflow-hidden border-b border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
+          <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={MID_IMAGE}
@@ -461,8 +465,8 @@ function AiSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             AI that earns clinical trust
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -549,7 +553,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Related Sofnology work
           </h2>
         </div>
@@ -593,8 +597,8 @@ function FaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -651,56 +655,12 @@ function FaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-lg items-center justify-between gap-4 px-5 text-[14px] font-semibold tracking-[-0.03em] text-[#0B3D2E] shadow-[0_12px_40px_rgba(11,61,46,0.22)] md:h-16 md:max-w-xl md:px-6 md:text-[15px]"
-            style={{ backgroundColor: LIME }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function HealthtechPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <HealthtechHero />
         <div className="content-rail">
           <HelpSection />
@@ -714,7 +674,12 @@ export default function HealthtechPage() {
           <ContactSection showIntro={false} accent="clinic" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={LIME}
+        textColor={"#0B3D2E"}
+      />
       <Footer />
     </>
   );

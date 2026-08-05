@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const MAGENTA = "#FF2D6A";
 const DEEP = "#1A1216";
@@ -187,14 +188,14 @@ function EcommerceHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                 Commerce systems built for conversion and operations
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 Sofnology builds custom ecommerce solutions for brands, retailers, and
                 platforms — streamlining catalog, order, and payment flows while keeping
@@ -206,7 +207,7 @@ function EcommerceHero() {
 
         {/* Mobile: image first, slim CTA under. Desktop: ink CTA + full-bleed bags (no wedge). */}
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <div className="relative order-1 min-h-[280px] overflow-hidden md:min-h-[360px] lg:order-2 lg:min-h-[360px]">
+          <div className="relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -218,7 +219,7 @@ function EcommerceHero() {
 
           <a
             href="#contact"
-            className="group relative order-2 flex min-h-[72px] items-center justify-between overflow-hidden border-t border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:min-h-[88px] md:px-10 md:text-xl lg:order-1 lg:min-h-[360px] lg:items-start lg:border-t-0 lg:px-8 lg:py-8 xl:px-12"
+            className="tap-press group relative order-2 flex min-h-[72px] items-center justify-between overflow-hidden border-t border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:min-h-[88px] md:px-10 md:text-xl lg:order-1 lg:min-h-[360px] lg:items-start lg:border-t-0 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: DEEP }}
           >
             <span
@@ -247,7 +248,7 @@ function PathsSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               The path to ecommerce success
             </h2>
           </div>
@@ -266,10 +267,11 @@ function PathsSection() {
             return (
               <article
                 key={path.title}
-                onMouseEnter={() => setActivePath(index)}
+                onClick={() => setActivePath(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActivePath(index); }}
                 onFocus={() => setActivePath(index)}
                 tabIndex={0}
-                className={`min-h-[300px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-14 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[240px] md:min-h-[300px] border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-14 ${
                   index > 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
               >
@@ -312,7 +314,7 @@ function BuildTypesSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               What we build
             </h2>
           </div>
@@ -334,7 +336,7 @@ function BuildTypesSection() {
                   key={type.title}
                   type="button"
                   onClick={() => setActiveType(index)}
-                  onMouseEnter={() => setActiveType(index)}
+                  onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveType(index); }}
                   className={`flex min-h-[72px] w-full items-center border-neutral-200 px-6 text-left text-lg font-semibold tracking-[-0.03em] transition-colors duration-300 md:px-10 lg:px-12 ${
                     index > 0 ? "border-t" : ""
                   } ${isActive ? "text-white" : "text-neutral-500 hover:bg-white/50 hover:text-neutral-950"}`}
@@ -389,7 +391,7 @@ function CapabilitiesSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Custom ecommerce capabilities
             </h2>
           </div>
@@ -408,7 +410,8 @@ function CapabilitiesSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActiveCapability(index)}
+                onClick={() => setActiveCapability(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveCapability(index); }}
                 onFocus={() => setActiveCapability(index)}
                 tabIndex={0}
                 className={`min-h-[210px] cursor-pointer border-neutral-200 px-6 py-7 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
@@ -454,7 +457,7 @@ function DeliverySection() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
               How we deliver commerce
             </h2>
           </div>
@@ -473,10 +476,11 @@ function DeliverySection() {
             return (
               <article
                 key={step.title}
-                onMouseEnter={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveStep(index); }}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
-                className={`min-h-[260px] cursor-pointer border-white/14 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-7 lg:px-8 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[260px] border-white/14 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-7 lg:px-8 ${
                   index > 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } ${index >= 2 ? "md:border-t lg:border-t-0" : ""} ${
                   isActive ? "text-[#1A1216]" : "text-white/70 hover:text-white"
@@ -514,7 +518,7 @@ function PlatformsSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Platforms and integrations
             </h2>
           </div>
@@ -561,7 +565,7 @@ function RelatedServicesSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Related Sofnology work
           </h2>
         </div>
@@ -604,12 +608,12 @@ function EcommerceCtaSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div
-          className="flex min-h-[340px] items-center px-6 py-14 text-white md:px-10 lg:min-h-[400px] lg:px-16 xl:px-20"
+          className="flex min-h-[340px] items-center px-5 py-9 text-white sm:px-6 sm:py-12 md:py-14 md:px-10 lg:min-h-[400px] lg:px-16 xl:px-20"
           style={{ backgroundColor: DEEP }}
         >
           <div className="w-full max-w-4xl">
             <div className="mb-8 h-1 w-14" style={{ backgroundColor: MAGENTA }} />
-            <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl">
+            <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl">
               Ready to build commerce that converts?
             </h2>
             <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -644,8 +648,8 @@ function EcommerceFaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -702,56 +706,13 @@ function EcommerceFaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-white shadow-[0_12px_40px_rgba(26,18,22,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: MAGENTA }}
-          >
-            <span>Get in touch</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function EcommercePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <EcommerceHero />
         <div className="content-rail">
           <PathsSection />
@@ -765,7 +726,12 @@ export default function EcommercePage() {
           <ContactSection showIntro={false} accent="magenta" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={MAGENTA}
+        textColor={"#ffffff"}
+      />
       <Footer />
     </>
   );

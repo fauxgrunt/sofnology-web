@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const LIME = "#C7FF3D";
 const INK = "#101413";
@@ -256,7 +257,7 @@ function TechnologiesHero() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative min-h-[480px] overflow-hidden border-b border-neutral-200 md:min-h-[560px] lg:min-h-[620px]">
+        <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[620px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={HERO_IMAGE}
@@ -266,18 +267,18 @@ function TechnologiesHero() {
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
 
-          <div className="relative flex h-full min-h-[480px] items-end px-6 py-14 md:min-h-[560px] md:px-10 lg:min-h-[620px] lg:items-center lg:px-16">
+          <div className="relative flex h-full min-h-[320px] items-end px-5 py-8 sm:min-h-[400px] sm:px-6 sm:py-10 md:min-h-[520px] md:px-10 md:py-12 lg:min-h-[620px] lg:items-center lg:px-16">
             <div className="max-w-xl text-white">
               <p
-                className="text-[13px] font-semibold uppercase tracking-[0.18em]"
+                className="text-[12px] font-semibold uppercase tracking-[0.18em] sm:text-[13px]"
                 style={{ color: LIME }}
               >
                 Sofnology
               </p>
-              <h1 className="mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.055em] md:text-5xl lg:text-[3.4rem]">
+              <h1 className="mt-3 text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] sm:mt-5 sm:text-4xl md:text-5xl lg:text-[3.4rem]">
                 Our software development technologies
               </h1>
-              <p className="mt-6 max-w-md text-[15px] leading-[1.72] tracking-tight text-white/80">
+              <p className="mt-4 max-w-md text-[14px] leading-[1.65] tracking-tight text-white/80 sm:mt-6 sm:text-[15px] sm:leading-[1.72]">
                 Battle-tested web and mobile stacks through AI, data, and cloud tooling —
                 chosen for the product you need to ship, not for a kitchen-sink résumé.
               </p>
@@ -287,7 +288,7 @@ function TechnologiesHero() {
 
         <a
           href="#contact-form"
-          className="group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] md:px-10 lg:px-16"
+          className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden px-5 py-5 text-lg font-semibold tracking-[-0.04em] sm:min-h-[88px] sm:px-6 sm:py-6 sm:text-xl md:px-10 lg:px-16"
           style={{ backgroundColor: LIME, color: INK }}
         >
           <span
@@ -310,8 +311,8 @@ function StackCatalogSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Proven technologies for software development
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -333,7 +334,7 @@ function StackCatalogSection() {
                 <button
                   type="button"
                   onClick={() => setActive(isActive ? -1 : index)}
-                  onMouseEnter={() => setActive(index)}
+                  onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                   className="flex min-h-[100px] w-full items-center justify-between gap-6 px-6 py-7 text-left md:px-10 lg:px-16"
                   aria-expanded={isActive}
                 >
@@ -408,8 +409,8 @@ function EmergingSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: INK }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             We adopt useful tech before it’s noise
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/68">
@@ -454,7 +455,7 @@ function CapabilitiesSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Sofnology tech power at a glance
           </h2>
           <p className="mt-5 max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
@@ -463,7 +464,7 @@ function CapabilitiesSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.44fr_0.56fr]">
-          <div className="relative min-h-[360px] overflow-hidden border-b border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
+          <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={MID_IMAGE}
@@ -508,14 +509,14 @@ function PlatformsSection() {
   return (
     <section id="platforms" className="scroll-mt-24 border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <p
             className="text-[12px] font-semibold uppercase tracking-[0.16em]"
             style={{ color: "#737373" }}
           >
             Platforms
           </p>
-          <h2 className="mt-4 max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="mt-4 max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Cloud and enterprise platforms we build around
           </h2>
           <p className="mt-5 max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
@@ -527,7 +528,7 @@ function PlatformsSection() {
           {platformLanes.map((lane, index) => (
             <article
               key={lane.title}
-              className={`flex min-h-[280px] flex-col justify-between border-neutral-200 px-6 py-10 md:px-10 lg:px-12 ${
+              className={`flex min-h-0 flex-col sm:min-h-[220px] md:min-h-[280px] justify-between border-neutral-200 px-6 py-10 md:px-10 lg:px-12 ${
                 index === 1 ? "border-t lg:border-t-0 lg:border-l" : ""
               }`}
             >
@@ -571,8 +572,8 @@ function ScenariosSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Choose how we get involved
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -587,7 +588,8 @@ function ScenariosSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-600 md:grid-cols-[0.28fr_0.72fr] ${
@@ -644,7 +646,7 @@ function EdgeCtaSection() {
         </Link>
 
         <div
-          className="flex flex-col justify-between gap-10 px-6 py-14 md:px-10 lg:flex-row lg:items-end lg:px-16 lg:py-16"
+          className="flex flex-col justify-between gap-10 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex-row lg:items-end lg:px-16 lg:py-16"
           style={{ backgroundColor: VIOLET }}
         >
           <div className="max-w-lg text-white">
@@ -681,7 +683,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="text-4xl font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="text-[1.85rem] font-semibold tracking-[-0.045em] sm:text-4xl text-neutral-950 md:text-[2.75rem]">
             Related services
           </h2>
         </div>
@@ -721,53 +723,12 @@ function RelatedSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      setVisible(window.scrollY > 480 && contactTop > window.innerHeight * 0.65);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-lg items-center justify-between gap-4 px-5 text-[14px] font-semibold shadow-[0_12px_40px_rgba(16,20,19,0.2)] md:h-16 md:max-w-xl md:px-6 md:text-[15px]"
-            style={{ backgroundColor: LIME, color: INK }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function TechnologiesPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <TechnologiesHero />
         <div className="content-rail">
           <StackCatalogSection />
@@ -780,7 +741,12 @@ export default function TechnologiesPage() {
           <ContactSection showIntro={false} accent="lime" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={"#061a3a"}
+        textColor={"#101413"}
+      />
       <Footer />
     </>
   );

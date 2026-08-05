@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const GOLD = "#C9A227";
 const DEEP = "#1A1C1F";
@@ -207,14 +208,14 @@ function FintechHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                 Financial software that earns trust
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 Sofnology engineering and advisory for payments, lending, wealth, and
                 embedded finance — secure, scalable products shaped for real operations.
@@ -226,7 +227,7 @@ function FintechHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact"
-            className="group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1A1C1F] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
+            className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1A1C1F] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: GOLD }}
           >
             <span
@@ -239,7 +240,7 @@ function FintechHero() {
             </span>
           </a>
 
-          <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -269,7 +270,7 @@ function HelpSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Your fintech partner at every stage
             </h2>
           </div>
@@ -288,7 +289,8 @@ function HelpSection() {
             return (
               <article
                 key={mode.title}
-                onMouseEnter={() => setActiveMode(index)}
+                onClick={() => setActiveMode(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveMode(index); }}
                 onFocus={() => setActiveMode(index)}
                 tabIndex={0}
                 className={`min-h-[320px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-14 ${
@@ -334,7 +336,7 @@ function DomainsSection() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
               Markets we serve
             </h2>
           </div>
@@ -356,7 +358,7 @@ function DomainsSection() {
                   key={domain.title}
                   type="button"
                   onClick={() => setActiveDomain(index)}
-                  onMouseEnter={() => setActiveDomain(index)}
+                  onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveDomain(index); }}
                   className={`flex min-h-[68px] w-full items-center border-white/14 px-6 text-left text-lg font-semibold tracking-[-0.03em] transition-colors duration-300 md:px-10 lg:px-12 ${
                     index > 0 ? "border-t" : ""
                   } ${isActive ? "text-[#1A1C1F]" : "text-white/55 hover:text-white"}`}
@@ -411,7 +413,7 @@ function SolutionsSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Products we build
             </h2>
           </div>
@@ -430,7 +432,8 @@ function SolutionsSection() {
             return (
               <article
                 key={solution.title}
-                onMouseEnter={() => setActiveSolution(index)}
+                onClick={() => setActiveSolution(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveSolution(index); }}
                 onFocus={() => setActiveSolution(index)}
                 tabIndex={0}
                 className={`min-h-[220px] cursor-pointer border-neutral-200 px-6 py-7 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
@@ -476,7 +479,7 @@ function WorkPathSection() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
         <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
               How we work
             </h2>
           </div>
@@ -495,10 +498,11 @@ function WorkPathSection() {
             return (
               <article
                 key={step.title}
-                onMouseEnter={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveStep(index); }}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
-                className={`min-h-[260px] cursor-pointer border-white/14 px-6 py-9 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[260px] border-white/14 px-6 py-9 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
                   index > 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } ${isActive ? "text-[#1A1C1F]" : "text-white/70 hover:text-white"}`}
                 style={{ backgroundColor: isActive ? SOFT : "transparent" }}
@@ -534,7 +538,7 @@ function TrustSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Trust signals we design for
             </h2>
           </div>
@@ -586,7 +590,7 @@ function RelatedServicesSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Related Sofnology work
           </h2>
         </div>
@@ -644,7 +648,7 @@ function FintechCtaSection() {
             style={{ backgroundColor: DEEP }}
           >
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-2xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl">
+              <h2 className="max-w-2xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl">
                 Building in fintech?
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -680,8 +684,8 @@ function FintechFaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -738,56 +742,13 @@ function FintechFaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#1A1C1F] shadow-[0_12px_40px_rgba(26,28,31,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: GOLD }}
-          >
-            <span>Get in touch</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function FintechPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <FintechHero />
         <div className="content-rail">
           <HelpSection />
@@ -801,7 +762,12 @@ export default function FintechPage() {
           <ContactSection showIntro={false} accent="gold" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={GOLD}
+        textColor={"#1A1C1F"}
+      />
       <Footer />
     </>
   );

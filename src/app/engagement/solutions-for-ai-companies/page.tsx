@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 /** Ink + electric cyan — AI systems signal; avoids purple bias and ecommerce magenta. */
 const CYAN = "#2EE6D6";
@@ -257,7 +258,7 @@ function AiHero() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
             />
-            <span className="relative z-10">Book a free AI assessment</span>
+            <span className="relative z-10">Book a discovery call</span>
             <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1">
               <ArrowUpRightIcon />
             </span>
@@ -295,7 +296,8 @@ function CostSection() {
             return (
               <article
                 key={point.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-7 transition-colors duration-500 sm:min-h-[220px] sm:px-6 sm:py-10 md:min-h-[260px] md:px-8 lg:px-10 ${
@@ -588,7 +590,8 @@ function GovernanceSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-7 transition-colors duration-500 sm:min-h-[200px] sm:px-6 sm:py-10 md:min-h-[220px] md:px-10 lg:px-12 ${
@@ -646,7 +649,8 @@ function MeasureSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-6 transition-colors duration-500 sm:min-h-[180px] sm:px-6 sm:py-8 md:px-7 ${
@@ -775,7 +779,7 @@ function AiCtaSection() {
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/40 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                 />
-                <span className="relative z-10">Book a free AI assessment</span>
+                <span className="relative z-10">Book a discovery call</span>
                 <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRightIcon />
                 </span>
@@ -853,56 +857,13 @@ function AiFaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 320;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#12141A] shadow-[0_12px_40px_rgba(18,20,26,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: CYAN }}
-          >
-            <span>Book a free AI assessment</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function SolutionsForAiCompaniesPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <AiHero />
         <div className="content-rail">
           <CostSection />
@@ -916,7 +877,12 @@ export default function SolutionsForAiCompaniesPage() {
           <ContactSection showIntro={false} accent="cyan" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Book a discovery call"
+        backgroundColor={CYAN}
+        textColor={"#12141A"}
+      />
       <Footer />
     </>
   );

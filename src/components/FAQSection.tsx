@@ -5,6 +5,11 @@ import { AnimatePresence, motion } from "framer-motion";
 
 const faqs = [
   {
+    question: "Do you publish client case studies?",
+    answer:
+      "Not yet as named public case studies. On this site you will find example engagement paths that show how we typically structure work. When we take on a project, we can share relevant past delivery detail under NDA during discovery.",
+  },
+  {
     question: "What does Sofnology actually help with?",
     answer:
       "Sofnology helps businesses improve the digital layer of their operations. That can include custom software, websites, automation, cloud systems, analytics, digital marketing, conversion improvements, and the workflows that connect them.",
@@ -52,11 +57,11 @@ export default function FAQSection() {
   return (
     <section id="faq" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+        <div className="border-b border-neutral-200 px-5 py-8 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display max-w-5xl font-semibold tracking-[-0.045em] text-neutral-950">
             FAQs: Clear answers before we start
           </h2>
-          <p className="text-fluid-body mt-4 max-w-5xl leading-[1.7] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
+          <p className="text-fluid-body mt-3 max-w-5xl leading-[1.6] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
             The first conversation should focus on your business goals, not basic
             uncertainty about process, pricing, ownership, or how the work is managed.
             These answers cover the questions most teams ask before starting with
@@ -76,7 +81,7 @@ export default function FAQSection() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-start justify-between gap-4 px-5 py-5 text-left sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
+                  className="tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left active:bg-white/40 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
                   aria-expanded={isOpen}
                 >
                   <span className="text-[16px] leading-[1.3] font-semibold tracking-[-0.03em] text-neutral-950 sm:text-lg sm:leading-tight md:text-xl">

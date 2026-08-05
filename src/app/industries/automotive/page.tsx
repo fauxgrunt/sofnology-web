@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 /** Coral — matches Vention auto refs; distinct from outsourcing orange #FF6A00. */
 const CORAL = "#FF6B4A";
@@ -265,14 +266,14 @@ function AutomotiveHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[3.9rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[3.9rem]">
                 Automotive software development
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 Automotive, meet automation. Sofnology helps OEMs, suppliers, dealers, and
                 fleets digitize processes, integrate systems, scale securely, and meet
@@ -285,7 +286,7 @@ function AutomotiveHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact-form"
-            className="group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1A1512] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
+            className="tap-press group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1A1512] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: CORAL }}
           >
             <span
@@ -300,7 +301,7 @@ function AutomotiveHero() {
             </span>
           </a>
 
-          <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -330,7 +331,7 @@ function MarketSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Why automotive software is accelerating
             </h2>
           </div>
@@ -349,7 +350,8 @@ function MarketSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-[210px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 md:px-8 lg:px-12 ${
@@ -386,8 +388,8 @@ function ServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Our automotive software services
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -403,10 +405,11 @@ function ServicesSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
-                className={`min-h-[280px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 md:px-8 lg:px-12 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[280px] border-neutral-200 px-6 py-10 transition-colors duration-500 md:px-8 lg:px-12 ${
                   index % 2 === 1 ? "md:border-l" : ""
                 } ${index > 0 ? "border-t md:border-t-0" : ""} ${index >= 2 ? "md:border-t" : ""} ${
                   isActive ? "bg-white" : "hover:bg-white/45"
@@ -450,8 +453,8 @@ function AudiencesSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             Built for every side of automotive
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/70">
@@ -468,10 +471,11 @@ function AudiencesSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
-                className={`min-h-[260px] cursor-pointer border-white/14 px-6 py-9 transition-colors duration-500 md:px-8 lg:px-10 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[260px] border-white/14 px-6 py-9 transition-colors duration-500 md:px-8 lg:px-10 ${
                   index % 2 === 1 ? "md:border-l" : ""
                 } ${index % 3 !== 0 ? "lg:border-l" : ""} ${
                   index > 0 ? "border-t md:border-t-0" : ""
@@ -510,8 +514,8 @@ function SolutionsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Key automotive solution areas
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -580,7 +584,7 @@ function AdvancedTechSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
               Advanced tech, applied carefully
             </h2>
           </div>
@@ -624,8 +628,8 @@ function ApproachSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Our approach
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -682,7 +686,7 @@ function AutomotiveCtaSection() {
             style={{ backgroundColor: DEEP }}
           >
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl lg:text-[3rem]">
+              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3rem]">
                 Looking for first-class automotive software?
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/75">
@@ -718,7 +722,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Related Sofnology work
           </h2>
         </div>
@@ -762,8 +766,8 @@ function FaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -820,56 +824,12 @@ function FaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#1A1512] shadow-[0_12px_40px_rgba(26,21,18,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: CORAL }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function AutomotivePage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <AutomotiveHero />
         <div className="content-rail">
           <MarketSection />
@@ -884,7 +844,12 @@ export default function AutomotivePage() {
           <ContactSection showIntro={false} accent="coral" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={CORAL}
+        textColor={"#1A1512"}
+      />
       <Footer />
     </>
   );

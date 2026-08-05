@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const LIME = "#C7FF3D";
 const SOFT_LIME = "#E8FF9A";
@@ -282,14 +283,14 @@ function MobileHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                 Custom mobile app development services
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 Sofnology designs and builds mobile products that help businesses launch
                 customer-facing apps, internal tools, and connected workflows across iOS,
@@ -302,7 +303,7 @@ function MobileHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact"
-            className="group relative flex min-h-[260px] items-start justify-between overflow-hidden border-b border-neutral-200 px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-[#101413] md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+            className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#101413] md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
             style={{ backgroundColor: LIME }}
           >
             <span
@@ -310,12 +311,12 @@ function MobileHero() {
               className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/16 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
             />
             <span className="relative z-10">Get in touch</span>
-            <span className="relative z-10 mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+            <span className="relative z-10 lg:mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
               <ArrowUpRightIcon />
             </span>
           </a>
 
-          <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -342,8 +343,8 @@ function ChecklistSection() {
     <section id="mobile-apps" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.44fr_0.56fr]">
-          <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:border-b-0 lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+          <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-b-0 lg:px-16">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Let’s tick all the right boxes
             </h2>
           </div>
@@ -369,11 +370,11 @@ function ChecklistSection() {
           </div>
         </div>
         <div className="border-t border-neutral-200 bg-[#0B4F20]">
-          <div className="grid min-h-[360px] grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="grid min-h-0 grid-cols-1 sm:min-h-[280px] md:min-h-[360px] lg:grid-cols-[0.46fr_0.54fr]">
             <div className="hidden lg:block" />
-            <div className="flex items-center px-6 py-14 text-white md:px-10 lg:px-16">
+            <div className="flex items-center px-5 py-9 text-white sm:px-6 sm:py-12 md:py-14 md:px-10 lg:px-16">
               <div className="max-w-3xl">
-                <h3 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+                <h3 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
                   If this sounds like you, we can help shape the right mobile path.
                 </h3>
                 <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -389,7 +390,7 @@ function ChecklistSection() {
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                   />
-                  <span className="relative z-10">Book a free consultation</span>
+                  <span className="relative z-10">Book a discovery call</span>
                   <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <ArrowUpRightIcon />
                   </span>
@@ -410,12 +411,12 @@ function AudienceSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[260px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.52fr_0.48fr]">
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
-            <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+            <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Mobile products for teams with something to prove
             </h2>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               From first MVPs to workflow modernization, the app strategy should match
               the team’s stage and the decision they need to make next.
@@ -491,13 +492,13 @@ function MobileTypesSection() {
   return (
     <section id="mobile-types" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[360px] grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="grid min-h-0 grid-cols-1 sm:min-h-[280px] md:min-h-[360px] lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Mobile app types we build
             </h2>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               If you already know the app type, we can help shape the right build path.
               If not, we’ll compare native, cross-platform, and PWA options against the
@@ -586,9 +587,9 @@ function DevelopmentServicesSection() {
   return (
     <section id="services-detail" className="border-b border-neutral-200 bg-[#101413] text-white">
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
-        <div className="min-h-[280px] border-b border-white/14 px-6 py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-white/14 sm:min-h-[220px] md:min-h-[280px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
               Our custom app development services
             </h2>
             <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/72">
@@ -613,7 +614,7 @@ function DevelopmentServicesSection() {
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
                   index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[260px] text-[#101413]" : "min-h-[110px] text-white"}`}
+                } ${isActive ? "min-h-[260px] text-[#101413]" : "min-h-[72px] text-white"}`}
                 style={{ backgroundColor: isActive ? SOFT_LIME : "#101413" }}
               >
                 <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
@@ -659,12 +660,12 @@ function RelatedServicesSection() {
     <section id="consulting" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[240px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.52fr_0.48fr]">
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
-            <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+            <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Explore our related mobile services
             </h2>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               Mobile apps rarely live alone. These supporting services help the product
               stay connected, secure, and ready to evolve after launch.
@@ -738,12 +739,12 @@ function InnovationSection() {
     <section id="innovation" className="border-b border-neutral-200 bg-[#101413] text-white">
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
         <div className="grid min-h-[320px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
               Cookie-cutter apps are not your style
             </h2>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-white/72">
               We can add advanced mobile capabilities when they support the product
               strategy, not because they sound impressive in a proposal.
@@ -764,7 +765,7 @@ function InnovationSection() {
                 }}
                 onFocus={() => setActiveItem(index)}
                 tabIndex={0}
-                className={`min-h-[280px] cursor-pointer border-white/14 px-6 py-9 transition-[background-color,color] duration-500 md:px-10 lg:px-12 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[280px] border-white/14 px-6 py-9 transition-[background-color,color] duration-500 md:px-10 lg:px-12 ${
                   index % 2 === 1 ? "md:border-l" : ""
                 } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""} ${
                   isActive ? "text-[#101413]" : "text-white"
@@ -814,7 +815,7 @@ function MobileCtaSection() {
 
           <div className="flex min-h-[340px] items-center bg-[#0B4F20] px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20">
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
+              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
                 Let’s craft a mobile app that sets you apart
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -851,9 +852,9 @@ function IndustryInnovationSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[360px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
           <div className="max-w-3xl lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               How we apply mobile innovation across industries
             </h2>
             <p className="mt-7 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
@@ -915,9 +916,9 @@ function EngagementShapesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-neutral-200 sm:min-h-[200px] md:min-h-[250px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Engagement shapes we deliver
             </h2>
           </div>
@@ -938,7 +939,7 @@ function EngagementShapesSection() {
                 tabIndex={0}
                 className={`group grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
                   index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[260px] bg-white/60" : "min-h-[98px] bg-[#f4f4f4] hover:bg-white/45"}`}
+                } ${isActive ? "min-h-[260px] bg-white/60" : "min-h-[72px] bg-[#f4f4f4] hover:bg-white/45"}`}
               >
                 <div className="flex items-start border-b border-neutral-200 px-6 py-7 md:px-10 lg:border-b-0 lg:px-8 xl:px-12">
                   <p className="text-[15px] leading-tight tracking-tight text-neutral-600">
@@ -980,9 +981,9 @@ function TechnologyStackSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="bg-[#101413] text-white">
-          <div className="min-h-[310px] border-b border-white/14 px-6 py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
+          <div className="min-h-0 border-b border-white/14 sm:min-h-[240px] md:min-h-[310px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
             <div className="lg:px-16">
-              <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+              <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
                 Mobile technology stack
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/72">
@@ -1025,8 +1026,8 @@ function MobileFaqSection() {
   return (
     <section id="faq" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-16 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -1083,56 +1084,13 @@ function MobileFaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#101413] shadow-[0_12px_40px_rgba(16,20,19,0.18)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: LIME }}
-          >
-            <span>Get in touch</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function MobileDevelopmentPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <MobileHero />
         <div className="content-rail">
           <ChecklistSection />
@@ -1149,7 +1107,12 @@ export default function MobileDevelopmentPage() {
           <ContactSection showIntro={false} accent="lime" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={LIME}
+        textColor={"#101413"}
+      />
       <Footer />
     </>
   );

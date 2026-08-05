@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const NAVY = "#061a3a";
 const ACCENT = "#2F6BFF";
@@ -123,7 +124,7 @@ function StackedHero() {
 
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.58fr_0.42fr]">
           <div className="flex items-end border-b border-neutral-200 px-6 py-12 md:px-10 lg:border-b-0 lg:border-r lg:px-16 lg:py-16">
-            <h1 className="max-w-xl text-4xl leading-[1.06] font-semibold tracking-[-0.055em] text-neutral-950 md:text-5xl lg:text-[3.35rem]">
+            <h1 className="max-w-xl text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] text-neutral-950 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
               About us? No — what we do is about you
             </h1>
           </div>
@@ -146,7 +147,7 @@ function StackedHero() {
 
         <a
           href="#contact-form"
-          className="group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
+          className="tap-press group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
           style={{ backgroundColor: NAVY }}
         >
           <span
@@ -167,8 +168,8 @@ function WhySection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Why Sofnology — without the fake scoreboard
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -181,7 +182,7 @@ function WhySection() {
           {whyPoints.map((item, index) => (
             <article
               key={item.title}
-              className={`min-h-[260px] border-neutral-200 px-6 py-10 md:px-8 lg:px-10 ${
+              className={`min-h-0 border-neutral-200 px-5 py-8 sm:min-h-[220px] sm:px-6 sm:py-10 md:min-h-[260px] md:px-8 lg:px-10 ${
                 index > 0 ? "border-t md:border-t-0 md:border-l" : ""
               }`}
             >
@@ -209,8 +210,8 @@ function FocusSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: NAVY }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             What we focus on
           </h2>
         </div>
@@ -239,8 +240,8 @@ function EarlyConversationsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             How early conversations work
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -392,7 +393,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="text-4xl font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="text-[1.85rem] font-semibold tracking-[-0.045em] sm:text-4xl text-neutral-950 md:text-[2.75rem]">
             Keep exploring
           </h2>
         </div>
@@ -432,53 +433,12 @@ function RelatedSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      setVisible(window.scrollY > 480 && contactTop > window.innerHeight * 0.65);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-lg items-center justify-between gap-4 px-5 text-[14px] font-semibold text-white shadow-[0_12px_40px_rgba(6,26,58,0.28)] md:h-16 md:max-w-xl md:px-6 md:text-[15px]"
-            style={{ backgroundColor: NAVY }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function CompanyPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <StackedHero />
         <div className="content-rail">
           <WhySection />
@@ -490,7 +450,12 @@ export default function CompanyPage() {
           <ContactSection showIntro={false} accent="navy" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={NAVY}
+        textColor={"#ffffff"}
+      />
       <Footer />
     </>
   );

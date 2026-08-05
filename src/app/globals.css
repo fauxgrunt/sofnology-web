@@ -17,50 +17,55 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
 
   /*
     Light Vention-style fluid scale.
-    Below ~1080px: fixed sizes (no layout risk).
-    1080→1920: type/spacing lerp with clamp so zoom/monitor width
-    keeps proportions without disabling accessibility zoom.
+    Phone: readable body + tighter display.
+    1080→1920: type/spacing lerp with clamp.
   */
   :root {
+    --brand-navy: #061a3a;
+    --brand-navy-mid: #0b2a5b;
+    --brand-canvas: #f4f4f4;
     --fluid-vp-min: 1080;
     --fluid-vp-max: 1920;
     --fs-nav: 15px;
     --fs-mega: 16px;
     --fs-cta: 14px;
-    --fs-body: 13px;
-    --fs-display: 2.25rem;
-    --fs-hero: 2.55rem;
-    --nav-h: 4.25rem;
-    --section-py: 6rem;
+    --fs-body: 15px;
+    --fs-display: 2.05rem;
+    --fs-hero: 2.35rem;
+    --nav-h: 3.75rem;
+    --section-py: 3.5rem;
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+    --safe-top: env(safe-area-inset-top, 0px);
+    --touch-min: 44px;
   }
 
   @media (min-width: 480px) {
     :root {
-      --fs-hero: 2.85rem;
+      --fs-hero: 2.75rem;
+      --fs-display: 2.25rem;
+      --nav-h: 4.1rem;
     }
   }
 
   @media (min-width: 768px) {
     :root {
-      --fs-body: 14px;
+      --fs-body: 15px;
       --fs-display: 3rem;
       --fs-hero: 4.5rem;
       --nav-h: 4.75rem;
+      --section-py: 5rem;
     }
   }
 
   @media (min-width: 1024px) {
     :root {
       --fs-hero: 5.35rem;
-    }
-
-    body {
-      min-width: 1180px;
-      overflow-x: auto;
+      --section-py: 6rem;
     }
   }
 
@@ -112,6 +117,41 @@
   body {
     @apply bg-white font-sans text-neutral-900 antialiased;
   }
+
+  /* Kill sticky hover ghosts on touch; give real press feedback */
+  @media (hover: none) and (pointer: coarse) {
+    .group:hover .group-hover\:translate-x-1 {
+      transform: none;
+    }
+
+    .group:active {
+      opacity: 0.92;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    /* Keep tactile press feedback usable for keyboard/touch accessibility */
+    .tap-press {
+      transition-duration: 120ms !important;
+    }
+  }
+
+  :focus-visible {
+    outline: 2px solid #061a3a;
+    outline-offset: 3px;
+  }
 }
 
 @layer utilities {
@@ -147,6 +187,52 @@
 
   .h-fluid-nav {
     height: var(--nav-h);
+  }
+
+  /* Thumb-friendly press */
+  .tap-press {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: transform 160ms cubic-bezier(0.16, 1, 0.3, 1), opacity 160ms ease;
+  }
+
+  @media (hover: none) and (pointer: coarse) {
+    .tap-press:active {
+      transform: scale(0.985);
+      opacity: 0.94;
+    }
+  }
+
+  /* Horizontal chip scroller for mobile stage tabs */
+  .chip-scroll {
+    display: flex;
+    gap: 0.5rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x proximity;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 0.15rem;
+  }
+
+  .chip-scroll::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip-scroll > * {
+    scroll-snap-align: start;
+    flex-shrink: 0;
+  }
+
+  /* Room for sticky CTA on long pages */
+  .pb-sticky-cta {
+    padding-bottom: calc(5.25rem + var(--safe-bottom));
+  }
+
+  @media (min-width: 768px) {
+    .pb-sticky-cta {
+      padding-bottom: calc(6rem + var(--safe-bottom));
+    }
   }
 
   @media (min-width: 1024px) {
@@ -205,10 +291,38 @@
   }
 
   .btn-accent {
-    @apply inline-flex items-center justify-center border border-cobalt bg-cobalt px-6 py-3 text-sm font-semibold text-charcoal transition-opacity duration-200 hover:opacity-90;
+    @apply inline-flex items-center justify-center border border-cobalt bg-cobalt px-6 py-3 text-sm font-semibold text-white transition-opacity duration-200 hover:opacity-90;
   }
 
   .structural-card {
     @apply rounded-xl border border-neutral-200 bg-neutral-50 p-8;
+  }
+
+  /* Hide decorative CTA sheen on touch devices; fine pointer only */
+  @media (hover: hover) and (pointer: fine) {
+    .cta-sheen {
+      display: block;
+    }
+  }
+
+  @media (hover: none) {
+    .cta-sheen {
+      display: none;
+    }
+  }
+
+  /* Intentional link underline grow for mega/footer-style text links */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 320ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .link-underline:hover {
+      background-size: 100% 1px;
+    }
   }
 }

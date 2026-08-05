@@ -1,29 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
+import { ArrowUpRightIcon } from "@/components/icons";
 
-const SOFTWARE_NAVY = "#061a3a";
 const SOFTWARE_SKY = "#d8f3ff";
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const fitSignals = [
   {
@@ -375,7 +359,7 @@ function SoftwareProjectCta() {
 
           <div className="flex min-h-[340px] items-center bg-[#555a5a] px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20">
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
+              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
                 Looking for software development services for your business?
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -409,9 +393,9 @@ function WhySofnologySection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-neutral-200 sm:min-h-[200px] md:min-h-[250px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="max-w-2xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="max-w-2xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Why Sofnology is the right choice
             </h2>
           </div>
@@ -439,7 +423,7 @@ function WhySofnologySection() {
                   index > 3 ? "border-t" : index > 1 ? "border-t lg:border-t-0" : index > 0 ? "border-t md:border-t-0" : ""
                 }`}
               >
-                <div className="text-5xl leading-none font-light tracking-[-0.07em] text-[#d8f3ff] md:text-6xl">
+                <div className="text-[2.35rem] sm:text-5xl leading-none font-light tracking-[-0.07em] text-[#d8f3ff] md:text-6xl">
                   {reason.accent}
                 </div>
                 <p className="mt-auto max-w-xs pt-10 text-[15px] leading-[1.55] tracking-tight text-white/86">
@@ -458,9 +442,9 @@ function DeliveryApproachSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-neutral-200 sm:min-h-[200px] md:min-h-[250px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Our approach
             </h2>
           </div>
@@ -494,9 +478,9 @@ function HowWeWorkSection() {
   return (
     <section id="process" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[280px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
+        <div className="min-h-[280px] border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               How we work
             </h2>
             <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -573,9 +557,9 @@ function TechnologyStackSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="bg-[#061a3a] text-white">
-          <div className="min-h-[310px] border-b border-white/14 px-6 py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
+          <div className="min-h-0 border-b border-white/14 sm:min-h-[240px] md:min-h-[310px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[48%]">
             <div className="lg:px-16">
-              <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+              <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
                 Our technology stack
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/74">
@@ -619,9 +603,9 @@ function EngagementShapesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
+        <div className="min-h-0 border-b border-neutral-200 sm:min-h-[200px] md:min-h-[250px] px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Engagement shapes we deliver
             </h2>
           </div>
@@ -645,7 +629,7 @@ function EngagementShapesSection() {
                 tabIndex={0}
                 className={`group grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.48fr_0.52fr] ${
                   index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[260px] bg-white/55" : "min-h-[98px] bg-[#f4f4f4] hover:bg-white/45"}`}
+                } ${isActive ? "min-h-[260px] bg-white/55" : "min-h-[72px] bg-[#f4f4f4] hover:bg-white/45"}`}
               >
                 <div className="flex items-start border-b border-neutral-200 px-6 py-7 md:px-10 lg:border-r lg:border-b-0 lg:px-8 xl:px-12">
                   <p className="text-[15px] leading-tight tracking-tight text-neutral-600">
@@ -692,52 +676,6 @@ function EngagementShapesSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#061a3a] shadow-[0_12px_40px_rgba(6,26,58,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: SOFTWARE_SKY }}
-          >
-            <span>Get in touch</span>
-            <span style={{ color: SOFTWARE_NAVY }}>
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function SoftwareDevelopmentPage() {
   const [activeIndustry, setActiveIndustry] = useState<number | null>(null);
@@ -760,20 +698,20 @@ export default function SoftwareDevelopmentPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <section className="border-b border-neutral-200 bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
             <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
               <div className="hidden min-h-[410px] lg:block" />
 
-              <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.56fr_0.44fr] lg:px-0 lg:py-0">
+              <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.56fr_0.44fr] lg:px-0 lg:py-0">
                 <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
                   <h1 className="max-w-xl text-5xl leading-[1.05] font-semibold tracking-[-0.055em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                     Software development services
                   </h1>
                 </div>
 
-                <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+                <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
                   <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                     Sofnology designs and builds custom software, internal systems,
                     portals, dashboards, and integrations that reduce operational friction
@@ -786,19 +724,19 @@ export default function SoftwareDevelopmentPage() {
             <div className="grid grid-cols-1 lg:grid-cols-[0.36fr_0.64fr]">
               <a
                 href="#contact"
-                className="group relative flex min-h-[260px] items-start justify-between overflow-hidden border-b border-neutral-200 bg-[#061a3a] px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+                className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 bg-[#061a3a] px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
               >
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/16 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
                 />
                 <span className="relative z-10">Contact us</span>
-                <span className="relative z-10 mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <span className="relative z-10 lg:mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRightIcon />
                 </span>
               </a>
 
-              <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+              <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="/Conversation.jpg"
@@ -822,8 +760,8 @@ export default function SoftwareDevelopmentPage() {
         <div className="content-rail">
         <section className="border-b border-neutral-200 bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-            <div className="border-b border-neutral-200 px-6 py-16 md:px-10 lg:px-16">
-              <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:px-16">
+              <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
                 Built for the moments when off-the-shelf tools stop fitting
               </h2>
               <p className="mt-6 max-w-5xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
@@ -858,10 +796,10 @@ export default function SoftwareDevelopmentPage() {
         <section id="services-provided" className="border-b border-neutral-200 bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
             <div className="bg-[#061a3a] text-white">
-                <div className="grid min-h-[260px] grid-cols-1 border-b border-white/14 px-6 py-16 md:px-10 lg:grid-cols-[0.46fr_0.54fr] lg:px-0 lg:py-0">
+                <div className="grid min-h-[260px] grid-cols-1 border-b border-white/14 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:grid-cols-[0.46fr_0.54fr] lg:px-0 lg:py-0">
                   <div className="hidden lg:block" />
                   <div className="flex items-center lg:px-14 xl:px-16">
-                    <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
+                    <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
                       Services we provide
                     </h2>
                   </div>
@@ -895,7 +833,7 @@ export default function SoftwareDevelopmentPage() {
 
         <section className="border-b border-neutral-200 bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-            <div className="grid min-h-[430px] grid-cols-1 px-6 py-16 md:px-10 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
+            <div className="grid min-h-[430px] grid-cols-1 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
               <div className="flex flex-col justify-start lg:px-16 lg:py-16">
                 <p className="text-[16px] font-semibold tracking-[-0.02em] text-[#061a3a]">
                   Any platform, any workflow
@@ -916,7 +854,7 @@ export default function SoftwareDevelopmentPage() {
               </div>
             </div>
 
-            <div className="grid min-h-[430px] grid-cols-1 border-t border-neutral-200 px-6 py-16 md:px-10 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
+            <div className="grid min-h-[430px] grid-cols-1 border-t border-neutral-200 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
               <div className="hidden lg:block" />
 
               <div className="flex flex-col justify-center lg:px-16 lg:py-16">
@@ -943,7 +881,7 @@ export default function SoftwareDevelopmentPage() {
             <div className="bg-[#061a3a] text-white">
                 <div className="min-h-[250px] border-b border-white/14 px-6 py-12 md:px-10 lg:flex lg:items-center lg:justify-center lg:px-16">
                   <div className="max-w-2xl">
-                    <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
+                    <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
                       Industries we serve
                     </h2>
                     <p className="mt-6 max-w-xl text-[15px] leading-[1.75] tracking-tight text-white/72">
@@ -1027,7 +965,7 @@ export default function SoftwareDevelopmentPage() {
 
                 <div className="min-h-[250px] border-t border-white/14 border-b border-white/14 px-6 py-12 md:px-10 lg:flex lg:items-center lg:justify-center lg:px-16">
                   <div className="max-w-2xl">
-                    <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
+                    <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl lg:text-[3.35rem]">
                       Our AI approach
                     </h2>
                     <p className="mt-6 max-w-xl text-[15px] leading-[1.75] tracking-tight text-white/72">
@@ -1061,9 +999,9 @@ export default function SoftwareDevelopmentPage() {
 
         <section className="border-b border-neutral-200 bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-            <div className="grid min-h-[300px] grid-cols-1 border-b border-neutral-200 px-6 py-14 md:px-10 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
+            <div className="grid min-h-[300px] grid-cols-1 border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:grid-cols-[0.48fr_0.52fr] lg:px-0 lg:py-0">
               <div className="flex items-center lg:px-16">
-                <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+                <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
                   Choose your cooperation model
                 </h2>
               </div>
@@ -1143,7 +1081,12 @@ export default function SoftwareDevelopmentPage() {
         <ContactSection showIntro={false} />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={SOFTWARE_SKY}
+        textColor={"#061a3a"}
+      />
       <Footer />
     </>
   );

@@ -30,16 +30,16 @@ export default function OperatingPrinciples() {
     <section id="operating-principles" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-2">
-          <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:border-r lg:border-b-0 lg:px-16">
+          <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-r lg:border-b-0 lg:px-16">
             <p className="text-[15px] font-semibold tracking-[-0.02em] text-[#061a3a]">
               How we keep work under control
             </p>
-            <h2 className="text-fluid-display mt-6 max-w-xl font-semibold tracking-[-0.045em] text-neutral-950">
+            <h2 className="text-fluid-display mt-4 max-w-xl font-semibold tracking-[-0.045em] text-neutral-950 sm:mt-6">
               Operating principles
             </h2>
           </div>
 
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               For a growing agency, trust should come from how the work is run. We
               use clear ownership, visible progress, and production-minded decisions

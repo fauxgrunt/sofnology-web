@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import type { MegaMenuConfig } from "./nav-data";
 
 const linkClass =
-  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] transition-opacity duration-300 hover:opacity-70";
+  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] link-underline transition-opacity duration-300 hover:opacity-80";
 
 const headingClass =
   "font-nav mb-7 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase";

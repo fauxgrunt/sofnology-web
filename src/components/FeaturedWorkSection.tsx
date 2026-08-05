@@ -1,7 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
+import { ArrowUpRightIcon } from "@/components/icons";
 
 type FeaturedWork = {
   title: string;
@@ -66,21 +69,6 @@ const featuredWork: FeaturedWork[] = [
   },
 ];
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 export default function FeaturedWorkSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -91,11 +79,11 @@ export default function FeaturedWorkSection() {
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
             Example engagement paths
           </h2>
-          <div className="mt-4 max-w-5xl space-y-3 text-[14px] leading-[1.7] tracking-tight text-neutral-700 sm:mt-6 sm:text-[15px] sm:leading-[1.75]">
+          <div className="mt-4 max-w-5xl space-y-3 text-fluid-body leading-[1.7] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
             <p>
-              These are the kinds of focused engagements Sofnology can shape around a
-              business goal: clearer acquisition, cleaner operations, and systems that
-              reduce manual work without adding unnecessary complexity.
+              These are representative engagement shapes — not published client case
+              studies. Each path shows how Sofnology can organize software, growth, and
+              operations work around a clear business outcome.
             </p>
           </div>
         </div>
@@ -109,7 +97,7 @@ export default function FeaturedWorkSection() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className={`flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
+                  className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors duration-300 active:bg-white/50 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
                     isOpen ? "bg-white/45" : "hover:bg-white/35"
                   }`}
                   aria-expanded={isOpen}
@@ -136,12 +124,12 @@ export default function FeaturedWorkSection() {
                     >
                       <div className="grid grid-cols-1 gap-0 px-5 pb-7 sm:px-6 sm:pb-8 md:px-10 lg:grid-cols-2 lg:px-16 lg:pb-12">
                         <div className="relative aspect-[16/10] overflow-hidden bg-neutral-200 sm:aspect-auto sm:min-h-[280px] lg:min-h-[420px]">
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img
+                          <Image
                             src={work.imageSrc}
                             alt={work.imageAlt}
-                            className="absolute inset-0 h-full w-full object-cover"
-                            decoding="async"
+                            fill
+                            sizes="(max-width: 1024px) 100vw, 50vw"
+                            className="object-cover"
                           />
                           <div className="absolute inset-0 bg-white/10" />
                         </div>
@@ -166,7 +154,7 @@ export default function FeaturedWorkSection() {
                             ))}
                           </div>
 
-                          <a
+                          <Link
                             href="/#contact"
                             className="group relative mt-8 flex min-h-14 items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                           >
@@ -178,7 +166,7 @@ export default function FeaturedWorkSection() {
                             <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                               <ArrowUpRightIcon />
                             </span>
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </motion.div>

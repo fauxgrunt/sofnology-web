@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 /** Hot magenta — distinct from ecommerce #FF2D6A. */
 const MAGENTA = "#FF2D8A";
@@ -161,7 +162,7 @@ function AdtechHero() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative min-h-[520px] overflow-hidden border-b border-neutral-200 md:min-h-[580px] lg:min-h-[640px]">
+        <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[640px]">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={HERO_IMAGE}
@@ -172,18 +173,18 @@ function AdtechHero() {
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
 
-          <div className="relative flex h-full min-h-[520px] items-end px-6 py-14 md:min-h-[580px] md:px-10 lg:min-h-[640px] lg:items-center lg:px-16">
+          <div className="relative flex h-full min-h-[320px] items-end px-5 py-8 sm:min-h-[400px] sm:px-6 sm:py-10 md:min-h-[520px] md:px-10 md:py-12 lg:min-h-[640px] lg:items-center lg:px-16">
             <div className="max-w-xl text-white">
               <p
-                className="text-[13px] font-semibold uppercase tracking-[0.18em]"
+                className="text-[12px] font-semibold uppercase tracking-[0.18em] sm:text-[13px]"
                 style={{ color: MAGENTA }}
               >
                 Sofnology
               </p>
-              <h1 className="mt-5 text-4xl leading-[1.05] font-semibold tracking-[-0.055em] md:text-5xl lg:text-[3.6rem]">
+              <h1 className="mt-3 text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] sm:mt-5 sm:text-4xl md:text-5xl lg:text-[3.6rem]">
                 Marketing and adtech
               </h1>
-              <p className="mt-6 max-w-md text-[15px] leading-[1.72] tracking-tight text-white/78">
+              <p className="mt-4 max-w-md text-[14px] leading-[1.65] tracking-tight text-white/78 sm:mt-6 sm:text-[15px] sm:leading-[1.72]">
                 Automated end-to-end platforms that sharpen customer acquisition —
                 and give your team durable tools to grow brand presence.
               </p>
@@ -193,7 +194,7 @@ function AdtechHero() {
 
         <a
           href="#contact-form"
-          className="group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
+          className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden px-5 py-5 text-lg font-semibold tracking-[-0.04em] text-white sm:min-h-[88px] sm:px-6 sm:py-6 sm:text-xl md:px-10 lg:px-16"
           style={{ backgroundColor: MAGENTA }}
         >
           <span
@@ -216,8 +217,8 @@ function TwinPillarsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Reach your audience more effectively
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -233,7 +234,8 @@ function TwinPillarsSection() {
             return (
               <article
                 key={pillar.id}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`relative min-h-[340px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 md:px-10 lg:min-h-[420px] lg:px-14 ${
@@ -295,8 +297,8 @@ function StackSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             The stack that runs acquisition
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/68">
@@ -312,7 +314,8 @@ function StackSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActive(index); }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-1 border-white/14 transition-[min-height,background-color] duration-600 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.32fr_0.68fr] ${
@@ -388,8 +391,8 @@ function EngageSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Software shaped to the business, not the buzzword
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -434,7 +437,7 @@ function MagentaSplitCta() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact-form"
-            className="group relative flex min-h-[280px] flex-col justify-between px-6 py-8 text-neutral-950 transition-opacity hover:opacity-95 md:px-8 lg:min-h-[360px] lg:px-10"
+            className="group relative flex min-h-0 flex-col sm:min-h-[220px] md:min-h-[280px] justify-between px-6 py-8 text-neutral-950 transition-opacity hover:opacity-95 md:px-8 lg:min-h-[360px] lg:px-10"
             style={{ backgroundColor: MAGENTA }}
           >
             <div className="flex items-start justify-between gap-4">
@@ -486,7 +489,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
             Related Sofnology work
           </h2>
         </div>
@@ -533,8 +536,8 @@ function FaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -595,56 +598,12 @@ function FaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-lg items-center justify-between gap-4 px-5 text-[14px] font-semibold tracking-[-0.03em] text-white shadow-[0_12px_40px_rgba(255,45,138,0.28)] md:h-16 md:max-w-xl md:px-6 md:text-[15px]"
-            style={{ backgroundColor: MAGENTA }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function AdtechPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <AdtechHero />
         <div className="content-rail">
           <TwinPillarsSection />
@@ -657,7 +616,12 @@ export default function AdtechPage() {
           <ContactSection showIntro={false} accent="hotpink" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={MAGENTA}
+        textColor={"#ffffff"}
+      />
       <Footer />
     </>
   );

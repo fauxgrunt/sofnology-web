@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const NAVY = "#061a3a";
 const ACCENT = "#2F6BFF";
@@ -153,7 +154,7 @@ function StackedHero() {
 
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="flex items-end border-b border-neutral-200 px-6 py-12 md:px-10 lg:border-b-0 lg:border-r lg:px-16 lg:py-16">
-            <h1 className="max-w-md text-4xl leading-[1.06] font-semibold tracking-[-0.055em] text-neutral-950 md:text-5xl lg:text-[3.35rem]">
+            <h1 className="max-w-md text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] text-neutral-950 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
               How we work
             </h1>
           </div>
@@ -176,7 +177,7 @@ function StackedHero() {
 
         <a
           href="#contact-form"
-          className="group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
+          className="tap-press group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
           style={{ backgroundColor: ACCENT }}
         >
           <span
@@ -198,7 +199,7 @@ function AudienceMidSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="relative min-h-[360px] overflow-hidden border-b border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">
+          <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={MID_IMAGE}
@@ -207,7 +208,7 @@ function AudienceMidSection() {
               decoding="async"
             />
           </div>
-          <div className="flex flex-col justify-center px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex flex-col justify-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <h2 className="max-w-xl text-3xl leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 md:text-4xl">
               Startups and established companies alike rely on clear engineering
               partnerships
@@ -230,8 +231,8 @@ function ModelsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             Start from scratch, or grow your team? The choice is yours
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -293,8 +294,8 @@ function PrinciplesSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: NAVY }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="border-b border-white/14 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+        <div className="border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
             Operating principles
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/68">
@@ -306,7 +307,7 @@ function PrinciplesSection() {
           {principles.map((item, index) => (
             <article
               key={item.title}
-              className={`min-h-[260px] border-white/14 px-6 py-10 md:px-8 ${
+              className={`min-h-0 border-white/14 px-5 py-8 sm:min-h-[220px] sm:px-6 sm:py-10 md:min-h-[260px] md:px-8 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index % 4 !== 0 ? "lg:border-l" : ""} ${
                 index > 0 ? "border-t md:border-t-0" : ""
@@ -331,8 +332,8 @@ function ProcessSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             A process that delivers
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -374,8 +375,8 @@ function ExperienceSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             The Sofnology experience
           </h2>
         </div>
@@ -408,7 +409,7 @@ function ProofCtaSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div
-          className="flex flex-col items-stretch gap-8 px-6 py-16 md:px-10 lg:flex-row lg:items-end lg:justify-end lg:gap-16 lg:px-16 lg:py-20"
+          className="flex flex-col items-stretch gap-8 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:flex-row lg:items-end lg:justify-end lg:gap-16 lg:px-16 lg:py-20"
           style={{ backgroundColor: DEEP_CTA }}
         >
           <div className="max-w-md text-right lg:text-left">
@@ -444,7 +445,7 @@ function RelatedSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="text-4xl font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+          <h2 className="text-[1.85rem] font-semibold tracking-[-0.045em] sm:text-4xl text-neutral-950 md:text-[2.75rem]">
             Related
           </h2>
         </div>
@@ -484,53 +485,12 @@ function RelatedSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      setVisible(window.scrollY > 400 && contactTop > window.innerHeight * 0.65);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-lg items-center justify-between gap-4 px-5 text-[14px] font-semibold text-white shadow-[0_12px_40px_rgba(47,107,255,0.28)] md:h-16 md:max-w-xl md:px-6 md:text-[15px]"
-            style={{ backgroundColor: ACCENT }}
-          >
-            <span>{PRIMARY_CTA}</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function HowWeWorkPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <StackedHero />
         <div className="content-rail">
           <AudienceMidSection />
@@ -543,7 +503,12 @@ export default function HowWeWorkPage() {
           <ContactSection showIntro={false} accent="blue" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label={PRIMARY_CTA}
+        backgroundColor={ACCENT}
+        textColor={"#ffffff"}
+      />
       <Footer />
     </>
   );

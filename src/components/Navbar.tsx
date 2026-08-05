@@ -5,8 +5,9 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavbarLogo from "@/components/nav/NavbarLogo";
 import NavMegaPanel from "@/components/nav/NavMegaPanel";
 import PrimaryCTA from "@/components/nav/PrimaryCTA";
-import { Chevron, GlobeIcon, MenuToggleIcon } from "@/components/nav/NavIcons";
+import { Chevron, MenuToggleIcon } from "@/components/nav/NavIcons";
 import { navItems, megaMenus, type MenuId } from "@/components/nav/nav-data";
+import { useFocusTrap } from "@/hooks/useFocusTrap";
 
 const navLinkClass =
   "font-nav text-fluid-nav font-medium tracking-normal text-[#111111] whitespace-nowrap";
@@ -27,6 +28,7 @@ export default function Navbar() {
   const navRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const drawerRef = useFocusTrap(mobileOpen);
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -107,20 +109,13 @@ export default function Navbar() {
   }, [mobileOpen]);
 
   return (
-    <header className="font-nav sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f7f8]">
+    <header className="font-nav sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f7f8]/92 pt-[env(safe-area-inset-top)] backdrop-blur-md supports-[backdrop-filter]:bg-[#f7f7f8]/80">
       <div className="relative" ref={navRef}>
         <div className="mx-auto flex h-fluid-nav max-w-[1440px] items-stretch border-x border-neutral-200">
           {/* Brand zone */}
           <div className="flex w-[min(42vw,380px)] shrink-0 items-stretch border-r border-neutral-200 max-lg:w-auto sm:w-[300px] md:w-[340px] xl:w-[380px]">
             <div className="flex min-w-0 flex-1 items-center">
               <NavbarLogo />
-            </div>
-            <div
-              className="hidden w-14 shrink-0 items-center justify-center border-l border-neutral-200 text-neutral-500 lg:flex"
-              aria-hidden="true"
-              title="Region"
-            >
-              <GlobeIcon />
             </div>
           </div>
 
@@ -202,7 +197,7 @@ export default function Navbar() {
             </div>
             <button
               type="button"
-              className="flex h-full w-14 items-center justify-center text-[#111111] transition-colors hover:bg-[#f0f0f1] lg:hidden"
+              className="tap-press flex h-full min-w-14 items-center justify-center px-1 text-[#111111] transition-colors hover:bg-[#f0f0f1] active:bg-[#ececed] lg:hidden"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               onClick={() => setMobileOpen((v) => !v)}
@@ -244,12 +239,16 @@ export default function Navbar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.28, ease: deliberate }}
-            className="fixed inset-x-0 top-[var(--nav-h)] bottom-0 z-40 lg:hidden"
+            className="fixed inset-x-0 top-[calc(var(--nav-h)+env(safe-area-inset-top))] bottom-0 z-40 lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            ref={drawerRef}
           >
             <button
               type="button"
               aria-label="Dismiss menu"
-              className="absolute inset-0 bg-[#061a3a]/35 backdrop-blur-[2px]"
+              className="absolute inset-0 bg-[#061a3a]/40 backdrop-blur-[3px]"
               onClick={() => setMobileOpen(false)}
             />
 
@@ -258,7 +257,7 @@ export default function Navbar() {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -8, opacity: 0 }}
               transition={{ duration: 0.38, ease: deliberate }}
-              className="relative flex h-full max-h-[calc(100dvh-var(--nav-h))] flex-col overflow-hidden border-b border-neutral-200 bg-[#f7f7f8] shadow-[0_24px_60px_-28px_rgba(6,26,58,0.45)]"
+              className="relative flex h-full max-h-[calc(100dvh-var(--nav-h)-env(safe-area-inset-top))] flex-col overflow-hidden border-b border-neutral-200 bg-[#f7f7f8]"
             >
               <div className="flex-1 overflow-y-auto overscroll-contain">
                 <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
@@ -283,7 +282,7 @@ export default function Navbar() {
                           <>
                             <button
                               type="button"
-                              className={`flex w-full items-center justify-between px-5 py-[1.15rem] text-left font-nav text-[17px] font-medium tracking-normal text-[#111111] transition-colors ${
+                              className={`tap-press flex w-full items-center justify-between px-5 py-[1.15rem] text-left font-nav text-[17px] font-medium tracking-normal text-[#111111] transition-colors active:bg-[#ececed] ${
                                 isExpanded ? "bg-[#f3f3f4]" : "bg-transparent"
                               }`}
                               aria-expanded={isExpanded}
@@ -403,7 +402,7 @@ export default function Navbar() {
                         ) : (
                           <a
                             href={item.href}
-                            className="block px-5 py-[1.15rem] font-nav text-[17px] font-medium tracking-normal text-[#111111]"
+                            className="tap-press block min-h-12 px-5 py-[1.15rem] font-nav text-[17px] font-medium tracking-normal text-[#111111] active:bg-[#ececed]"
                             onClick={() => setMobileOpen(false)}
                           >
                             {item.label}

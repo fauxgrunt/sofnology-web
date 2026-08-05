@@ -1,69 +1,26 @@
 "use client";
 
-import { FormEvent, useState } from "react";
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function UploadIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      aria-hidden="true"
-    >
-      <path d="M10 14V4M10 4L6.5 7.5M10 4l3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
-      <path d="M4 14v1.5A1.5 1.5 0 005.5 17h9a1.5 1.5 0 001.5-1.5V14" strokeLinecap="round" />
-    </svg>
-  );
-}
+import Image from "next/image";
+import { FormEvent, useId, useRef, useState } from "react";
+import { ArrowUpRightIcon, UploadIcon } from "@/components/icons";
+import {
+  contactAccentClasses,
+  type ContactAccent,
+} from "@/lib/contact-accents";
 
 const MAX_MESSAGE = 2048;
 const MAX_FILE_BYTES = 30 * 1024 * 1024;
 
 const inputClass =
-  "w-full bg-transparent px-6 py-5 text-[14px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 md:px-8";
+  "w-full bg-transparent px-5 py-4 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 sm:px-6 sm:py-5 sm:text-[14px] md:px-8";
 
 type ContactSectionProps = {
   showIntro?: boolean;
-  accent?:
-    | "navy"
-    | "lime"
-    | "teal"
-    | "amber"
-    | "blue"
-    | "emerald"
-    | "coral"
-    | "gold"
-    | "magenta"
-    | "orange"
-    | "wine"
-    | "slate"
-    | "cyan"
-    | "sky"
-    | "steel"
-    | "moss"
-    | "clinic"
-    | "hotpink"
-    | "mint";
+  accent?: ContactAccent;
 };
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
+type FieldKey = "fullName" | "workEmail" | "message" | "consent" | "attachment";
 
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
@@ -73,6 +30,13 @@ export default function ContactSection({
   showIntro = true,
   accent = "navy",
 }: ContactSectionProps) {
+  const formId = useId();
+  const statusId = `${formId}-status`;
+  const fullNameRef = useRef<HTMLInputElement>(null);
+  const workEmailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
+  const consentRef = useRef<HTMLInputElement>(null);
+
   const [fullName, setFullName] = useState("");
   const [workEmail, setWorkEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -81,112 +45,48 @@ export default function ContactSection({
   const [message, setMessage] = useState("");
   const [consent, setConsent] = useState(false);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [fieldError, setFieldError] = useState<string | null>(null);
+  const [fieldErrors, setFieldErrors] = useState<Partial<Record<FieldKey, string>>>({});
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
 
-  const sendButtonClass =
-    accent === "lime"
-      ? "bg-[#C7FF3D] text-[#101413] hover:opacity-95"
-      : accent === "teal"
-        ? "bg-[#5EEAD4] text-[#101413] hover:opacity-95"
-        : accent === "amber"
-          ? "bg-[#E8A317] text-[#101413] hover:opacity-95"
-          : accent === "blue"
-            ? "bg-[#2F6BFF] text-white hover:opacity-95"
-            : accent === "emerald"
-              ? "bg-[#10B981] text-[#111827] hover:opacity-95"
-              : accent === "coral"
-                ? "bg-[#FF5A5F] text-white hover:opacity-95"
-                : accent === "gold"
-                  ? "bg-[#C9A227] text-[#1A1C1F] hover:opacity-95"
-                  : accent === "magenta"
-                    ? "bg-[#FF2D6A] text-white hover:opacity-95"
-                    : accent === "orange"
-                      ? "bg-[#FF6A00] text-[#1A1512] hover:opacity-95"
-                      : accent === "wine"
-                        ? "bg-[#8B1E3F] text-white hover:opacity-95"
-                        : accent === "slate"
-                          ? "bg-[#3D4F5F] text-white hover:opacity-95"
-                          : accent === "cyan"
-                            ? "bg-[#2EE6D6] text-[#12141A] hover:opacity-95"
-                            : accent === "sky"
-                              ? "bg-[#0EA5E9] text-[#0C4A6E] hover:opacity-95"
-                              : accent === "steel"
-                                ? "bg-[#6FA8DC] text-[#243B55] hover:opacity-95"
-                                : accent === "moss"
-                                  ? "bg-[#74C69D] text-[#1B4332] hover:opacity-95"
-                                  : accent === "clinic"
-                                    ? "bg-[#B8F25A] text-[#0B3D2E] hover:opacity-95"
-                                    : accent === "hotpink"
-                                      ? "bg-[#FF2D8A] text-white hover:opacity-95"
-                                      : accent === "mint"
-                                        ? "bg-[#7DDBA3] text-[#12241C] hover:opacity-95"
-                                        : "bg-gradient-to-br from-[#0b2a5b] via-[#16457f] to-[#061a3a] text-white hover:opacity-95";
+  const { desktop: sendButtonClass, mobile: sendButtonMobileClass } =
+    contactAccentClasses(accent);
 
-  const sendButtonMobileClass =
-    accent === "lime"
-      ? "bg-[#C7FF3D] text-[#101413]"
-      : accent === "teal"
-        ? "bg-[#5EEAD4] text-[#101413]"
-        : accent === "amber"
-          ? "bg-[#E8A317] text-[#101413]"
-          : accent === "blue"
-            ? "bg-[#2F6BFF] text-white"
-            : accent === "emerald"
-              ? "bg-[#10B981] text-[#111827]"
-              : accent === "coral"
-                ? "bg-[#FF5A5F] text-white"
-                : accent === "gold"
-                  ? "bg-[#C9A227] text-[#1A1C1F]"
-                  : accent === "magenta"
-                    ? "bg-[#FF2D6A] text-white"
-                    : accent === "orange"
-                      ? "bg-[#FF6A00] text-[#1A1512]"
-                      : accent === "wine"
-                        ? "bg-[#8B1E3F] text-white"
-                        : accent === "slate"
-                          ? "bg-[#3D4F5F] text-white"
-                          : accent === "cyan"
-                            ? "bg-[#2EE6D6] text-[#12141A]"
-                            : accent === "sky"
-                              ? "bg-[#0EA5E9] text-[#0C4A6E]"
-                              : accent === "steel"
-                                ? "bg-[#6FA8DC] text-[#243B55]"
-                                : accent === "moss"
-                                  ? "bg-[#74C69D] text-[#1B4332]"
-                                  : accent === "clinic"
-                                    ? "bg-[#B8F25A] text-[#0B3D2E]"
-                                    : accent === "hotpink"
-                                      ? "bg-[#FF2D8A] text-white"
-                                      : accent === "mint"
-                                        ? "bg-[#7DDBA3] text-[#12241C]"
-                                        : "bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#061a3a] text-white";
-
-  function validate(): string | null {
-    if (!fullName.trim()) return "Please enter your full name.";
-    if (!workEmail.trim()) return "Please enter your work email.";
-    if (!isValidEmail(workEmail.trim())) return "Please enter a valid work email.";
-    if (!message.trim()) return "Please tell us how we can help.";
-    if (message.length > MAX_MESSAGE) {
-      return `Message must be ${MAX_MESSAGE} characters or fewer.`;
+  function validate(): Partial<Record<FieldKey, string>> {
+    const errors: Partial<Record<FieldKey, string>> = {};
+    if (!fullName.trim()) errors.fullName = "Please enter your full name.";
+    if (!workEmail.trim()) errors.workEmail = "Please enter your work email.";
+    else if (!isValidEmail(workEmail.trim())) {
+      errors.workEmail = "Please enter a valid work email.";
+    }
+    if (!message.trim()) errors.message = "Please tell us how we can help.";
+    else if (message.length > MAX_MESSAGE) {
+      errors.message = `Message must be ${MAX_MESSAGE} characters or fewer.`;
     }
     if (selectedFile && selectedFile.size > MAX_FILE_BYTES) {
-      return "Attachment must be 30MB or smaller.";
+      errors.attachment = "Attachment must be 30MB or smaller.";
     }
-    if (!consent) return "Please confirm you agree to be contacted.";
-    return null;
+    if (!consent) errors.consent = "Please confirm you agree to be contacted.";
+    return errors;
+  }
+
+  function focusFirstError(errors: Partial<Record<FieldKey, string>>) {
+    if (errors.fullName) fullNameRef.current?.focus();
+    else if (errors.workEmail) workEmailRef.current?.focus();
+    else if (errors.message) messageRef.current?.focus();
+    else if (errors.consent) consentRef.current?.focus();
   }
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    setFieldError(null);
     setStatusMessage("");
 
-    const error = validate();
-    if (error) {
-      setFieldError(error);
+    const errors = validate();
+    setFieldErrors(errors);
+    if (Object.keys(errors).length > 0) {
       setStatus("error");
+      setStatusMessage(Object.values(errors)[0] ?? "Please fix the highlighted fields.");
+      focusFirstError(errors);
       return;
     }
 
@@ -207,7 +107,11 @@ export default function ContactSection({
         method: "POST",
         body: formData,
       });
-      const data = (await response.json()) as { ok?: boolean; message?: string; error?: string };
+      const data = (await response.json()) as {
+        ok?: boolean;
+        message?: string;
+        error?: string;
+      };
 
       if (!response.ok || !data.ok) {
         setStatus("error");
@@ -217,8 +121,10 @@ export default function ContactSection({
 
       setStatus("success");
       setStatusMessage(
-        data.message ?? "Thanks — we received your message and will follow up shortly.",
+        data.message ??
+          "Thanks — your message was received. A Sofnology teammate will follow up by email within one business day.",
       );
+      setFieldErrors({});
       setFullName("");
       setWorkEmail("");
       setPhone("");
@@ -237,17 +143,18 @@ export default function ContactSection({
   const charCount = message.length;
 
   return (
-    <section id="contact" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="contact" className="border-b border-neutral-200 bg-[#f4f4f4]" aria-labelledby={`${formId}-heading`}>
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         {showIntro && (
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-2">
             <div className="relative aspect-[16/11] min-h-0 overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[360px] lg:min-h-[420px] lg:border-r lg:border-b-0">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/Conversation.jpg"
                 alt="Sofnology team in a client conversation"
-                className="absolute inset-0 h-full w-full object-cover"
-                decoding="async"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
+                priority={false}
               />
               <div className="absolute inset-0 bg-white/5" />
             </div>
@@ -259,21 +166,20 @@ export default function ContactSection({
                   You already have enough to manage. Your digital systems should not add
                   to it.
                 </h2>
-                <p className="mt-5 max-w-xl text-[14px] leading-[1.65] tracking-tight text-white/75 sm:mt-6 sm:text-[15px] sm:leading-[1.7]">
-                  Get the right software, the right marketing systems, and the right
-                  operational clarity in one coordinated partnership built to support
-                  business growth.
+                <p className="mt-5 max-w-xl text-fluid-body leading-[1.65] tracking-tight text-white/75 sm:mt-6 sm:leading-[1.7]">
+                  Book a short discovery call. We will clarify the outcome, review the
+                  current setup, and outline a practical next step — without a hard pitch.
                 </p>
 
                 <a
                   href="#contact-form"
-                  className="group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
+                  className="tap-press group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                 >
                   <span
                     aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
+                    className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                   />
-                  <span className="relative z-10">Start a conversation</span>
+                  <span className="relative z-10">Book a discovery call</span>
                   <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <ArrowUpRightIcon />
                   </span>
@@ -288,19 +194,25 @@ export default function ContactSection({
           className="grid grid-cols-1 lg:grid-cols-4"
           onSubmit={handleSubmit}
           noValidate
+          aria-describedby={statusMessage ? statusId : undefined}
         >
-          <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:col-span-3 lg:border-r lg:px-16">
-            <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
+          <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:col-span-3 lg:border-r lg:px-16">
+            <h2
+              id={`${formId}-heading`}
+              className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950"
+            >
               Contact us
             </h2>
-            {(fieldError || statusMessage) && (
+            {statusMessage && (
               <p
+                id={statusId}
                 role="status"
+                aria-live="polite"
                 className={`mt-4 text-[14px] tracking-tight ${
                   status === "success" ? "text-emerald-700" : "text-red-700"
                 }`}
               >
-                {fieldError || statusMessage}
+                {statusMessage}
               </p>
             )}
           </div>
@@ -313,6 +225,7 @@ export default function ContactSection({
                 Full name
               </label>
               <input
+                ref={fullNameRef}
                 id="full-name"
                 name="fullName"
                 className={inputClass}
@@ -322,13 +235,21 @@ export default function ContactSection({
                 autoComplete="name"
                 required
                 disabled={isSubmitting}
+                aria-invalid={Boolean(fieldErrors.fullName)}
+                aria-describedby={fieldErrors.fullName ? `${formId}-fullName-error` : undefined}
               />
+              {fieldErrors.fullName && (
+                <p id={`${formId}-fullName-error`} className="px-5 pb-3 text-[12px] text-red-700 sm:px-6 md:px-8">
+                  {fieldErrors.fullName}
+                </p>
+              )}
             </div>
             <div>
               <label className="sr-only" htmlFor="work-email">
                 Work email
               </label>
               <input
+                ref={workEmailRef}
                 id="work-email"
                 name="workEmail"
                 type="email"
@@ -339,7 +260,14 @@ export default function ContactSection({
                 autoComplete="email"
                 required
                 disabled={isSubmitting}
+                aria-invalid={Boolean(fieldErrors.workEmail)}
+                aria-describedby={fieldErrors.workEmail ? `${formId}-workEmail-error` : undefined}
               />
+              {fieldErrors.workEmail && (
+                <p id={`${formId}-workEmail-error`} className="px-5 pb-3 text-[12px] text-red-700 sm:px-6 md:px-8">
+                  {fieldErrors.workEmail}
+                </p>
+              )}
             </div>
           </div>
 
@@ -369,7 +297,7 @@ export default function ContactSection({
                 disabled={isSubmitting}
               />
             </div>
-            <label className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 transition-colors duration-200 hover:bg-white/45 focus-within:bg-white/55 md:px-8">
+            <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-200 hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
               <input
                 type="file"
                 name="attachment"
@@ -379,10 +307,17 @@ export default function ContactSection({
                   const file = event.target.files?.[0] ?? null;
                   setSelectedFile(file);
                   if (file && file.size > MAX_FILE_BYTES) {
-                    setFieldError("Attachment must be 30MB or smaller.");
+                    setFieldErrors((prev) => ({
+                      ...prev,
+                      attachment: "Attachment must be 30MB or smaller.",
+                    }));
                     setStatus("error");
-                  } else if (fieldError?.includes("Attachment")) {
-                    setFieldError(null);
+                  } else {
+                    setFieldErrors((prev) => {
+                      const next = { ...prev };
+                      delete next.attachment;
+                      return next;
+                    });
                   }
                 }}
               />
@@ -459,18 +394,27 @@ export default function ContactSection({
               Message
             </label>
             <textarea
+              ref={messageRef}
               id="message"
               name="message"
-              className="min-h-[190px] w-full resize-none bg-transparent px-6 py-6 text-[14px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 md:px-8"
+              className="min-h-[160px] w-full resize-none bg-transparent px-5 py-5 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 sm:min-h-[190px] sm:px-6 sm:py-6 sm:text-[14px] md:px-8"
               placeholder="How can we help you? *"
               value={message}
               onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
               maxLength={MAX_MESSAGE}
               required
               disabled={isSubmitting}
+              aria-invalid={Boolean(fieldErrors.message)}
+              aria-describedby={`${formId}-message-count${fieldErrors.message ? ` ${formId}-message-error` : ""}`}
             />
+            {fieldErrors.message && (
+              <p id={`${formId}-message-error`} className="px-5 text-[12px] text-red-700 sm:px-6 md:px-8">
+                {fieldErrors.message}
+              </p>
+            )}
             <div
-              className={`px-6 pb-4 text-right text-[11px] md:px-8 ${
+              id={`${formId}-message-count`}
+              className={`px-5 pb-4 text-right text-[11px] sm:px-6 md:px-8 ${
                 charCount >= MAX_MESSAGE ? "text-red-600" : "text-neutral-500"
               }`}
             >
@@ -478,24 +422,20 @@ export default function ContactSection({
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`flex min-h-24 items-center justify-center text-xl font-semibold tracking-[-0.04em] lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
-          >
-            {isSubmitting ? "Sending…" : "Send"}
-          </button>
-
-          <div className="lg:col-span-4 px-6 py-5 md:px-8 lg:px-16">
+          {/* Consent before Send on mobile — desktop send stays in side column */}
+          <div className="border-b border-neutral-200 px-5 py-5 sm:px-6 md:px-8 lg:col-span-4 lg:px-16">
             <label className="flex items-start gap-3 text-[12px] leading-relaxed tracking-tight text-neutral-600">
               <input
+                ref={consentRef}
                 type="checkbox"
                 name="consent"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
-                className="mt-1 h-3.5 w-3.5 border-neutral-300"
+                className="mt-0.5 h-5 w-5 shrink-0 border-neutral-300"
                 required
                 disabled={isSubmitting}
+                aria-invalid={Boolean(fieldErrors.consent)}
+                aria-describedby={fieldErrors.consent ? `${formId}-consent-error` : undefined}
               />
               <span>
                 I agree to be contacted by Sofnology about this request and understand
@@ -503,7 +443,20 @@ export default function ContactSection({
                 prepared.
               </span>
             </label>
+            {fieldErrors.consent && (
+              <p id={`${formId}-consent-error`} className="mt-2 pl-8 text-[12px] text-red-700">
+                {fieldErrors.consent}
+              </p>
+            )}
           </div>
+
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={`tap-press flex min-h-[3.5rem] items-center justify-center text-lg font-semibold tracking-[-0.04em] sm:min-h-24 sm:text-xl lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
+          >
+            {isSubmitting ? "Sending…" : "Send"}
+          </button>
         </form>
       </div>
     </section>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const AMBER = "#E8A317";
 const DEEP = "#1C1710";
@@ -174,14 +175,14 @@ function DevOpsHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                 DevOps consulting services
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 Sofnology helps teams connect development and operations with clearer
                 pipelines, more reliable releases, and practical cloud automation —
@@ -194,7 +195,7 @@ function DevOpsHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact"
-            className="group relative flex min-h-[260px] items-start justify-between overflow-hidden border-b border-neutral-200 px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+            className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
             style={{ backgroundColor: DEEP }}
           >
             <span
@@ -203,14 +204,14 @@ function DevOpsHero() {
             />
             <span className="relative z-10">Get in touch</span>
             <span
-              className="relative z-10 mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              className="relative z-10 lg:mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               style={{ color: AMBER }}
             >
               <ArrowUpRightIcon />
             </span>
           </a>
 
-          <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -240,7 +241,7 @@ function ServicesSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Our DevOps consulting services
             </h2>
           </div>
@@ -309,9 +310,9 @@ function PipelineSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="min-h-[300px] border-b border-white/14 px-6 py-16 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]">
+        <div className="min-h-[300px] border-b border-white/14 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]">
           <div className="max-w-3xl lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
               Continuous delivery across the DevOps pipeline
             </h2>
             <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-white/72">
@@ -340,11 +341,11 @@ function PipelineSection() {
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
                   index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[240px] text-[#101413]" : "min-h-[118px] text-white"}`}
+                } ${isActive ? "min-h-[240px] text-[#101413]" : "min-h-[80px] text-white"}`}
                 style={{ backgroundColor: isActive ? SOFT : DEEP }}
               >
                 <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
-                  <span className="text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl">
+                  <span className="text-[2.35rem] sm:text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl">
                     {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
@@ -379,7 +380,7 @@ function EngagementSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Built for the stage you’re in
             </h2>
           </div>
@@ -408,7 +409,7 @@ function EngagementSection() {
                 }}
                 onFocus={() => setActiveModel(index)}
                 tabIndex={0}
-                className={`min-h-[280px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[280px] border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
                   index > 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
               >
@@ -441,8 +442,8 @@ function TechStackSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             DevOps tech stack and tools
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -482,12 +483,12 @@ function DevSecOpsStrip() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[280px] grid-cols-1 lg:grid-cols-[0.54fr_0.46fr]">
-          <div className="flex items-center border-b border-neutral-200 px-6 py-14 md:px-10 lg:border-b-0 lg:px-16">
+          <div className="flex items-center border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-b-0 lg:px-16">
             <div className="max-w-2xl">
               <p className="text-[12px] font-semibold tracking-[0.16em] uppercase text-[#0B4F4A]">
                 DevSecOps
               </p>
-              <h2 className="mt-5 text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+              <h2 className="mt-5 text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
                 Security belongs in the pipeline
               </h2>
               <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-neutral-700">
@@ -496,7 +497,7 @@ function DevSecOpsStrip() {
               </p>
             </div>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <a
               href="/services/cybersecurity"
               className="group relative flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#101413] md:px-8"
@@ -538,7 +539,7 @@ function DevOpsCtaSection() {
             style={{ backgroundColor: DEEP }}
           >
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
+              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
                 Looking for the right DevOps path for your project?
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -574,8 +575,8 @@ function DevOpsFaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-16 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -632,56 +633,13 @@ function DevOpsFaqSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#101413] shadow-[0_12px_40px_rgba(28,23,16,0.2)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: AMBER }}
-          >
-            <span>Get in touch</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function DevOpsPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <DevOpsHero />
         <div className="content-rail">
           <ServicesSection />
@@ -694,7 +652,12 @@ export default function DevOpsPage() {
           <ContactSection showIntro={false} accent="amber" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={AMBER}
+        textColor={"#101413"}
+      />
       <Footer />
     </>
   );

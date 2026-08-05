@@ -1,13 +1,12 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 
+/** Three proof points — protects the hero image plane (was five). */
 const bullets = [
-  "Enterprise software teams ready to accelerate delivery.",
-  "Cloud-native platforms designed for secure, measurable scale.",
-  "AI-enabled workflows that remove operational bottlenecks.",
-  "Transparent delivery systems with senior engineering oversight.",
-  "Architecture, automation, and product execution under one roof.",
+  "Senior-led delivery with clear ownership",
+  "Software, automation, and growth under one plan",
+  "Handover built for systems you can run",
 ];
 
 function CircleCheckIcon() {
@@ -28,21 +27,26 @@ function CircleCheckIcon() {
 }
 
 export default function HeroOverlayPanel() {
+  const reduceMotion = useReducedMotion();
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: 12 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-      style={{ clipPath: "polygon(0 0, 88% 0, 100% 12%, 100% 100%, 10% 100%, 0 88%)" }}
-      className="absolute top-1/2 left-1/2 z-10 hidden w-[84%] max-w-[620px] -translate-x-1/2 -translate-y-1/2 border border-white/30 bg-white/72 px-10 py-14 shadow-[0_24px_70px_rgba(6,26,58,0.12)] backdrop-blur-2xl md:block md:px-14 md:py-16"
+      transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.15, ease: [0.16, 1, 0.3, 1] }}
+      style={{ clipPath: "polygon(0 0, 90% 0, 100% 10%, 100% 100%, 8% 100%, 0 90%)" }}
+      className="absolute right-[6%] bottom-[8%] z-10 hidden w-[min(92%,420px)] border border-white/25 bg-[#061a3a]/78 px-7 py-8 text-white backdrop-blur-md lg:block xl:right-[8%] xl:bottom-[10%] xl:px-8 xl:py-9"
     >
-      <ul className="space-y-8">
+      <p className="font-nav text-[13px] font-semibold tracking-[0.14em] text-white/55 uppercase">
+        Sofnology
+      </p>
+      <ul className="mt-5 space-y-4">
         {bullets.map((bullet) => (
-          <li key={bullet} className="flex items-start gap-5">
-            <span className="mt-0.5 flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#061a3a] shadow-[0_10px_24px_-16px_rgba(6,26,58,0.9)]">
+          <li key={bullet} className="flex items-start gap-3.5">
+            <span className="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-white/15">
               <CircleCheckIcon />
             </span>
-            <span className="text-base leading-[1.45] font-semibold tracking-[-0.02em] text-[#061a3a] md:text-lg">
+            <span className="text-[15px] leading-[1.4] font-medium tracking-[-0.02em] text-white/92">
               {bullet}
             </span>
           </li>

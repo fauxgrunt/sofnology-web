@@ -49,7 +49,7 @@ export const navItems: NavItemConfig[] = [
     href: "/#start-your-growth",
     menu: "engagement",
   },
-  { id: "portfolio", label: "Case Studies", href: "/#case-studies" },
+  { id: "portfolio", label: "Engagement paths", href: "/#case-studies" },
   { id: "company", label: "Company", href: "/company", menu: "company" },
 ];
 

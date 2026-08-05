@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { motion } from "framer-motion";
+import { ArrowUpRightIcon } from "@/components/icons";
 
 const focusAreas = [
   {
@@ -28,21 +30,6 @@ const focusAreas = [
     link: "Review technical foundation",
   },
 ];
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 export default function BusinessUpliftSection() {
   return (
@@ -113,7 +100,7 @@ export default function BusinessUpliftSection() {
                 delay: index * 0.06,
                 ease: [0.16, 1, 0.3, 1],
               }}
-              className={`group flex min-h-[280px] flex-col border-white/20 p-8 transition-colors duration-300 hover:bg-white/[0.045] md:p-10 ${
+              className={`group flex min-h-0 flex-col border-white/20 p-6 transition-colors duration-300 hover:bg-white/[0.045] sm:min-h-[240px] sm:p-8 md:min-h-[280px] md:p-10 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
             >
@@ -123,16 +110,16 @@ export default function BusinessUpliftSection() {
               <p className="mt-5 text-[14px] leading-[1.68] tracking-tight text-white/75">
                 {area.description}
               </p>
-              <a
+              <Link
                 href="/#contact"
                 className="mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-300 group-hover:text-white/75"
               >
                 {area.link}
-              </a>
+              </Link>
             </motion.article>
           ))}
 
-          <a
+          <Link
             href="/#contact"
             className="group relative col-span-1 flex min-h-28 items-center justify-between overflow-hidden border-t border-white/20 bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-8 py-8 text-2xl font-semibold tracking-[-0.045em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors duration-300 md:col-span-2 md:px-10"
           >
@@ -144,7 +131,7 @@ export default function BusinessUpliftSection() {
             <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:bg-white/15">
               <ArrowUpRightIcon />
             </span>
-          </a>
+          </Link>
         </div>
       </div>
     </section>

@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import StickyCTA from "@/components/StickyCTA";
 
 const TEAL = "#0B4F4A";
 const CYAN = "#5EEAD4";
@@ -108,14 +109,14 @@ function CyberHero() {
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
                 Cybersecurity solutions
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
               <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
                 As digital systems grow more connected, security has to be designed into
                 products and operations — not added after a scare. Sofnology helps teams
@@ -129,7 +130,7 @@ function CyberHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact"
-            className="group relative flex min-h-[260px] items-start justify-between overflow-hidden border-b border-neutral-200 px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+            className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
             style={{ backgroundColor: TEAL }}
           >
             <span
@@ -138,14 +139,14 @@ function CyberHero() {
             />
             <span className="relative z-10">Get in touch</span>
             <span
-              className="relative z-10 mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+              className="relative z-10 lg:mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
               style={{ color: CYAN }}
             >
               <ArrowUpRightIcon />
             </span>
           </a>
 
-          <div className="relative min-h-[360px] overflow-hidden md:min-h-[430px] lg:min-h-[360px]">
+          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={HERO_IMAGE}
@@ -173,7 +174,7 @@ function IntroBand() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
         <div className="grid min-h-[220px] grid-cols-1 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden lg:block" />
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-3xl text-[16px] leading-[1.75] tracking-tight text-white/82">
               Whether you want to strengthen an existing security posture, design a
               framework around a new product, or get a clear remediation plan after an
@@ -194,12 +195,12 @@ function AssessmentServicesSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[280px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-14 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
               Cybersecurity assessment services
             </h2>
           </div>
-          <div className="flex items-end px-6 py-14 md:px-10 lg:px-16">
+          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               We offer practical cybersecurity assessment and consulting for teams at
               different stages — from first security review to hardening live products
@@ -215,10 +216,11 @@ function AssessmentServicesSection() {
             return (
               <article
                 key={service.title}
-                onMouseEnter={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveService(index); }}
                 onFocus={() => setActiveService(index)}
                 tabIndex={0}
-                className={`min-h-[260px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-12 ${
+                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[260px] border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-12 ${
                   index % 2 === 1 ? "md:border-l" : ""
                 } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""} ${
                   isActive ? "bg-white" : "bg-transparent hover:bg-white/50"
@@ -258,11 +260,11 @@ function AuditPackagesSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div
-          className="min-h-[280px] border-b border-white/10 px-6 py-14 text-white md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]"
+          className="min-h-[280px] border-b border-white/10 px-5 py-9 text-white sm:px-6 sm:py-12 md:py-14 md:px-10 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]"
           style={{ backgroundColor: TEAL }}
         >
           <div className="max-w-3xl lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
               Security audit packages
             </h2>
             <p className="mt-7 text-[15px] leading-[1.75] tracking-tight text-white/78">
@@ -297,7 +299,8 @@ function AuditPackagesSection() {
                 return (
                   <tr
                     key={pkg.title}
-                    onMouseEnter={() => setHoveredIndex(index)}
+                    onClick={() => setHoveredIndex(index)}
+                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setHoveredIndex(index); }}
                     className={`align-top transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
                       index > 0 ? "border-t border-neutral-200" : ""
                     } ${isFeatured ? "bg-[rgba(11,79,74,0.06)]" : ""} ${
@@ -451,7 +454,7 @@ function CyberCtaSection() {
             style={{ backgroundColor: TEAL }}
           >
             <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
+              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
                 Start seeing improvements in cybersecurity today
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
@@ -482,56 +485,13 @@ function CyberCtaSection() {
   );
 }
 
-function StickyGetInTouch() {
-  const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const onScroll = () => {
-      const contact = document.getElementById("contact");
-      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
-      const beforeContact = contactTop > window.innerHeight * 0.65;
-      setVisible(pastHero && beforeContact);
-    };
-
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
-    };
-  }, []);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ y: 80, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: 80, opacity: 0 }}
-          transition={{ duration: 0.35, ease: fadeEase }}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
-        >
-          <a
-            href="#contact-form"
-            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#101413] shadow-[0_12px_40px_rgba(11,79,74,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
-            style={{ backgroundColor: CYAN }}
-          >
-            <span>Get in touch</span>
-            <ArrowUpRightIcon />
-          </a>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
 
 export default function CybersecurityPage() {
   return (
     <>
       <Navbar />
-      <main>
+      <main id="main-content" className="pb-sticky-cta">
         <CyberHero />
         <div className="content-rail">
           <IntroBand />
@@ -541,7 +501,12 @@ export default function CybersecurityPage() {
           <ContactSection showIntro={false} accent="teal" />
         </div>
       </main>
-      <StickyGetInTouch />
+      <StickyCTA
+        href="#contact-form"
+        label="Get in touch"
+        backgroundColor={CYAN}
+        textColor={"#101413"}
+      />
       <Footer />
     </>
   );

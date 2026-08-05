@@ -1,19 +1,34 @@
+import Link from "next/link";
+import Image from "next/image";
+
 const companyLinks = [
   { label: "Who we are", href: "/company" },
   { label: "How we work", href: "/company/how-we-work" },
-  { label: "Featured work", href: "/#case-studies" },
+  { label: "Engagement paths", href: "/#case-studies" },
   { label: "Contact", href: "/#contact" },
 ];
 
 const serviceLinks = [
   { label: "Software development", href: "/services/software-development" },
+  { label: "Web development", href: "/services/web-development" },
   { label: "Mobile development", href: "/services/mobile-development" },
   { label: "Cloud consulting", href: "/services/cloud-consulting" },
+  { label: "DevOps", href: "/services/devops" },
+  { label: "Cybersecurity", href: "/services/cybersecurity" },
   { label: "All technologies", href: "/services/technologies" },
+];
+
+const industryLinks = [
+  { label: "Fintech", href: "/industries/fintech" },
+  { label: "Ecommerce", href: "/industries/ecommerce" },
+  { label: "Healthtech", href: "/industries/healthtech" },
+  { label: "Foodtech", href: "/industries/foodtech" },
 ];
 
 const supportLinks = [
   { label: "FAQ", href: "/#faq" },
+  { label: "Startups", href: "/engagement/solutions-for-startups" },
+  { label: "Enterprises", href: "/engagement/solutions-for-enterprises" },
   { label: "Contact", href: "/#contact" },
   { label: "Start a conversation", href: "/#contact-form" },
 ];
@@ -28,7 +43,11 @@ const footerColumns = [
     links: serviceLinks,
   },
   {
-    title: "Support",
+    title: "Industries",
+    links: industryLinks,
+  },
+  {
+    title: "Engage",
     links: supportLinks,
   },
 ];
@@ -38,28 +57,28 @@ export default function Footer() {
     <footer className="bg-[#202123] text-white">
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
         <div className="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px]">
-          <div className="grid grid-cols-1 gap-10 px-6 py-12 md:grid-cols-3 md:px-10 lg:px-8 xl:px-12">
+          <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-6 py-12 sm:grid-cols-2 md:grid-cols-4 md:px-10 lg:px-8 xl:px-12">
             {footerColumns.map((column) => (
               <div key={column.title}>
-                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
+                <h3 className="text-[12px] font-semibold tracking-[0.06em] uppercase text-white/40">
                   {column.title}
                 </h3>
-                <ul className="mt-5 space-y-3">
+                <ul className="mt-5 space-y-2.5">
                   {column.links.map((link) => (
                     <li key={link.label}>
-                      <a
+                      <Link
                         href={link.href}
-                        className="text-[14px] leading-none tracking-[-0.02em] text-white/82 transition-colors duration-200 hover:text-white"
+                        className="inline-flex min-h-10 items-center text-[14px] leading-snug tracking-[-0.02em] text-white/82 transition-colors duration-200 hover:text-white"
                       >
                         {link.label}
-                      </a>
+                      </Link>
                     </li>
                   ))}
                 </ul>
               </div>
             ))}
 
-            <div className="md:col-span-3 grid grid-cols-1 gap-10 pt-4 md:grid-cols-3">
+            <div className="col-span-2 grid grid-cols-1 gap-10 border-t border-white/10 pt-10 md:col-span-4 md:grid-cols-3">
               <div>
                 <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
                   Contact
@@ -71,12 +90,12 @@ export default function Footer() {
                   >
                     hello@sofnology.com
                   </a>
-                  <a
+                  <Link
                     href="/#contact"
                     className="block transition-colors hover:text-white"
                   >
                     Book a discovery call
-                  </a>
+                  </Link>
                   <p>Remote-first delivery</p>
                 </div>
               </div>
@@ -103,12 +122,12 @@ export default function Footer() {
                   >
                     Email the team
                   </a>
-                  <a
+                  <Link
                     href="/#contact-form"
                     className="block transition-colors hover:text-white"
                   >
                     Send a project brief
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -123,28 +142,26 @@ export default function Footer() {
               Sofnology connects software, automation, cloud, and digital marketing
               into one practical execution plan for growing businesses.
             </p>
-            <a
+            <Link
               href="/#contact"
-              className="group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 hover:bg-white"
+              className="group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 hover:bg-white tap-press"
             >
-              <span>Contact us</span>
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
+              <span>Book a discovery call</span>
+              <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1">
                 -&gt;
               </span>
-            </a>
+            </Link>
           </div>
         </div>
 
         <div className="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px]">
           <div className="flex min-h-40 items-end px-6 py-9 md:px-10 lg:px-8 xl:px-12">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/logo-new.png"
               alt="Sofnology Solutions"
               width={520}
               height={120}
               className="h-auto w-full max-w-[420px] brightness-0 invert"
-              decoding="async"
             />
           </div>
 

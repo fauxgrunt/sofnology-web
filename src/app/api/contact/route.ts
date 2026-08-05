@@ -94,7 +94,8 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       ok: true,
-      message: "Thanks — we received your message and will follow up shortly.",
+      message:
+        "Thanks — your message was received. A Sofnology teammate will follow up by email within one business day.",
     });
   } catch {
     return NextResponse.json(
