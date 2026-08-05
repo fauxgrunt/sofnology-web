@@ -70,15 +70,15 @@ export default function DeliveryConfidenceSection() {
   return (
     <section id="delivery-confidence" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
             Digital growth delivery without doubt
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2">
-          <div className="border-b border-neutral-200 p-6 md:p-10 lg:border-r lg:border-b-0 lg:p-12">
-            <div className="relative min-h-[360px] overflow-hidden md:min-h-[460px] lg:min-h-full">
+          <div className="border-b border-neutral-200 p-5 sm:p-6 md:p-10 lg:border-r lg:border-b-0 lg:p-12">
+            <div className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[320px] md:min-h-[460px] lg:min-h-[420px]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Digital growth.jpg"
@@ -102,7 +102,7 @@ export default function DeliveryConfidenceSection() {
                   <button
                     type="button"
                     onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                    className={`flex w-full items-center justify-between gap-6 px-6 py-7 text-left transition-colors duration-300 md:px-10 lg:px-12 ${
+                    className={`flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 sm:items-center sm:gap-6 sm:px-6 sm:py-7 md:px-10 lg:px-12 ${
                       isOpen ? "bg-white/45" : "hover:bg-white/35"
                     }`}
                     aria-expanded={isOpen}

@@ -41,10 +41,10 @@ export default function StartYourGrowthSection() {
     <section id="start-your-growth" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+          <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
             Start your growth, your way
           </h2>
-          <p className="mt-6 max-w-5xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
+          <p className="text-fluid-body mt-6 max-w-5xl leading-[1.75] tracking-tight text-neutral-700">
             Whether you need clarity first, a software platform, a stronger marketing
             engine, or operational automation, Sofnology gives you a practical starting
             point without forcing every business into the same engagement model.
@@ -55,7 +55,7 @@ export default function StartYourGrowthSection() {
           {startingPoints.map((point, index) => (
             <a
               key={point.title}
-              href="#contact"
+              href="/#contact"
               className={`group relative flex min-h-[280px] flex-col overflow-hidden border-neutral-200 bg-[#f4f4f4] px-6 py-9 text-neutral-950 transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-12 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
@@ -85,7 +85,7 @@ export default function StartYourGrowthSection() {
           ))}
 
           <a
-            href="#contact"
+            href="/#contact"
             className="group relative col-span-1 flex min-h-24 items-center justify-between overflow-hidden border-t border-neutral-200 bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white md:col-span-2 md:px-10 lg:px-12"
           >
             <span

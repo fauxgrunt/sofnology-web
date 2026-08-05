@@ -34,7 +34,7 @@ export default function HeroOverlayPanel() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
       style={{ clipPath: "polygon(0 0, 88% 0, 100% 12%, 100% 100%, 10% 100%, 0 88%)" }}
-      className="absolute top-1/2 left-1/2 z-10 hidden w-[84%] max-w-[620px] -translate-x-1/2 -translate-y-1/2 border border-white/30 bg-white/72 px-10 py-14 shadow-[0_24px_70px_rgba(6,26,58,0.12)] backdrop-blur-2xl sm:block md:px-14 md:py-16"
+      className="absolute top-1/2 left-1/2 z-10 hidden w-[84%] max-w-[620px] -translate-x-1/2 -translate-y-1/2 border border-white/30 bg-white/72 px-10 py-14 shadow-[0_24px_70px_rgba(6,26,58,0.12)] backdrop-blur-2xl md:block md:px-14 md:py-16"
     >
       <ul className="space-y-8">
         {bullets.map((bullet) => (

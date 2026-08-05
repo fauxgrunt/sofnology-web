@@ -210,30 +210,30 @@ const technologyStack = [
   },
 ];
 
-const placeholderProjects = [
+const engagementShapes = [
   {
     sector: "Fitness and wellness",
     title: "Class booking mobile app",
     description:
-      "A placeholder concept for booking sessions, managing memberships, push reminders, and customer-facing mobile engagement.",
+      "Session booking, memberships, push reminders, and customer-facing engagement for studios and wellness brands.",
   },
   {
     sector: "Food and ordering",
     title: "Local ordering platform",
     description:
-      "A placeholder concept for mobile ordering, menu management, payments, delivery status, and customer account flows.",
+      "Mobile ordering, menu management, payments, delivery status, and account flows for restaurants and local brands.",
   },
   {
     sector: "Healthcare operations",
     title: "Appointment companion app",
     description:
-      "A placeholder concept for appointment intake, reminders, secure messages, and internal coordination dashboards.",
+      "Appointment intake, reminders, secure messages, and coordination dashboards for care and clinic teams.",
   },
   {
     sector: "Property services",
     title: "Tenant workflow app",
     description:
-      "A placeholder concept for requests, status updates, documents, notifications, and property team visibility.",
+      "Requests, status updates, documents, notifications, and visibility for property and facilities teams.",
   },
 ];
 
@@ -430,7 +430,10 @@ function AudienceSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActiveAudience(index)}
+                onClick={() => setActiveAudience(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActiveAudience(index);
+                }}
                 onFocus={() => setActiveAudience(index)}
                 tabIndex={0}
                 className={`flex min-h-[320px] cursor-pointer flex-col border-neutral-200 px-6 py-9 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
@@ -521,7 +524,10 @@ function MobileTypesSection() {
               return (
                 <article
                   key={type.title}
-                  onMouseEnter={() => setActiveType(index)}
+                  onClick={() => setActiveType(index)}
+                  onMouseEnter={() => {
+                    if (window.matchMedia("(hover: hover)").matches) setActiveType(index);
+                  }}
                   onFocus={() => setActiveType(index)}
                   tabIndex={0}
                   className={`cursor-pointer border-white/20 px-6 py-7 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-12 ${
@@ -599,7 +605,10 @@ function DevelopmentServicesSection() {
             return (
               <article
                 key={service.title}
-                onMouseEnter={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActiveService(index);
+                }}
                 onFocus={() => setActiveService(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
@@ -670,7 +679,10 @@ function RelatedServicesSection() {
             return (
               <article
                 key={service.title}
-                onMouseEnter={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActiveService(index);
+                }}
                 onFocus={() => setActiveService(index)}
                 tabIndex={0}
                 className={`group flex min-h-[320px] cursor-pointer flex-col border-neutral-200 px-6 py-9 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-8 ${
@@ -746,7 +758,10 @@ function InnovationSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActiveItem(index)}
+                onClick={() => setActiveItem(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActiveItem(index);
+                }}
                 onFocus={() => setActiveItem(index)}
                 tabIndex={0}
                 className={`min-h-[280px] cursor-pointer border-white/14 px-6 py-9 transition-[background-color,color] duration-500 md:px-10 lg:px-12 ${
@@ -863,7 +878,9 @@ function IndustryInnovationSection() {
                   key={industry.title}
                   type="button"
                   onClick={() => setActiveIndustry(index)}
-                  onMouseEnter={() => setActiveIndustry(index)}
+                  onMouseEnter={() => {
+                    if (window.matchMedia("(hover: hover)").matches) setActiveIndustry(index);
+                  }}
                   className={`flex min-h-20 w-full items-center border-neutral-200 px-6 text-left text-xl font-semibold tracking-[-0.04em] transition-colors duration-300 md:px-10 lg:px-12 ${
                     index > 0 ? "border-t" : ""
                   } ${isActive ? "bg-[#0B4F20] text-white" : "text-neutral-500 hover:bg-white/45 hover:text-neutral-950"}`}
@@ -892,7 +909,7 @@ function IndustryInnovationSection() {
   );
 }
 
-function SelectedProjectsSection() {
+function EngagementShapesSection() {
   const [activeProject, setActiveProject] = useState(0);
 
   return (
@@ -901,19 +918,22 @@ function SelectedProjectsSection() {
         <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
             <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Our selected mobile projects
+              Engagement shapes we deliver
             </h2>
           </div>
         </div>
 
         <div>
-          {placeholderProjects.map((project, index) => {
+          {engagementShapes.map((project, index) => {
             const isActive = activeProject === index;
 
             return (
               <article
                 key={project.title}
-                onMouseEnter={() => setActiveProject(index)}
+                onClick={() => setActiveProject(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActiveProject(index);
+                }}
                 onFocus={() => setActiveProject(index)}
                 tabIndex={0}
                 className={`group grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
@@ -940,11 +960,6 @@ function SelectedProjectsSection() {
                     >
                       {project.description}
                     </p>
-                    {isActive && (
-                      <p className="mt-7 text-[12px] font-semibold tracking-[0.16em] uppercase text-[#0B4F20]">
-                        Placeholder project concept
-                      </p>
-                    )}
                   </div>
 
                   <span className="pt-1 text-neutral-950 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -1128,7 +1143,7 @@ export default function MobileDevelopmentPage() {
           <IndustryInnovationSection />
           <InnovationSection />
           <MobileCtaSection />
-          <SelectedProjectsSection />
+          <EngagementShapesSection />
           <TechnologyStackSection />
           <MobileFaqSection />
           <ContactSection showIntro={false} accent="lime" />

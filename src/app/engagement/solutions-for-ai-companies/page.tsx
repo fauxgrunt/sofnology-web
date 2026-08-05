@@ -218,15 +218,15 @@ function AiHero() {
         <div className="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[0.36fr_0.64fr]">
           <div className="hidden min-h-[410px] lg:block" />
 
-          <div className="grid min-h-[410px] grid-cols-1 px-6 py-12 md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
+          <div className="grid grid-cols-1 px-5 py-9 sm:px-6 sm:py-12 md:px-10 lg:min-h-[410px] lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
             <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-5xl leading-[1.04] font-semibold tracking-[-0.06em] text-white md:text-6xl lg:text-[4.1rem]">
+              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] text-white sm:text-5xl sm:leading-[1.04] md:text-6xl lg:text-[4.1rem] lg:tracking-[-0.06em]">
                 AI tools aren’t a delivery system
               </h1>
             </div>
 
-            <div className="mt-16 flex items-end lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-white/72">
+            <div className="mt-6 flex items-end sm:mt-10 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
+              <p className="max-w-lg text-[14px] leading-[1.65] tracking-tight text-white/72 sm:text-[15px] sm:leading-[1.72]">
                 Sofnology helps AI companies and AI-enabled teams build systems that make
                 models reliable at scale — across planning, build, review, and release.
               </p>
@@ -234,10 +234,9 @@ function AiHero() {
           </div>
         </div>
 
-        {/* Image left (subject + open right space), cyan CTA right — matches render composition */}
         <div className="grid grid-cols-1 lg:grid-cols-[0.66fr_0.34fr]">
           <div
-            className="relative min-h-[280px] overflow-hidden md:min-h-[360px] lg:min-h-[440px]"
+            className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]"
             style={{ backgroundColor: "#0A0B0E" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -251,7 +250,7 @@ function AiHero() {
 
           <a
             href="#contact"
-            className="group relative flex min-h-[72px] items-center justify-between overflow-hidden border-t border-white/10 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#12141A] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[440px] lg:items-start lg:border-t-0 lg:border-l lg:border-white/10 lg:px-8 lg:py-8 xl:px-12"
+            className="group relative flex min-h-[64px] items-center justify-between overflow-hidden border-t border-white/10 px-5 py-4 text-base font-semibold tracking-[-0.04em] text-[#12141A] sm:min-h-[72px] sm:px-6 sm:py-5 sm:text-lg md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[440px] lg:items-start lg:border-t-0 lg:border-l lg:border-white/10 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: CYAN }}
           >
             <span
@@ -275,14 +274,14 @@ function CostSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="flex items-center px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-[2.75rem]">
               The cost of getting it wrong
             </h2>
           </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
+          <div className="flex items-end px-5 pb-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <p className="max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:text-[15px] sm:leading-[1.7]">
               Poorly implemented AI doesn’t just underperform — it destroys value. Teams
               succeeding with AI run tighter systems, not more agents.
             </p>
@@ -299,27 +298,27 @@ function CostSection() {
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
-                className={`min-h-[260px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 md:px-8 lg:px-10 ${
+                className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-7 transition-colors duration-500 sm:min-h-[220px] sm:px-6 sm:py-10 md:min-h-[260px] md:px-8 lg:px-10 ${
                   index > 0 ? "border-t md:border-t-0 md:border-l" : ""
                 } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
               >
                 <motion.div
-                  className="mb-6 h-1 origin-left"
+                  className="mb-5 h-1 origin-left sm:mb-6"
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.4 }}
                   transition={{ duration: 0.4, ease: fadeEase }}
                 />
                 <span
-                  className="text-3xl font-light tracking-[-0.08em]"
+                  className="text-2xl font-light tracking-[-0.08em] sm:text-3xl"
                   style={{ color: isActive ? DEEP : "#A3A3A3" }}
                 >
                   {String(index + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-5 text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
+                <h3 className="mt-4 text-lg leading-tight font-semibold tracking-[-0.04em] text-neutral-950 sm:mt-5 sm:text-xl md:text-2xl">
                   {point.title}
                 </h3>
-                <p className="mt-4 text-[15px] leading-[1.65] tracking-tight text-neutral-700">
+                <p className="mt-3 text-[14px] leading-[1.6] tracking-tight text-neutral-700 sm:mt-4 sm:text-[15px] sm:leading-[1.65]">
                   {point.description}
                 </p>
               </article>
@@ -338,10 +337,9 @@ function MaturitySection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        {/* Mid image left + intro copy in dark right half — uses negative space in the render */}
         <div className="grid grid-cols-1 border-b border-white/14 lg:grid-cols-[0.52fr_0.48fr]">
           <div
-            className="relative min-h-[280px] overflow-hidden md:min-h-[360px] lg:min-h-[420px]"
+            className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[420px]"
             style={{ backgroundColor: "#0A0B0E" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -353,17 +351,17 @@ function MaturitySection() {
             />
           </div>
 
-          <div className="flex flex-col justify-center px-6 py-12 md:px-10 lg:px-14 xl:px-16">
+          <div className="flex flex-col justify-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 lg:px-14 xl:px-16">
             <p
-              className="text-[13px] font-semibold tracking-[0.08em] uppercase"
+              className="text-[12px] font-semibold tracking-[0.08em] uppercase sm:text-[13px]"
               style={{ color: CYAN }}
             >
               Maturity model
             </p>
-            <h2 className="mt-4 max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-[2.75rem]">
+            <h2 className="mt-3 max-w-xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] sm:mt-4 sm:text-4xl sm:leading-[1.08] md:text-[2.75rem]">
               Where is your team, really?
             </h2>
-            <p className="mt-6 max-w-lg text-[15px] leading-[1.7] tracking-tight text-white/72">
+            <p className="mt-4 max-w-lg text-[14px] leading-[1.65] tracking-tight text-white/72 sm:mt-6 sm:text-[15px] sm:leading-[1.7]">
               Five stages from ad-hoc exploration to governed, AI-native delivery. Most
               teams sit between Stage 1 and 2 — Stage 4 is where compounding returns
               begin.
@@ -372,38 +370,47 @@ function MaturitySection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
-          <div role="tablist" aria-label="AI maturity stages">
-            {maturityStages.map((item, index) => {
-              const isActive = active === index;
+          {/* Detail first on mobile so users see content before the long stage list */}
+          <div className="order-2 border-t border-white/14 lg:order-1 lg:border-t-0">
+            <div role="tablist" aria-label="AI maturity stages" className="flex gap-2 overflow-x-auto px-5 py-4 lg:block lg:overflow-visible lg:px-0 lg:py-0">
+              {maturityStages.map((item, index) => {
+                const isActive = active === index;
 
-              return (
-                <button
-                  key={item.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(index)}
-                  onMouseEnter={() => setActive(index)}
-                  className={`flex min-h-[72px] w-full items-center gap-4 border-white/14 px-6 text-left transition-colors duration-300 md:px-10 lg:px-12 ${
-                    index > 0 ? "border-t" : ""
-                  } ${isActive ? "text-[#12141A]" : "text-white/55 hover:text-white"}`}
-                  style={{ backgroundColor: isActive ? SOFT : "transparent" }}
-                >
-                  <span
-                    className="text-[12px] font-medium"
-                    style={{ color: isActive ? DEEP : CYAN }}
+                return (
+                  <button
+                    key={item.title}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActive(index)}
+                    onMouseEnter={() => {
+                      if (window.matchMedia("(hover: hover)").matches) setActive(index);
+                    }}
+                    className={`flex shrink-0 items-center gap-3 border-white/14 px-4 py-3 text-left transition-colors duration-300 lg:min-h-[72px] lg:w-full lg:gap-4 lg:border-t-0 lg:px-10 lg:py-0 xl:px-12 ${
+                      index > 0 ? "lg:border-t" : ""
+                    } ${
+                      isActive
+                        ? "rounded-sm text-[#12141A] lg:rounded-none"
+                        : "rounded-sm text-white/55 hover:text-white lg:rounded-none"
+                    }`}
+                    style={{ backgroundColor: isActive ? SOFT : "transparent" }}
                   >
-                    {item.stage}
-                  </span>
-                  <span className="text-lg font-semibold tracking-[-0.03em]">
-                    {item.title}
-                  </span>
-                </button>
-              );
-            })}
+                    <span
+                      className="text-[11px] font-medium whitespace-nowrap sm:text-[12px]"
+                      style={{ color: isActive ? DEEP : CYAN }}
+                    >
+                      {item.stage}
+                    </span>
+                    <span className="text-[14px] font-semibold tracking-[-0.03em] whitespace-nowrap lg:text-lg">
+                      {item.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="border-t border-white/14 px-6 py-10 md:px-10 lg:border-t-0 lg:border-l lg:px-14 lg:py-12">
+          <div className="order-1 border-b border-white/14 px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:order-2 lg:border-b-0 lg:border-l lg:px-14 lg:py-12">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.title}
@@ -412,24 +419,24 @@ function MaturitySection() {
                 exit={{ opacity: 0, y: 6 }}
                 transition={{ duration: 0.32, ease: fadeEase }}
               >
-                <div className="mb-6 h-1 w-12" style={{ backgroundColor: CYAN }} />
-                <p className="text-[13px] font-semibold tracking-[0.08em] uppercase text-white/45">
+                <div className="mb-5 h-1 w-12 sm:mb-6" style={{ backgroundColor: CYAN }} />
+                <p className="text-[12px] font-semibold tracking-[0.08em] uppercase text-white/45 sm:text-[13px]">
                   AI adoption pattern
                 </p>
-                <h3 className="mt-3 text-3xl leading-tight font-semibold tracking-[-0.045em]">
+                <h3 className="mt-2 text-2xl leading-tight font-semibold tracking-[-0.045em] sm:mt-3 sm:text-3xl">
                   {current.stage}: {current.title}
                 </h3>
-                <p className="mt-6 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/75">
+                <p className="mt-4 max-w-2xl text-[14px] leading-[1.65] tracking-tight text-white/75 sm:mt-6 sm:text-[15px] sm:leading-[1.72]">
                   {current.pattern}
                 </p>
-                <p className="mt-8 text-[13px] font-semibold tracking-[0.06em] uppercase text-white/45">
+                <p className="mt-6 text-[12px] font-semibold tracking-[0.06em] uppercase text-white/45 sm:mt-8 sm:text-[13px]">
                   Advancement criteria
                 </p>
                 <ul className="mt-3 max-w-lg border-t border-white/14">
                   {current.advance.map((item) => (
                     <li
                       key={item}
-                      className="border-b border-white/14 py-3.5 text-[15px] leading-[1.45] tracking-tight text-white/85"
+                      className="border-b border-white/14 py-3 text-[14px] leading-[1.45] tracking-tight text-white/85 sm:py-3.5 sm:text-[15px]"
                     >
                       {item}
                     </li>
@@ -451,14 +458,14 @@ function SpecSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="flex items-center px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-[2.75rem]">
               Spec-driven delivery
             </h2>
           </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
+          <div className="flex items-end px-5 pb-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <p className="max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:text-[15px] sm:leading-[1.7]">
               Stage 4 is where pilots become scalable operations — a connected chain of
               artifacts AI drafts and senior engineers validate. Start with coding, then
               walk the full loop.
@@ -467,42 +474,50 @@ function SpecSection() {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.36fr_0.64fr]">
-          <div role="tablist" aria-label="Spec-driven delivery steps">
-            {specSteps.map((step, index) => {
-              const isActive = active === index;
+          <div className="order-2 border-t border-neutral-200 lg:order-1 lg:border-t-0">
+            <div
+              role="tablist"
+              aria-label="Spec-driven delivery steps"
+              className="flex gap-2 overflow-x-auto px-5 py-4 lg:block lg:overflow-visible lg:px-0 lg:py-0"
+            >
+              {specSteps.map((step, index) => {
+                const isActive = active === index;
 
-              return (
-                <button
-                  key={step.title}
-                  type="button"
-                  role="tab"
-                  aria-selected={isActive}
-                  onClick={() => setActive(index)}
-                  onMouseEnter={() => setActive(index)}
-                  className={`flex min-h-[64px] w-full items-center gap-4 border-neutral-200 px-6 text-left transition-colors duration-300 md:px-10 lg:px-12 ${
-                    index > 0 ? "border-t" : ""
-                  } ${
-                    isActive
-                      ? "text-white"
-                      : "text-neutral-500 hover:bg-white/55 hover:text-neutral-950"
-                  }`}
-                  style={{ backgroundColor: isActive ? DEEP : "transparent" }}
-                >
-                  <span
-                    className="text-[12px] font-medium"
-                    style={{ color: isActive ? CYAN : undefined }}
+                return (
+                  <button
+                    key={step.title}
+                    type="button"
+                    role="tab"
+                    aria-selected={isActive}
+                    onClick={() => setActive(index)}
+                    onMouseEnter={() => {
+                      if (window.matchMedia("(hover: hover)").matches) setActive(index);
+                    }}
+                    className={`flex shrink-0 items-center gap-3 border-neutral-200 px-4 py-3 text-left transition-colors duration-300 lg:min-h-[64px] lg:w-full lg:gap-4 lg:px-10 lg:py-0 xl:px-12 ${
+                      index > 0 ? "lg:border-t" : ""
+                    } ${
+                      isActive
+                        ? "rounded-sm text-white lg:rounded-none"
+                        : "rounded-sm text-neutral-500 hover:bg-white/55 hover:text-neutral-950 lg:rounded-none"
+                    }`}
+                    style={{ backgroundColor: isActive ? DEEP : "transparent" }}
                   >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="text-[15px] font-semibold tracking-[-0.03em] md:text-lg">
-                    {step.title}
-                  </span>
-                </button>
-              );
-            })}
+                    <span
+                      className="text-[11px] font-medium sm:text-[12px]"
+                      style={{ color: isActive ? CYAN : undefined }}
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-[14px] font-semibold tracking-[-0.03em] whitespace-nowrap lg:text-[15px] xl:text-lg">
+                      {step.title}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
-          <div className="border-t border-neutral-200 bg-white px-6 py-10 md:px-10 lg:border-t-0 lg:border-l lg:px-14 lg:py-12">
+          <div className="order-1 border-b border-neutral-200 bg-white px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:order-2 lg:border-b-0 lg:border-l lg:px-14 lg:py-12">
             <AnimatePresence mode="wait">
               <motion.div
                 key={current.title}
@@ -511,16 +526,19 @@ function SpecSection() {
                 exit={{ opacity: 0, y: 6 }}
                 transition={{ duration: 0.32, ease: fadeEase }}
               >
-                <span className="text-5xl font-light tracking-[-0.08em]" style={{ color: DEEP }}>
+                <span
+                  className="text-4xl font-light tracking-[-0.08em] sm:text-5xl"
+                  style={{ color: DEEP }}
+                >
                   {String(active + 1).padStart(2, "0")}
                 </span>
-                <h3 className="mt-4 text-3xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
+                <h3 className="mt-3 text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950 sm:mt-4 sm:text-3xl">
                   {current.title}
                 </h3>
-                <p className="mt-6 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
+                <p className="mt-4 max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:mt-6 sm:text-[15px] sm:leading-[1.72]">
                   {current.description}
                 </p>
-                <div className="mt-10 flex flex-wrap gap-2">
+                <div className="mt-8 flex flex-wrap gap-2 sm:mt-10">
                   {specSteps.map((step, index) => (
                     <button
                       key={step.title}
@@ -550,14 +568,14 @@ function GovernanceSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="flex items-center px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-[2.75rem]">
               Responsible AI, built in
             </h2>
           </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
+          <div className="flex items-end px-5 pb-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <p className="max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:text-[15px] sm:leading-[1.7]">
               Governance from the start — not bolted on after something goes wrong.
             </p>
           </div>
@@ -573,23 +591,23 @@ function GovernanceSection() {
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
-                className={`min-h-[220px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 md:px-10 lg:px-12 ${
+                className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-7 transition-colors duration-500 sm:min-h-[200px] sm:px-6 sm:py-10 md:min-h-[220px] md:px-10 lg:px-12 ${
                   index > 0 ? "border-t md:border-t-0" : ""
                 } ${index % 2 === 1 ? "md:border-l" : ""} ${
                   index >= 2 ? "md:border-t" : ""
                 } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
               >
                 <motion.div
-                  className="mb-6 h-1 origin-left"
+                  className="mb-5 h-1 origin-left sm:mb-6"
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.35 }}
                   transition={{ duration: 0.35, ease: fadeEase }}
                 />
-                <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
+                <h3 className="text-xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950 sm:text-2xl">
                   {item.title}
                 </h3>
-                <p className="mt-4 max-w-md text-[15px] leading-[1.65] tracking-tight text-neutral-700">
+                <p className="mt-3 max-w-md text-[14px] leading-[1.6] tracking-tight text-neutral-700 sm:mt-4 sm:text-[15px] sm:leading-[1.65]">
                   {item.description}
                 </p>
               </article>
@@ -607,14 +625,14 @@ function MeasureSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[140px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
+        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
+          <div className="flex items-center px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-[2.75rem]">
               What gets measured gets managed
             </h2>
           </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
+          <div className="flex items-end px-5 pb-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+            <p className="max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:text-[15px] sm:leading-[1.7]">
               Licenses and vibes aren’t enough. Leadership needs a defensible view of
               where AI creates real delivery value.
             </p>
@@ -631,23 +649,23 @@ function MeasureSection() {
                 onMouseEnter={() => setActive(index)}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
-                className={`min-h-[180px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 md:px-7 ${
+                className={`min-h-0 cursor-pointer border-neutral-200 px-5 py-6 transition-colors duration-500 sm:min-h-[180px] sm:px-6 sm:py-8 md:px-7 ${
                   index > 0 ? "border-t sm:border-t-0 sm:border-l" : ""
                 } ${index >= 2 ? "sm:border-t lg:border-t-0" : ""} ${
                   isActive ? "bg-white" : "hover:bg-white/45"
                 }`}
               >
                 <motion.div
-                  className="mb-5 h-1 origin-left"
+                  className="mb-4 h-1 origin-left sm:mb-5"
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.35 }}
                   transition={{ duration: 0.35, ease: fadeEase }}
                 />
-                <h3 className="text-lg leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
+                <h3 className="text-base leading-tight font-semibold tracking-[-0.04em] text-neutral-950 sm:text-lg">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.55] tracking-tight text-neutral-700">
+                <p className="mt-2.5 text-[13px] leading-[1.55] tracking-tight text-neutral-700 sm:mt-3 sm:text-[14px]">
                   {item.description}
                 </p>
               </article>
@@ -681,8 +699,8 @@ function RelatedSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-10 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-3xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-4xl">
+        <div className="border-b border-neutral-200 px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-16">
+          <h2 className="max-w-3xl text-[1.65rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-3xl sm:leading-[1.08] md:text-4xl">
             Related Sofnology work
           </h2>
         </div>
@@ -691,7 +709,7 @@ function RelatedSection() {
             <Link
               key={link.title}
               href={link.href}
-              className={`group flex min-h-[180px] flex-col justify-between border-neutral-200 px-6 py-8 transition-colors duration-300 hover:bg-white md:px-8 ${
+              className={`group flex min-h-0 flex-col justify-between border-neutral-200 px-5 py-7 transition-colors duration-300 hover:bg-white sm:min-h-[180px] sm:px-6 sm:py-8 md:px-8 ${
                 index > 0 ? "border-t md:border-t-0 md:border-l" : ""
               }`}
             >
@@ -723,10 +741,9 @@ function AiCtaSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        {/* CTA render already has a white diagonal — keep panel white so geometry aligns */}
         <div className="grid grid-cols-1 lg:grid-cols-[0.52fr_0.48fr]">
           <div
-            className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0"
+            className="relative aspect-[16/11] overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[300px] lg:min-h-[430px] lg:border-b-0"
             style={{ backgroundColor: "#050506" }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -738,20 +755,20 @@ function AiCtaSection() {
             />
           </div>
 
-          <div className="flex min-h-[340px] items-center bg-white px-6 py-12 md:px-10 lg:min-h-[430px] lg:px-14 xl:px-16">
+          <div className="flex min-h-0 items-center bg-white px-5 py-10 sm:min-h-[300px] sm:px-6 sm:py-12 md:px-10 lg:min-h-[430px] lg:px-14 xl:px-16">
             <div className="w-full max-w-3xl">
-              <div className="mb-8 h-1 w-14" style={{ backgroundColor: CYAN }} />
-              <h2 className="max-w-2xl text-4xl leading-[1.08] font-semibold tracking-[-0.05em] text-neutral-950 md:text-5xl">
+              <div className="mb-6 h-1 w-14 sm:mb-8" style={{ backgroundColor: CYAN }} />
+              <h2 className="max-w-2xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.05em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-5xl">
                 You can’t pilot your way out of a pilot
               </h2>
-              <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
+              <p className="mt-5 max-w-2xl text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:mt-7 sm:text-[15px] sm:leading-[1.72]">
                 We’ll locate where you sit on the five-stage model and name the
                 highest-impact moves next — before you commit more tool spend.
               </p>
 
               <a
                 href="#contact-form"
-                className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#12141A] md:px-8"
+                className="group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden px-5 py-4 text-base font-semibold tracking-[-0.04em] text-[#12141A] sm:mt-14 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                 style={{ backgroundColor: CYAN }}
               >
                 <span
@@ -777,8 +794,8 @@ function AiFaqSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-5xl">
             FAQs
           </h2>
         </div>
@@ -797,13 +814,16 @@ function AiFaqSection() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex min-h-24 w-full items-center justify-between gap-8 px-6 py-7 text-left transition-colors duration-300 hover:bg-white/35 md:px-10 lg:px-16"
+                  className="flex min-h-0 w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 hover:bg-white/35 sm:min-h-20 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
+                  <span className="text-[16px] leading-[1.3] font-semibold tracking-[-0.04em] text-neutral-950 sm:text-xl sm:leading-tight md:text-2xl">
                     {faq.question}
                   </span>
-                  <span className="text-4xl leading-none font-light text-[#12141A]" aria-hidden="true">
+                  <span
+                    className="shrink-0 text-2xl leading-none font-light text-[#12141A] sm:text-4xl"
+                    aria-hidden="true"
+                  >
                     {isOpen ? "−" : "+"}
                   </span>
                 </button>
@@ -818,7 +838,7 @@ function AiFaqSection() {
                       transition={{ duration: 0.28, ease: fadeEase }}
                       className="overflow-hidden"
                     >
-                      <p className="max-w-3xl px-6 pb-8 text-[15px] leading-[1.72] tracking-tight text-neutral-700 md:px-10 lg:px-16">
+                      <p className="max-w-3xl px-5 pb-6 text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:px-6 sm:pb-8 sm:text-[15px] sm:leading-[1.72] md:px-10 lg:px-16">
                         {faq.answer}
                       </p>
                     </motion.div>
@@ -840,7 +860,7 @@ function StickyGetInTouch() {
     const onScroll = () => {
       const contact = document.getElementById("contact");
       const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
-      const pastHero = window.scrollY > 480;
+      const pastHero = window.scrollY > 320;
       const beforeContact = contactTop > window.innerHeight * 0.65;
       setVisible(pastHero && beforeContact);
     };

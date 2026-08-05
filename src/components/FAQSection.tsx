@@ -52,11 +52,11 @@ export default function FAQSection() {
   return (
     <section id="faq" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="text-fluid-display max-w-5xl font-semibold tracking-[-0.045em] text-neutral-950">
             FAQs: Clear answers before we start
           </h2>
-          <p className="mt-6 max-w-5xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
+          <p className="text-fluid-body mt-4 max-w-5xl leading-[1.7] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
             The first conversation should focus on your business goals, not basic
             uncertainty about process, pricing, ownership, or how the work is managed.
             These answers cover the questions most teams ask before starting with
@@ -76,14 +76,14 @@ export default function FAQSection() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex w-full items-center justify-between gap-8 px-6 py-7 text-left md:px-10 lg:px-16"
+                  className="flex w-full items-start justify-between gap-4 px-5 py-5 text-left sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
                   aria-expanded={isOpen}
                 >
-                  <span className="text-lg leading-tight font-semibold tracking-[-0.03em] text-neutral-950 md:text-xl">
+                  <span className="text-[16px] leading-[1.3] font-semibold tracking-[-0.03em] text-neutral-950 sm:text-lg sm:leading-tight md:text-xl">
                     {faq.question}
                   </span>
                   <span
-                    className="text-3xl leading-none font-light text-[#061a3a]"
+                    className="shrink-0 text-2xl leading-none font-light text-[#061a3a] sm:text-3xl"
                     aria-hidden="true"
                   >
                     {isOpen ? "−" : "+"}
@@ -99,8 +99,8 @@ export default function FAQSection() {
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="px-6 pb-8 md:px-10 lg:px-16">
-                        <p className="max-w-4xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
+                      <div className="px-5 pb-6 sm:px-6 sm:pb-8 md:px-10 lg:px-16">
+                        <p className="max-w-4xl text-[14px] leading-[1.7] tracking-tight text-neutral-700 sm:text-[15px] sm:leading-[1.75]">
                           {faq.answer}
                         </p>
                       </div>

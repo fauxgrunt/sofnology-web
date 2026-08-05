@@ -20,14 +20,14 @@ export default function HeroTrustBridge() {
         {trustPoints.map((point, index) => (
           <article
             key={point.label}
-            className={`min-h-40 px-6 py-8 md:px-10 lg:px-12 ${
+            className={`min-h-0 px-5 py-6 sm:min-h-40 sm:px-6 sm:py-8 md:px-10 lg:px-12 ${
               index > 0 ? "border-t border-white/10 md:border-t-0 md:border-l" : ""
             }`}
           >
             <p className="text-[13px] font-semibold tracking-[-0.02em] text-white">
               {point.label}
             </p>
-            <p className="mt-5 max-w-sm text-[13px] leading-[1.65] tracking-tight text-white/68">
+            <p className="mt-3 max-w-sm text-[13px] leading-[1.6] tracking-tight text-white/68 sm:mt-5 sm:leading-[1.65]">
               {point.detail}
             </p>
           </article>

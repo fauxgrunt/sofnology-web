@@ -285,7 +285,7 @@ function AutomotiveHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact-form"
-            className="group relative flex min-h-[260px] items-start justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-[#1A1512] md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+            className="group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1A1512] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: CORAL }}
           >
             <span
@@ -295,7 +295,7 @@ function AutomotiveHero() {
             <span className="relative z-10 max-w-[14rem] leading-tight md:max-w-[16rem]">
               {PRIMARY_CTA}
             </span>
-            <span className="relative z-10 mt-1 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+            <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1">
               <ArrowUpRightIcon />
             </span>
           </a>
@@ -686,8 +686,9 @@ function AutomotiveCtaSection() {
                 Looking for first-class automotive software?
               </h2>
               <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/75">
-                Our solutions focus on efficiency, scalability, and practical ROI — from
-                cabin experiences to the systems that keep fleets and dealers running.
+                Our solutions focus on clarity, control, and systems that hold up in
+                production — from cabin experiences to the platforms that keep fleets
+                and dealers running.
               </p>
 
               <a
@@ -855,7 +856,7 @@ function StickyGetInTouch() {
             className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#1A1512] shadow-[0_12px_40px_rgba(26,21,18,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
             style={{ backgroundColor: CORAL }}
           >
-            <span>Get in touch</span>
+            <span>{PRIMARY_CTA}</span>
             <ArrowUpRightIcon />
           </a>
         </motion.div>

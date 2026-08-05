@@ -19,21 +19,134 @@
     scroll-behavior: smooth;
   }
 
-  body {
-    @apply bg-white font-sans text-neutral-900 antialiased;
+  /*
+    Light Vention-style fluid scale.
+    Below ~1080px: fixed sizes (no layout risk).
+    1080→1920: type/spacing lerp with clamp so zoom/monitor width
+    keeps proportions without disabling accessibility zoom.
+  */
+  :root {
+    --fluid-vp-min: 1080;
+    --fluid-vp-max: 1920;
+    --fs-nav: 15px;
+    --fs-mega: 16px;
+    --fs-cta: 14px;
+    --fs-body: 13px;
+    --fs-display: 2.25rem;
+    --fs-hero: 2.55rem;
+    --nav-h: 4.25rem;
+    --section-py: 6rem;
+  }
+
+  @media (min-width: 480px) {
+    :root {
+      --fs-hero: 2.85rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    :root {
+      --fs-body: 14px;
+      --fs-display: 3rem;
+      --fs-hero: 4.5rem;
+      --nav-h: 4.75rem;
+    }
   }
 
   @media (min-width: 1024px) {
+    :root {
+      --fs-hero: 5.35rem;
+    }
+
     body {
       min-width: 1180px;
       overflow-x: auto;
     }
+  }
+
+  @media (min-width: 1080px) {
+    :root {
+      --fs-nav: clamp(
+        14px,
+        calc(14px + (16 - 14) * ((100vw - 1080px) / 840)),
+        16px
+      );
+      --fs-mega: clamp(
+        15px,
+        calc(15px + (18 - 15) * ((100vw - 1080px) / 840)),
+        18px
+      );
+      --fs-cta: clamp(
+        13px,
+        calc(13px + (15 - 13) * ((100vw - 1080px) / 840)),
+        15px
+      );
+      --fs-body: clamp(
+        14px,
+        calc(14px + (16 - 14) * ((100vw - 1080px) / 840)),
+        16px
+      );
+      --fs-display: clamp(
+        2.85rem,
+        calc(2.85rem + (3.5 - 2.85) * ((100vw - 1080px) / 840)),
+        3.5rem
+      );
+      --fs-hero: clamp(
+        5.1rem,
+        calc(5.1rem + (6 - 5.1) * ((100vw - 1080px) / 840)),
+        6rem
+      );
+      --nav-h: clamp(
+        4.5rem,
+        calc(4.5rem + (5 - 4.5) * ((100vw - 1080px) / 840)),
+        5rem
+      );
+      --section-py: clamp(
+        5rem,
+        calc(5rem + (7.5 - 5) * ((100vw - 1080px) / 840)),
+        7.5rem
+      );
+    }
+  }
+
+  body {
+    @apply bg-white font-sans text-neutral-900 antialiased;
   }
 }
 
 @layer utilities {
   .max-w-\[1440px\] {
     max-width: none;
+  }
+
+  .text-fluid-nav {
+    font-size: var(--fs-nav);
+  }
+
+  .text-fluid-mega {
+    font-size: var(--fs-mega);
+  }
+
+  .text-fluid-cta {
+    font-size: var(--fs-cta);
+  }
+
+  .text-fluid-body {
+    font-size: var(--fs-body);
+  }
+
+  .text-fluid-display {
+    font-size: var(--fs-display);
+    line-height: 1.08;
+  }
+
+  .text-fluid-hero {
+    font-size: var(--fs-hero);
+    line-height: 1.05;
+  }
+
+  .h-fluid-nav {
+    height: var(--nav-h);
   }
 
   @media (min-width: 1024px) {
@@ -78,7 +191,9 @@
   }
 
   .section-container {
-    @apply mx-auto max-w-7xl px-8 py-24;
+    @apply mx-auto max-w-7xl px-8;
+    padding-top: var(--section-py);
+    padding-bottom: var(--section-py);
   }
 
   .btn-primary {

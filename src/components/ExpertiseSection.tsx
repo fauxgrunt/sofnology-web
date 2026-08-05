@@ -4,7 +4,7 @@ import { useState } from "react";
 
 type ExpertiseGroup = {
   title: string;
-  links: string[];
+  links: Array<{ label: string; href: string }>;
 };
 
 type ExpertiseTab = {
@@ -21,20 +21,20 @@ const expertiseTabs: ExpertiseTab[] = [
       {
         title: "Core engineering services",
         links: [
-          "Custom software development",
-          "SaaS platform development",
-          "Web application engineering",
-          "API and backend systems",
-          "Quality assurance automation",
+          { label: "Custom software development", href: "/services/software-development" },
+          { label: "SaaS platform development", href: "/services/software-development" },
+          { label: "Web application engineering", href: "/services/web-development" },
+          { label: "API and backend systems", href: "/services/backend-development" },
+          { label: "Quality assurance automation", href: "/services/quality-assurance" },
         ],
       },
       {
         title: "Product delivery",
         links: [
-          "Product discovery workshops",
-          "MVP architecture and delivery",
-          "Legacy product modernization",
-          "Technical audits and optimization",
+          { label: "Product discovery workshops", href: "/engagement/project-outsourcing" },
+          { label: "MVP architecture and delivery", href: "/engagement/solutions-for-startups" },
+          { label: "Legacy product modernization", href: "/engagement/solutions-for-enterprises" },
+          { label: "Technical audits and optimization", href: "/services/software-development" },
         ],
       },
     ],
@@ -46,19 +46,19 @@ const expertiseTabs: ExpertiseTab[] = [
       {
         title: "Operational automation",
         links: [
-          "Workflow automation",
-          "Internal tools and dashboards",
-          "Process orchestration",
-          "AI-assisted business operations",
+          { label: "Workflow automation", href: "/engagement/solutions-for-ai-companies" },
+          { label: "Internal tools and dashboards", href: "/services/software-development" },
+          { label: "Process orchestration", href: "/engagement/solutions-for-ai-companies" },
+          { label: "AI-assisted business operations", href: "/engagement/solutions-for-ai-companies" },
         ],
       },
       {
         title: "AI-enabled systems",
         links: [
-          "AI assistant implementation",
-          "Document and data automation",
-          "Decision-support systems",
-          "Automation readiness consulting",
+          { label: "AI assistant implementation", href: "/engagement/solutions-for-ai-companies" },
+          { label: "Document and data automation", href: "/engagement/solutions-for-ai-companies" },
+          { label: "Decision-support systems", href: "/services/software-development" },
+          { label: "Automation readiness consulting", href: "/engagement/solutions-for-ai-companies" },
         ],
       },
     ],
@@ -70,19 +70,19 @@ const expertiseTabs: ExpertiseTab[] = [
       {
         title: "Cloud and infrastructure",
         links: [
-          "Cloud architecture",
-          "Infrastructure modernization",
-          "Secure cloud migration",
-          "Platform reliability engineering",
+          { label: "Cloud architecture", href: "/services/cloud-consulting" },
+          { label: "Infrastructure modernization", href: "/services/cloud-consulting" },
+          { label: "Secure cloud migration", href: "/services/cloud-consulting" },
+          { label: "Platform reliability engineering", href: "/services/devops" },
         ],
       },
       {
         title: "Delivery operations",
         links: [
-          "DevOps implementation",
-          "CI/CD pipeline automation",
-          "Observability and monitoring",
-          "Security hardening",
+          { label: "DevOps implementation", href: "/services/devops" },
+          { label: "CI/CD pipeline automation", href: "/services/devops" },
+          { label: "Observability and monitoring", href: "/services/devops" },
+          { label: "Security hardening", href: "/services/cybersecurity" },
         ],
       },
     ],
@@ -94,19 +94,19 @@ const expertiseTabs: ExpertiseTab[] = [
       {
         title: "Business platforms",
         links: [
-          "ERP and CRM systems",
-          "Operations dashboards",
-          "Ecommerce platforms",
-          "Customer portals",
+          { label: "ERP and CRM systems", href: "/services/software-development" },
+          { label: "Operations dashboards", href: "/services/software-development" },
+          { label: "Ecommerce platforms", href: "/industries/ecommerce" },
+          { label: "Customer portals", href: "/services/web-development" },
         ],
       },
       {
         title: "Industry focus",
         links: [
-          "Fintech systems",
-          "Healthtech platforms",
-          "Professional services automation",
-          "Enterprise operations software",
+          { label: "Fintech systems", href: "/industries/fintech" },
+          { label: "Healthtech platforms", href: "/industries/healthtech" },
+          { label: "Professional services automation", href: "/services/software-development" },
+          { label: "Enterprise operations software", href: "/engagement/solutions-for-enterprises" },
         ],
       },
     ],
@@ -121,11 +121,11 @@ export default function ExpertiseSection() {
   return (
     <section id="expertise" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:px-16">
-          <h2 className="text-4xl font-semibold tracking-[-0.04em] text-neutral-950 md:text-5xl">
+        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+          <h2 className="text-fluid-display font-semibold tracking-[-0.04em] text-neutral-950">
             Our expertise
           </h2>
-          <p className="mt-6 max-w-5xl text-[15px] leading-[1.7] font-normal tracking-tight text-neutral-700">
+          <p className="text-fluid-body mt-4 max-w-5xl leading-[1.65] font-normal tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.7]">
             From enterprise software and automation to cloud infrastructure and
             AI-enabled workflows, Sofnology builds systems designed for clarity,
             scale, and operational control.
@@ -187,11 +187,11 @@ export default function ExpertiseSection() {
                 <div className="mt-7 grid grid-cols-1 gap-x-16 gap-y-4 md:grid-cols-2">
                   {group.links.map((link) => (
                     <a
-                      key={link}
-                      href="#contact"
+                      key={link.label}
+                      href={link.href}
                       className="w-fit text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 hover:text-[#061a3a] hover:decoration-[#061a3a]"
                     >
-                      {link}
+                      {link.label}
                     </a>
                   ))}
                 </div>

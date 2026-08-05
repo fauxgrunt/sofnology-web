@@ -259,7 +259,13 @@ function ServicesSection() {
             return (
               <article
                 key={service.title}
-                onMouseEnter={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveService(index);
+
+                }}
                 onFocus={() => setActiveService(index)}
                 tabIndex={0}
                 className={`min-h-[230px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
@@ -323,7 +329,13 @@ function PipelineSection() {
             return (
               <article
                 key={stage.title}
-                onMouseEnter={() => setActiveStage(index)}
+                onClick={() => setActiveStage(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveStage(index);
+
+                }}
                 onFocus={() => setActiveStage(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
@@ -387,7 +399,13 @@ function EngagementSection() {
             return (
               <article
                 key={model.title}
-                onMouseEnter={() => setActiveModel(index)}
+                onClick={() => setActiveModel(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveModel(index);
+
+                }}
                 onFocus={() => setActiveModel(index)}
                 tabIndex={0}
                 className={`min-h-[280px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${

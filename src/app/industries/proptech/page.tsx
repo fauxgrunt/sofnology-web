@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 const ORANGE = "#F97316";
 const DEEP = "#1C1917";
 const SOFT = "#FFEDD5";
-const PRIMARY_CTA = "Start with a free consultation";
+const PRIMARY_CTA = "Talk about proptech software";
 
 const HERO_IMAGE = "/proptech-hero.jpg";
 const MID_IMAGE = "/proptech-mid.jpg";
@@ -269,7 +269,7 @@ function ProptechHero() {
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href="#contact-form"
-            className="group relative flex min-h-[260px] items-start justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-8 text-xl font-semibold tracking-[-0.04em] text-[#1C1917] md:px-10 lg:min-h-[360px] lg:border-b-0 lg:px-8 xl:px-12"
+            className="group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1C1917] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
             style={{ backgroundColor: ORANGE }}
           >
             <span
@@ -279,7 +279,7 @@ function ProptechHero() {
             <span className="relative z-10 max-w-[14rem] leading-tight md:max-w-[16rem]">
               {PRIMARY_CTA}
             </span>
-            <span className="relative z-10 mt-1 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+            <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1">
               <ArrowUpRightIcon />
             </span>
           </a>

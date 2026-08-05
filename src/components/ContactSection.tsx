@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 function ArrowUpRightIcon() {
   return (
@@ -33,6 +33,9 @@ function UploadIcon() {
   );
 }
 
+const MAX_MESSAGE = 2048;
+const MAX_FILE_BYTES = 30 * 1024 * 1024;
+
 const inputClass =
   "w-full bg-transparent px-6 py-5 text-[14px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 md:px-8";
 
@@ -60,11 +63,27 @@ type ContactSectionProps = {
     | "mint";
 };
 
+type FormStatus = "idle" | "submitting" | "success" | "error";
+
+function isValidEmail(value: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
 export default function ContactSection({
   showIntro = true,
   accent = "navy",
 }: ContactSectionProps) {
-  const [selectedFileName, setSelectedFileName] = useState("");
+  const [fullName, setFullName] = useState("");
+  const [workEmail, setWorkEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [companyWebsite, setCompanyWebsite] = useState("");
+  const [projectType, setProjectType] = useState("");
+  const [message, setMessage] = useState("");
+  const [consent, setConsent] = useState(false);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const [fieldError, setFieldError] = useState<string | null>(null);
+  const [status, setStatus] = useState<FormStatus>("idle");
+  const [statusMessage, setStatusMessage] = useState("");
 
   const sendButtonClass =
     accent === "lime"
@@ -144,12 +163,85 @@ export default function ContactSection({
                                         ? "bg-[#7DDBA3] text-[#12241C]"
                                         : "bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#061a3a] text-white";
 
+  function validate(): string | null {
+    if (!fullName.trim()) return "Please enter your full name.";
+    if (!workEmail.trim()) return "Please enter your work email.";
+    if (!isValidEmail(workEmail.trim())) return "Please enter a valid work email.";
+    if (!message.trim()) return "Please tell us how we can help.";
+    if (message.length > MAX_MESSAGE) {
+      return `Message must be ${MAX_MESSAGE} characters or fewer.`;
+    }
+    if (selectedFile && selectedFile.size > MAX_FILE_BYTES) {
+      return "Attachment must be 30MB or smaller.";
+    }
+    if (!consent) return "Please confirm you agree to be contacted.";
+    return null;
+  }
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    setFieldError(null);
+    setStatusMessage("");
+
+    const error = validate();
+    if (error) {
+      setFieldError(error);
+      setStatus("error");
+      return;
+    }
+
+    setStatus("submitting");
+
+    try {
+      const formData = new FormData();
+      formData.set("fullName", fullName.trim());
+      formData.set("workEmail", workEmail.trim());
+      formData.set("phone", phone.trim());
+      formData.set("companyWebsite", companyWebsite.trim());
+      formData.set("projectType", projectType);
+      formData.set("message", message.trim());
+      formData.set("consent", "true");
+      if (selectedFile) formData.set("attachment", selectedFile);
+
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        body: formData,
+      });
+      const data = (await response.json()) as { ok?: boolean; message?: string; error?: string };
+
+      if (!response.ok || !data.ok) {
+        setStatus("error");
+        setStatusMessage(data.error ?? "Something went wrong. Please try again.");
+        return;
+      }
+
+      setStatus("success");
+      setStatusMessage(
+        data.message ?? "Thanks — we received your message and will follow up shortly.",
+      );
+      setFullName("");
+      setWorkEmail("");
+      setPhone("");
+      setCompanyWebsite("");
+      setProjectType("");
+      setMessage("");
+      setConsent(false);
+      setSelectedFile(null);
+    } catch {
+      setStatus("error");
+      setStatusMessage("Something went wrong. Please try again.");
+    }
+  }
+
+  const isSubmitting = status === "submitting";
+  const charCount = message.length;
+
   return (
     <section id="contact" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         {showIntro && (
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-2">
-            <div className="relative min-h-[420px] overflow-hidden border-b border-neutral-200 lg:border-r lg:border-b-0">
+            <div className="relative aspect-[16/11] min-h-0 overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[360px] lg:min-h-[420px] lg:border-r lg:border-b-0">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/Conversation.jpg"
@@ -160,14 +252,14 @@ export default function ContactSection({
               <div className="absolute inset-0 bg-white/5" />
             </div>
 
-            <div className="relative flex min-h-[420px] items-center overflow-hidden bg-[#101722] px-6 py-12 text-white md:px-10 lg:px-16">
+            <div className="relative flex min-h-0 items-center overflow-hidden bg-[#101722] px-5 py-10 text-white sm:min-h-[360px] sm:px-6 sm:py-12 md:px-10 lg:min-h-[420px] lg:px-16">
               <div className="absolute inset-0 bg-gradient-to-r from-[#061a3a]/70 via-[#101722]/80 to-[#101722]" />
               <div className="relative z-10 max-w-2xl">
-                <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] md:text-5xl">
+                <h2 className="text-fluid-display font-semibold tracking-[-0.045em]">
                   You already have enough to manage. Your digital systems should not add
                   to it.
                 </h2>
-                <p className="mt-6 max-w-xl text-[15px] leading-[1.7] tracking-tight text-white/75">
+                <p className="mt-5 max-w-xl text-[14px] leading-[1.65] tracking-tight text-white/75 sm:mt-6 sm:text-[15px] sm:leading-[1.7]">
                   Get the right software, the right marketing systems, and the right
                   operational clarity in one coordinated partnership built to support
                   business growth.
@@ -175,7 +267,7 @@ export default function ContactSection({
 
                 <a
                   href="#contact-form"
-                  className="group relative mt-12 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-white md:px-8"
+                  className="group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                 >
                   <span
                     aria-hidden="true"
@@ -194,12 +286,23 @@ export default function ContactSection({
         <form
           id="contact-form"
           className="grid grid-cols-1 lg:grid-cols-4"
-          onSubmit={(event) => event.preventDefault()}
+          onSubmit={handleSubmit}
+          noValidate
         >
           <div className="border-b border-neutral-200 px-6 py-14 md:px-10 lg:col-span-3 lg:border-r lg:px-16">
-            <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
               Contact us
             </h2>
+            {(fieldError || statusMessage) && (
+              <p
+                role="status"
+                className={`mt-4 text-[14px] tracking-tight ${
+                  status === "success" ? "text-emerald-700" : "text-red-700"
+                }`}
+              >
+                {fieldError || statusMessage}
+              </p>
+            )}
           </div>
 
           <div className="hidden border-b border-neutral-200 lg:block" />
@@ -209,7 +312,17 @@ export default function ContactSection({
               <label className="sr-only" htmlFor="full-name">
                 Full name
               </label>
-              <input id="full-name" name="fullName" className={inputClass} placeholder="Full name *" />
+              <input
+                id="full-name"
+                name="fullName"
+                className={inputClass}
+                placeholder="Full name *"
+                value={fullName}
+                onChange={(e) => setFullName(e.target.value)}
+                autoComplete="name"
+                required
+                disabled={isSubmitting}
+              />
             </div>
             <div>
               <label className="sr-only" htmlFor="work-email">
@@ -221,15 +334,23 @@ export default function ContactSection({
                 type="email"
                 className={inputClass}
                 placeholder="Work email *"
+                value={workEmail}
+                onChange={(e) => setWorkEmail(e.target.value)}
+                autoComplete="email"
+                required
+                disabled={isSubmitting}
               />
             </div>
           </div>
 
           <button
             type="submit"
-            className={`group row-span-3 hidden items-center justify-center overflow-hidden text-xl font-semibold tracking-[-0.04em] transition-opacity duration-300 lg:flex ${sendButtonClass}`}
+            disabled={isSubmitting}
+            className={`group row-span-3 hidden items-center justify-center overflow-hidden text-xl font-semibold tracking-[-0.04em] transition-opacity duration-300 lg:flex disabled:cursor-wait disabled:opacity-70 ${sendButtonClass}`}
           >
-            <span className="transition-transform duration-300 group-hover:scale-[1.03]">Send</span>
+            <span className="transition-transform duration-300 group-hover:scale-[1.03]">
+              {isSubmitting ? "Sending…" : "Send"}
+            </span>
           </button>
 
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
@@ -237,19 +358,36 @@ export default function ContactSection({
               <label className="sr-only" htmlFor="phone">
                 Phone
               </label>
-              <input id="phone" name="phone" className={inputClass} placeholder="Phone (optional)" />
+              <input
+                id="phone"
+                name="phone"
+                className={inputClass}
+                placeholder="Phone (optional)"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                autoComplete="tel"
+                disabled={isSubmitting}
+              />
             </div>
             <label className="flex cursor-pointer items-center justify-between gap-4 px-6 py-5 transition-colors duration-200 hover:bg-white/45 focus-within:bg-white/55 md:px-8">
               <input
                 type="file"
                 name="attachment"
                 className="sr-only"
+                disabled={isSubmitting}
                 onChange={(event) => {
-                  setSelectedFileName(event.target.files?.[0]?.name ?? "");
+                  const file = event.target.files?.[0] ?? null;
+                  setSelectedFile(file);
+                  if (file && file.size > MAX_FILE_BYTES) {
+                    setFieldError("Attachment must be 30MB or smaller.");
+                    setStatus("error");
+                  } else if (fieldError?.includes("Attachment")) {
+                    setFieldError(null);
+                  }
                 }}
               />
               <span className="text-[14px] tracking-tight text-neutral-500">
-                {selectedFileName || "Upload file (optional, max 30MB)"}
+                {selectedFile?.name || "Upload file (optional, max 30MB)"}
               </span>
               <UploadIcon />
             </label>
@@ -265,6 +403,10 @@ export default function ContactSection({
                 name="companyWebsite"
                 className={inputClass}
                 placeholder="Company website"
+                value={companyWebsite}
+                onChange={(e) => setCompanyWebsite(e.target.value)}
+                autoComplete="url"
+                disabled={isSubmitting}
               />
             </div>
             <div>
@@ -274,8 +416,12 @@ export default function ContactSection({
               <select
                 id="project-type"
                 name="projectType"
-                className={`${inputClass} appearance-none text-neutral-500`}
-                defaultValue=""
+                className={`${inputClass} appearance-none ${
+                  projectType ? "text-neutral-950" : "text-neutral-500"
+                }`}
+                value={projectType}
+                onChange={(e) => setProjectType(e.target.value)}
+                disabled={isSubmitting}
               >
                 <option value="" disabled>
                   Project type
@@ -317,20 +463,40 @@ export default function ContactSection({
               name="message"
               className="min-h-[190px] w-full resize-none bg-transparent px-6 py-6 text-[14px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 md:px-8"
               placeholder="How can we help you? *"
+              value={message}
+              onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
+              maxLength={MAX_MESSAGE}
+              required
+              disabled={isSubmitting}
             />
-            <div className="px-6 pb-4 text-right text-[11px] text-neutral-500 md:px-8">0 / 2048</div>
+            <div
+              className={`px-6 pb-4 text-right text-[11px] md:px-8 ${
+                charCount >= MAX_MESSAGE ? "text-red-600" : "text-neutral-500"
+              }`}
+            >
+              {charCount} / {MAX_MESSAGE}
+            </div>
           </div>
 
           <button
             type="submit"
-            className={`flex min-h-24 items-center justify-center text-xl font-semibold tracking-[-0.04em] lg:hidden ${sendButtonMobileClass}`}
+            disabled={isSubmitting}
+            className={`flex min-h-24 items-center justify-center text-xl font-semibold tracking-[-0.04em] lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
           >
-            Send
+            {isSubmitting ? "Sending…" : "Send"}
           </button>
 
           <div className="lg:col-span-4 px-6 py-5 md:px-8 lg:px-16">
             <label className="flex items-start gap-3 text-[12px] leading-relaxed tracking-tight text-neutral-600">
-              <input type="checkbox" className="mt-1 h-3.5 w-3.5 border-neutral-300" />
+              <input
+                type="checkbox"
+                name="consent"
+                checked={consent}
+                onChange={(e) => setConsent(e.target.checked)}
+                className="mt-1 h-3.5 w-3.5 border-neutral-300"
+                required
+                disabled={isSubmitting}
+              />
               <span>
                 I agree to be contacted by Sofnology about this request and understand
                 that project details will be reviewed before any formal proposal is

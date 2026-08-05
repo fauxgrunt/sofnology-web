@@ -8,7 +8,7 @@ export default function PrimaryCTA({ fullWidth = false, onClick }: PrimaryCTAPro
     <a
       href="/#contact"
       onClick={onClick}
-      className={`group relative flex items-center justify-center overflow-hidden bg-[#061a3a] font-nav text-[14px] font-medium tracking-normal text-white whitespace-nowrap transition-colors duration-300 hover:bg-[#0b2a5b] ${
+      className={`group relative flex items-center justify-center overflow-hidden bg-[#061a3a] font-nav text-fluid-cta font-medium tracking-normal text-white whitespace-nowrap transition-colors duration-300 hover:bg-[#0b2a5b] ${
         fullWidth ? "min-h-12 w-full px-5" : "h-full min-h-12 shrink-0 px-7 xl:px-9"
       }`}
     >

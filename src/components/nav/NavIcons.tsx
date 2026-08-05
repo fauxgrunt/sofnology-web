@@ -47,4 +47,27 @@ function GlobeIcon() {
   );
 }
 
-export { Chevron, SearchIcon, GlobeIcon };
+/** Animated hamburger ↔ close for mobile nav */
+function MenuToggleIcon({ open }: { open: boolean }) {
+  return (
+    <span className="relative block h-3.5 w-5" aria-hidden="true">
+      <span
+        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-[#111111] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open ? "top-[6px] rotate-45" : "top-0 rotate-0"
+        }`}
+      />
+      <span
+        className={`absolute top-[6px] left-0 block h-[1.5px] w-full bg-[#111111] transition-opacity duration-300 ${
+          open ? "opacity-0" : "opacity-100"
+        }`}
+      />
+      <span
+        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-[#111111] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+          open ? "top-[6px] -rotate-45" : "top-[12px] rotate-0"
+        }`}
+      />
+    </span>
+  );
+}
+
+export { Chevron, SearchIcon, GlobeIcon, MenuToggleIcon };

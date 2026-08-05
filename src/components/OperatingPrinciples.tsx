@@ -34,7 +34,7 @@ export default function OperatingPrinciples() {
             <p className="text-[15px] font-semibold tracking-[-0.02em] text-[#061a3a]">
               How we keep work under control
             </p>
-            <h2 className="mt-6 max-w-xl text-4xl leading-[1.05] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
+            <h2 className="text-fluid-display mt-6 max-w-xl font-semibold tracking-[-0.045em] text-neutral-950">
               Operating principles
             </h2>
           </div>
@@ -52,20 +52,20 @@ export default function OperatingPrinciples() {
           {principles.map((principle, index) => (
             <article
               key={principle.title}
-              className={`flex min-h-[300px] flex-col border-neutral-200 px-6 py-10 md:px-10 lg:px-8 xl:px-10 ${
+              className={`flex min-h-0 flex-col border-neutral-200 px-5 py-8 sm:min-h-[260px] sm:px-6 sm:py-10 md:min-h-[300px] md:px-10 lg:px-8 xl:px-10 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 0 ? "lg:border-l" : ""} ${
-                index > 1 ? "border-t lg:border-t-0" : index > 0 ? "md:border-t-0" : ""
+                index > 1 ? "border-t lg:border-t-0" : index > 0 ? "border-t md:border-t-0" : ""
               }`}
             >
               <span className="text-[11px] font-bold tracking-wider text-[#061a3a] uppercase">
                 {principle.eyebrow}
               </span>
-              <div className="mt-auto">
-                <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
+              <div className="mt-6 sm:mt-auto">
+                <h3 className="text-xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950 sm:text-2xl">
                   {principle.title}
                 </h3>
-                <p className="mt-5 text-[14px] leading-[1.7] tracking-tight text-neutral-700">
+                <p className="mt-4 text-[14px] leading-[1.7] tracking-tight text-neutral-700 sm:mt-5">
                   {principle.description}
                 </p>
               </div>

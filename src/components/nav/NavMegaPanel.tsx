@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import type { MegaMenuConfig } from "./nav-data";
 
 const linkClass =
-  "font-nav inline-block text-[16px] font-medium tracking-normal text-[#111111] transition-opacity duration-300 hover:opacity-55";
+  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] transition-opacity duration-300 hover:opacity-70";
 
 const headingClass =
   "font-nav mb-7 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase";
@@ -50,6 +50,10 @@ function ColumnLinks({
           <li key={link.label}>
             <a href={link.href} className={linkClass} onClick={onNavigate}>
               {link.label}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/link:scale-x-100"
+              />
             </a>
           </li>
         ))}
@@ -197,6 +201,10 @@ export default function NavMegaPanel({ config, onNavigate }: NavMegaPanelProps) 
               <li key={link.label}>
                 <a href={link.href} className={linkClass} onClick={onNavigate}>
                   {link.label}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/link:scale-x-100"
+                  />
                 </a>
               </li>
             ))}
@@ -206,6 +214,10 @@ export default function NavMegaPanel({ config, onNavigate }: NavMegaPanelProps) 
               <li key={link.label}>
                 <a href={link.href} className={linkClass} onClick={onNavigate}>
                   {link.label}
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover/link:scale-x-100"
+                  />
                 </a>
               </li>
             ))}

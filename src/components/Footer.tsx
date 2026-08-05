@@ -6,24 +6,16 @@ const companyLinks = [
 ];
 
 const serviceLinks = [
-  { label: "Custom software", href: "#expertise" },
-  { label: "Automation", href: "#business-uplift" },
-  { label: "Cloud systems", href: "#delivery-confidence" },
-  { label: "Digital marketing", href: "#start-your-growth" },
+  { label: "Software development", href: "/services/software-development" },
+  { label: "Mobile development", href: "/services/mobile-development" },
+  { label: "Cloud consulting", href: "/services/cloud-consulting" },
+  { label: "All technologies", href: "/services/technologies" },
 ];
 
 const supportLinks = [
-  { label: "FAQ", href: "#faq" },
-  { label: "Contact", href: "#contact" },
-  { label: "Start a conversation", href: "#contact-form" },
-  { label: "Privacy policy", href: "#" },
-];
-
-const socialLinks = [
-  { label: "in", href: "#", aria: "LinkedIn" },
-  { label: "ig", href: "#", aria: "Instagram" },
-  { label: "x", href: "#", aria: "X" },
-  { label: "yt", href: "#", aria: "YouTube" },
+  { label: "FAQ", href: "/#faq" },
+  { label: "Contact", href: "/#contact" },
+  { label: "Start a conversation", href: "/#contact-form" },
 ];
 
 const footerColumns = [
@@ -43,7 +35,7 @@ const footerColumns = [
 
 export default function Footer() {
   return (
-    <footer id="company" className="bg-[#202123] text-white">
+    <footer className="bg-[#202123] text-white">
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
         <div className="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px]">
           <div className="grid grid-cols-1 gap-10 px-6 py-12 md:grid-cols-3 md:px-10 lg:px-8 xl:px-12">
@@ -73,10 +65,16 @@ export default function Footer() {
                   Contact
                 </h3>
                 <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
-                  <a href="mailto:hello@sofnology.com" className="block transition-colors hover:text-white">
+                  <a
+                    href="mailto:hello@sofnology.com"
+                    className="block transition-colors hover:text-white"
+                  >
                     hello@sofnology.com
                   </a>
-                  <a href="#contact" className="block transition-colors hover:text-white">
+                  <a
+                    href="/#contact"
+                    className="block transition-colors hover:text-white"
+                  >
                     Book a discovery call
                   </a>
                   <p>Remote-first delivery</p>
@@ -96,19 +94,21 @@ export default function Footer() {
 
               <div>
                 <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
-                  Follow us
+                  Connect
                 </h3>
-                <div className="mt-5 flex gap-2">
-                  {socialLinks.map((link) => (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      aria-label={link.aria}
-                      className="flex h-7 w-7 items-center justify-center bg-white/18 text-[10px] font-semibold uppercase tracking-[-0.02em] text-[#202123] transition-colors duration-200 hover:bg-white"
-                    >
-                      {link.label}
-                    </a>
-                  ))}
+                <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
+                  <a
+                    href="mailto:hello@sofnology.com"
+                    className="block transition-colors hover:text-white"
+                  >
+                    Email the team
+                  </a>
+                  <a
+                    href="/#contact-form"
+                    className="block transition-colors hover:text-white"
+                  >
+                    Send a project brief
+                  </a>
                 </div>
               </div>
             </div>
@@ -124,7 +124,7 @@ export default function Footer() {
               into one practical execution plan for growing businesses.
             </p>
             <a
-              href="#contact"
+              href="/#contact"
               className="group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 hover:bg-white"
             >
               <span>Contact us</span>
@@ -150,8 +150,11 @@ export default function Footer() {
 
           <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/58 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
             <p>&copy; {new Date().getFullYear()} Sofnology Solutions. All rights reserved.</p>
-            <a href="#" className="mt-2 w-fit transition-colors duration-200 hover:text-white">
-              Privacy policy
+            <a
+              href="mailto:hello@sofnology.com?subject=Privacy%20inquiry"
+              className="mt-2 w-fit transition-colors duration-200 hover:text-white"
+            >
+              Privacy inquiries
             </a>
           </div>
         </div>

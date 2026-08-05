@@ -246,7 +246,10 @@ function ModelsSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+                onMouseEnter={() => {
+                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
+                }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-600 md:grid-cols-[0.28fr_0.72fr] ${

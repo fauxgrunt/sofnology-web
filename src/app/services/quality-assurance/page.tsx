@@ -270,7 +270,13 @@ function SpotlightSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
+
+                }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`min-h-[240px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-16 ${
@@ -330,7 +336,13 @@ function ProcessSection() {
             return (
               <article
                 key={step.title}
-                onMouseEnter={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveStep(index);
+
+                }}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
@@ -422,7 +434,13 @@ function TestingTypesSection() {
             return (
               <article
                 key={item.title}
-                onMouseEnter={() => setActive(index)}
+                onClick={() => setActive(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
+
+                }}
                 onFocus={() => setActive(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[background-color,min-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.34fr_0.66fr] ${

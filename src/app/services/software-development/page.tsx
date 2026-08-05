@@ -1,9 +1,14 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+
+const SOFTWARE_NAVY = "#061a3a";
+const SOFTWARE_SKY = "#d8f3ff";
+const fadeEase = [0.16, 1, 0.3, 1] as const;
 
 function ArrowUpRightIcon() {
   return (
@@ -313,42 +318,42 @@ const technologyStack = [
   },
 ];
 
-const placeholderProjects = [
+const engagementShapes = [
   {
     sector: "Professional services",
     title: "Client operations portal",
     description:
-      "A placeholder engagement for a service business that needs client onboarding, task visibility, document handling, and internal status tracking in one clear portal.",
+      "A service-business build for client onboarding, task visibility, document handling, and internal status tracking in one clear portal.",
   },
   {
     sector: "Ecommerce",
     title: "Order intelligence dashboard",
     description:
-      "A placeholder project for commerce teams that need cleaner reporting across orders, inventory, marketing activity, and customer support workflows.",
+      "Commerce reporting across orders, inventory, marketing activity, and support workflows — so teams stop stitching numbers together by hand.",
   },
   {
     sector: "SaaS",
     title: "MVP product workspace",
     description:
-      "A placeholder SaaS build covering onboarding, user roles, admin controls, billing readiness, and the first core workflow needed for market validation.",
+      "A first-release SaaS build covering onboarding, user roles, admin controls, billing readiness, and the core workflow needed for market validation.",
   },
   {
     sector: "Healthcare operations",
     title: "Appointment workflow system",
     description:
-      "A placeholder operational system for appointment intake, staff coordination, patient communication, and secure internal reporting.",
+      "Operational software for appointment intake, staff coordination, patient communication, and secure internal reporting.",
   },
   {
     sector: "Finance and operations",
     title: "Approval and reporting hub",
     description:
-      "A placeholder internal platform for request approvals, controlled access, financial records, and leadership-level reporting.",
+      "An internal platform for request approvals, controlled access, financial records, and leadership-level reporting.",
   },
   {
     sector: "Real estate",
     title: "Property workflow assistant",
     description:
-      "A placeholder real estate workflow for leads, listings, document steps, follow-ups, and visibility across active property work.",
+      "A property workflow for leads, listings, document steps, follow-ups, and visibility across active deals and sites.",
   },
 ];
 
@@ -509,7 +514,13 @@ function HowWeWorkSection() {
             return (
               <article
                 key={step.title}
-                onMouseEnter={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveStep(index);
+
+                }}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
                 className={`grid cursor-pointer grid-cols-[0.34fr_0.66fr] border-neutral-200 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.48fr_0.52fr] ${
@@ -602,7 +613,7 @@ function TechnologyStackSection() {
   );
 }
 
-function OurWorkSection() {
+function EngagementShapesSection() {
   const [activeProject, setActiveProject] = useState(0);
 
   return (
@@ -611,19 +622,25 @@ function OurWorkSection() {
         <div className="min-h-[250px] border-b border-neutral-200 px-6 py-14 md:px-10 lg:flex lg:items-center lg:pl-[48%]">
           <div className="lg:px-16">
             <h2 className="text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Our Work
+              Engagement shapes we deliver
             </h2>
           </div>
         </div>
 
         <div>
-          {placeholderProjects.map((project, index) => {
+          {engagementShapes.map((project, index) => {
             const isActive = activeProject === index;
 
             return (
               <article
                 key={project.title}
-                onMouseEnter={() => setActiveProject(index)}
+                onClick={() => setActiveProject(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveProject(index);
+
+                }}
                 onFocus={() => setActiveProject(index)}
                 tabIndex={0}
                 className={`group grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.48fr_0.52fr] ${
@@ -650,11 +667,6 @@ function OurWorkSection() {
                     >
                       {project.description}
                     </p>
-                    {isActive && (
-                      <p className="mt-7 text-[12px] font-semibold tracking-[0.16em] text-[#061a3a] uppercase">
-                        Placeholder project concept
-                      </p>
-                    )}
                   </div>
 
                   <span className="pt-1 text-neutral-950 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -677,6 +689,53 @@ function OurWorkSection() {
         </a>
       </div>
     </section>
+  );
+}
+
+function StickyGetInTouch() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const contact = document.getElementById("contact");
+      const contactTop = contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+      const pastHero = window.scrollY > 480;
+      const beforeContact = contactTop > window.innerHeight * 0.65;
+      setVisible(pastHero && beforeContact);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.div
+          initial={{ y: 80, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 80, opacity: 0 }}
+          transition={{ duration: 0.35, ease: fadeEase }}
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-40 px-3 pb-3 md:px-6 md:pb-5"
+        >
+          <a
+            href="#contact-form"
+            className="pointer-events-auto mx-auto flex h-14 max-w-md items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] text-[#061a3a] shadow-[0_12px_40px_rgba(6,26,58,0.22)] md:h-16 md:max-w-lg md:px-6 md:text-base"
+            style={{ backgroundColor: SOFTWARE_SKY }}
+          >
+            <span>Get in touch</span>
+            <span style={{ color: SOFTWARE_NAVY }}>
+              <ArrowUpRightIcon />
+            </span>
+          </a>
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }
 
@@ -901,7 +960,13 @@ export default function SoftwareDevelopmentPage() {
                     return (
                       <article
                         key={industry.title}
-                        onMouseEnter={() => setActiveIndustry(index)}
+                        onClick={() => setActiveIndustry(index)}
+
+                        onMouseEnter={() => {
+
+                          if (window.matchMedia("(hover: hover)").matches) setActiveIndustry(index);
+
+                        }}
                         onFocus={() => setActiveIndustry(index)}
                         className={`group grid cursor-pointer grid-cols-[72px_1fr_58px] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.12fr_0.42fr_0.38fr_0.08fr] ${
                           index > 0 ? "border-t" : ""
@@ -1074,10 +1139,11 @@ export default function SoftwareDevelopmentPage() {
         <DeliveryApproachSection />
         <HowWeWorkSection />
         <TechnologyStackSection />
-        <OurWorkSection />
+        <EngagementShapesSection />
         <ContactSection showIntro={false} />
         </div>
       </main>
+      <StickyGetInTouch />
       <Footer />
     </>
   );

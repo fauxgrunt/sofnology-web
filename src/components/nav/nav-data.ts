@@ -41,10 +41,15 @@ export interface NavItemConfig {
 }
 
 export const navItems: NavItemConfig[] = [
-  { id: "expertise", label: "Services", href: "#services", menu: "expertise" },
-  { id: "industries", label: "Industries", href: "#industries", menu: "industries" },
-  { id: "engagement", label: "Engagement models", href: "#approach", menu: "engagement" },
-  { id: "portfolio", label: "Case Studies", href: "#case-studies" },
+  { id: "expertise", label: "Services", href: "/#expertise", menu: "expertise" },
+  { id: "industries", label: "Industries", href: "/industries/fintech", menu: "industries" },
+  {
+    id: "engagement",
+    label: "Engagement models",
+    href: "/#start-your-growth",
+    menu: "engagement",
+  },
+  { id: "portfolio", label: "Case Studies", href: "/#case-studies" },
   { id: "company", label: "Company", href: "/company", menu: "company" },
 ];
 
@@ -111,7 +116,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     banner: {
       text: "Want to start a project but need technical clarity first? Talk through scope with Sofnology.",
       cta: "Talk to us",
-      href: "#contact",
+      href: "/#contact",
     },
   },
   industries: {
@@ -130,7 +135,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
       title: "Not sure where to start?",
       subtitle: "Tell us about the product — we’ll point you to the right engagement.",
       cta: "Start a conversation",
-      href: "#contact",
+      href: "/#contact",
     },
   },
   engagement: {
@@ -147,7 +152,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
       title: "Ready to partner?",
       subtitle: "Dedicated pods, staff aug, or full project delivery — pick the fit.",
       cta: "Talk to engineering",
-      href: "#contact",
+      href: "/#contact",
     },
   },
   company: {

@@ -93,8 +93,8 @@ const domains = [
     title: "Healthtech",
     description:
       "Provider and patient experiences built with security and compliance sensitivity from the start.",
-    href: "#contact-form",
-    ctaLabel: "Talk to us",
+    href: "/industries/healthtech",
+    ctaLabel: "Explore",
   },
 ];
 
@@ -108,7 +108,7 @@ const partnershipModels = [
       "Tight deadlines that need proven specialists",
       "Seamless fit with your existing process",
     ],
-    href: "#contact-form",
+    href: "/engagement/staff-augmentation",
   },
   {
     title: "Dedicated teams",
@@ -119,7 +119,7 @@ const partnershipModels = [
       "Need for multiple specializations quickly",
       "When local recruitment is too slow or costly",
     ],
-    href: "#contact-form",
+    href: "/engagement/dedicated-teams",
   },
   {
     title: "Project-based delivery",

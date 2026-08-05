@@ -54,12 +54,12 @@ export default function BusinessUpliftSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-80px" }}
             transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
-            className="px-6 pt-16 pb-10 md:px-10 lg:px-16 lg:pt-20 lg:pb-16"
+            className="px-5 pt-10 pb-8 sm:px-6 sm:pt-14 sm:pb-10 md:px-10 lg:px-16 lg:pt-20 lg:pb-16"
           >
             <p className="text-[16px] font-semibold tracking-[-0.02em] text-[#061a3a]">
               Built to uplift your business
             </p>
-            <h2 className="mt-6 max-w-5xl text-4xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-5xl lg:text-[3.35rem]">
+            <h2 className="text-fluid-display mt-6 max-w-5xl font-semibold tracking-[-0.045em] text-neutral-950">
               We build, market, and automate the digital systems that help businesses
               move with clarity.
             </h2>
@@ -90,7 +90,7 @@ export default function BusinessUpliftSection() {
       </div>
 
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
-        <div className="relative min-h-[560px] overflow-hidden border-b border-neutral-200 lg:border-r lg:border-b-0">
+        <div className="relative aspect-[16/11] overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[420px] md:min-h-[520px] lg:min-h-[560px] lg:border-r lg:border-b-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/Uplift.jpg"
@@ -124,7 +124,7 @@ export default function BusinessUpliftSection() {
                 {area.description}
               </p>
               <a
-                href="#contact"
+                href="/#contact"
                 className="mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-300 group-hover:text-white/75"
               >
                 {area.link}
@@ -133,7 +133,7 @@ export default function BusinessUpliftSection() {
           ))}
 
           <a
-            href="#contact"
+            href="/#contact"
             className="group relative col-span-1 flex min-h-28 items-center justify-between overflow-hidden border-t border-white/20 bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-8 py-8 text-2xl font-semibold tracking-[-0.045em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors duration-300 md:col-span-2 md:px-10"
           >
             <span

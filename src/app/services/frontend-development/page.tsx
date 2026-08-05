@@ -291,7 +291,13 @@ function ServicesSection() {
             return (
               <article
                 key={service.title}
-                onMouseEnter={() => setActiveService(index)}
+                onClick={() => setActiveService(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveService(index);
+
+                }}
                 onFocus={() => setActiveService(index)}
                 tabIndex={0}
                 className={`min-h-[220px] cursor-pointer border-neutral-200 px-6 py-7 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
@@ -359,7 +365,9 @@ function InterfaceTypesSection() {
                   key={type.title}
                   type="button"
                   onClick={() => setActiveType(index)}
-                  onMouseEnter={() => setActiveType(index)}
+                  onMouseEnter={() => {
+                    if (window.matchMedia("(hover: hover)").matches) setActiveType(index);
+                  }}
                   className={`flex min-h-[72px] w-full items-center border-white/14 px-6 text-left text-lg font-semibold tracking-[-0.03em] transition-colors duration-300 md:px-10 lg:px-12 ${
                     index > 0 ? "border-t" : ""
                   } ${isActive ? "text-[#1C1714]" : "text-white/55 hover:text-white"}`}
@@ -433,7 +441,13 @@ function DeliverySection() {
             return (
               <article
                 key={step.title}
-                onMouseEnter={() => setActiveStep(index)}
+                onClick={() => setActiveStep(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveStep(index);
+
+                }}
                 onFocus={() => setActiveStep(index)}
                 tabIndex={0}
                 className={`min-h-[260px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-7 lg:min-h-[280px] lg:px-8 ${
@@ -493,7 +507,9 @@ function PrinciplesSection() {
                   key={item.title}
                   type="button"
                   onClick={() => setActivePrinciple(index)}
-                  onMouseEnter={() => setActivePrinciple(index)}
+                  onMouseEnter={() => {
+                    if (window.matchMedia("(hover: hover)").matches) setActivePrinciple(index);
+                  }}
                   className={`flex min-h-[72px] w-full items-center border-neutral-200 px-6 text-left text-lg font-semibold tracking-[-0.03em] transition-colors duration-300 md:px-10 lg:px-12 ${
                     index > 0 ? "border-t" : ""
                   } ${isActive ? "text-white" : "text-neutral-500 hover:bg-white/50 hover:text-neutral-950"}`}
@@ -549,7 +565,13 @@ function EngagementSection() {
             return (
               <article
                 key={model.title}
-                onMouseEnter={() => setActiveModel(index)}
+                onClick={() => setActiveModel(index)}
+
+                onMouseEnter={() => {
+
+                  if (window.matchMedia("(hover: hover)").matches) setActiveModel(index);
+
+                }}
                 onFocus={() => setActiveModel(index)}
                 tabIndex={0}
                 className={`min-h-[260px] cursor-pointer border-neutral-200 px-6 py-9 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
