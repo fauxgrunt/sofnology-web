@@ -1,8 +1,6 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -15,8 +13,6 @@ const PRIMARY_CTA = "Start a conversation";
 const HERO_IMAGE = "/Conversation.jpg";
 const PROMISE_IMAGE = "/enterprise-services.jpg";
 const JOURNEY_IMAGE = "/Digital growth.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
 
 function ArrowUpRightIcon() {
   return (

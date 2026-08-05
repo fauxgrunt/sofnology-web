@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -16,8 +15,6 @@ const PRIMARY_CTA = "Talk through how we’d work";
 /** Distinct from Who we are assets; each used once on this page. */
 const HERO_IMAGE = "/Uplift.jpg";
 const MID_IMAGE = "/solutions-startup-standalone.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
 
 function ArrowUpRightIcon() {
   return (

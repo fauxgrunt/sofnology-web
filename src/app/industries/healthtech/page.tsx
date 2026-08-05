@@ -11,7 +11,6 @@ import StickyCTA from "@/components/StickyCTA";
 /** Clinical lime + forest — distinct from QA #C7FF3D and staff-aug moss. */
 const LIME = "#B8F25A";
 const DEEP = "#0B3D2E";
-const SOFT = "#E8F9C8";
 const PRIMARY_CTA = "Talk about healthtech software";
 
 const HERO_IMAGE = "/healthtech-hero.jpg";

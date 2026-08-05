@@ -11,7 +11,6 @@ import StickyCTA from "@/components/StickyCTA";
 /** Proptech orange — distinct from outsourcing #FF6A00 and automotive coral. */
 const ORANGE = "#F97316";
 const DEEP = "#1C1917";
-const SOFT = "#FFEDD5";
 const PRIMARY_CTA = "Talk about proptech software";
 
 const HERO_IMAGE = "/proptech-hero.jpg";

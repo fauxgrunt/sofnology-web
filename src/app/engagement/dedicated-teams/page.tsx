@@ -10,7 +10,6 @@ import StickyCTA from "@/components/StickyCTA";
 /** Ink + steel — distinct from outsourcing orange, startups wine, enterprises slate, AI cyan. */
 const STEEL = "#6FA8DC";
 const DEEP = "#243B55";
-const SOFT = "#E4EEF7";
 const PRIMARY_CTA = "Talk about a dedicated team";
 
 const HERO_IMAGE = "/enterprise-services.jpg";

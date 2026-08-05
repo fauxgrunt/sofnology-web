@@ -11,7 +11,6 @@ import StickyCTA from "@/components/StickyCTA";
 /** Coral — matches Vention auto refs; distinct from outsourcing orange #FF6A00. */
 const CORAL = "#FF6B4A";
 const DEEP = "#1A1512";
-const SOFT = "#FFE4DC";
 const PRIMARY_CTA = "Talk about automotive software";
 
 const HERO_IMAGE = "/automotive-hero.jpg";
