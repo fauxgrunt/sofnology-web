@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
 
@@ -78,12 +79,12 @@ export default function BusinessUpliftSection() {
 
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
         <div className="relative aspect-[16/11] overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[420px] md:min-h-[520px] lg:min-h-[560px] lg:border-r lg:border-b-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/Uplift.jpg"
             alt="Sofnology team planning digital growth systems"
-            className="absolute inset-0 h-full w-full object-cover"
-            decoding="async"
+            fill
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-white/5 via-transparent to-[#061a3a]/20" />
         </div>
@@ -112,7 +113,7 @@ export default function BusinessUpliftSection() {
               </p>
               <Link
                 href="/#contact"
-                className="mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-300 group-hover:text-white/75"
+                className="mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white [@media(hover:hover)_and_(pointer:fine)]:group-hover:decoration-white"
               >
                 {area.link}
               </Link>

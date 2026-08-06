@@ -7,8 +7,6 @@ import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import { ArrowUpRightIcon } from "@/components/icons";
 
-const SOFTWARE_SKY = "#d8f3ff";
-
 const fitSignals = [
   {
     title: "Workarounds become the process",
@@ -1082,10 +1080,10 @@ export default function SoftwareDevelopmentPage() {
         </div>
       </main>
       <StickyCTA
-        href="#contact-form"
-        label="Get in touch"
-        backgroundColor={SOFTWARE_SKY}
-        textColor={"#061a3a"}
+        href="/#contact-form"
+        label="Book a discovery call"
+        backgroundColor="#061a3a"
+        textColor="#ffffff"
       />
       <Footer />
     </>

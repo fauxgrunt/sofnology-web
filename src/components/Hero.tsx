@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import HeroOverlayPanel from "@/components/hero/HeroOverlayPanel";
 import { ArrowUpRightIcon } from "@/components/icons";
 
 const proof = [
@@ -58,13 +57,13 @@ export default function Hero() {
                   className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                 />
                 <span className="pointer-events-none relative z-10">Book a discovery call</span>
-                <span className="pointer-events-none relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <span className="pointer-events-none relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
                   <ArrowUpRightIcon className="h-4 w-4 shrink-0" />
                 </span>
               </Link>
               <Link
                 href="/#expertise"
-                className="tap-press hidden min-h-14 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-[#061a3a] uppercase transition-colors duration-300 hover:border-[#061a3a] hover:bg-white/60 sm:inline-flex"
+                className="tap-press hidden min-h-14 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-[#061a3a] uppercase transition-colors duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60 sm:inline-flex"
               >
                 Explore services
               </Link>
@@ -120,7 +119,6 @@ export default function Hero() {
             aria-hidden="true"
             className="absolute inset-0 bg-gradient-to-t from-[#061a3a]/25 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[#061a3a]/10"
           />
-          <HeroOverlayPanel />
         </motion.div>
       </div>
     </section>

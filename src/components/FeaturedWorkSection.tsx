@@ -73,7 +73,7 @@ export default function FeaturedWorkSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="case-studies" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="engagement-paths" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
@@ -96,11 +96,13 @@ export default function FeaturedWorkSection() {
               <div key={work.title} className="border-b border-neutral-200 last:border-b-0">
                 <button
                   type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
+                  onClick={() => setOpenIndex(index)}
                   className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors duration-300 active:bg-white/50 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
-                    isOpen ? "bg-white/45" : "hover:bg-white/35"
+                    isOpen ? "bg-white/45" : "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35"
                   }`}
                   aria-expanded={isOpen}
+                  aria-controls={`engagement-path-${index}`}
+                  id={`engagement-path-trigger-${index}`}
                 >
                   <span className="text-[17px] leading-[1.25] font-semibold tracking-[-0.035em] text-neutral-950 sm:text-xl sm:leading-tight">
                     {work.title}
@@ -116,6 +118,9 @@ export default function FeaturedWorkSection() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={`engagement-path-${index}`}
+                      role="region"
+                      aria-labelledby={`engagement-path-trigger-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

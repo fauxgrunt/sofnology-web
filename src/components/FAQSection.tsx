@@ -80,9 +80,11 @@ export default function FAQSection() {
               >
                 <button
                   type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left active:bg-white/40 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
+                  onClick={() => setOpenIndex(index)}
+                  className="tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left active:bg-white/40 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/30"
                   aria-expanded={isOpen}
+                  aria-controls={`faq-panel-${index}`}
+                  id={`faq-trigger-${index}`}
                 >
                   <span className="text-[16px] leading-[1.3] font-semibold tracking-[-0.03em] text-neutral-950 sm:text-lg sm:leading-tight md:text-xl">
                     {faq.question}
@@ -98,6 +100,9 @@ export default function FAQSection() {
                 <AnimatePresence initial={false}>
                   {isOpen && (
                     <motion.div
+                      id={`faq-panel-${index}`}
+                      role="region"
+                      aria-labelledby={`faq-trigger-${index}`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}

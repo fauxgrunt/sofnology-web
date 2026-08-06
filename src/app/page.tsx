@@ -32,7 +32,7 @@ export default function Home() {
       </main>
       <StickyCTA
         href="/#contact-form"
-        label="Start a conversation"
+        label="Book a discovery call"
         backgroundColor="#061a3a"
         textColor="#ffffff"
         pastHeroPx={320}

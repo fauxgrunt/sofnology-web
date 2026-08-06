@@ -36,6 +36,7 @@ export default function ContactSection({
   const workEmailRef = useRef<HTMLInputElement>(null);
   const messageRef = useRef<HTMLTextAreaElement>(null);
   const consentRef = useRef<HTMLInputElement>(null);
+  const attachmentRef = useRef<HTMLInputElement>(null);
 
   const [fullName, setFullName] = useState("");
   const [workEmail, setWorkEmail] = useState("");
@@ -73,6 +74,7 @@ export default function ContactSection({
   function focusFirstError(errors: Partial<Record<FieldKey, string>>) {
     if (errors.fullName) fullNameRef.current?.focus();
     else if (errors.workEmail) workEmailRef.current?.focus();
+    else if (errors.attachment) attachmentRef.current?.focus();
     else if (errors.message) messageRef.current?.focus();
     else if (errors.consent) consentRef.current?.focus();
   }
@@ -180,7 +182,7 @@ export default function ContactSection({
                     className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                   />
                   <span className="relative z-10">Book a discovery call</span>
-                  <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                  <span className="relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
                     <ArrowUpRightIcon />
                   </span>
                 </a>
@@ -274,9 +276,13 @@ export default function ContactSection({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`group row-span-3 hidden items-center justify-center overflow-hidden text-xl font-semibold tracking-[-0.04em] transition-opacity duration-300 lg:flex disabled:cursor-wait disabled:opacity-70 ${sendButtonClass}`}
+            className={`group relative row-span-3 hidden items-center justify-center overflow-hidden text-xl font-semibold tracking-[-0.04em] transition-opacity duration-300 lg:flex disabled:cursor-wait disabled:opacity-70 ${sendButtonClass}`}
           >
-            <span className="transition-transform duration-300 group-hover:scale-[1.03]">
+            <span
+              aria-hidden="true"
+              className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
+            />
+            <span className="relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.03]">
               {isSubmitting ? "Sending…" : "Send"}
             </span>
           </button>
@@ -297,35 +303,55 @@ export default function ContactSection({
                 disabled={isSubmitting}
               />
             </div>
-            <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-200 hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
-              <input
-                type="file"
-                name="attachment"
-                className="sr-only"
-                disabled={isSubmitting}
-                onChange={(event) => {
-                  const file = event.target.files?.[0] ?? null;
-                  setSelectedFile(file);
-                  if (file && file.size > MAX_FILE_BYTES) {
-                    setFieldErrors((prev) => ({
-                      ...prev,
-                      attachment: "Attachment must be 30MB or smaller.",
-                    }));
-                    setStatus("error");
-                  } else {
-                    setFieldErrors((prev) => {
-                      const next = { ...prev };
-                      delete next.attachment;
-                      return next;
-                    });
+            <div>
+              <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
+                <input
+                  ref={attachmentRef}
+                  type="file"
+                  name="attachment"
+                  className="sr-only"
+                  disabled={isSubmitting}
+                  aria-invalid={Boolean(fieldErrors.attachment)}
+                  aria-describedby={
+                    fieldErrors.attachment ? `${formId}-attachment-error` : undefined
                   }
-                }}
-              />
-              <span className="text-[14px] tracking-tight text-neutral-500">
-                {selectedFile?.name || "Upload file (optional, max 30MB)"}
-              </span>
-              <UploadIcon />
-            </label>
+                  onChange={(event) => {
+                    const file = event.target.files?.[0] ?? null;
+                    setSelectedFile(file);
+                    if (file && file.size > MAX_FILE_BYTES) {
+                      setFieldErrors((prev) => ({
+                        ...prev,
+                        attachment: "Attachment must be 30MB or smaller.",
+                      }));
+                      setStatus("error");
+                      setStatusMessage("Attachment must be 30MB or smaller.");
+                    } else {
+                      setFieldErrors((prev) => {
+                        const next = { ...prev };
+                        delete next.attachment;
+                        return next;
+                      });
+                      if (status === "error") {
+                        setStatus("idle");
+                        setStatusMessage("");
+                      }
+                    }
+                  }}
+                />
+                <span className="text-[14px] tracking-tight text-neutral-500">
+                  {selectedFile?.name || "Upload file (optional, max 30MB)"}
+                </span>
+                <UploadIcon />
+              </label>
+              {fieldErrors.attachment && (
+                <p
+                  id={`${formId}-attachment-error`}
+                  className="px-5 pb-3 text-[12px] text-red-700 sm:px-6 md:px-8"
+                >
+                  {fieldErrors.attachment}
+                </p>
+              )}
+            </div>
           </div>
 
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
@@ -351,7 +377,7 @@ export default function ContactSection({
               <select
                 id="project-type"
                 name="projectType"
-                className={`${inputClass} appearance-none ${
+                className={`${inputClass} appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 fill=%22none%22%3E%3Cpath d=%22M1 1.5 6 6.5 11 1.5%22 stroke=%22%23737373%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')] bg-[length:12px_8px] bg-[position:right_1.25rem_center] bg-no-repeat pr-12 ${
                   projectType ? "text-neutral-950" : "text-neutral-500"
                 }`}
                 value={projectType}
@@ -422,16 +448,16 @@ export default function ContactSection({
             </div>
           </div>
 
-          {/* Consent before Send on mobile — desktop send stays in side column */}
+          {/* Consent before Send — large tap target for mobile */}
           <div className="border-b border-neutral-200 px-5 py-5 sm:px-6 md:px-8 lg:col-span-4 lg:px-16">
-            <label className="flex items-start gap-3 text-[12px] leading-relaxed tracking-tight text-neutral-600">
+            <label className="flex min-h-11 cursor-pointer items-start gap-3.5 text-[13px] leading-relaxed tracking-tight text-neutral-600">
               <input
                 ref={consentRef}
                 type="checkbox"
                 name="consent"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
-                className="mt-0.5 h-5 w-5 shrink-0 border-neutral-300"
+                className="mt-0.5 h-6 w-6 shrink-0 accent-[#061a3a]"
                 required
                 disabled={isSubmitting}
                 aria-invalid={Boolean(fieldErrors.consent)}
@@ -444,7 +470,7 @@ export default function ContactSection({
               </span>
             </label>
             {fieldErrors.consent && (
-              <p id={`${formId}-consent-error`} className="mt-2 pl-8 text-[12px] text-red-700">
+              <p id={`${formId}-consent-error`} className="mt-2 pl-9 text-[12px] text-red-700">
                 {fieldErrors.consent}
               </p>
             )}

@@ -18,6 +18,8 @@
   html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
+    /* Sticky nav clearance for in-page anchors (#expertise, #contact, …) */
+    scroll-padding-top: calc(var(--nav-h) + env(safe-area-inset-top, 0px) + 0.75rem);
   }
 
   /*
@@ -120,7 +122,11 @@
 
   /* Kill sticky hover ghosts on touch; give real press feedback */
   @media (hover: none) and (pointer: coarse) {
-    .group:hover .group-hover\:translate-x-1 {
+    .group:hover .group-hover\:translate-x-1,
+    .group:hover .group-hover\:-translate-y-1,
+    .group:hover .group-hover\:translate-x-0\.5,
+    .group:hover .group-hover\:-translate-y-0\.5,
+    .group:hover .group-hover\:scale-\[1\.03\] {
       transform: none;
     }
 
@@ -235,9 +241,9 @@
     }
   }
 
-  @media (min-width: 1024px) {
+  @media (min-width: 1280px) {
     .content-rail {
-      --content-rail-width: 88px;
+      --content-rail-width: 72px;
     }
 
     .content-rail > section {

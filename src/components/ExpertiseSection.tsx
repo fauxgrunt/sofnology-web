@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 
 type ExpertiseGroup = {
   title: string;
@@ -182,7 +183,7 @@ export default function ExpertiseSection() {
                     className={`group relative block w-full py-3.5 pr-5 pl-5 text-left text-[1.05rem] leading-snug font-semibold tracking-[-0.03em] transition-colors duration-300 sm:py-4 sm:pl-6 sm:text-lg md:text-xl ${
                       isActive
                         ? "bg-white/55 text-[#061a3a]"
-                        : "text-neutral-400 hover:bg-white/35 hover:text-neutral-700"
+                        : "text-neutral-400 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35 [@media(hover:hover)_and_(pointer:fine)]:hover:text-neutral-700"
                     }`}
                   >
                     <span
@@ -212,7 +213,7 @@ export default function ExpertiseSection() {
             className="bg-[#f1f1f1]"
             role="tabpanel"
             id={`expertise-panel-${activeTab.id}`}
-            aria-labelledby={`expertise-tab-${activeTab.id}`}
+            aria-labelledby={`expertise-tab-${activeTab.id} expertise-tab-desktop-${activeTab.id}`}
           >
             {activeTab.groups.map((group, index) => (
               <div
@@ -227,13 +228,13 @@ export default function ExpertiseSection() {
 
                 <div className="mt-5 grid grid-cols-1 gap-x-16 gap-y-3 sm:mt-7 sm:gap-y-4 md:grid-cols-2">
                   {group.links.map((link) => (
-                    <a
+                    <Link
                       key={link.label}
                       href={link.href}
-                      className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 hover:text-[#061a3a] hover:decoration-[#061a3a]"
+                      className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-[#061a3a]"
                     >
                       {link.label}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </div>

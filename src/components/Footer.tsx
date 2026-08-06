@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
 
 const companyLinks = [
   { label: "Who we are", href: "/company" },
   { label: "How we work", href: "/company/how-we-work" },
-  { label: "Engagement paths", href: "/#case-studies" },
   { label: "Contact", href: "/#contact" },
 ];
 
@@ -27,10 +27,10 @@ const industryLinks = [
 
 const supportLinks = [
   { label: "FAQ", href: "/#faq" },
+  { label: "Example paths", href: "/#engagement-paths" },
   { label: "Startups", href: "/engagement/solutions-for-startups" },
   { label: "Enterprises", href: "/engagement/solutions-for-enterprises" },
-  { label: "Contact", href: "/#contact" },
-  { label: "Start a conversation", href: "/#contact-form" },
+  { label: "Book a discovery call", href: "/#contact" },
 ];
 
 const footerColumns = [
@@ -147,8 +147,8 @@ export default function Footer() {
               className="group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 hover:bg-white tap-press"
             >
               <span>Book a discovery call</span>
-              <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1">
-                -&gt;
+              <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
+                <ArrowUpRightIcon className="h-4 w-4" />
               </span>
             </Link>
           </div>

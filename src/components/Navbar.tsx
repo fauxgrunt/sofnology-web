@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import NavbarLogo from "@/components/nav/NavbarLogo";
 import NavMegaPanel from "@/components/nav/NavMegaPanel";
@@ -141,12 +142,16 @@ export default function Navbar() {
                         scheduleClose();
                       }
                     }}
+                    onFocus={() => {
+                      if (!item.menu) scheduleClose();
+                    }}
                   >
                     {hasMenu ? (
                       <button
                         type="button"
                         aria-expanded={isOpen}
                         aria-haspopup="true"
+                        aria-controls={isOpen ? `mega-panel-${item.menu}` : undefined}
                         onClick={() =>
                           setOpenMenu((current) =>
                             current === item.menu ? null : (item.menu ?? null)
@@ -171,18 +176,18 @@ export default function Navbar() {
                         />
                       </button>
                     ) : (
-                      <a
+                      <Link
                         href={item.href}
-                        className="group relative flex h-full items-center px-4 transition-colors duration-400 hover:bg-[#f0f0f1] xl:px-5"
+                        className="group relative flex h-full items-center px-4 transition-colors duration-400 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] xl:px-5"
                       >
                         <span className={`relative z-10 leading-none ${navLinkClass}`}>
                           {item.label}
                         </span>
                         <span
                           aria-hidden="true"
-                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center scale-x-0 bg-[#061a3a] xl:inset-x-4 ${underlineTransition} group-hover:scale-x-100`}
+                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center scale-x-0 bg-[#061a3a] xl:inset-x-4 ${underlineTransition} [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100`}
                         />
-                      </a>
+                      </Link>
                     )}
                   </li>
                 );
@@ -197,9 +202,10 @@ export default function Navbar() {
             </div>
             <button
               type="button"
-              className="tap-press flex h-full min-w-14 items-center justify-center px-1 text-[#111111] transition-colors hover:bg-[#f0f0f1] active:bg-[#ececed] lg:hidden"
+              className="tap-press flex h-full min-w-14 items-center justify-center px-1 text-[#111111] transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] active:bg-[#ececed] lg:hidden"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
+              aria-controls="mobile-nav-drawer"
               onClick={() => setMobileOpen((v) => !v)}
             >
               <MenuToggleIcon open={mobileOpen} />
@@ -208,10 +214,11 @@ export default function Navbar() {
         </div>
 
         {/* Desktop mega panel */}
-        <AnimatePresence mode="wait">
+        <AnimatePresence>
           {openMenu && megaMenus[openMenu] && (
             <motion.div
               key={openMenu}
+              id={`mega-panel-${openMenu}`}
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
@@ -243,11 +250,13 @@ export default function Navbar() {
             role="dialog"
             aria-modal="true"
             aria-label="Mobile navigation"
+            id="mobile-nav-drawer"
             ref={drawerRef}
           >
             <button
               type="button"
               aria-label="Dismiss menu"
+              tabIndex={-1}
               className="absolute inset-0 bg-[#061a3a]/40 backdrop-blur-[3px]"
               onClick={() => setMobileOpen(false)}
             />
@@ -322,13 +331,13 @@ export default function Navbar() {
                                         <ul className="space-y-1">
                                           {col.links.map((link) => (
                                             <li key={link.label}>
-                                              <a
+                                              <Link
                                                 href={link.href}
-                                                className="block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                                className="tap-press block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
                                                 onClick={() => setMobileOpen(false)}
                                               >
                                                 {link.label}
-                                              </a>
+                                              </Link>
                                             </li>
                                           ))}
                                         </ul>
@@ -339,26 +348,26 @@ export default function Navbar() {
                                       <ul className="space-y-1">
                                         {menu.links.map((link) => (
                                           <li key={link.label}>
-                                            <a
+                                            <Link
                                               href={link.href}
-                                              className="block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                              className="tap-press block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
                                               onClick={() => setMobileOpen(false)}
                                             >
                                               {link.label}
-                                            </a>
+                                            </Link>
                                           </li>
                                         ))}
                                       </ul>
                                     )}
 
                                     {menu.promo && (
-                                      <a
+                                      <Link
                                         href={
                                           menu.promo.href.startsWith("#")
                                             ? `/${menu.promo.href}`
                                             : menu.promo.href
                                         }
-                                        className="mt-1 flex min-h-14 items-center justify-between bg-[#061a3a] px-4 text-[14px] font-medium text-white"
+                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-[#061a3a] px-4 text-[14px] font-medium text-white"
                                         onClick={() => setMobileOpen(false)}
                                       >
                                         <span>
@@ -373,17 +382,17 @@ export default function Navbar() {
                                         >
                                           ↗
                                         </span>
-                                      </a>
+                                      </Link>
                                     )}
 
                                     {menu.banner && (
-                                      <a
+                                      <Link
                                         href={
                                           menu.banner.href.startsWith("#")
                                             ? `/${menu.banner.href}`
                                             : menu.banner.href
                                         }
-                                        className="flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-[#061a3a] px-4 py-3 text-[13px] font-medium text-white"
+                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-[#061a3a] px-4 py-3 text-[13px] font-medium text-white"
                                         onClick={() => setMobileOpen(false)}
                                       >
                                         <span className="line-clamp-2 text-white/85">
@@ -392,7 +401,7 @@ export default function Navbar() {
                                         <span className="shrink-0 text-[#C7FF3D]">
                                           {menu.banner.cta} ↗
                                         </span>
-                                      </a>
+                                      </Link>
                                     )}
                                   </div>
                                 </motion.div>
@@ -400,13 +409,13 @@ export default function Navbar() {
                             </AnimatePresence>
                           </>
                         ) : (
-                          <a
+                          <Link
                             href={item.href}
                             className="tap-press block min-h-12 px-5 py-[1.15rem] font-nav text-[17px] font-medium tracking-normal text-[#111111] active:bg-[#ececed]"
                             onClick={() => setMobileOpen(false)}
                           >
                             {item.label}
-                          </a>
+                          </Link>
                         )}
                       </motion.div>
                     );

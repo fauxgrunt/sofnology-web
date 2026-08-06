@@ -635,7 +635,7 @@ function EdgeCtaSection() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <Link
-          href="/#case-studies"
+          href="/#engagement-paths"
           className="group relative flex min-h-14 items-center justify-between px-6 text-[15px] font-semibold tracking-[-0.03em] md:px-10 lg:px-16"
           style={{ backgroundColor: LIME, color: INK }}
         >

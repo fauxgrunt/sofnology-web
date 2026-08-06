@@ -49,7 +49,7 @@ export const navItems: NavItemConfig[] = [
     href: "/#start-your-growth",
     menu: "engagement",
   },
-  { id: "portfolio", label: "Engagement paths", href: "/#case-studies" },
+  { id: "portfolio", label: "Example paths", href: "/#engagement-paths" },
   { id: "company", label: "Company", href: "/company", menu: "company" },
 ];
 
@@ -156,16 +156,18 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     },
   },
   company: {
-    layout: "columns",
-    columns: [
-      {
-        heading: "Company",
-        links: [{ label: "Who we are", href: "/company" }],
-      },
-      {
-        heading: "Approach",
-        links: [{ label: "How we work", href: "/company/how-we-work" }],
-      },
+    layout: "list-promo",
+    links: [
+      { label: "Who we are", href: "/company" },
+      { label: "How we work", href: "/company/how-we-work" },
+      { label: "Example engagement paths", href: "/#engagement-paths" },
+      { label: "Contact", href: "/#contact" },
     ],
+    promo: {
+      title: "Start with a conversation",
+      subtitle: "Tell us the outcome you need — we will outline a practical next step.",
+      cta: "Book a discovery call",
+      href: "/#contact",
+    },
   },
 };
