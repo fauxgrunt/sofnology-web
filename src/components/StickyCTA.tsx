@@ -14,7 +14,8 @@ type StickyCTAProps = {
 };
 
 /**
- * Thumb-zone conversion bar — earlier on phones, safe-area aware, hides near contact.
+ * Thumb-zone conversion bar — earlier on phones, safe-area aware, hides near contact
+ * and while the mobile nav drawer is open.
  */
 export default function StickyCTA({
   href = "/#contact-form",
@@ -27,7 +28,13 @@ export default function StickyCTA({
   const reduceMotion = useReducedMotion();
 
   useEffect(() => {
-    const onScroll = () => {
+    const update = () => {
+      const navOpen = document.documentElement.dataset.mobileNav === "open";
+      if (navOpen) {
+        setVisible(false);
+        return;
+      }
+
       const contact = document.getElementById("contact");
       const contactTop =
         contact?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
@@ -40,12 +47,14 @@ export default function StickyCTA({
       setVisible(pastHero && beforeContact);
     };
 
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", onScroll);
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    window.addEventListener("mobile-nav-toggle", update);
     return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+      window.removeEventListener("mobile-nav-toggle", update);
     };
   }, [pastHeroPx]);
 

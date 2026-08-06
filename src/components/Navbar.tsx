@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { createPortal } from "react-dom";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import NavbarLogo from "@/components/nav/NavbarLogo";
@@ -22,14 +23,26 @@ const underlineTransition =
 const CLOSE_GRACE_MS = 160;
 const OPEN_INTENT_MS = 60;
 
+function setMobileNavFlag(open: boolean) {
+  if (typeof document === "undefined") return;
+  if (open) document.documentElement.dataset.mobileNav = "open";
+  else delete document.documentElement.dataset.mobileNav;
+  window.dispatchEvent(new Event("mobile-nav-toggle"));
+}
+
 export default function Navbar() {
   const [openMenu, setOpenMenu] = useState<MenuId | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileSection, setMobileSection] = useState<MenuId | null>(null);
+  const [portalReady, setPortalReady] = useState(false);
   const navRef = useRef<HTMLDivElement>(null);
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const drawerRef = useFocusTrap(mobileOpen);
+
+  useEffect(() => {
+    setPortalReady(true);
+  }, []);
 
   const clearCloseTimer = () => {
     if (closeTimer.current) {
@@ -62,10 +75,16 @@ export default function Navbar() {
     clearOpenTimer();
   };
 
+  const setDrawerOpen = (open: boolean) => {
+    setMobileOpen(open);
+    setMobileNavFlag(open);
+  };
+
   useEffect(() => {
     return () => {
       clearCloseTimer();
       clearOpenTimer();
+      setMobileNavFlag(false);
     };
   }, []);
 
@@ -95,26 +114,212 @@ export default function Navbar() {
       return;
     }
 
-    const prev = document.body.style.overflow;
+    const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setMobileOpen(false);
+      if (event.key === "Escape") setDrawerOpen(false);
     };
     document.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      document.body.style.overflow = prev;
+      document.body.style.overflow = prevOverflow;
       document.removeEventListener("keydown", handleKeyDown);
     };
   }, [mobileOpen]);
+
+  const mobileDrawer =
+    portalReady &&
+    createPortal(
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.22, ease: deliberate }}
+            className="fixed inset-x-0 top-[calc(var(--nav-h)+env(safe-area-inset-top,0px))] bottom-0 z-[60] lg:hidden"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile navigation"
+            id="mobile-nav-drawer"
+            ref={drawerRef}
+          >
+            <motion.div
+              initial={{ y: -16, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -10, opacity: 0 }}
+              transition={{ duration: 0.32, ease: deliberate }}
+              className="flex h-full flex-col overflow-hidden bg-[#f7f7f8]"
+            >
+              <div className="flex-1 overflow-y-auto overscroll-contain">
+                <nav aria-label="Mobile" className="mx-auto max-w-[1440px]">
+                  {navItems.map((item, index) => {
+                    const hasMenu = Boolean(item.menu && megaMenus[item.menu]);
+                    const isExpanded = mobileSection === item.menu;
+                    const menu = item.menu ? megaMenus[item.menu] : null;
+
+                    return (
+                      <motion.div
+                        key={item.id}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{
+                          duration: 0.3,
+                          delay: 0.03 + index * 0.03,
+                          ease: deliberate,
+                        }}
+                        className="border-b border-neutral-200/80"
+                      >
+                        {hasMenu && menu ? (
+                          <>
+                            <button
+                              type="button"
+                              className={`tap-press flex min-h-14 w-full items-center justify-between px-5 py-3.5 text-left font-nav text-[17px] font-medium tracking-normal text-[#111111] transition-colors active:bg-[#ececed] ${
+                                isExpanded ? "bg-[#f3f3f4]" : "bg-transparent"
+                              }`}
+                              aria-expanded={isExpanded}
+                              onClick={() =>
+                                setMobileSection((current) =>
+                                  current === item.menu ? null : (item.menu ?? null),
+                                )
+                              }
+                            >
+                              <span className="relative">
+                                {item.label}
+                                <span
+                                  aria-hidden="true"
+                                  className={`absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-[#061a3a] transition-transform duration-400 ${
+                                    isExpanded ? "scale-x-100" : "scale-x-0"
+                                  }`}
+                                />
+                              </span>
+                              <Chevron open={isExpanded} />
+                            </button>
+
+                            <AnimatePresence initial={false}>
+                              {isExpanded && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: "auto", opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.32, ease: deliberate }}
+                                  className="overflow-hidden bg-[#f3f3f4]"
+                                >
+                                  <div className="space-y-5 px-5 pt-2 pb-6">
+                                    {menu.columns?.map((col) => (
+                                      <div key={col.heading}>
+                                        <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase">
+                                          {col.heading}
+                                        </p>
+                                        <ul className="space-y-1">
+                                          {col.links.map((link) => (
+                                            <li key={link.label}>
+                                              <Link
+                                                href={link.href}
+                                                className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                                onClick={() => setDrawerOpen(false)}
+                                              >
+                                                {link.label}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    ))}
+
+                                    {menu.links && (
+                                      <ul className="space-y-1">
+                                        {menu.links.map((link) => (
+                                          <li key={link.label}>
+                                            <Link
+                                              href={link.href}
+                                              className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                              onClick={() => setDrawerOpen(false)}
+                                            >
+                                              {link.label}
+                                            </Link>
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    )}
+
+                                    {menu.promo && (
+                                      <Link
+                                        href={
+                                          menu.promo.href.startsWith("#")
+                                            ? `/${menu.promo.href}`
+                                            : menu.promo.href
+                                        }
+                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-[#061a3a] px-4 text-[14px] font-medium text-white"
+                                        onClick={() => setDrawerOpen(false)}
+                                      >
+                                        <span>
+                                          <span className="block text-[12px] font-medium tracking-wide text-white/55">
+                                            {menu.promo.title}
+                                          </span>
+                                          <span className="mt-0.5 block">{menu.promo.cta}</span>
+                                        </span>
+                                        <span className="text-[#C7FF3D]" aria-hidden="true">
+                                          ↗
+                                        </span>
+                                      </Link>
+                                    )}
+
+                                    {menu.banner && (
+                                      <Link
+                                        href={
+                                          menu.banner.href.startsWith("#")
+                                            ? `/${menu.banner.href}`
+                                            : menu.banner.href
+                                        }
+                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-[#061a3a] px-4 py-3 text-[13px] font-medium text-white"
+                                        onClick={() => setDrawerOpen(false)}
+                                      >
+                                        <span className="line-clamp-2 text-white/85">
+                                          {menu.banner.text}
+                                        </span>
+                                        <span className="shrink-0 text-[#C7FF3D]">
+                                          {menu.banner.cta} ↗
+                                        </span>
+                                      </Link>
+                                    )}
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
+                          </>
+                        ) : (
+                          <Link
+                            href={item.href}
+                            className="tap-press block min-h-14 px-5 py-3.5 font-nav text-[17px] font-medium tracking-normal text-[#111111] active:bg-[#ececed]"
+                            onClick={() => setDrawerOpen(false)}
+                          >
+                            {item.label}
+                          </Link>
+                        )}
+                      </motion.div>
+                    );
+                  })}
+                </nav>
+              </div>
+
+              <div className="shrink-0 border-t border-neutral-200 bg-[#f7f7f8] p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
+                <PrimaryCTA fullWidth onClick={() => setDrawerOpen(false)} />
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>,
+      document.body,
+    );
 
   return (
     <header className="font-nav sticky top-0 z-50 border-b border-neutral-200 bg-[#f7f7f8]/92 pt-[env(safe-area-inset-top)] backdrop-blur-md supports-[backdrop-filter]:bg-[#f7f7f8]/80">
       <div className="relative" ref={navRef}>
         <div className="mx-auto flex h-fluid-nav max-w-[1440px] items-stretch border-x border-neutral-200">
-          {/* Brand zone */}
-          <div className="flex w-[min(42vw,380px)] shrink-0 items-stretch border-r border-neutral-200 max-lg:w-auto sm:w-[300px] md:w-[340px] xl:w-[380px]">
+          {/* Brand zone — keep compact on phones so the menu button has room */}
+          <div className="flex min-w-0 flex-1 items-stretch border-r border-neutral-200 sm:max-w-[300px] md:max-w-[340px] lg:w-[min(42vw,380px)] lg:max-w-none lg:flex-none xl:w-[380px]">
             <div className="flex min-w-0 flex-1 items-center">
               <NavbarLogo />
             </div>
@@ -154,7 +359,7 @@ export default function Navbar() {
                         aria-controls={isOpen ? `mega-panel-${item.menu}` : undefined}
                         onClick={() =>
                           setOpenMenu((current) =>
-                            current === item.menu ? null : (item.menu ?? null)
+                            current === item.menu ? null : (item.menu ?? null),
                           )
                         }
                         onFocus={() => item.menu && openMega(item.menu)}
@@ -202,11 +407,11 @@ export default function Navbar() {
             </div>
             <button
               type="button"
-              className="tap-press flex h-full min-w-14 items-center justify-center px-1 text-[#111111] transition-colors [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] active:bg-[#ececed] lg:hidden"
+              className="tap-press flex h-full min-h-12 min-w-14 items-center justify-center px-4 text-[#111111] transition-colors active:bg-[#ececed] lg:hidden [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1]"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-drawer"
-              onClick={() => setMobileOpen((v) => !v)}
+              onClick={() => setDrawerOpen(!mobileOpen)}
             >
               <MenuToggleIcon open={mobileOpen} />
             </button>
@@ -238,198 +443,7 @@ export default function Navbar() {
         </AnimatePresence>
       </div>
 
-      {/* Mobile full-height drawer */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.28, ease: deliberate }}
-            className="fixed inset-x-0 top-[calc(var(--nav-h)+env(safe-area-inset-top))] bottom-0 z-40 lg:hidden"
-            role="dialog"
-            aria-modal="true"
-            aria-label="Mobile navigation"
-            id="mobile-nav-drawer"
-            ref={drawerRef}
-          >
-            <button
-              type="button"
-              aria-label="Dismiss menu"
-              tabIndex={-1}
-              className="absolute inset-0 bg-[#061a3a]/40 backdrop-blur-[3px]"
-              onClick={() => setMobileOpen(false)}
-            />
-
-            <motion.div
-              initial={{ y: -12, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -8, opacity: 0 }}
-              transition={{ duration: 0.38, ease: deliberate }}
-              className="relative flex h-full max-h-[calc(100dvh-var(--nav-h)-env(safe-area-inset-top))] flex-col overflow-hidden border-b border-neutral-200 bg-[#f7f7f8]"
-            >
-              <div className="flex-1 overflow-y-auto overscroll-contain">
-                <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-                  {navItems.map((item, index) => {
-                    const hasMenu = Boolean(item.menu && megaMenus[item.menu]);
-                    const isExpanded = mobileSection === item.menu;
-                    const menu = item.menu ? megaMenus[item.menu] : null;
-
-                    return (
-                      <motion.div
-                        key={item.id}
-                        initial={{ opacity: 0, y: 8 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{
-                          duration: 0.35,
-                          delay: 0.04 + index * 0.04,
-                          ease: deliberate,
-                        }}
-                        className="border-b border-neutral-200/80"
-                      >
-                        {hasMenu && menu ? (
-                          <>
-                            <button
-                              type="button"
-                              className={`tap-press flex w-full items-center justify-between px-5 py-[1.15rem] text-left font-nav text-[17px] font-medium tracking-normal text-[#111111] transition-colors active:bg-[#ececed] ${
-                                isExpanded ? "bg-[#f3f3f4]" : "bg-transparent"
-                              }`}
-                              aria-expanded={isExpanded}
-                              onClick={() =>
-                                setMobileSection((current) =>
-                                  current === item.menu ? null : (item.menu ?? null)
-                                )
-                              }
-                            >
-                              <span className="relative">
-                                {item.label}
-                                <span
-                                  aria-hidden="true"
-                                  className={`absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-[#061a3a] transition-transform duration-400 ${
-                                    isExpanded ? "scale-x-100" : "scale-x-0"
-                                  }`}
-                                />
-                              </span>
-                              <Chevron open={isExpanded} />
-                            </button>
-
-                            <AnimatePresence initial={false}>
-                              {isExpanded && (
-                                <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: "auto", opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.36, ease: deliberate }}
-                                  className="overflow-hidden bg-[#f3f3f4]"
-                                >
-                                  <div className="space-y-5 px-5 pt-2 pb-6">
-                                    {menu.columns?.map((col) => (
-                                      <div key={col.heading}>
-                                        <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase">
-                                          {col.heading}
-                                        </p>
-                                        <ul className="space-y-1">
-                                          {col.links.map((link) => (
-                                            <li key={link.label}>
-                                              <Link
-                                                href={link.href}
-                                                className="tap-press block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
-                                                onClick={() => setMobileOpen(false)}
-                                              >
-                                                {link.label}
-                                              </Link>
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
-                                    ))}
-
-                                    {menu.links && (
-                                      <ul className="space-y-1">
-                                        {menu.links.map((link) => (
-                                          <li key={link.label}>
-                                            <Link
-                                              href={link.href}
-                                              className="tap-press block py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
-                                              onClick={() => setMobileOpen(false)}
-                                            >
-                                              {link.label}
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    )}
-
-                                    {menu.promo && (
-                                      <Link
-                                        href={
-                                          menu.promo.href.startsWith("#")
-                                            ? `/${menu.promo.href}`
-                                            : menu.promo.href
-                                        }
-                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-[#061a3a] px-4 text-[14px] font-medium text-white"
-                                        onClick={() => setMobileOpen(false)}
-                                      >
-                                        <span>
-                                          <span className="block text-[12px] font-medium tracking-wide text-white/55">
-                                            {menu.promo.title}
-                                          </span>
-                                          <span className="mt-0.5 block">{menu.promo.cta}</span>
-                                        </span>
-                                        <span
-                                          className="text-[#C7FF3D]"
-                                          aria-hidden="true"
-                                        >
-                                          ↗
-                                        </span>
-                                      </Link>
-                                    )}
-
-                                    {menu.banner && (
-                                      <Link
-                                        href={
-                                          menu.banner.href.startsWith("#")
-                                            ? `/${menu.banner.href}`
-                                            : menu.banner.href
-                                        }
-                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-[#061a3a] px-4 py-3 text-[13px] font-medium text-white"
-                                        onClick={() => setMobileOpen(false)}
-                                      >
-                                        <span className="line-clamp-2 text-white/85">
-                                          {menu.banner.text}
-                                        </span>
-                                        <span className="shrink-0 text-[#C7FF3D]">
-                                          {menu.banner.cta} ↗
-                                        </span>
-                                      </Link>
-                                    )}
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
-                          </>
-                        ) : (
-                          <Link
-                            href={item.href}
-                            className="tap-press block min-h-12 px-5 py-[1.15rem] font-nav text-[17px] font-medium tracking-normal text-[#111111] active:bg-[#ececed]"
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {item.label}
-                          </Link>
-                        )}
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              </div>
-
-              <div className="shrink-0 border-t border-neutral-200 bg-[#f7f7f8] p-4 pb-[max(1rem,env(safe-area-inset-bottom))]">
-                <PrimaryCTA fullWidth onClick={() => setMobileOpen(false)} />
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {mobileDrawer}
     </header>
   );
 }

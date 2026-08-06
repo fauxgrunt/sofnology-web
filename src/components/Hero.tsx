@@ -50,7 +50,7 @@ export default function Hero() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
               <Link
                 href="/#contact"
-                className="tap-press group relative flex min-h-12 flex-1 items-center justify-between overflow-hidden bg-[#061a3a] px-5 py-3.5 text-[12px] font-semibold tracking-wider text-white uppercase sm:min-h-14 sm:max-w-md sm:px-6 sm:py-4 sm:text-[11px]"
+                className="tap-press group relative flex min-h-[3.25rem] flex-1 items-center justify-between overflow-hidden bg-[#061a3a] px-5 py-3.5 text-[12px] font-semibold tracking-wider text-white uppercase sm:min-h-14 sm:max-w-md sm:px-6 sm:py-4 sm:text-[11px]"
               >
                 <span
                   aria-hidden="true"
@@ -63,7 +63,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/#expertise"
-                className="tap-press hidden min-h-14 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-[#061a3a] uppercase transition-colors duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60 sm:inline-flex"
+                className="tap-press inline-flex min-h-11 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-[#061a3a] uppercase transition-colors duration-300 sm:min-h-14 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60"
               >
                 Explore services
               </Link>
