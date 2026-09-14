@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
+import { accordionMotion } from "@/lib/motion";
 
 type FeaturedWork = {
   title: string;
@@ -121,10 +122,7 @@ export default function FeaturedWorkSection() {
                       id={`engagement-path-${index}`}
                       role="region"
                       aria-labelledby={`engagement-path-trigger-${index}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.38, ease: [0.16, 1, 0.3, 1] }}
+                      {...accordionMotion}
                       className="overflow-hidden"
                     >
                       <div className="grid grid-cols-1 gap-0 px-5 pb-7 sm:px-6 sm:pb-8 md:px-10 lg:grid-cols-2 lg:px-16 lg:pb-12">

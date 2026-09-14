@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Coral — matches Vention auto refs; distinct from outsourcing orange #FF6A00. */
 const CORAL = "#FF6B4A";
@@ -15,23 +18,6 @@ const PRIMARY_CTA = "Talk about automotive software";
 
 const HERO_IMAGE = "/automotive-hero.jpg";
 const CTA_IMAGE = "/automotive-cta.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const marketDrivers = [
   {
@@ -301,12 +287,13 @@ function AutomotiveHero() {
           </a>
 
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Modern vehicle cabin with digital cockpit and infotainment screen"
-              className="absolute inset-0 h-full w-full scale-[1.05] object-cover object-[55%_40%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.05] object-cover object-[55%_40%]"
             />
             <div
               aria-hidden="true"
@@ -364,7 +351,7 @@ function MarketSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-xl font-semibold tracking-[-0.04em] text-neutral-950">
                   {item.title}
@@ -419,7 +406,7 @@ function ServicesSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-2xl font-semibold tracking-[-0.045em] text-neutral-950">
                   {item.title}
@@ -552,7 +539,7 @@ function SolutionsSection() {
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -6 }}
-            transition={{ duration: 0.35, ease: fadeEase }}
+            transition={{ duration: 0.35, ease: motionEase }}
             className="grid grid-cols-1 md:grid-cols-2"
           >
             {bucket.items.map((item, index) => (
@@ -671,12 +658,12 @@ function AutomotiveCtaSection() {
         />
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Vehicle dashboard navigation screen in a modern cabin"
-              className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-[48%_45%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="scale-[1.04] object-cover object-[48%_45%]"
             />
           </div>
 
@@ -803,7 +790,7 @@ function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">

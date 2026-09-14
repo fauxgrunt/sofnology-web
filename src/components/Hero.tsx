@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
+import { motionDuration, motionEase } from "@/lib/motion";
 
 const proof = [
   "Senior-led delivery",
@@ -23,7 +24,7 @@ export default function Hero() {
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: motionDuration.page + 0.08, ease: motionEase }}
           className="flex flex-col border-r border-neutral-200 px-5 pt-6 pb-7 sm:px-6 sm:pt-7 sm:pb-8 md:px-12 lg:min-h-[760px] lg:justify-between lg:px-[clamp(2rem,5vw,6rem)] lg:pt-12 lg:pb-16 xl:min-h-[820px]"
         >
           <div>
@@ -104,7 +105,11 @@ export default function Hero() {
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.55, delay: reduceMotion ? 0 : 0.08, ease: [0.16, 1, 0.3, 1] }}
+          transition={{
+            duration: motionDuration.page + 0.12,
+            delay: reduceMotion ? 0 : 0.08,
+            ease: motionEase,
+          }}
           className="relative aspect-[5/3] w-full overflow-hidden sm:aspect-[16/10] md:aspect-auto md:min-h-[480px] lg:min-h-[760px] xl:min-h-[820px]"
         >
           <Image

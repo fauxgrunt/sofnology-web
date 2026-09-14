@@ -10,12 +10,20 @@ import PrimaryCTA from "@/components/nav/PrimaryCTA";
 import { Chevron, MenuToggleIcon } from "@/components/nav/NavIcons";
 import { navItems, megaMenus, type MenuId } from "@/components/nav/nav-data";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
+import {
+  accordionMotion,
+  chromeTransition,
+  motionDuration,
+  motionEase,
+} from "@/lib/motion";
 
 const navLinkClass =
   "font-nav text-fluid-nav font-medium tracking-normal text-[#111111] whitespace-nowrap";
 
-const deliberate = [0.16, 1, 0.3, 1] as const;
-const megaTransition = { duration: 0.42, ease: deliberate };
+const megaTransition = {
+  duration: motionDuration.chrome + 0.04,
+  ease: motionEase,
+};
 const underlineTransition =
   "transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]";
 
@@ -137,7 +145,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.22, ease: deliberate }}
+            transition={{ duration: motionDuration.chrome - 0.04, ease: motionEase }}
             className="fixed inset-x-0 top-[calc(var(--nav-h)+env(safe-area-inset-top,0px))] bottom-0 z-[60] lg:hidden"
             role="dialog"
             aria-modal="true"
@@ -149,7 +157,7 @@ export default function Navbar() {
               initial={{ y: -16, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -10, opacity: 0 }}
-              transition={{ duration: 0.32, ease: deliberate }}
+              transition={chromeTransition}
               className="flex h-full flex-col overflow-hidden bg-[#f7f7f8]"
             >
               <div className="flex-1 overflow-y-auto overscroll-contain">
@@ -165,9 +173,9 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: 0.3,
+                          duration: motionDuration.chrome,
                           delay: 0.03 + index * 0.03,
-                          ease: deliberate,
+                          ease: motionEase,
                         }}
                         className="border-b border-neutral-200/80"
                       >
@@ -200,10 +208,7 @@ export default function Navbar() {
                             <AnimatePresence initial={false}>
                               {isExpanded && (
                                 <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: "auto", opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
-                                  transition={{ duration: 0.32, ease: deliberate }}
+                                  {...accordionMotion}
                                   className="overflow-hidden bg-[#f3f3f4]"
                                 >
                                   <div className="space-y-5 px-5 pt-2 pb-6">

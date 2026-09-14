@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 const LIME = "#C7FF3D";
 const DEEP = "#101413";
@@ -14,23 +17,6 @@ const PRIMARY_CTA = "Book a QA discovery call";
 
 const HERO_IMAGE = "/qa-hero.jpg";
 const CTA_IMAGE = "/qa-cta.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const spotlightCapabilities = [
   {
@@ -222,12 +208,13 @@ function QaHero() {
           </a>
 
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Abstract quality assurance visual with lime glass geometry"
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[72%_42%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.06] object-cover object-[72%_42%]"
             />
             <div
               aria-hidden="true"
@@ -289,7 +276,7 @@ function SpotlightSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
                   {item.title}
@@ -318,7 +305,7 @@ function ProcessSection() {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, ease: fadeEase }}
+            transition={{ duration: 0.55, ease: motionEase }}
           >
             <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
               Quality from the start
@@ -554,12 +541,12 @@ function QaCtaSection() {
           </div>
 
           <div className="relative min-h-[340px] overflow-hidden lg:min-h-[430px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Quality assurance abstract CTA visual with glass phone frame"
-              className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[40%_55%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 62vw"
+              className="scale-[1.08] object-cover object-[40%_55%]"
             />
           </div>
         </div>
@@ -612,7 +599,7 @@ function QaFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">
@@ -672,8 +659,6 @@ function RelatedSection() {
     </section>
   );
 }
-
-
 
 export default function QualityAssurancePage() {
   return (

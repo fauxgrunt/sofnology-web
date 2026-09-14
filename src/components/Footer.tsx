@@ -144,7 +144,7 @@ export default function Footer() {
             </p>
             <Link
               href="/#contact"
-              className="group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 hover:bg-white tap-press"
+              className="tap-press group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white"
             >
               <span>Book a discovery call</span>
               <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">

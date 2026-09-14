@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { accordionMotion } from "@/lib/motion";
+import Image from "next/image";
 
 type DeliveryItem = {
   title: string;
@@ -79,12 +81,12 @@ export default function DeliveryConfidenceSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="border-b border-neutral-200 p-5 sm:p-6 md:p-10 lg:border-r lg:border-b-0 lg:p-12">
             <div className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[320px] md:min-h-[460px] lg:min-h-[420px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="/Digital growth.jpg"
                 alt="Sofnology team reviewing delivery and growth systems"
-                className="absolute inset-0 h-full w-full object-cover"
-                decoding="async"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
               <div className="absolute inset-0 bg-[#061a3a]/5" />
             </div>
@@ -101,11 +103,15 @@ export default function DeliveryConfidenceSection() {
                 >
                   <button
                     type="button"
-                    onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                    className={`flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 sm:items-center sm:gap-6 sm:px-6 sm:py-7 md:px-10 lg:px-12 ${
-                      isOpen ? "bg-white/45" : "hover:bg-white/35"
+                    onClick={() => setOpenIndex(index)}
+                    className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 sm:items-center sm:gap-6 sm:px-6 sm:py-7 md:px-10 lg:px-12 ${
+                      isOpen
+                        ? "bg-white/45"
+                        : "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35"
                     }`}
                     aria-expanded={isOpen}
+                    aria-controls={`delivery-panel-${index}`}
+                    id={`delivery-trigger-${index}`}
                   >
                     <span className="text-xl leading-tight font-semibold tracking-[-0.035em] text-[#061a3a]">
                       {item.title}
@@ -121,10 +127,10 @@ export default function DeliveryConfidenceSection() {
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                        id={`delivery-panel-${index}`}
+                        role="region"
+                        aria-labelledby={`delivery-trigger-${index}`}
+                        {...accordionMotion}
                         className="overflow-hidden"
                       >
                         <div className="px-6 pb-8 md:px-10 lg:px-12">

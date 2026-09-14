@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
+import { chromeTransition } from "@/lib/motion";
 
 type StickyCTAProps = {
   href?: string;
@@ -65,7 +66,9 @@ export default function StickyCTA({
           initial={reduceMotion ? { opacity: 0 } : { y: 72, opacity: 0 }}
           animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
           exit={reduceMotion ? { opacity: 0 } : { y: 64, opacity: 0 }}
-          transition={{ duration: reduceMotion ? 0.15 : 0.32, ease: [0.16, 1, 0.3, 1] }}
+          transition={
+            reduceMotion ? { duration: 0.12 } : chromeTransition
+          }
           className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-3 pb-[max(0.65rem,env(safe-area-inset-bottom))] md:px-6 md:pb-[max(1.1rem,env(safe-area-inset-bottom))]"
         >
           <Link

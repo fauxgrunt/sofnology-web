@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Punchy orange — distinct from Fintech gold / Ecommerce magenta / Amber DevOps. */
 const ORANGE = "#FF6A00";
@@ -14,23 +17,6 @@ const DEEP = "#1A1512";
 const SOFT = "#FFE8D6";
 
 const HERO_IMAGE = "/project-outsourcing-hero.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const scenarios = [
   {
@@ -208,12 +194,13 @@ function ProjectOutsourcingHero() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <div className="relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Professional working on a laptop in a bright modern office"
-              className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[62%_28%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.08] object-cover object-[62%_28%]"
             />
           </div>
 
@@ -277,7 +264,7 @@ function ScenariosSection() {
                   style={{ backgroundColor: ORANGE }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <span
                   className="text-4xl font-light tracking-[-0.08em]"
@@ -491,7 +478,7 @@ function ModelContrastSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, ease: fadeEase }}
+                transition={{ duration: 0.3, ease: motionEase }}
               >
                 <div className="mb-6 h-1 w-12" style={{ backgroundColor: ORANGE }} />
                 <h3 className="text-3xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
@@ -664,7 +651,7 @@ function ProjectOutsourcingFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: fadeEase }}
+                      transition={{ duration: 0.28, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <p className="max-w-3xl px-6 pb-8 text-[15px] leading-[1.72] tracking-tight text-neutral-700 md:px-10 lg:px-16">

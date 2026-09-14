@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Hot magenta — distinct from ecommerce #FF2D6A. */
 const MAGENTA = "#FF2D8A";
@@ -14,23 +17,6 @@ const DEEP = "#1A0A12";
 const PRIMARY_CTA = "Talk about martech or adtech";
 
 const HERO_IMAGE = "/adtech-hero.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const twinPillars = [
   {
@@ -163,12 +149,13 @@ function AdtechHero() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[640px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={HERO_IMAGE}
             alt="Close-up of a laptop with warm peach and magenta light — martech and adtech hero"
-            className="absolute inset-0 h-full w-full scale-[1.03] object-cover object-[58%_45%]"
-            decoding="async"
+            fill
+            sizes="100vw"
+            priority
+            className="scale-[1.03] object-cover object-[58%_45%]"
           />
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/25 to-transparent" />
@@ -247,7 +234,7 @@ function TwinPillarsSection() {
                   style={{ backgroundColor: MAGENTA }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.45, ease: fadeEase }}
+                  transition={{ duration: 0.45, ease: motionEase }}
                 />
 
                 <span
@@ -454,13 +441,13 @@ function MagentaSplitCta() {
           </a>
 
           <div className="relative min-h-[280px] overflow-hidden border-t border-neutral-200 lg:min-h-[360px] lg:border-t-0 lg:border-l">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt=""
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              className="object-cover object-[72%_55%]"
               aria-hidden="true"
-              className="absolute inset-0 h-full w-full object-cover object-[72%_55%]"
-              decoding="async"
             />
             {/* White geometric bite — Vention-style polygon cut */}
             <div
@@ -578,7 +565,7 @@ function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">

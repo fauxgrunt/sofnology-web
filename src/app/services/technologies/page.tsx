@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 const LIME = "#C7FF3D";
 const INK = "#101413";
@@ -16,23 +19,6 @@ const PRIMARY_CTA = "Talk about your stack";
 /** One appearance each. */
 const HERO_IMAGE = "/technologies-hero.jpg";
 const MID_IMAGE = "/technologies-mid.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const stacks = [
   {
@@ -258,12 +244,13 @@ function TechnologiesHero() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[620px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={HERO_IMAGE}
             alt="Abstract modular technology forms in violet and lime"
-            className="absolute inset-0 h-full w-full scale-[1.02] object-cover object-[60%_45%]"
-            decoding="async"
+            fill
+            sizes="100vw"
+            priority
+            className="scale-[1.02] object-cover object-[60%_45%]"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-black/55 via-black/20 to-transparent" />
 
@@ -365,7 +352,7 @@ function StackCatalogSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="grid grid-cols-1 gap-8 px-6 pb-10 md:grid-cols-[1fr_auto] md:px-10 lg:px-16 lg:pb-12">
@@ -465,12 +452,12 @@ function CapabilitiesSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.44fr_0.56fr]">
           <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={MID_IMAGE}
               alt="Hands at a laptop — building with Sofnology technology stacks"
-              className="absolute inset-0 h-full w-full object-cover object-[40%_50%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 44vw"
+              className="object-cover object-[40%_50%]"
             />
           </div>
 

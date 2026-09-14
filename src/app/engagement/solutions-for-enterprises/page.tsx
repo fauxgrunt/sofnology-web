@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Slate steel — corporate; distinct from startups wine / outsourcing orange. */
 const SLATE = "#3D4F5F";
@@ -16,24 +19,7 @@ const ICE = "#D7E2EA";
 const HERO_IMAGE = "/Conversation.jpg";
 const SERVICES_IMAGE = "/enterprise-services.jpg";
 const OUTCOMES_IMAGE = "/Digital growth.jpg";
-const CTA_IMAGE = "/enterprise-cta.png";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
+const CTA_IMAGE = "/enterprise-cta.jpg";
 
 const distinctPoints = [
   {
@@ -191,12 +177,13 @@ function EnterpriseHero() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <div className="relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Enterprise stakeholders collaborating around documents and a laptop"
-              className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[52%_28%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.12] object-cover object-[52%_28%]"
             />
             <div
               aria-hidden="true"
@@ -268,7 +255,7 @@ function DistinctSection() {
                   style={{ backgroundColor: SLATE }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <span
                   className="text-3xl font-light tracking-[-0.08em]"
@@ -313,12 +300,12 @@ function ServicesSection() {
         </div>
 
         <div className="relative min-h-[240px] overflow-hidden border-b border-neutral-200 md:min-h-[320px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={SERVICES_IMAGE}
             alt="Enterprise team reviewing system architecture and analytics on a wall display"
-            className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-[48%_32%]"
-            decoding="async"
+            fill
+            sizes="(max-width: 1024px) 100vw, 54vw"
+            className="scale-[1.04] object-cover object-[48%_32%]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#1A1F24]/55 via-transparent to-transparent" />
           <p className="absolute bottom-6 left-6 max-w-md text-[13px] font-semibold tracking-[0.08em] uppercase text-white md:bottom-8 md:left-10 lg:left-16">
@@ -379,7 +366,7 @@ function ServicesSection() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.32, ease: fadeEase }}
+                transition={{ duration: 0.32, ease: motionEase }}
               >
                 <div className="mb-6 h-1 w-12" style={{ backgroundColor: SLATE }} />
                 <h3 className="text-3xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
@@ -498,7 +485,7 @@ function HowWeWorkSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, ease: fadeEase }}
+                transition={{ duration: 0.3, ease: motionEase }}
               >
                 <div className="mb-6 h-1 w-12" style={{ backgroundColor: SLATE }} />
                 <h3 className="text-3xl leading-tight font-semibold tracking-[-0.045em]">
@@ -562,12 +549,12 @@ function OutcomesSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={OUTCOMES_IMAGE}
               alt="Team reviewing business analytics dashboards on a laptop"
-              className="absolute inset-0 h-full w-full scale-[1.1] object-cover object-[58%_48%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="scale-[1.1] object-cover object-[58%_48%]"
             />
           </div>
 
@@ -593,7 +580,7 @@ function OutcomesSection() {
                     style={{ backgroundColor: SLATE }}
                     initial={false}
                     animate={{ scaleX: isActive ? 1 : 0.28, opacity: isActive ? 1 : 0.35 }}
-                    transition={{ duration: 0.35, ease: fadeEase }}
+                    transition={{ duration: 0.35, ease: motionEase }}
                   />
                   <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
                     {outcome.title}
@@ -617,12 +604,12 @@ function EnterpriseCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Enterprise partners walking through a modern corporate atrium"
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[42%_28%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="scale-[1.06] object-cover object-[42%_28%]"
             />
           </div>
 
@@ -658,8 +645,6 @@ function EnterpriseCtaSection() {
     </section>
   );
 }
-
-
 
 export default function SolutionsForEnterprisesPage() {
   return (

@@ -4,22 +4,22 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import type { MegaMenuConfig } from "./nav-data";
+import { chromeTransition } from "@/lib/motion";
 
 const linkClass =
-  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] transition-opacity duration-300 hover:opacity-80";
+  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80";
 
 const headingClass =
   "font-nav mb-7 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase";
 
 const columnVariants = {
-  hidden: { opacity: 0, y: 14 },
+  hidden: { opacity: 0, y: 10 },
   visible: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.5,
-      delay: 0.12 + index * 0.08,
-      ease: [0.16, 1, 0.3, 1] as const,
+      ...chromeTransition,
+      delay: 0.06 + index * 0.05,
     },
   }),
 };

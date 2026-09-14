@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { accordionMotion } from "@/lib/motion";
 
 const faqs = [
   {
@@ -103,10 +104,7 @@ export default function FAQSection() {
                       id={`faq-panel-${index}`}
                       role="region"
                       aria-labelledby={`faq-trigger-${index}`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+                      {...accordionMotion}
                       className="overflow-hidden"
                     >
                       <div className="px-5 pb-6 sm:px-6 sm:pb-8 md:px-10 lg:px-16">

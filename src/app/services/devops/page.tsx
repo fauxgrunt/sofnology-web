@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 const AMBER = "#E8A317";
 const DEEP = "#1C1710";
@@ -13,23 +16,6 @@ const SOFT = "#F3E6C8";
 
 const HERO_IMAGE = "/devops-hero.jpg";
 const CTA_IMAGE = "/devops-cta.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const devopsServices = [
   {
@@ -212,12 +198,13 @@ function DevOpsHero() {
           </a>
 
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="DevOps pipeline visual with amber accents"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="object-cover object-center"
             />
             <div
               aria-hidden="true"
@@ -282,7 +269,7 @@ function ServicesSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
                   {service.title}
@@ -290,7 +277,7 @@ function ServicesSection() {
                 <motion.p
                   initial={false}
                   animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 4 }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                   className="mt-5 text-[15px] leading-[1.65] tracking-tight text-neutral-700"
                 >
                   {service.description}
@@ -418,7 +405,7 @@ function EngagementSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <p className="text-[12px] font-semibold tracking-[0.14em] uppercase text-neutral-500">
                   {model.pain}
@@ -525,12 +512,12 @@ function DevOpsCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="DevOps infrastructure stack visual"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="object-cover object-center"
             />
           </div>
 
@@ -613,7 +600,7 @@ function DevOpsFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">
@@ -632,8 +619,6 @@ function DevOpsFaqSection() {
     </section>
   );
 }
-
-
 
 export default function DevOpsPage() {
   return (

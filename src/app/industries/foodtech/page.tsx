@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Warmer than Mobile's #C7FF3D so Foodtech reads as its own industry. */
 const LIME = "#D4F06A";
@@ -15,23 +18,6 @@ const SOFT = "#E8F7C8";
 
 const HERO_IMAGE = "/foodtech-hero.jpg";
 const CTA_IMAGE = "/foodtech-cta.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const helpModes = [
   {
@@ -217,12 +203,13 @@ function FoodtechHero() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <div className="relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Delivery courier checking a phone while holding a basket of fresh groceries"
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[42%_28%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.06] object-cover object-[42%_28%]"
             />
           </div>
 
@@ -289,7 +276,7 @@ function HelpSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
                   {mode.title}
@@ -365,7 +352,7 @@ function AudiencesSection() {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, ease: fadeEase }}
+                transition={{ duration: 0.3, ease: motionEase }}
               >
                 <div className="mb-6 h-1 w-12" style={{ backgroundColor: DEEP }} />
                 <h3 className="text-3xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
@@ -637,12 +624,12 @@ function FoodtechCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Customer receiving a grocery delivery while using a phone"
-              className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[58%_40%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="scale-[1.08] object-cover object-[58%_40%]"
             />
           </div>
 
@@ -725,7 +712,7 @@ function FoodtechFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">
@@ -744,8 +731,6 @@ function FoodtechFaqSection() {
     </section>
   );
 }
-
-
 
 export default function FoodtechPage() {
   return (

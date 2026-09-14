@@ -5,6 +5,8 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
 
 const NAVY = "#061a3a";
 const ACCENT = "#2F6BFF";
@@ -14,20 +16,6 @@ const HERO_IMAGE = "/Conversation.jpg";
 const PROMISE_IMAGE = "/enterprise-services.jpg";
 const JOURNEY_IMAGE = "/Digital growth.jpg";
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const whyPoints = [
   {
@@ -107,12 +95,13 @@ function StackedHero() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="relative h-[280px] overflow-hidden border-b border-neutral-200 sm:h-[340px] md:h-[400px] lg:h-[460px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={HERO_IMAGE}
             alt="Collaborative workspace conversation"
-            className="absolute inset-0 h-full w-full object-cover object-[42%_35%]"
-            decoding="async"
+            fill
+            sizes="100vw"
+            priority
+            className="object-cover object-[42%_35%]"
           />
           {/* Soft fade into the text band below — Vention reuse language */}
           <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#f4f4f4] to-transparent md:w-2/5" />
@@ -281,12 +270,12 @@ function PromiseCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 lg:min-h-[400px] lg:border-b-0 lg:border-r">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={PROMISE_IMAGE}
               alt="Engineering collaboration in a modern workspace"
-              className="absolute inset-0 h-full w-full object-cover object-[48%_40%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-cover object-[48%_40%]"
             />
             <div className="absolute inset-0 bg-[#061a3a]/55" />
             <div className="relative flex h-full min-h-[320px] items-end px-6 py-10 md:px-10 lg:min-h-[400px] lg:px-12">
@@ -334,12 +323,12 @@ function JourneyCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.55fr_0.45fr]">
           <div className="relative min-h-[300px] overflow-hidden border-b border-neutral-200 lg:min-h-[380px] lg:border-b-0 lg:border-r">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={JOURNEY_IMAGE}
               alt="Digital growth delivery — starting a Sofnology engagement"
-              className="absolute inset-0 h-full w-full object-cover object-[40%_45%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 55vw"
+              className="object-cover object-[40%_45%]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[#061a3a]/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#061a3a]/40" />
           </div>

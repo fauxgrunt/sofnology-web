@@ -6,6 +6,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
 import { ArrowUpRightIcon } from "@/components/icons";
+import Image from "next/image";
 
 const fitSignals = [
   {
@@ -345,12 +346,12 @@ function SoftwareProjectCta() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-r lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/software development.jpg"
               alt="Software team reviewing a product workflow together"
-              className="absolute inset-0 h-full w-full object-cover"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-white/10" />
           </div>
@@ -400,12 +401,12 @@ function WhySofnologySection() {
         </div>
 
         <div className="relative overflow-hidden">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="/software development.jpg"
             alt=""
-            className="absolute inset-0 h-full w-full object-cover blur-[2px] scale-105"
-            decoding="async"
+            fill
+            sizes="100vw"
+            className="object-cover blur-[2px] scale-105"
             aria-hidden="true"
           />
           <div className="absolute inset-0 bg-[#061a3a]/70" />
@@ -735,12 +736,12 @@ export default function SoftwareDevelopmentPage() {
               </a>
 
               <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="/Conversation.jpg"
                   alt="Sofnology software development team collaborating in a modern office"
-                  className="absolute inset-0 h-full w-full object-cover"
-                  decoding="async"
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 64vw"
+                  className="object-cover"
                 />
                 <div className="absolute inset-0 bg-white/15" />
                 <div

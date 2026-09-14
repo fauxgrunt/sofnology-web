@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
+import { panelMotion } from "@/lib/motion";
 
 type ExpertiseGroup = {
   title: string;
@@ -189,7 +191,9 @@ export default function ExpertiseSection() {
                     <span
                       aria-hidden="true"
                       className={`absolute top-1/2 left-0 h-7 w-[3px] -translate-y-1/2 bg-[#061a3a] transition-opacity duration-200 ${
-                        isActive ? "opacity-100" : "opacity-0 group-hover:opacity-40"
+                        isActive
+                          ? "opacity-100"
+                          : "opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-40"
                       }`}
                     />
                     {tab.label}
@@ -198,7 +202,7 @@ export default function ExpertiseSection() {
                       className={`absolute top-1/2 right-4 -translate-y-1/2 text-[18px] leading-none transition-all duration-300 ${
                         isActive
                           ? "translate-x-0 opacity-100"
-                          : "-translate-x-1 opacity-0 group-hover:translate-x-0 group-hover:opacity-50"
+                          : "-translate-x-1 opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-50"
                       }`}
                     >
                       +
@@ -209,36 +213,41 @@ export default function ExpertiseSection() {
             </div>
           </div>
 
-          <div
-            className="bg-[#f1f1f1]"
-            role="tabpanel"
-            id={`expertise-panel-${activeTab.id}`}
-            aria-labelledby={`expertise-tab-${activeTab.id} expertise-tab-desktop-${activeTab.id}`}
-          >
-            {activeTab.groups.map((group, index) => (
-              <div
-                key={group.title}
-                className={`px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-12 lg:py-12 ${
-                  index > 0 ? "border-t border-neutral-200" : ""
-                }`}
+          <div className="bg-[#f1f1f1]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.div
+                key={activeTab.id}
+                role="tabpanel"
+                id={`expertise-panel-${activeTab.id}`}
+                aria-labelledby={`expertise-tab-${activeTab.id} expertise-tab-desktop-${activeTab.id}`}
+                {...panelMotion}
               >
-                <h3 className="text-lg font-semibold tracking-[-0.03em] text-neutral-950 sm:text-xl">
-                  {group.title}
-                </h3>
+                {activeTab.groups.map((group, index) => (
+                  <div
+                    key={group.title}
+                    className={`px-5 py-8 sm:px-6 sm:py-10 md:px-10 lg:px-12 lg:py-12 ${
+                      index > 0 ? "border-t border-neutral-200" : ""
+                    }`}
+                  >
+                    <h3 className="text-lg font-semibold tracking-[-0.03em] text-neutral-950 sm:text-xl">
+                      {group.title}
+                    </h3>
 
-                <div className="mt-5 grid grid-cols-1 gap-x-16 gap-y-3 sm:mt-7 sm:gap-y-4 md:grid-cols-2">
-                  {group.links.map((link) => (
-                    <Link
-                      key={link.label}
-                      href={link.href}
-                      className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-[#061a3a]"
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            ))}
+                    <div className="mt-5 grid grid-cols-1 gap-x-16 gap-y-3 sm:mt-7 sm:gap-y-4 md:grid-cols-2">
+                      {group.links.map((link) => (
+                        <Link
+                          key={link.label}
+                          href={link.href}
+                          className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-[#061a3a]"
+                        >
+                          {link.label}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            </AnimatePresence>
           </div>
         </div>
       </div>

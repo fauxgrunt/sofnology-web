@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 const TEAL = "#0B4F4A";
 const CYAN = "#5EEAD4";
@@ -13,23 +16,8 @@ const CYAN = "#5EEAD4";
 const HERO_IMAGE = "/cybersecurity-hero.jpg";
 const CTA_IMAGE = "/cybersecurity-cta.jpg";
 
-const fadeEase = [0.16, 1, 0.3, 1] as const;
 const FEATURED_PACKAGE_INDEX = 1;
 
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const assessmentServices = [
   {
@@ -147,12 +135,13 @@ function CyberHero() {
           </a>
 
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Cybersecurity product visual with shield and teal glass accents"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="object-cover object-center"
             />
             <div
               aria-hidden="true"
@@ -231,7 +220,7 @@ function AssessmentServicesSection() {
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.55 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
                   {service.title}
@@ -239,7 +228,7 @@ function AssessmentServicesSection() {
                 <motion.p
                   initial={false}
                   animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 4 }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                   className="mt-8 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700"
                 >
                   {service.description}
@@ -324,7 +313,7 @@ function AuditPackagesSection() {
                         style={{ backgroundColor: isFeatured ? CYAN : TEAL }}
                         initial={false}
                         animate={{ scaleX: isHovered || isFeatured ? 1 : 0.45 }}
-                        transition={{ duration: 0.35, ease: fadeEase }}
+                        transition={{ duration: 0.35, ease: motionEase }}
                       />
                     </td>
                     <td className="px-8 py-10 xl:px-12">
@@ -440,12 +429,12 @@ function CyberCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Layered teal cybersecurity visual"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="object-cover object-center"
             />
           </div>
 
@@ -484,8 +473,6 @@ function CyberCtaSection() {
     </section>
   );
 }
-
-
 
 export default function CybersecurityPage() {
   return (

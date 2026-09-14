@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Clinical lime + forest — distinct from QA #C7FF3D and staff-aug moss. */
 const LIME = "#B8F25A";
@@ -15,23 +18,6 @@ const PRIMARY_CTA = "Talk about healthtech software";
 
 const HERO_IMAGE = "/healthtech-hero.jpg";
 const MID_IMAGE = "/healthtech-mid.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const helpServices = [
   {
@@ -204,12 +190,13 @@ function HealthtechHero() {
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 sm:min-h-[400px] md:min-h-[520px] lg:min-h-[640px]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src={HERO_IMAGE}
             alt="Abstract healthtech visual with moss, glass panels, and clinical geometry"
-            className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-[42%_48%]"
-            decoding="async"
+            fill
+            sizes="100vw"
+            priority
+            className="scale-[1.04] object-cover object-[42%_48%]"
           />
 
           <div className="absolute inset-0 bg-gradient-to-r from-black/25 via-transparent to-black/35" />
@@ -351,7 +338,7 @@ function TelehealthSection() {
                   style={{ backgroundColor: DEEP }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-xl font-semibold tracking-[-0.04em] text-neutral-950">
                   {item.title}
@@ -427,12 +414,12 @@ function TrustSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={MID_IMAGE}
               alt="Glass cube containing neon green organic form — healthtech trust visual"
-              className="absolute inset-0 h-full w-full object-cover object-[45%_50%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 46vw"
+              className="object-cover object-[45%_50%]"
             />
           </div>
 
@@ -634,7 +621,7 @@ function FaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">

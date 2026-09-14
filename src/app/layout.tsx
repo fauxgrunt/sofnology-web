@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { plusJakarta } from "./fonts";
 import "./globals.css";
 import SkipToContent from "@/components/SkipToContent";
+import NavigationProgress from "@/components/NavigationProgress";
 import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -54,6 +55,7 @@ export default function RootLayout({
       </head>
       <body className="font-sans">
         <SkipToContent />
+        <NavigationProgress />
         {children}
       </body>
     </html>

@@ -7,6 +7,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 /** Ink + electric cyan — AI systems signal; avoids purple bias and ecommerce magenta. */
 const CYAN = "#2EE6D6";
@@ -16,23 +19,6 @@ const SOFT = "#C8F7F2";
 const HERO_IMAGE = "/AI-startup-hero.jpg";
 const MID_IMAGE = "/AI-startup-mid.jpg";
 const CTA_IMAGE = "/AI-startup-cta.jpg";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const costPoints = [
   {
@@ -240,12 +226,13 @@ function AiHero() {
             className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]"
             style={{ backgroundColor: "#0A0B0E" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Exploded 3D precision module with cyan glowing core"
-              className="absolute inset-0 h-full w-full scale-[1.04] object-cover object-[22%_50%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="scale-[1.04] object-cover object-[22%_50%]"
             />
           </div>
 
@@ -309,7 +296,7 @@ function CostSection() {
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <span
                   className="text-2xl font-light tracking-[-0.08em] sm:text-3xl"
@@ -344,12 +331,12 @@ function MaturitySection() {
             className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[420px]"
             style={{ backgroundColor: "#0A0B0E" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={MID_IMAGE}
               alt="3D AI system module with cyan core and glass layers"
-              className="absolute inset-0 h-full w-full scale-[1.06] object-cover object-[18%_50%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 52vw"
+              className="scale-[1.06] object-cover object-[18%_50%]"
             />
           </div>
 
@@ -419,7 +406,7 @@ function MaturitySection() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.32, ease: fadeEase }}
+                transition={{ duration: 0.32, ease: motionEase }}
               >
                 <div className="mb-5 h-1 w-12 sm:mb-6" style={{ backgroundColor: CYAN }} />
                 <p className="text-[12px] font-semibold tracking-[0.08em] uppercase text-white/45 sm:text-[13px]">
@@ -526,7 +513,7 @@ function SpecSection() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.32, ease: fadeEase }}
+                transition={{ duration: 0.32, ease: motionEase }}
               >
                 <span
                   className="text-4xl font-light tracking-[-0.08em] sm:text-5xl"
@@ -605,7 +592,7 @@ function GovernanceSection() {
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                 />
                 <h3 className="text-xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950 sm:text-2xl">
                   {item.title}
@@ -664,7 +651,7 @@ function MeasureSection() {
                   style={{ backgroundColor: CYAN }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.3, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                 />
                 <h3 className="text-base leading-tight font-semibold tracking-[-0.04em] text-neutral-950 sm:text-lg">
                   {item.title}
@@ -750,12 +737,12 @@ function AiCtaSection() {
             className="relative aspect-[16/11] overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[300px] lg:min-h-[430px] lg:border-b-0"
             style={{ backgroundColor: "#050506" }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="3D stacked AI hardware module with cyan energy ring"
-              className="absolute inset-0 h-full w-full object-cover object-[42%_50%] lg:object-[38%_50%]"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 52vw"
+              className="object-cover object-[42%_50%] lg:object-[38%_50%]"
             />
           </div>
 
@@ -839,7 +826,7 @@ function AiFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: fadeEase }}
+                      transition={{ duration: 0.28, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <p className="max-w-3xl px-5 pb-6 text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:px-6 sm:pb-8 sm:text-[15px] sm:leading-[1.72] md:px-10 lg:px-16">
@@ -856,8 +843,6 @@ function AiFaqSection() {
     </section>
   );
 }
-
-
 
 export default function SolutionsForAiCompaniesPage() {
   return (

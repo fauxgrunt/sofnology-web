@@ -6,6 +6,9 @@ import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import StickyCTA from "@/components/StickyCTA";
+import Image from "next/image";
+import { ArrowUpRightIcon } from "@/components/icons";
+import { motionEase } from "@/lib/motion";
 
 const LIME = "#C7FF3D";
 const SOFT_LIME = "#E8FF9A";
@@ -13,23 +16,6 @@ const SOFT_LIME = "#E8FF9A";
 const HERO_IMAGE = "/mobile-development-hero.png";
 const TYPES_IMAGE = "/mobile-types.png";
 const CTA_IMAGE = "/mobile-cta.png";
-
-const fadeEase = [0.16, 1, 0.3, 1] as const;
-
-function ArrowUpRightIcon() {
-  return (
-    <svg
-      viewBox="0 0 20 20"
-      className="h-5 w-5 flex-shrink-0"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      aria-hidden="true"
-    >
-      <path d="M6 14L14 6M14 6H7M14 6V13" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
 
 const checklistItems = [
   "Want to go beyond generic app features and build something users remember?",
@@ -317,12 +303,13 @@ function MobileHero() {
           </a>
 
           <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={HERO_IMAGE}
               alt="Premium mobile app development product visual"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 66vw"
+              priority
+              className="object-cover object-center"
             />
             <div
               aria-hidden="true"
@@ -447,7 +434,7 @@ function AudienceSection() {
                   className="mb-9 h-1 origin-left bg-[#0B4F20]"
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 }}
-                  transition={{ duration: 0.45, ease: fadeEase }}
+                  transition={{ duration: 0.45, ease: motionEase }}
                 />
                 <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em]">
                   {item.title}
@@ -459,7 +446,7 @@ function AudienceSection() {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: 6 }}
-                      transition={{ duration: 0.35, ease: fadeEase }}
+                      transition={{ duration: 0.35, ease: motionEase }}
                       className="mt-auto pt-12 text-[15px] leading-[1.72] tracking-tight text-neutral-700"
                     >
                       {item.description}
@@ -509,12 +496,12 @@ function MobileTypesSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[420px] overflow-hidden border-b border-neutral-200 bg-white lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={TYPES_IMAGE}
               alt="Abstract mobile platform visual"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="object-cover object-center"
             />
           </div>
 
@@ -555,7 +542,7 @@ function MobileTypesSection() {
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.4, ease: fadeEase }}
+                        transition={{ duration: 0.4, ease: motionEase }}
                         className="overflow-hidden"
                       >
                         <ul className="mt-7 space-y-3 pb-1">
@@ -697,7 +684,7 @@ function RelatedServicesSection() {
                   style={{ backgroundColor: LIME }}
                   initial={false}
                   animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.45 }}
-                  transition={{ duration: 0.4, ease: fadeEase }}
+                  transition={{ duration: 0.4, ease: motionEase }}
                 />
                 <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em]">
                   {service.title}
@@ -705,7 +692,7 @@ function RelatedServicesSection() {
                 <motion.p
                   initial={false}
                   animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 4 }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                   className="mt-auto pt-10 text-[15px] leading-[1.72] tracking-tight text-neutral-700"
                 >
                   {service.description}
@@ -718,7 +705,7 @@ function RelatedServicesSection() {
                     opacity: isActive ? 1 : 0.45,
                     color: isActive ? "#0B4F20" : "#a3a3a3",
                   }}
-                  transition={{ duration: 0.35, ease: fadeEase }}
+                  transition={{ duration: 0.35, ease: motionEase }}
                   className="mt-8 inline-flex"
                 >
                   <ArrowUpRightIcon />
@@ -804,12 +791,12 @@ function MobileCtaSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src={CTA_IMAGE}
               alt="Mobile product visual with lime accents"
-              className="absolute inset-0 h-full w-full object-cover object-center"
-              decoding="async"
+              fill
+              sizes="(max-width: 1024px) 100vw, 54vw"
+              className="object-cover object-center"
             />
           </div>
 
@@ -1064,7 +1051,7 @@ function MobileFaqSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: fadeEase }}
+                      transition={{ duration: 0.4, ease: motionEase }}
                       className="overflow-hidden"
                     >
                       <div className="px-6 pb-10 md:px-10 lg:px-16">
@@ -1083,8 +1070,6 @@ function MobileFaqSection() {
     </section>
   );
 }
-
-
 
 export default function MobileDevelopmentPage() {
   return (

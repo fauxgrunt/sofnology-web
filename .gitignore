@@ -22,7 +22,11 @@
 
 # misc
 .DS_Store
+Thumbs.db
 *.pem
+
+# deployment
+.vercel
 
 # debug
 npm-debug.log*
@@ -32,6 +36,7 @@ yarn-error.log*
 
 # env files
 .env*
+*.local
 
 # typescript
 *.tsbuildinfo
