@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
@@ -9,6 +9,7 @@ import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
+import FaqSection from "@/components/sections/FaqSection";
 
 const LIME = "#C7FF3D";
 const DEEP = "#101413";
@@ -555,69 +556,7 @@ function QaCtaSection() {
   );
 }
 
-function QaFaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
 
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:px-16">
-          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            FAQs
-          </h2>
-        </div>
-
-        <div>
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-
-            return (
-              <div
-                key={faq.question}
-                className={`${index > 0 ? "border-t border-neutral-200" : ""} ${
-                  isOpen ? "bg-white/45" : ""
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex min-h-24 w-full items-center justify-between gap-8 px-6 py-7 text-left transition-colors duration-300 hover:bg-white/35 md:px-10 lg:px-16"
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
-                    {faq.question}
-                  </span>
-                  <span className="text-4xl leading-none font-light text-[#101413]" aria-hidden="true">
-                    {isOpen ? "−" : "+"}
-                  </span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`${faq.question}-answer`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: motionEase }}
-                      className="overflow-hidden"
-                    >
-                      <div className="px-6 pb-10 md:px-10 lg:px-16">
-                        <p className="max-w-4xl text-[16px] leading-[1.75] tracking-tight text-neutral-700">
-                          {faq.answer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function RelatedSection() {
   return (
@@ -672,7 +611,7 @@ export default function QualityAssurancePage() {
           <TestingTypesSection />
           <TechStackSection />
           <QaCtaSection />
-          <QaFaqSection />
+          <FaqSection faqs={faqs} signColor={DEEP} variant="roomy" />
           <RelatedSection />
           <ContactSection showIntro={false} accent="lime" />
         </div>

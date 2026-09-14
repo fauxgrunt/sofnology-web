@@ -10,6 +10,7 @@ import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
+import FaqSection from "@/components/sections/FaqSection";
 
 /** Ink + electric cyan — AI systems signal; avoids purple bias and ecommerce magenta. */
 const CYAN = "#2EE6D6";
@@ -779,70 +780,7 @@ function AiCtaSection() {
   );
 }
 
-function AiFaqSection() {
-  const [openIndex, setOpenIndex] = useState(0);
 
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-5xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-5xl">
-            FAQs
-          </h2>
-        </div>
-
-        <div>
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-
-            return (
-              <div
-                key={faq.question}
-                className={`${index > 0 ? "border-t border-neutral-200" : ""} ${
-                  isOpen ? "bg-white/45" : ""
-                }`}
-              >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                  className="flex min-h-0 w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 hover:bg-white/35 sm:min-h-20 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16"
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-[16px] leading-[1.3] font-semibold tracking-[-0.04em] text-neutral-950 sm:text-xl sm:leading-tight md:text-2xl">
-                    {faq.question}
-                  </span>
-                  <span
-                    className="shrink-0 text-2xl leading-none font-light text-[#12141A] sm:text-4xl"
-                    aria-hidden="true"
-                  >
-                    {isOpen ? "−" : "+"}
-                  </span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`${faq.question}-answer`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: motionEase }}
-                      className="overflow-hidden"
-                    >
-                      <p className="max-w-3xl px-5 pb-6 text-[14px] leading-[1.65] tracking-tight text-neutral-700 sm:px-6 sm:pb-8 sm:text-[15px] sm:leading-[1.72] md:px-10 lg:px-16">
-                        {faq.answer}
-                      </p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 export default function SolutionsForAiCompaniesPage() {
   return (
@@ -857,7 +795,7 @@ export default function SolutionsForAiCompaniesPage() {
           <GovernanceSection />
           <MeasureSection />
           <AiCtaSection />
-          <AiFaqSection />
+          <FaqSection faqs={faqs} signColor={DEEP} variant="responsive" />
           <RelatedSection />
           <ContactSection showIntro={false} accent="cyan" />
         </div>
