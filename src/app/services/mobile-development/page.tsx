@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const LIME = "#C7FF3D";
 const SOFT_LIME = "#E8FF9A";
@@ -398,19 +399,15 @@ function AudienceSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[260px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.52fr_0.48fr]">
-          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Mobile products for teams with something to prove
-            </h2>
-          </div>
-          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <p className="max-w-xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              From first MVPs to workflow modernization, the app strategy should match
-              the team’s stage and the decision they need to make next.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Mobile products for teams with something to prove"
+          lede="From first MVPs to workflow modernization, the app strategy should match the team’s stage and the decision they need to make next."
+          scale="large"
+          minHeight={260}
+          split="52/48"
+          padding="responsive"
+          wide
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {audiences.map((item, index) => {
@@ -647,19 +644,15 @@ function RelatedServicesSection() {
   return (
     <section id="consulting" className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[240px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.52fr_0.48fr]">
-          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Explore our related mobile services
-            </h2>
-          </div>
-          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <p className="max-w-xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Mobile apps rarely live alone. These supporting services help the product
-              stay connected, secure, and ready to evolve after launch.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Explore our related mobile services"
+          lede="Mobile apps rarely live alone. These supporting services help the product stay connected, secure, and ready to evolve after launch."
+          scale="large"
+          minHeight={240}
+          split="52/48"
+          padding="responsive"
+          wide
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5">
           {relatedServices.map((service, index) => {
@@ -726,19 +719,14 @@ function InnovationSection() {
   return (
     <section id="innovation" className="border-b border-neutral-200 bg-[#101413] text-white">
       <div className="mx-auto max-w-[1440px] border-x border-white/10">
-        <div className="grid min-h-[320px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
-              Cookie-cutter apps are not your style
-            </h2>
-          </div>
-          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-white/72">
-              We can add advanced mobile capabilities when they support the product
-              strategy, not because they sound impressive in a proposal.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Cookie-cutter apps are not your style"
+          lede="We can add advanced mobile capabilities when they support the product strategy, not because they sound impressive in a proposal."
+          tone="dark"
+          scale="large"
+          minHeight={320}
+          padding="responsive"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {innovationItems.map((item, index) => {

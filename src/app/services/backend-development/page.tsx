@@ -12,6 +12,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const EMERALD = "#10B981";
 const DEEP = "#111827";
@@ -298,19 +299,10 @@ function ServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Our backend development services
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              From first architecture decisions to modernization and ongoing refinement,
-              we help build backends that stay usable as the product grows.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our backend development services"
+          lede="From first architecture decisions to modernization and ongoing refinement, we help build backends that stay usable as the product grows."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {backendServices.map((service, index) => {
@@ -369,19 +361,13 @@ function ShapeBackendSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[200px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              How we shape a backend
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              A clear path from discovery to operations — so architecture decisions stay
-              tied to the product, not a default template.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="How we shape a backend"
+          lede="A clear path from discovery to operations — so architecture decisions stay tied to the product, not a default template."
+          tone="dark"
+          minHeight={200}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-5">
           {shapeSteps.map((step, index) => {
@@ -435,19 +421,12 @@ function PrinciplesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              What we optimize for
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              A durable backend is more than features. It has to scale, stay secure, and
-              remain operable as the product and team evolve.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="What we optimize for"
+          lede="A durable backend is more than features. It has to scale, stay secure, and remain operable as the product and team evolve."
+          minHeight={200}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
@@ -515,19 +494,13 @@ function IndustriesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Industries and domains
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Backend design should match domain constraints — data sensitivity, volume,
-              integrations, and how teams operate day to day.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Industries and domains"
+          lede="Backend design should match domain constraints — data sensitivity, volume, integrations, and how teams operate day to day."
+          scale="large"
+          minHeight={220}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div>

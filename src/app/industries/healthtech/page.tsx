@@ -11,6 +11,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Clinical lime + forest — distinct from QA #C7FF3D and staff-aug moss. */
 const LIME = "#B8F25A";
@@ -241,19 +242,14 @@ function HelpSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              How we can help
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              At the intersection of care and technology — solutions that make clinician
-              work more effective and patient outcomes more reachable.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="How we can help"
+          lede="At the intersection of care and technology — solutions that make clinician work more effective and patient outcomes more reachable."
+          scale="large"
+          minHeight={220}
+          split="42/58"
+          padding="roomy"
+        />
 
         <div>
           {helpServices.map((item, index) => {

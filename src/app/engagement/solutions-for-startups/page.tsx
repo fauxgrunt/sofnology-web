@@ -11,6 +11,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Deep wine — echoes Vention startups maroon; distinct from coral / magenta / orange. */
 const WINE = "#8B1E3F";
@@ -210,19 +211,10 @@ function StartupServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Our services for startups
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              From first technical decisions to MVP, product build, and scale — support
-              matched to where you are now.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our services for startups"
+          lede="From first technical decisions to MVP, product build, and scale — support matched to where you are now."
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div role="tablist" aria-label="Startup services">
@@ -301,19 +293,11 @@ function DomainsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Solutions across domains
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Startup products live in real verticals — we bring the same delivery craft
-              into the domains we know best.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Solutions across domains"
+          lede="Startup products live in real verticals — we bring the same delivery craft into the domains we know best."
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {domains.map((domain, index) => {
@@ -366,19 +350,12 @@ function PartnershipModelsSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              Our partnership models
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              Capacity inside your team, a lasting pod, or full project ownership —
-              choose how you want to work.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our partnership models"
+          lede="Capacity inside your team, a lasting pod, or full project ownership — choose how you want to work."
+          tone="dark"
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.36fr_0.64fr]">
           <div role="tablist" aria-label="Partnership models">

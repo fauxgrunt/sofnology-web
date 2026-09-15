@@ -10,6 +10,7 @@ import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Slate steel — corporate; distinct from startups wine / outsourcing orange. */
 const SLATE = "#3D4F5F";
@@ -221,19 +222,11 @@ function DistinctSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Why enterprise software is distinct
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Built for large organizations — multi-user scale, deep customization, high
-              security, and support that keeps downtime rare.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Why enterprise software is distinct"
+          lede="Built for large organizations — multi-user scale, deep customization, high security, and support that keeps downtime rare."
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {distinctPoints.map((point, index) => {
@@ -285,19 +278,11 @@ function ServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Our enterprise software services
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Consulting through modernization, integration, cloud, QA, security, and
-              ongoing support — one coordinated delivery surface.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our enterprise software services"
+          lede="Consulting through modernization, integration, cloud, QA, security, and ongoing support — one coordinated delivery surface."
+          minHeight={160}
+        />
 
         <div className="relative min-h-[240px] overflow-hidden border-b border-neutral-200 md:min-h-[320px]">
           <Image
@@ -432,19 +417,12 @@ function HowWeWorkSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              How we work with enterprises
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              Capacity inside your team, a dedicated pod, or full outsourcing — pick the
-              ownership model that fits the initiative.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="How we work with enterprises"
+          lede="Capacity inside your team, a dedicated pod, or full outsourcing — pick the ownership model that fits the initiative."
+          tone="dark"
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.36fr_0.64fr]">
           <div role="tablist" aria-label="How we work">
@@ -533,19 +511,11 @@ function OutcomesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Outcomes that move the business
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Enterprise software earns its keep when processes, insight, integration, and
-              analytics all move together.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Outcomes that move the business"
+          lede="Enterprise software earns its keep when processes, insight, integration, and analytics all move together."
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">

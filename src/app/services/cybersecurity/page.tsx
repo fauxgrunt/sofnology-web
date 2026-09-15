@@ -9,6 +9,7 @@ import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const TEAL = "#0B4F4A";
 const CYAN = "#5EEAD4";
@@ -183,20 +184,13 @@ function AssessmentServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[280px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Cybersecurity assessment services
-            </h2>
-          </div>
-          <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              We offer practical cybersecurity assessment and consulting for teams at
-              different stages — from first security review to hardening live products
-              and closing compliance-related gaps.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Cybersecurity assessment services"
+          lede="We offer practical cybersecurity assessment and consulting for teams at different stages — from first security review to hardening live products and closing compliance-related gaps."
+          scale="large"
+          minHeight={280}
+          padding="responsive"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {assessmentServices.map((service, index) => {

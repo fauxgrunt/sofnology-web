@@ -11,6 +11,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Coral — matches Vention auto refs; distinct from outsourcing orange #FF6A00. */
 const CORAL = "#FF6B4A";
@@ -316,19 +317,14 @@ function MarketSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Why automotive software is accelerating
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Connected vehicles, ADAS, and EVs pull onboard systems, cloud services, and
-              mobile UX into one product problem — and demand software that can keep up.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Why automotive software is accelerating"
+          lede="Connected vehicles, ADAS, and EVs pull onboard systems, cloud services, and mobile UX into one product problem — and demand software that can keep up."
+          scale="large"
+          minHeight={220}
+          split="42/58"
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {marketDrivers.map((item, index) => {
@@ -569,19 +565,13 @@ function AdvancedTechSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Advanced tech, applied carefully
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              AI, IoT, and cloud when they improve the product — not as a checklist of
-              buzzwords.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Advanced tech, applied carefully"
+          lede="AI, IoT, and cloud when they improve the product — not as a checklist of buzzwords."
+          minHeight={200}
+          split="42/58"
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {advancedTech.map((item, index) => (

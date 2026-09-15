@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const AMBER = "#E8A317";
 const DEEP = "#1C1710";
@@ -227,19 +228,13 @@ function ServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Our DevOps consulting services
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Strategy, setup, and delivery mechanics that keep environments consistent
-              and releases under control.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our DevOps consulting services"
+          lede="Strategy, setup, and delivery mechanics that keep environments consistent and releases under control."
+          scale="large"
+          minHeight={200}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {devopsServices.map((service, index) => {
@@ -366,20 +361,13 @@ function EngagementSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Built for the stage you’re in
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Slow releases, fragile deploys, drifting environments, or late security
-              checks — the engagement model should match the problem, not a generic
-              package label.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Built for the stage you’re in"
+          lede="Slow releases, fragile deploys, drifting environments, or late security checks — the engagement model should match the problem, not a generic package label."
+          scale="large"
+          minHeight={220}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {engagementModels.map((model, index) => {

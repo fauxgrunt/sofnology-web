@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const BLUE = "#2F6BFF";
 const DEEP = "#0E1A3A";
@@ -254,19 +255,11 @@ function ServicesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[170px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Our web development services
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Interface, backend, integrations, and refinement — the work needed to launch
-              and improve a real web product.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Our web development services"
+          lede="Interface, backend, integrations, and refinement — the work needed to launch and improve a real web product."
+          minHeight={170}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {webServices.map((service, index) => {
@@ -325,19 +318,11 @@ function SolutionTypesSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              A full stack of web solutions
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              Portals, product apps, content sites, stores, and custom websites — shaped
-              around the audience and the job the product needs to do.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="A full stack of web solutions"
+          lede="Portals, product apps, content sites, stores, and custom websites — shaped around the audience and the job the product needs to do."
+          tone="dark"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
@@ -477,19 +462,13 @@ function IndustriesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[220px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Built for real industry workflows
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              The interface and architecture should match how your customers and teams
-              actually work — not a generic template.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Built for real industry workflows"
+          lede="The interface and architecture should match how your customers and teams actually work — not a generic template."
+          scale="large"
+          minHeight={220}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div>

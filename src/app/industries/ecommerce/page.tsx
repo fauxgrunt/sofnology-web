@@ -11,6 +11,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 const MAGENTA = "#FF2D6A";
 const DEEP = "#1A1216";
@@ -234,19 +235,10 @@ function PathsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              The path to ecommerce success
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Whether you’re launching a brand or transforming an established commerce
-              operation, the work starts from different constraints.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="The path to ecommerce success"
+          lede="Whether you’re launching a brand or transforming an established commerce operation, the work starts from different constraints."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {commercePaths.map((path, index) => {
@@ -300,19 +292,10 @@ function BuildTypesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              What we build
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Storefronts, marketplaces, mobile commerce, and custom platforms — paired with
-              the backend operations commerce actually needs.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="What we build"
+          lede="Storefronts, marketplaces, mobile commerce, and custom platforms — paired with the backend operations commerce actually needs."
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div>
@@ -377,19 +360,10 @@ function CapabilitiesSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Custom ecommerce capabilities
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              The systems behind a store that converts — payments, catalog, inventory, and
-              the integrations that keep operations moving.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Custom ecommerce capabilities"
+          lede="The systems behind a store that converts — payments, catalog, inventory, and the integrations that keep operations moving."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
           {capabilities.map((item, index) => {
@@ -443,19 +417,12 @@ function DeliverySection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              How we deliver commerce
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              A clear path from discovery to optimization — without staffing theater or
-              interview process pages.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="How we deliver commerce"
+          lede="A clear path from discovery to optimization — without staffing theater or interview process pages."
+          tone="dark"
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {deliverySteps.map((step, index) => {
@@ -504,19 +471,11 @@ function PlatformsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Platforms and integrations
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Established commerce platforms when they fit — custom and headless when they
-              don’t. Integrations chosen for the business, not a logo wall.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Platforms and integrations"
+          lede="Established commerce platforms when they fit — custom and headless when they don’t. Integrations chosen for the business, not a logo wall."
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2">
           {platforms.map((group, index) => (

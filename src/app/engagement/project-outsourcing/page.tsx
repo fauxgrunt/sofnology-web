@@ -11,6 +11,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Punchy orange — distinct from Fintech gold / Ecommerce magenta / Amber DevOps. */
 const ORANGE = "#FF6A00";
@@ -231,19 +232,10 @@ function ScenariosSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              When this model fits
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Three common situations where owning delivery as a scoped project beats
-              filling seats.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="When this model fits"
+          lede="Three common situations where owning delivery as a scoped project beats filling seats."
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {scenarios.map((scenario, index) => {
@@ -292,19 +284,11 @@ function ValueSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[140px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              What you get with us owning delivery
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              We take the reins so you can stay on the business — from MVP through
-              architecture, build, and QA.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="What you get with us owning delivery"
+          lede="We take the reins so you can stay on the business — from MVP through architecture, build, and QA."
+          minHeight={140}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {valuePoints.map((point, index) => (
@@ -340,19 +324,11 @@ function HowWeDoItSection() {
   return (
     <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="grid min-h-[180px] grid-cols-1 border-b border-white/14 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-[2.75rem]">
-              How we run the engagement
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-white/72">
-              Four stages from first conversation to a calm release — ownership stays with
-              Sofnology the whole way.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="How we run the engagement"
+          lede="Four stages from first conversation to a calm release — ownership stays with Sofnology the whole way."
+          tone="dark"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
           {deliverySteps.map((step, index) => {
@@ -404,19 +380,11 @@ function ModelContrastSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[160px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-10 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-              Choose the right model
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-10 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-              Select a model to compare ownership, fit, and next step — project outsourcing
-              is delivery ownership; the others put capacity inside your team.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Choose the right model"
+          lede="Select a model to compare ownership, fit, and next step — project outsourcing is delivery ownership; the others put capacity inside your team."
+          minHeight={160}
+        />
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div role="tablist" aria-label="Engagement models">

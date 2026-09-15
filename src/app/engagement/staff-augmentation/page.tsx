@@ -11,6 +11,7 @@ import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import SectionIntro from "@/components/sections/SectionIntro";
 
 /** Moss — distinct from dedicated steel, outsourcing orange, startups wine. */
 const MOSS = "#74C69D";
@@ -294,19 +295,13 @@ function WinsSection() {
   return (
     <section className="border-b border-neutral-200 bg-[#f4f4f4]">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid min-h-[200px] grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="flex items-center px-6 py-12 md:px-10 lg:px-16">
-            <h2 className="max-w-xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-              Win with staff augmentation
-            </h2>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-16">
-            <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              Flexibility for startups and mature teams — add capacity that adapts with
-              market demand and keeps time-to-market realistic.
-            </p>
-          </div>
-        </div>
+        <SectionIntro
+          title="Win with staff augmentation"
+          lede="Flexibility for startups and mature teams — add capacity that adapts with market demand and keeps time-to-market realistic."
+          scale="large"
+          minHeight={200}
+          padding="roomy"
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3">
           {wins.map((item, index) => {
