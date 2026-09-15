@@ -11,6 +11,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import RelatedSection from "@/components/sections/RelatedSection";
 
 const GOLD = "#C9A227";
 const DEEP = "#1A1C1F";
@@ -573,48 +574,7 @@ function TrustSection() {
   );
 }
 
-function RelatedServicesSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-            Related Sofnology work
-          </h2>
-        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {relatedServices.map((service, index) => (
-            <Link
-              key={service.title}
-              href={service.href}
-              className={`group flex min-h-[220px] flex-col justify-between border-neutral-200 px-6 py-9 transition-colors duration-300 hover:bg-white md:px-8 lg:px-9 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              } ${index >= 2 ? "md:border-t lg:border-t-0" : ""}`}
-            >
-              <div>
-                <div
-                  className="mb-6 h-1 w-10 origin-left transition-all duration-300 group-hover:w-16"
-                  style={{ backgroundColor: GOLD }}
-                />
-                <h3 className="text-xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950 md:text-2xl">
-                  {service.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.65] tracking-tight text-neutral-700">
-                  {service.description}
-                </p>
-              </div>
-              <span className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight text-[#1A1C1F] transition-transform duration-300 group-hover:translate-x-1">
-                View service
-                <ArrowUpRightIcon />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 function FintechCtaSection() {
   return (
@@ -680,7 +640,13 @@ export default function FintechPage() {
           <SolutionsSection />
           <WorkPathSection />
           <TrustSection />
-          <RelatedServicesSection />
+          <RelatedSection
+            heading="Related Sofnology work"
+            links={relatedServices}
+            accent={GOLD}
+            actionColor={DEEP}
+            actionLabel="View service"
+          />
           <FintechCtaSection />
           <FaqSection faqs={faqs} signColor={DEEP} />
           <ContactSection showIntro={false} accent="gold" />

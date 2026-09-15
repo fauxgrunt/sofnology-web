@@ -10,6 +10,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import RelatedSection from "@/components/sections/RelatedSection";
 
 /** Moss — distinct from dedicated steel, outsourcing orange, startups wine. */
 const MOSS = "#74C69D";
@@ -682,47 +683,6 @@ function StaffCtaSection() {
   );
 }
 
-function RelatedSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-4xl text-3xl leading-[1.08] font-semibold tracking-[-0.045em] text-neutral-950 md:text-4xl">
-            Related Sofnology work
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {relatedLinks.map((link, index) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className={`group flex min-h-[150px] flex-col justify-between border-neutral-200 px-6 py-8 transition-colors duration-300 hover:bg-white md:px-8 lg:px-10 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              }`}
-            >
-              <div>
-                <h3 className="text-lg font-semibold tracking-[-0.04em] text-neutral-950 md:text-xl">
-                  {link.title}
-                </h3>
-                <p className="mt-4 max-w-sm text-[14px] leading-[1.65] tracking-tight text-neutral-700">
-                  {link.description}
-                </p>
-              </div>
-              <span
-                className="mt-8 inline-flex transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-                style={{ color: DEEP }}
-              >
-                <ArrowUpRightIcon />
-              </span>
-            </a>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function StaffAugmentationPage() {
   return (
     <>
@@ -737,7 +697,13 @@ export default function StaffAugmentationPage() {
           <HowWeWorkSection />
           <StaffCtaSection />
           <FaqSection faqs={faqs} signColor={DEEP} variant="roomy" />
-          <RelatedSection />
+          <RelatedSection
+            heading="Related Sofnology work"
+            links={relatedLinks}
+            variant="list"
+            columns={3}
+            actionColor={DEEP}
+          />
           <ContactSection showIntro={false} accent="moss" />
         </div>
       </main>

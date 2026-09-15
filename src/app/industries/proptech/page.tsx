@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import ContactSection from "@/components/ContactSection";
@@ -11,6 +10,7 @@ import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
 import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
+import RelatedSection from "@/components/sections/RelatedSection";
 
 /** Proptech orange — distinct from outsourcing #FF6A00 and automotive coral. */
 const ORANGE = "#F97316";
@@ -668,49 +668,6 @@ function ProptechCtaSection() {
   );
 }
 
-function RelatedSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-[2.75rem]">
-            Related Sofnology work
-          </h2>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {relatedLinks.map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`group flex min-h-[220px] flex-col justify-between border-neutral-200 px-6 py-9 transition-colors duration-300 hover:bg-white md:px-8 lg:px-9 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              } ${index >= 2 ? "md:border-t lg:border-t-0" : ""}`}
-            >
-              <div>
-                <div
-                  className="mb-6 h-1 w-10 origin-left transition-all duration-300 group-hover:w-16"
-                  style={{ backgroundColor: ORANGE }}
-                />
-                <h3 className="text-xl font-semibold tracking-[-0.045em] text-neutral-950">
-                  {link.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.65] tracking-tight text-neutral-700">
-                  {link.description}
-                </p>
-              </div>
-              <span className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight text-[#1C1917] transition-transform duration-300 group-hover:translate-x-1">
-                View
-                <ArrowUpRightIcon />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function ProptechPage() {
   return (
     <>
@@ -726,7 +683,14 @@ export default function ProptechPage() {
           <TechStackSection />
           <ProptechCtaSection />
           <FaqSection faqs={faqs} signColor={DEEP} />
-          <RelatedSection />
+          <RelatedSection
+            heading="Related Sofnology work"
+            links={relatedLinks}
+            accent={ORANGE}
+            actionColor={DEEP}
+            actionLabel="View"
+            titleSize="md"
+          />
           <ContactSection showIntro={false} accent="orange" />
         </div>
       </main>
