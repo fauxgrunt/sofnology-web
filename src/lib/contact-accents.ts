@@ -24,8 +24,8 @@ type AccentClasses = { desktop: string; mobile: string };
 const ACCENTS: Record<ContactAccent, AccentClasses> = {
   navy: {
     desktop:
-      "bg-gradient-to-br from-[#0b2a5b] via-[#16457f] to-[#061a3a] text-white hover:opacity-95",
-    mobile: "bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#061a3a] text-white",
+      "bg-gradient-to-br from-navy-mid via-[#16457f] to-navy text-white hover:opacity-95",
+    mobile: "bg-gradient-to-r from-navy-mid via-[#16457f] to-navy text-white",
   },
   lime: {
     desktop: "bg-[#C7FF3D] text-[#101413] hover:opacity-95",
@@ -40,8 +40,8 @@ const ACCENTS: Record<ContactAccent, AccentClasses> = {
     mobile: "bg-[#E8A317] text-[#101413]",
   },
   blue: {
-    desktop: "bg-[#2F6BFF] text-white hover:opacity-95",
-    mobile: "bg-[#2F6BFF] text-white",
+    desktop: "bg-azure text-white hover:opacity-95",
+    mobile: "bg-azure text-white",
   },
   emerald: {
     desktop: "bg-[#10B981] text-[#111827] hover:opacity-95",

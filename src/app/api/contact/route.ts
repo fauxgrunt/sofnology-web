@@ -1,10 +1,20 @@
 import { NextResponse } from "next/server";
-
-const MAX_MESSAGE = 2048;
-const MAX_FILE_BYTES = 30 * 1024 * 1024;
+import { Resend } from "resend";
+import {
+  CONTACT_MAX_FILE_BYTES,
+  CONTACT_MAX_FILE_LABEL,
+  CONTACT_MAX_MESSAGE,
+} from "@/lib/contact";
+import { SITE_EMAIL, SITE_NAME } from "@/lib/site";
 
 function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function formatBytes(bytes: number) {
+  if (bytes < 1024) return `${bytes} B`;
+  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
+  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
 }
 
 export async function POST(request: Request) {
@@ -60,9 +70,9 @@ export async function POST(request: Request) {
       );
     }
 
-    if (message.length > MAX_MESSAGE) {
+    if (message.length > CONTACT_MAX_MESSAGE) {
       return NextResponse.json(
-        { ok: false, error: `Message must be ${MAX_MESSAGE} characters or fewer.` },
+        { ok: false, error: `Message must be ${CONTACT_MAX_MESSAGE} characters or fewer.` },
         { status: 400 },
       );
     }
@@ -74,23 +84,59 @@ export async function POST(request: Request) {
       );
     }
 
-    if (attachmentSize > MAX_FILE_BYTES) {
+    if (attachmentSize > CONTACT_MAX_FILE_BYTES) {
       return NextResponse.json(
-        { ok: false, error: "Attachment must be 30MB or smaller." },
+        { ok: false, error: `Attachment must be ${CONTACT_MAX_FILE_LABEL} or smaller.` },
         { status: 400 },
       );
     }
 
-    // Stub: accept and acknowledge. Wire to email/CRM when ready.
-    console.info("[contact]", {
-      fullName,
-      workEmail,
-      phone: phone || undefined,
-      companyWebsite: companyWebsite || undefined,
-      projectType: projectType || undefined,
-      messageLength: message.length,
-      attachmentName: attachmentName || undefined,
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `The form is not connected yet. Email ${SITE_EMAIL} directly.`,
+        },
+        { status: 503 },
+      );
+    }
+
+    const lines = [
+      `Name: ${fullName}`,
+      `Work email: ${workEmail}`,
+      phone ? `Phone: ${phone}` : null,
+      companyWebsite ? `Website: ${companyWebsite}` : null,
+      projectType ? `Project type: ${projectType}` : null,
+      attachmentName
+        ? `Attachment named: ${attachmentName} (${formatBytes(attachmentSize)}) — file was not forwarded; ask them to share a link if needed.`
+        : null,
+      "",
+      message,
+    ].filter((line): line is string => line !== null);
+
+    const resend = new Resend(apiKey);
+    const from =
+      process.env.CONTACT_FROM_EMAIL ?? `${SITE_NAME} <onboarding@resend.dev>`;
+
+    const { error } = await resend.emails.send({
+      from,
+      to: SITE_EMAIL,
+      replyTo: workEmail,
+      subject: `Sofnology enquiry from ${fullName}`,
+      text: lines.join("\n"),
     });
+
+    if (error) {
+      console.error("[contact] resend", error);
+      return NextResponse.json(
+        {
+          ok: false,
+          error: `Could not send the message. Email ${SITE_EMAIL} instead.`,
+        },
+        { status: 502 },
+      );
+    }
 
     return NextResponse.json({
       ok: true,

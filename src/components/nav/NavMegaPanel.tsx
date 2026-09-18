@@ -7,7 +7,7 @@ import type { MegaMenuConfig } from "./nav-data";
 import { chromeTransition } from "@/lib/motion";
 
 const linkClass =
-  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-[#111111] transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80";
+  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-ink transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80";
 
 const headingClass =
   "font-nav mb-7 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase";
@@ -53,7 +53,7 @@ function ColumnLinks({
               {link.label}
               <span
                 aria-hidden="true"
-                className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
+                className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
               />
             </Link>
           </li>
@@ -78,7 +78,7 @@ function PromoCard({
       variants={columnVariants}
       initial="hidden"
       animate="visible"
-      className="relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden bg-[#061a3a] p-7 text-white md:min-h-[300px] md:p-8"
+      className="relative flex h-full min-h-[280px] flex-col justify-between overflow-hidden bg-navy p-7 text-white md:min-h-[300px] md:p-8"
     >
       <div
         aria-hidden="true"
@@ -99,7 +99,7 @@ function PromoCard({
       >
         <span
           aria-hidden="true"
-          className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-400 group-hover:left-[115%] group-hover:opacity-100"
+          className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-sheen ease-motion group-hover:left-[115%] group-hover:opacity-100"
         />
         <span className="relative z-10">{promo.cta}</span>
         <span
@@ -133,7 +133,7 @@ function BottomBanner({
       <Link
         href={href}
         onClick={onNavigate}
-        className="group flex min-h-[72px] items-center justify-between gap-6 border-t border-neutral-300/70 bg-[#061a3a] px-6 py-5 font-nav text-white transition-opacity hover:opacity-95 md:px-8"
+        className="group flex min-h-[72px] items-center justify-between gap-6 border-t border-neutral-300/70 bg-navy px-6 py-5 font-nav text-white transition-opacity hover:opacity-95 md:px-8"
       >
         <p className="max-w-3xl text-[14px] leading-[1.5] font-medium tracking-normal text-white/90 md:text-[15px]">
           {banner.text}
@@ -211,7 +211,7 @@ export default function NavMegaPanel({ config, onNavigate }: NavMegaPanelProps) 
                   {link.label}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
+                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
                   />
                 </Link>
               </li>
@@ -224,7 +224,7 @@ export default function NavMegaPanel({ config, onNavigate }: NavMegaPanelProps) 
                   {link.label}
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-[#111111] transition-transform duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
+                    className="absolute inset-x-0 -bottom-0.5 h-px origin-left scale-x-0 bg-ink transition-transform duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover/link:scale-x-100"
                   />
                 </Link>
               </li>

@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { panelMotion } from "@/lib/motion";
+import { handleRovingTabKey } from "@/components/a11y/SelectableCard";
 
 type ExpertiseGroup = {
   title: string;
@@ -127,7 +128,7 @@ export default function ExpertiseSection() {
     expertiseTabs.find((tab) => tab.id === activeTabId) ?? expertiseTabs[0];
 
   return (
-    <section id="expertise" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="expertise" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-8 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.04em] text-neutral-950">
@@ -143,7 +144,7 @@ export default function ExpertiseSection() {
         {/* Mobile: horizontal chips. Desktop: vertical list. */}
         <div className="border-b border-neutral-200 px-5 py-4 lg:hidden">
           <div className="chip-scroll" role="tablist" aria-label="Expertise areas">
-            {expertiseTabs.map((tab) => {
+            {expertiseTabs.map((tab, index) => {
               const isActive = tab.id === activeTabId;
               return (
                 <button
@@ -153,10 +154,16 @@ export default function ExpertiseSection() {
                   aria-selected={isActive}
                   aria-controls={`expertise-panel-${tab.id}`}
                   id={`expertise-tab-${tab.id}`}
+                  tabIndex={isActive ? 0 : -1}
                   onClick={() => setActiveTabId(tab.id)}
+                  onKeyDown={(event) =>
+                    handleRovingTabKey(event, index, expertiseTabs.length, (next) =>
+                      setActiveTabId(expertiseTabs[next].id),
+                    )
+                  }
                   className={`tap-press min-h-11 px-4 text-[13px] font-semibold tracking-[-0.02em] transition-colors ${
                     isActive
-                      ? "bg-[#061a3a] text-white"
+                      ? "bg-navy text-white"
                       : "bg-white text-neutral-600 ring-1 ring-neutral-200"
                   }`}
                 >
@@ -170,7 +177,7 @@ export default function ExpertiseSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2">
           <div className="hidden border-b border-neutral-200 px-6 py-10 md:px-10 lg:block lg:border-r lg:border-b-0 lg:px-16 lg:py-12">
             <div className="space-y-1" role="tablist" aria-label="Expertise areas">
-              {expertiseTabs.map((tab) => {
+              {expertiseTabs.map((tab, index) => {
                 const isActive = tab.id === activeTabId;
 
                 return (
@@ -181,16 +188,22 @@ export default function ExpertiseSection() {
                     aria-selected={isActive}
                     aria-controls={`expertise-panel-${tab.id}`}
                     id={`expertise-tab-desktop-${tab.id}`}
+                    tabIndex={isActive ? 0 : -1}
                     onClick={() => setActiveTabId(tab.id)}
-                    className={`group relative block w-full py-3.5 pr-5 pl-5 text-left text-[1.05rem] leading-snug font-semibold tracking-[-0.03em] transition-colors duration-300 sm:py-4 sm:pl-6 sm:text-lg md:text-xl ${
+                    onKeyDown={(event) =>
+                      handleRovingTabKey(event, index, expertiseTabs.length, (next) =>
+                        setActiveTabId(expertiseTabs[next].id),
+                      )
+                    }
+                    className={`group relative block w-full py-3.5 pr-5 pl-5 text-left text-[1.05rem] leading-snug font-semibold tracking-[-0.03em] transition-colors duration-chrome ease-motion sm:py-4 sm:pl-6 sm:text-lg md:text-xl ${
                       isActive
-                        ? "bg-white/55 text-[#061a3a]"
-                        : "text-neutral-400 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35 [@media(hover:hover)_and_(pointer:fine)]:hover:text-neutral-700"
+                        ? "bg-white/55 text-navy"
+                        : "text-neutral-600 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35 [@media(hover:hover)_and_(pointer:fine)]:hover:text-neutral-800"
                     }`}
                   >
                     <span
                       aria-hidden="true"
-                      className={`absolute top-1/2 left-0 h-7 w-[3px] -translate-y-1/2 bg-[#061a3a] transition-opacity duration-200 ${
+                      className={`absolute top-1/2 left-0 h-7 w-[3px] -translate-y-1/2 bg-navy transition-opacity duration-200 ${
                         isActive
                           ? "opacity-100"
                           : "opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-40"
@@ -238,7 +251,7 @@ export default function ExpertiseSection() {
                         <Link
                           key={link.label}
                           href={link.href}
-                          className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:text-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-[#061a3a]"
+                          className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-press ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:text-navy [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-navy"
                         >
                           {link.label}
                         </Link>

@@ -70,7 +70,7 @@ export default function DeliveryConfidenceSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="delivery-confidence" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="delivery-confidence" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
@@ -82,13 +82,13 @@ export default function DeliveryConfidenceSection() {
           <div className="border-b border-neutral-200 p-5 sm:p-6 md:p-10 lg:border-r lg:border-b-0 lg:p-12">
             <div className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[320px] md:min-h-[460px] lg:min-h-[420px]">
               <Image
-                src="/Digital growth.jpg"
+                src="/digital-growth.jpg"
                 alt="Sofnology team reviewing delivery and growth systems"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"
               />
-              <div className="absolute inset-0 bg-[#061a3a]/5" />
+              <div className="absolute inset-0 bg-navy/5" />
             </div>
           </div>
 
@@ -104,7 +104,7 @@ export default function DeliveryConfidenceSection() {
                   <button
                     type="button"
                     onClick={() => setOpenIndex(index)}
-                    className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-300 sm:items-center sm:gap-6 sm:px-6 sm:py-7 md:px-10 lg:px-12 ${
+                    className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-chrome ease-motion sm:items-center sm:gap-6 sm:px-6 sm:py-7 md:px-10 lg:px-12 ${
                       isOpen
                         ? "bg-white/45"
                         : "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35"
@@ -113,12 +113,12 @@ export default function DeliveryConfidenceSection() {
                     aria-controls={`delivery-panel-${index}`}
                     id={`delivery-trigger-${index}`}
                   >
-                    <span className="text-xl leading-tight font-semibold tracking-[-0.035em] text-[#061a3a]">
+                    <span className="text-xl leading-tight font-semibold tracking-[-0.035em] text-navy">
                       {item.title}
                     </span>
                     <span
                       aria-hidden="true"
-                      className="text-3xl leading-none font-light text-[#061a3a]"
+                      className="text-3xl leading-none font-light text-navy"
                     >
                       {isOpen ? "−" : "+"}
                     </span>

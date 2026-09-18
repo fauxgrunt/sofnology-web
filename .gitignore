@@ -25,6 +25,9 @@
 Thumbs.db
 *.pem
 
+# Never serve private documents from the static web root
+/public/*.pdf
+
 # deployment
 .vercel
 
@@ -36,6 +39,7 @@ yarn-error.log*
 
 # env files
 .env*
+!.env.example
 *.local
 
 # typescript

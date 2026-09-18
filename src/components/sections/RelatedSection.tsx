@@ -60,7 +60,7 @@ export default function RelatedSection({
     : "min-h-[150px] px-6 py-8 md:px-8 lg:px-10";
 
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
           <h2
@@ -79,7 +79,7 @@ export default function RelatedSection({
             <Link
               key={link.href}
               href={link.href}
-              className={`group flex flex-col justify-between border-neutral-200 transition-colors duration-300 hover:bg-white ${card} ${
+              className={`group flex flex-col justify-between border-neutral-200 transition-colors duration-chrome ease-motion hover:bg-white ${card} ${
                 index > 0 ? "border-t md:border-t-0 md:border-l" : ""
               } ${
                 columns === 4 && index >= 2 ? "md:border-t lg:border-t-0" : ""

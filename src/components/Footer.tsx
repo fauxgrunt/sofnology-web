@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
+import { SITE_EMAIL } from "@/lib/site";
 
 const companyLinks = [
   { label: "Who we are", href: "/company" },
@@ -60,7 +61,7 @@ export default function Footer() {
           <div className="grid grid-cols-2 gap-x-8 gap-y-10 px-6 py-12 sm:grid-cols-2 md:grid-cols-4 md:px-10 lg:px-8 xl:px-12">
             {footerColumns.map((column) => (
               <div key={column.title}>
-                <h3 className="text-[12px] font-semibold tracking-[0.06em] uppercase text-white/40">
+                <h3 className="text-[12px] font-semibold tracking-[0.06em] uppercase text-white/70">
                   {column.title}
                 </h3>
                 <ul className="mt-5 space-y-2.5">
@@ -68,7 +69,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-flex min-h-10 items-center text-[14px] leading-snug tracking-[-0.02em] text-white/82 transition-colors duration-200 hover:text-white"
+                        className="inline-flex min-h-10 items-center text-[14px] leading-snug tracking-[-0.02em] text-white/82 transition-colors duration-press ease-motion hover:text-white"
                       >
                         {link.label}
                       </Link>
@@ -80,15 +81,15 @@ export default function Footer() {
 
             <div className="col-span-2 grid grid-cols-1 gap-10 border-t border-white/10 pt-10 md:col-span-4 md:grid-cols-3">
               <div>
-                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
+                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/70">
                   Contact
                 </h3>
                 <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
                   <a
-                    href="mailto:hello@sofnology.com"
+                    href={`mailto:${SITE_EMAIL}`}
                     className="block transition-colors hover:text-white"
                   >
-                    hello@sofnology.com
+                    {SITE_EMAIL}
                   </a>
                   <Link
                     href="/#contact"
@@ -101,7 +102,7 @@ export default function Footer() {
               </div>
 
               <div>
-                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
+                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/70">
                   Offices
                 </h3>
                 <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
@@ -112,12 +113,12 @@ export default function Footer() {
               </div>
 
               <div>
-                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/40">
+                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/70">
                   Connect
                 </h3>
                 <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
                   <a
-                    href="mailto:hello@sofnology.com"
+                    href={`mailto:${SITE_EMAIL}`}
                     className="block transition-colors hover:text-white"
                   >
                     Email the team
@@ -138,13 +139,13 @@ export default function Footer() {
               Build cleaner systems, sharper campaigns, and a digital operation that is
               easier to run.
             </h3>
-            <p className="mt-5 max-w-md text-[13px] leading-relaxed tracking-[-0.01em] text-white/56">
+            <p className="mt-5 max-w-md text-[13px] leading-relaxed tracking-[-0.01em] text-white/75">
               Sofnology connects software, automation, cloud, and digital marketing
               into one practical execution plan for growing businesses.
             </p>
             <Link
               href="/#contact"
-              className="tap-press group mt-9 flex min-h-14 items-center justify-between bg-[#f4f4f4] px-5 text-[14px] font-semibold tracking-[-0.02em] text-[#061a3a] transition-colors duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white"
+              className="tap-press group mt-9 flex min-h-14 items-center justify-between bg-page px-5 text-[14px] font-semibold tracking-[-0.02em] text-navy transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white"
             >
               <span>Book a discovery call</span>
               <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
@@ -165,11 +166,13 @@ export default function Footer() {
             />
           </div>
 
-          <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/58 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
-            <p>&copy; {new Date().getFullYear()} Sofnology Solutions. All rights reserved.</p>
+          <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/75 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
+            <p suppressHydrationWarning>
+              &copy; {new Date().getFullYear()} Sofnology Solutions. All rights reserved.
+            </p>
             <a
-              href="mailto:hello@sofnology.com?subject=Privacy%20inquiry"
-              className="mt-2 w-fit transition-colors duration-200 hover:text-white"
+              href={`mailto:${SITE_EMAIL}?subject=Privacy%20inquiry`}
+              className="mt-2 w-fit transition-colors duration-press ease-motion hover:text-white"
             >
               Privacy inquiries
             </a>

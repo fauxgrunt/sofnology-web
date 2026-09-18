@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { motionEase, motionDuration } from "@/lib/motion";
+import { motionDuration } from "@/lib/motion";
 
 /**
  * Thin top progress bar — makes the “micro wait” between routes feel intentional.
@@ -100,11 +100,11 @@ export default function NavigationProgress() {
       aria-hidden="true"
     >
       <div
-        className="h-full origin-left bg-[#061a3a]"
+        className="h-full origin-left bg-navy"
         style={{
           width: `${width}%`,
           opacity: active || width > 0 ? 1 : 0,
-          transition: `width ${motionDuration.chrome}s cubic-bezier(${motionEase.join(",")}), opacity ${motionDuration.progress}s ease`,
+          transition: `width var(--motion-chrome) var(--motion-ease), opacity var(--motion-progress) var(--motion-ease)`,
         }}
       />
     </div>

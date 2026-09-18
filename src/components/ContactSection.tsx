@@ -4,15 +4,21 @@ import Image from "next/image";
 import { FormEvent, useId, useRef, useState } from "react";
 import { ArrowUpRightIcon, UploadIcon } from "@/components/icons";
 import {
+  CONTACT_MAX_FILE_BYTES,
+  CONTACT_MAX_FILE_LABEL,
+  CONTACT_MAX_MESSAGE,
+} from "@/lib/contact";
+import { SITE_EMAIL } from "@/lib/site";
+import {
   contactAccentClasses,
   type ContactAccent,
 } from "@/lib/contact-accents";
 
-const MAX_MESSAGE = 2048;
-const MAX_FILE_BYTES = 30 * 1024 * 1024;
+const MAX_MESSAGE = CONTACT_MAX_MESSAGE;
+const MAX_FILE_BYTES = CONTACT_MAX_FILE_BYTES;
 
 const inputClass =
-  "w-full bg-transparent px-5 py-4 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 sm:px-6 sm:py-5 sm:text-[14px] md:px-8";
+  "w-full bg-transparent px-5 py-4 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-500 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:px-6 sm:py-5 sm:text-[14px] md:px-8";
 
 type ContactSectionProps = {
   showIntro?: boolean;
@@ -65,7 +71,7 @@ export default function ContactSection({
       errors.message = `Message must be ${MAX_MESSAGE} characters or fewer.`;
     }
     if (selectedFile && selectedFile.size > MAX_FILE_BYTES) {
-      errors.attachment = "Attachment must be 30MB or smaller.";
+      errors.attachment = `Attachment must be ${CONTACT_MAX_FILE_LABEL} or smaller.`;
     }
     if (!consent) errors.consent = "Please confirm you agree to be contacted.";
     return errors;
@@ -145,13 +151,13 @@ export default function ContactSection({
   const charCount = message.length;
 
   return (
-    <section id="contact" className="border-b border-neutral-200 bg-[#f4f4f4]" aria-labelledby={`${formId}-heading`}>
+    <section id="contact" className="border-b border-neutral-200 bg-page" aria-labelledby={`${formId}-heading`}>
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         {showIntro && (
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-2">
             <div className="relative aspect-[16/11] min-h-0 overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[360px] lg:min-h-[420px] lg:border-r lg:border-b-0">
               <Image
-                src="/Conversation.jpg"
+                src="/conversation.jpg"
                 alt="Sofnology team in a client conversation"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
@@ -162,7 +168,7 @@ export default function ContactSection({
             </div>
 
             <div className="relative flex min-h-0 items-center overflow-hidden bg-[#101722] px-5 py-10 text-white sm:min-h-[360px] sm:px-6 sm:py-12 md:px-10 lg:min-h-[420px] lg:px-16">
-              <div className="absolute inset-0 bg-gradient-to-r from-[#061a3a]/70 via-[#101722]/80 to-[#101722]" />
+              <div className="absolute inset-0 bg-gradient-to-r from-navy/70 via-[#101722]/80 to-[#101722]" />
               <div className="relative z-10 max-w-2xl">
                 <h2 className="text-fluid-display font-semibold tracking-[-0.045em]">
                   You already have enough to manage. Your digital systems should not add
@@ -175,7 +181,7 @@ export default function ContactSection({
 
                 <a
                   href="#contact-form"
-                  className="tap-press group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
+                  className="tap-press group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                 >
                   <span
                     aria-hidden="true"
@@ -205,6 +211,15 @@ export default function ContactSection({
             >
               Contact us
             </h2>
+            <p className="mt-4 max-w-xl text-[15px] leading-[1.65] tracking-tight text-neutral-700">
+              Prefer email?{" "}
+              <a
+                href={`mailto:${SITE_EMAIL}`}
+                className="font-semibold text-navy underline-offset-4 hover:underline"
+              >
+                {SITE_EMAIL}
+              </a>
+            </p>
             {statusMessage && (
               <p
                 id={statusId}
@@ -304,7 +319,7 @@ export default function ContactSection({
               />
             </div>
             <div>
-              <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-200 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
+              <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-press ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
                 <input
                   ref={attachmentRef}
                   type="file"
@@ -321,10 +336,10 @@ export default function ContactSection({
                     if (file && file.size > MAX_FILE_BYTES) {
                       setFieldErrors((prev) => ({
                         ...prev,
-                        attachment: "Attachment must be 30MB or smaller.",
+                        attachment: `Attachment must be ${CONTACT_MAX_FILE_LABEL} or smaller.`,
                       }));
                       setStatus("error");
-                      setStatusMessage("Attachment must be 30MB or smaller.");
+                      setStatusMessage(`Attachment must be ${CONTACT_MAX_FILE_LABEL} or smaller.`);
                     } else {
                       setFieldErrors((prev) => {
                         const next = { ...prev };
@@ -339,7 +354,7 @@ export default function ContactSection({
                   }}
                 />
                 <span className="text-[14px] tracking-tight text-neutral-500">
-                  {selectedFile?.name || "Upload file (optional, max 30MB)"}
+                  {selectedFile?.name || `Upload file (optional, max ${CONTACT_MAX_FILE_LABEL})`}
                 </span>
                 <UploadIcon />
               </label>
@@ -423,7 +438,7 @@ export default function ContactSection({
               ref={messageRef}
               id="message"
               name="message"
-              className="min-h-[160px] w-full resize-none bg-transparent px-5 py-5 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-200 placeholder:text-neutral-500 focus:bg-white/55 sm:min-h-[190px] sm:px-6 sm:py-6 sm:text-[14px] md:px-8"
+              className="min-h-[160px] w-full resize-none bg-transparent px-5 py-5 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-500 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:min-h-[190px] sm:px-6 sm:py-6 sm:text-[14px] md:px-8"
               placeholder="How can we help you? *"
               value={message}
               onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
@@ -457,7 +472,7 @@ export default function ContactSection({
                 name="consent"
                 checked={consent}
                 onChange={(e) => setConsent(e.target.checked)}
-                className="mt-0.5 h-6 w-6 shrink-0 accent-[#061a3a]"
+                className="mt-0.5 h-6 w-6 shrink-0 accent-navy"
                 required
                 disabled={isSubmitting}
                 aria-invalid={Boolean(fieldErrors.consent)}

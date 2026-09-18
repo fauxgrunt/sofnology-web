@@ -1,157 +1,29 @@
-"use client";
-
 import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
+import RelatedSection from "@/components/sections/RelatedSection";
+import { InteriorPage, StackedHero } from "@/components/interior";
+import {
+  NAVY,
+  ACCENT,
+  PRIMARY_CTA,
+  PROMISE_IMAGE,
+  JOURNEY_IMAGE,
+  hero,
+  promiseCta,
+  cta,
+  whyPoints,
+  focusAreas,
+  conversationSteps,
+  related,
+  sticky,
+  contact,
+} from "@/content/company/about";
 
-const NAVY = "#061a3a";
-const ACCENT = "#2F6BFF";
-const PRIMARY_CTA = "Start a conversation";
-/** One appearance per asset — no triple-cropping the same file. */
-const HERO_IMAGE = "/Conversation.jpg";
-const PROMISE_IMAGE = "/enterprise-services.jpg";
-const JOURNEY_IMAGE = "/Digital growth.jpg";
-
-
-const whyPoints = [
-  {
-    title: "We exist to ship your product",
-    description:
-      "Sofnology connects business goals with engineering that can actually deliver — custom software, digital products, and teams that stay close to outcomes.",
-  },
-  {
-    title: "Trust from how work runs",
-    description:
-      "Senior-led decisions, visible milestones, and production-minded architecture — not invented years, awards, or headcount.",
-  },
-  {
-    title: "Your success stays; the build evolves",
-    description:
-      "We design for handover and maintainability so the business stays in control after go-live, not locked into tribal knowledge.",
-  },
-];
-
-const focusAreas = [
-  {
-    title: "Custom software",
-    description:
-      "Platforms shaped to how your business runs — not a forced off-the-shelf template.",
-  },
-  {
-    title: "Digital products",
-    description:
-      "Web, mobile, and backend systems built to ship, scale, and stay maintainable.",
-  },
-  {
-    title: "Engineering partnerships",
-    description:
-      "Dedicated teams, staff augmentation, and project delivery with clear ownership.",
-  },
-];
-
-const conversationSteps = [
-  {
-    title: "Start by email or form",
-    description:
-      "Share the problem, the product, or the constraint. Early contact stays simple — no need to meet a full cast on day one.",
-  },
-  {
-    title: "Discovery conversation",
-    description:
-      "A focused call or in-person meeting to clarify goals, scope shape, and whether we’re the right fit.",
-  },
-  {
-    title: "Then the right people join",
-    description:
-      "Once the engagement is scoped, the engineers and leads on your work are introduced — when it matters, not for a public roster.",
-  },
-];
-
-const relatedLinks = [
-  {
-    title: "How we work",
-    href: "/company/how-we-work",
-    description: "Operating principles, stages, and the habits behind every engagement.",
-  },
-  {
-    title: "Dedicated teams",
-    href: "/engagement/dedicated-teams",
-    description: "A lasting pod when the roadmap runs longer than a single project.",
-  },
-  {
-    title: "Software development",
-    href: "/services/software-development",
-    description: "End-to-end product engineering from discovery through release.",
-  },
-];
-
-/** Vention-style stacked hero: image alone → headline/copy split → CTA bar. */
-function StackedHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative h-[280px] overflow-hidden border-b border-neutral-200 sm:h-[340px] md:h-[400px] lg:h-[460px]">
-          <Image
-            src={HERO_IMAGE}
-            alt="Collaborative workspace conversation"
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover object-[42%_35%]"
-          />
-          {/* Soft fade into the text band below — Vention reuse language */}
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#f4f4f4] to-transparent md:w-2/5" />
-        </div>
-
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.58fr_0.42fr]">
-          <div className="flex items-end border-b border-neutral-200 px-6 py-12 md:px-10 lg:border-b-0 lg:border-r lg:px-16 lg:py-16">
-            <h1 className="max-w-xl text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] text-neutral-950 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              About us? No — what we do is about you
-            </h1>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-14 lg:py-16">
-            <div>
-              <p
-                className="text-[12px] font-semibold uppercase tracking-[0.16em]"
-                style={{ color: ACCENT }}
-              >
-                Sofnology
-              </p>
-              <p className="mt-5 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-                Every solution, every engagement, every team we assemble is built to put
-                your product and your business first — with senior judgment and clear
-                ownership, without a borrowed legacy story.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <a
-          href="#contact-form"
-          className="tap-press group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
-          style={{ backgroundColor: NAVY }}
-        >
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-          />
-          <span className="relative z-10">Get in touch</span>
-          <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-            <ArrowUpRightIcon />
-          </span>
-        </a>
-      </div>
-    </section>
-  );
-}
 
 function WhySection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -223,7 +95,7 @@ function FocusSection() {
 
 function EarlyConversationsSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -266,21 +138,21 @@ function EarlyConversationsSection() {
 /** Promise CTA — distinct image from hero, links to How we work. */
 function PromiseCtaSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[320px] overflow-hidden border-b border-neutral-200 lg:min-h-[400px] lg:border-b-0 lg:border-r">
             <Image
               src={PROMISE_IMAGE}
-              alt="Engineering collaboration in a modern workspace"
+              alt={promiseCta.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 46vw"
               className="object-cover object-[48%_40%]"
             />
-            <div className="absolute inset-0 bg-[#061a3a]/55" />
+            <div className="absolute inset-0 bg-navy/55" />
             <div className="relative flex h-full min-h-[320px] items-end px-6 py-10 md:px-10 lg:min-h-[400px] lg:px-12">
               <p className="max-w-sm text-2xl font-semibold tracking-[-0.045em] text-white md:text-3xl">
-                Curious how we keep work under control?
+                {promiseCta.overlay}
               </p>
             </div>
           </div>
@@ -288,15 +160,14 @@ function PromiseCtaSection() {
           <div className="flex flex-col justify-between px-6 py-12 md:px-10 lg:min-h-[400px] lg:px-16">
             <div>
               <h2 className="max-w-md text-3xl leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 md:text-4xl">
-                See how we work
+                {promiseCta.title}
               </h2>
               <p className="mt-6 max-w-md text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Operating principles, delivery stages, and the promise we fold into every
-                engagement — without a manifesto page or a leadership roster.
+                {promiseCta.lede}
               </p>
             </div>
             <Link
-              href="/company/how-we-work"
+              href={promiseCta.href}
               className="group relative mt-10 inline-flex min-h-16 w-full max-w-md items-center justify-between overflow-hidden px-6 text-[15px] font-semibold tracking-[-0.03em] text-white md:mt-12"
               style={{ backgroundColor: ACCENT }}
             >
@@ -304,7 +175,7 @@ function PromiseCtaSection() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
               />
-              <span className="relative z-10">Learn how we work</span>
+              <span className="relative z-10">{promiseCta.ctaLabel}</span>
               <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                 <ArrowUpRightIcon />
               </span>
@@ -319,18 +190,18 @@ function PromiseCtaSection() {
 /** Closing CTA — third distinct image, used once. */
 function JourneyCtaSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.55fr_0.45fr]">
           <div className="relative min-h-[300px] overflow-hidden border-b border-neutral-200 lg:min-h-[380px] lg:border-b-0 lg:border-r">
             <Image
               src={JOURNEY_IMAGE}
-              alt="Digital growth delivery — starting a Sofnology engagement"
+              alt={cta.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 55vw"
               className="object-cover object-[40%_45%]"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#061a3a]/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-[#061a3a]/40" />
+            <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:to-navy/40" />
           </div>
 
           <div
@@ -339,17 +210,16 @@ function JourneyCtaSection() {
           >
             <div>
               <h2 className="max-w-sm text-3xl leading-[1.1] font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                Ready to start a conversation?
+                {cta.title}
               </h2>
               <p className="mt-6 max-w-sm text-[15px] leading-[1.72] tracking-tight text-white/70">
-                Email us or use the form — we’ll take it from there, in person or online,
-                as the engagement needs.
+                {cta.lede}
               </p>
               <a
-                href="mailto:hello@sofnology.com"
+                href={`mailto:${cta.email}`}
                 className="mt-6 inline-block text-[15px] font-semibold tracking-tight text-white underline-offset-4 hover:underline"
               >
-                hello@sofnology.com
+                {cta.email}
               </a>
             </div>
             <a
@@ -373,75 +243,43 @@ function JourneyCtaSection() {
   );
 }
 
-function RelatedSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="text-[1.85rem] font-semibold tracking-[-0.045em] sm:text-4xl text-neutral-950 md:text-[2.75rem]">
-            Keep exploring
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {relatedLinks.map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`group flex min-h-[220px] flex-col justify-between border-neutral-200 px-6 py-9 transition-colors hover:bg-white md:px-8 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              }`}
-            >
-              <div>
-                <div
-                  className="mb-6 h-1 w-10 transition-all group-hover:w-16"
-                  style={{ backgroundColor: ACCENT }}
-                />
-                <h3 className="text-xl font-semibold tracking-[-0.045em] text-neutral-950">
-                  {link.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.65] text-neutral-700">
-                  {link.description}
-                </p>
-              </div>
-              <span
-                className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold transition-transform group-hover:translate-x-1"
-                style={{ color: ACCENT }}
-              >
-                View
-                <ArrowUpRightIcon />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
 export default function CompanyPage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <StackedHero />
-        <div className="content-rail">
-          <WhySection />
-          <FocusSection />
-          <EarlyConversationsSection />
-          <PromiseCtaSection />
-          <JourneyCtaSection />
-          <RelatedSection />
-          <ContactSection showIntro={false} accent="navy" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label={PRIMARY_CTA}
-        backgroundColor={NAVY}
-        textColor={"#ffffff"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <StackedHero
+          title={hero.title}
+          lede={hero.lede}
+          eyebrow={hero.eyebrow}
+          eyebrowColor={hero.eyebrowColor}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          split="58/42"
+          titleMax="max-w-xl"
+        />
+      }
+    >
+      <WhySection />
+      <FocusSection />
+      <EarlyConversationsSection />
+      <PromiseCtaSection />
+      <JourneyCtaSection />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
+        columns={related.columns}
+        titleSize={related.titleSize}
       />
-      <Footer />
-    </>
+    </InteriorPage>
   );
 }

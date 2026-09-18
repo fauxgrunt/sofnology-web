@@ -74,7 +74,7 @@ export default function FeaturedWorkSection() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section id="engagement-paths" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="engagement-paths" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
@@ -98,7 +98,7 @@ export default function FeaturedWorkSection() {
                 <button
                   type="button"
                   onClick={() => setOpenIndex(index)}
-                  className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors duration-300 active:bg-white/50 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
+                  className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors duration-chrome ease-motion active:bg-white/50 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
                     isOpen ? "bg-white/45" : "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35"
                   }`}
                   aria-expanded={isOpen}
@@ -109,7 +109,7 @@ export default function FeaturedWorkSection() {
                     {work.title}
                   </span>
                   <span
-                    className="shrink-0 text-2xl leading-none font-light text-[#061a3a] sm:text-3xl"
+                    className="shrink-0 text-2xl leading-none font-light text-navy sm:text-3xl"
                     aria-hidden="true"
                   >
                     {isOpen ? "−" : "+"}
@@ -147,7 +147,7 @@ export default function FeaturedWorkSection() {
                           <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-12 sm:gap-8 md:grid-cols-3">
                             {work.proofPoints.map((point) => (
                               <div key={point.value}>
-                                <p className="text-2xl leading-none font-light tracking-[-0.045em] text-[#061a3a] sm:text-3xl">
+                                <p className="text-2xl leading-none font-light tracking-[-0.045em] text-navy sm:text-3xl">
                                   {point.value}
                                 </p>
                                 <p className="mt-2 text-[13px] leading-[1.5] tracking-tight text-neutral-600 sm:mt-3">
@@ -159,7 +159,7 @@ export default function FeaturedWorkSection() {
 
                           <Link
                             href="/#contact"
-                            className="group relative mt-8 flex min-h-14 items-center justify-between overflow-hidden bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
+                            className="group relative mt-8 flex min-h-14 items-center justify-between overflow-hidden bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
                           >
                             <span
                               aria-hidden="true"

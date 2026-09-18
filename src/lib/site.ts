@@ -6,6 +6,19 @@ export const SITE_NAME = "Sofnology Solutions";
 export const DEFAULT_DESCRIPTION =
   "Sofnology builds technically flawless digital products, custom enterprise platforms, and automated workflows that eliminate operational friction.";
 
+export const SITE_EMAIL = "sofnologysolutions@gmail.com";
+export const SITE_LOCALITY = "Dhaka";
+export const SITE_COUNTRY = "BD";
+
+export const OG_IMAGE_ALT =
+  "Sofnology Solutions — custom software, automation, and digital systems";
+export const OG_IMAGE = {
+  url: "/opengraph-image",
+  width: 1200,
+  height: 630,
+  alt: OG_IMAGE_ALT,
+} as const;
+
 /** Public routes for sitemap + internal linking */
 export const SITE_ROUTES: Array<{ path: string; title: string; description: string }> = [
   {

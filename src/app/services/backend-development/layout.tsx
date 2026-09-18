@@ -1,11 +1,6 @@
-import type { Metadata } from "next";
-import { pageMetadata } from "@/lib/metadata";
+import { routeMetadata } from "@/lib/metadata";
 
-export const metadata: Metadata = pageMetadata({
-  title: "Backend Development",
-  description: "APIs, services, and data systems that keep products reliable under load.",
-  path: "/services/backend-development",
-});
+export const metadata = routeMetadata("/services/backend-development");
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return children;

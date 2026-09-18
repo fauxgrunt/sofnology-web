@@ -1,468 +1,15 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
-import SectionIntro from "@/components/sections/SectionIntro";
+import { InteriorPage, SplitStackedHero } from "@/components/interior";
+import { techStack, faqs, hero, cta, related, sticky, contact, methodology, LIME, DEEP } from "@/content/services/quality-assurance";
 
-const LIME = "#C7FF3D";
-const DEEP = "#101413";
-const SOFT = "#E8FF9A";
-const PRIMARY_CTA = "Book a QA discovery call";
-
-const HERO_IMAGE = "/qa-hero.jpg";
-const CTA_IMAGE = "/qa-cta.jpg";
-
-const spotlightCapabilities = [
-  {
-    title: "Mobile testing",
-    description:
-      "iOS, Android, and cross-platform apps checked for stress, load, performance, connectivity, conformance, and interruption paths — so launches hold up outside the lab.",
-  },
-  {
-    title: "Test automation",
-    description:
-      "Automated coverage for web, mobile, and desktop flows that shortens feedback loops, protects regressions, and keeps release cadence realistic as the product grows.",
-  },
-];
-
-const processSteps = [
-  {
-    title: "Test strategy development",
-    description:
-      "Define scope, techniques, environments, and ownership with your team, then set a schedule that supports real release goals — not a generic checklist.",
-  },
-  {
-    title: "Test case design",
-    description:
-      "Build cases that expose gaps early: critical journeys, edge conditions, integrations, and the risks most likely to block users or revenue.",
-  },
-  {
-    title: "Test implementation",
-    description:
-      "Execute the plan, share clear findings, and recommend what to fix first so engineering can act while context is still fresh.",
-  },
-  {
-    title: "Defect management",
-    description:
-      "Track defects end to end, confirm fixes, and run regression checks so resolved issues stay resolved after the next change lands.",
-  },
-  {
-    title: "Result reporting",
-    description:
-      "Deliver a practical summary: what was covered, what remains open, residual risk, and recommended next steps for the release.",
-  },
-];
-
-const methodology = [
-  {
-    title: "Practical growth mindset",
-    description:
-      "QA as product leverage — not a late gate. Close to deadlines, release pressure, and the decisions your business needs to make.",
-  },
-  {
-    title: "Domain-aware testing",
-    description:
-      "Plans that account for payments, operations, regulated workflows, and the failure modes that matter in your industry.",
-  },
-  {
-    title: "Transparent, secure execution",
-    description:
-      "Clear progress and risk visibility. Sensitive tests run in controlled environments with access discipline built in.",
-  },
-];
-
-const testingTypes = [
-  {
-    title: "Manual testing",
-    description:
-      "Explore the product as a real user would — catching issues automation often misses in flow, clarity, and unexpected edge behavior.",
-  },
-  {
-    title: "Security testing",
-    description:
-      "Probe for exposure points, weak access paths, and compliance-sensitive gaps so security issues surface before release, not after incidents.",
-  },
-  {
-    title: "Functional testing",
-    description:
-      "Validate business logic under realistic conditions and confirm the product behaves the way stakeholders and users expect.",
-  },
-  {
-    title: "Usability testing",
-    description:
-      "Review journeys for clarity, accessibility, and friction so the product is usable — not just technically correct.",
-  },
-  {
-    title: "Compatibility testing",
-    description:
-      "Confirm behavior across browsers, devices, and OS combinations that matter to your audience, not an endless matrix.",
-  },
-];
-
-const techStack = [
-  {
-    category: "Continuous integration",
-    items: ["GitHub Actions", "GitLab CI", "Jenkins", "Azure DevOps"],
-  },
-  {
-    category: "Performance testing",
-    items: ["Apache JMeter", "k6", "LoadRunner-ready setups"],
-  },
-  {
-    category: "Tools and frameworks",
-    items: ["Playwright", "Selenium", "Cypress", "Appium", "Cucumber", "JUnit", "NUnit", "SoapUI"],
-  },
-  {
-    category: "Reporting",
-    items: ["Allure", "ReportPortal-ready setups", "Custom dashboards"],
-  },
-];
-
-const relatedLinks = [
-  {
-    title: "Software development",
-    href: "/services/software-development",
-    description: "Build and ship product with quality designed into delivery.",
-  },
-  {
-    title: "DevOps",
-    href: "/services/devops",
-    description: "Wire automated checks into CI/CD so feedback arrives early.",
-  },
-  {
-    title: "Cybersecurity",
-    href: "/services/cybersecurity",
-    description: "Go deeper on security assessments when risk warrants it.",
-  },
-];
-
-const faqs = [
-  {
-    question: "When should QA start on a project?",
-    answer:
-      "As early as practical. Strategy and case design during requirements or early builds catch expensive defects before they harden into architecture and release risk.",
-  },
-  {
-    question: "Do you only do test automation?",
-    answer:
-      "No. Automation is a core capability, but we also cover manual exploration, usability, compatibility, and security-focused checks where they add the most value.",
-  },
-  {
-    question: "Can you plug into our existing pipeline?",
-    answer:
-      "Yes. We prefer integrating with the tools and CI setup you already run, then improving coverage and reporting where gaps are slowing releases.",
-  },
-  {
-    question: "How does Sofnology QA work with development teams?",
-    answer:
-      "As partners inside the delivery loop — sharing findings early, prioritizing by risk, and keeping regression coverage useful as features ship.",
-  },
-];
-
-function QaHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
-          <div className="hidden min-h-[410px] lg:block" />
-
-          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
-            <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
-                QA &amp; testing
-              </h1>
-            </div>
-
-            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Sofnology QA teams examine your product from the ground up — strengths,
-                weak points, and release risk — so you can make clearer decisions and
-                ship with confidence.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <a
-            href="#contact-form"
-            className="tap-press group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#101413] md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
-            style={{ backgroundColor: LIME }}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/40 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10 max-w-[14rem] leading-tight md:max-w-[16rem]">
-              {PRIMARY_CTA}
-            </span>
-            <span className="relative z-10 lg:mt-1 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-
-          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            <Image
-              src={HERO_IMAGE}
-              alt="Abstract quality assurance visual with lime glass geometry"
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-              className="scale-[1.06] object-cover object-[72%_42%]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute right-[6%] bottom-0 hidden h-[68%] w-[34%] bg-[#f4f4f4] lg:block"
-              style={{
-                clipPath: "polygon(34% 0, 100% 0, 100% 100%, 0 100%)",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function SpotlightSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="Take quality assurance further"
-          lede="Seasoned engineers treat QA as part of delivery — best-in-class functionality, realistic deadlines, and coverage that matches how your product is actually used."
-          scale="large"
-          minHeight={200}
-          padding="roomy"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {spotlightCapabilities.map((item, index) => {
-            const isActive = active === index;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`min-h-[240px] cursor-pointer border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-16 ${
-                  index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-                } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
-              >
-                <motion.div
-                  className="mb-7 h-1 origin-left"
-                  style={{ backgroundColor: DEEP }}
-                  initial={false}
-                  animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: motionEase }}
-                />
-                <h3 className="text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
-                  {item.title}
-                </h3>
-                <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                  {item.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProcessSection() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
-      <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="min-h-[320px] border-b border-white/14 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]">
-          <motion.div
-            className="max-w-3xl lg:px-16"
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.55, ease: motionEase }}
-          >
-            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
-              Quality from the start
-            </h2>
-            <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-white/72">
-              Earlier defects. Clearer release risk. QA engineers join early so testing
-              shapes the build — not just the final week.
-            </p>
-          </motion.div>
-        </div>
-
-        <div>
-          {processSteps.map((step, index) => {
-            const isActive = activeStep === index;
-
-            return (
-              <article
-                key={step.title}
-                onClick={() => setActiveStep(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActiveStep(index);
-
-                }}
-                onFocus={() => setActiveStep(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[260px] text-[#101413]" : "min-h-[72px] text-white"}`}
-                style={{ backgroundColor: isActive ? SOFT : DEEP }}
-              >
-                <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
-                  <span
-                    className={`text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl ${
-                      isActive ? "" : "text-white/55"
-                    }`}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center px-6 py-7 md:px-10 lg:px-14">
-                  <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] md:text-2xl">
-                    {step.title}
-                  </h3>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      isActive ? "mt-6 max-h-44 opacity-100" : "mt-0 max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="max-w-3xl text-[15px] leading-[1.72] tracking-tight opacity-85">
-                      {step.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-
-        <div className="border-t border-white/14">
-          <div className="border-b border-white/14 px-6 py-10 md:px-10 lg:px-16">
-            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white md:text-3xl">
-              How we work quality in
-            </h3>
-            <p className="mt-4 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/65">
-              Clear ownership, useful reporting, and approaches that improve with every
-              release — without another hover-card wall.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3">
-            {methodology.map((item, index) => (
-              <article
-                key={item.title}
-                className={`px-6 py-10 md:px-8 lg:px-10 ${
-                  index > 0 ? "border-t border-white/14 md:border-t-0 md:border-l" : ""
-                }`}
-              >
-                <div className="mb-6 h-1 w-10" style={{ backgroundColor: LIME }} />
-                <h4 className="text-lg leading-tight font-semibold tracking-[-0.035em] text-white">
-                  {item.title}
-                </h4>
-                <p className="mt-5 text-[14px] leading-[1.7] tracking-tight text-white/68">
-                  {item.description}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function TestingTypesSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Testing the limits
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            Coverage shaped around risk — not a wall of test types for its own sake.
-          </p>
-        </div>
-
-        <div>
-          {testingTypes.map((item, index) => {
-            const isActive = active === index;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[background-color,min-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.34fr_0.66fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[170px] bg-white" : "min-h-[96px] hover:bg-white/50"}`}
-              >
-                <div className="flex items-center gap-5 px-6 py-6 md:px-10 lg:px-16">
-                  <span
-                    className="text-[13px] font-semibold tracking-[0.12em] tabular-nums"
-                    style={{ color: isActive ? DEEP : "#a3a3a3" }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="flex items-center px-6 pb-6 md:px-10 md:py-6 lg:px-16">
-                  <p
-                    className={`max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700 transition-opacity duration-400 ${
-                      isActive ? "opacity-100" : "opacity-55 md:opacity-70"
-                    }`}
-                  >
-                    {item.description}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+import { SpotlightSection, ProcessSection, TestingTypesSection } from "./interactive";
 
 function TechStackSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -500,35 +47,73 @@ function TechStackSection() {
   );
 }
 
+function QualityMethodologySection() {
+  return (
+    <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
+      <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
+        <div className="border-t border-white/14">
+          <div className="border-b border-white/14 px-6 py-10 md:px-10 lg:px-16">
+            <h3 className="text-2xl font-semibold tracking-[-0.04em] text-white md:text-3xl">
+              How we work quality in
+            </h3>
+            <p className="mt-4 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-white/65">
+              Clear ownership, useful reporting, and approaches that improve with every
+              release — without another hover-card wall.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3">
+            {methodology.map((item, index) => (
+              <article
+                key={item.title}
+                className={`px-6 py-10 md:px-8 lg:px-10 ${
+                  index > 0 ? "border-t border-white/14 md:border-t-0 md:border-l" : ""
+                }`}
+              >
+                <div className="mb-6 h-1 w-10" style={{ backgroundColor: LIME }} />
+                <h4 className="text-lg leading-tight font-semibold tracking-[-0.035em] text-white">
+                  {item.title}
+                </h4>
+                <p className="mt-5 text-[14px] leading-[1.7] tracking-tight text-white/68">
+                  {item.description}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function QaCtaSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
           <div
             className="flex min-h-[340px] items-start justify-between gap-6 border-b border-neutral-200 px-6 py-10 text-[#101413] md:px-10 lg:min-h-[430px] lg:border-b-0 lg:px-12 xl:px-16"
-            style={{ backgroundColor: LIME }}
+            style={{ backgroundColor: cta.panelBackground }}
           >
             <div className="flex w-full max-w-md flex-col justify-between self-stretch">
               <div>
                 <h2 className="text-3xl leading-[1.08] font-semibold tracking-[-0.05em] md:text-4xl lg:text-[2.75rem]">
-                  Need clearer release confidence?
+                  {cta.title}
                 </h2>
                 <p className="mt-6 text-[15px] leading-[1.72] tracking-tight text-[#101413]/opacity-80">
-                  We’ll help you define the right QA approach, plug into your delivery
-                  rhythm, and make risk visible before it becomes a launch problem.
+                  {cta.lede}
                 </p>
               </div>
 
               <a
                 href="#contact-form"
-                className="group relative mt-12 flex min-h-[72px] w-full items-center justify-between overflow-hidden bg-[#101413] px-5 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-6"
+                className="group relative mt-12 flex min-h-[72px] w-full items-center justify-between overflow-hidden px-5 py-5 text-lg font-semibold tracking-[-0.04em] md:px-6"
+                style={{ backgroundColor: cta.buttonBackground, color: cta.buttonText }}
               >
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                 />
-                <span className="relative z-10 max-w-[15rem] leading-tight">{PRIMARY_CTA}</span>
+                <span className="relative z-10 max-w-[15rem] leading-tight">{cta.ctaLabel}</span>
                 <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                   <ArrowUpRightIcon />
                 </span>
@@ -538,8 +123,8 @@ function QaCtaSection() {
 
           <div className="relative min-h-[340px] overflow-hidden lg:min-h-[430px]">
             <Image
-              src={CTA_IMAGE}
-              alt="Quality assurance abstract CTA visual with glass phone frame"
+              src={cta.image}
+              alt={cta.imageAlt}
               fill
               sizes="(max-width: 1024px) 100vw, 62vw"
               className="scale-[1.08] object-cover object-[40%_55%]"
@@ -551,40 +136,46 @@ function QaCtaSection() {
   );
 }
 
-
-
-
-
 export default function QualityAssurancePage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <QaHero />
-        <div className="content-rail">
-          <SpotlightSection />
-          <ProcessSection />
-          <TestingTypesSection />
-          <TechStackSection />
-          <QaCtaSection />
-          <FaqSection faqs={faqs} signColor={DEEP} variant="roomy" />
-          <RelatedSection
-            heading="Related Sofnology work"
-            links={relatedLinks}
-            variant="list"
-            columns={3}
-            actionColor={DEEP}
-          />
-          <ContactSection showIntro={false} accent="lime" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label={PRIMARY_CTA}
-        backgroundColor={LIME}
-        textColor={"#101413"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <SplitStackedHero
+          layout="cta-first"
+          title={hero.title}
+          lede={hero.lede}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          wedge="compact"
+          sheen="wash"
+          ctaMaxWidth={hero.ctaMaxWidth}
+        />
+      }
+    >
+      <SpotlightSection />
+      <ProcessSection />
+      <QualityMethodologySection />
+      <TestingTypesSection />
+      <TechStackSection />
+      <QaCtaSection />
+      <FaqSection faqs={faqs.items} signColor={faqs.signColor} variant={faqs.variant} />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
+        variant={related.variant}
+        columns={related.columns}
+        titleSize={related.titleSize}
       />
-      <Footer />
-    </>
+    </InteriorPage>
   );
 }

@@ -26,7 +26,7 @@ const startingPoints = [
 
 export default function StartYourGrowthSection() {
   return (
-    <section id="start-your-growth" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="start-your-growth" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
@@ -44,17 +44,17 @@ export default function StartYourGrowthSection() {
             <Link
               key={point.title}
               href="/#contact"
-              className={`group relative flex min-h-0 flex-col overflow-hidden border-neutral-200 bg-[#f4f4f4] px-5 py-8 text-neutral-950 transition-colors duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] sm:min-h-[240px] sm:px-6 sm:py-9 md:min-h-[280px] md:px-10 lg:px-12 ${
+              className={`group relative flex min-h-0 flex-col overflow-hidden border-neutral-200 bg-page px-5 py-8 text-neutral-950 transition-colors duration-expand ease-motion sm:min-h-[240px] sm:px-6 sm:py-9 md:min-h-[280px] md:px-10 lg:px-12 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
             >
               <span
                 aria-hidden="true"
-                className="absolute inset-0 origin-left scale-x-0 bg-[#061a3a] transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-visible:scale-x-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100"
+                className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-expand ease-motion group-focus-visible:scale-x-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100"
               />
               <span
                 aria-hidden="true"
-                className="cta-sheen absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/12 opacity-0 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-focus-visible:left-[120%] group-focus-visible:opacity-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:left-[120%] [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100"
+                className="cta-sheen absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/12 opacity-0 transition-all duration-sheen ease-motion group-focus-visible:left-[120%] group-focus-visible:opacity-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:left-[120%] [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100"
               />
 
               <div className="relative z-10 flex items-start justify-between gap-8">
@@ -74,7 +74,7 @@ export default function StartYourGrowthSection() {
 
           <Link
             href="/#contact"
-            className="tap-press group relative col-span-1 flex min-h-24 items-center justify-between overflow-hidden border-t border-neutral-200 bg-gradient-to-r from-[#0b2a5b] via-[#16457f] to-[#0b2a5b] px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white md:col-span-2 md:px-10 lg:px-12"
+            className="tap-press group relative col-span-1 flex min-h-24 items-center justify-between overflow-hidden border-t border-neutral-200 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white md:col-span-2 md:px-10 lg:px-12"
           >
             <span
               aria-hidden="true"

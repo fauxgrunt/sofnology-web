@@ -1,333 +1,15 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
-import Image from "next/image";
-import { ArrowUpRightIcon } from "@/components/icons";
-import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
 import SectionIntro from "@/components/sections/SectionIntro";
+import { InteriorPage, SplitImageCta, SplitStackedHero } from "@/components/interior";
+import { SKY, DEEP, vendorFactors, platforms, techStack, faqs, hero, cta, related, sticky, contact } from "@/content/services/cloud-consulting";
 
-const SKY = "#0EA5E9";
-const DEEP = "#0C4A6E";
-const SOFT = "#E0F2FE";
-const PRIMARY_CTA = "Book a cloud discovery call";
-
-const HERO_IMAGE = "/cloud-hero.jpg";
-const MID_IMAGE = "/cloud-mid.jpg";
-const CTA_IMAGE = "/cloud-cta.jpg";
-
-const benefits = [
-  {
-    title: "Navigate digital transformation",
-    description:
-      "Use cloud as a practical lever for products and operations — not a vague modernization slogan.",
-  },
-  {
-    title: "Address migration risk",
-    description:
-      "Plan dependencies, data moves, and cutover paths so downtime and integrity issues stay contained.",
-  },
-  {
-    title: "Security and compliance posture",
-    description:
-      "Build encryption, identity, governance, and evidence into the design — not as an afterthought.",
-  },
-  {
-    title: "Choose the right vendor mix",
-    description:
-      "Compare AWS, Azure, GCP, or hybrid options against performance, cost, lock-in, and team capacity.",
-  },
-  {
-    title: "Maximize performance and cost",
-    description:
-      "Tune configuration, resources, and architecture so spend tracks value instead of sprawl.",
-  },
-];
-
-const consultingServices = [
-  {
-    title: "Cloud strategy consulting",
-    description:
-      "Review infrastructure, apps, and workflows, then shape an actionable roadmap from first implementation through later optimization — including when serverless fits.",
-  },
-  {
-    title: "Cloud app development consulting",
-    description:
-      "Advise on designing and refining cloud-based apps: model choice (IaaS, PaaS, SaaS), deployment approach, resource use, and scalable architecture decisions.",
-  },
-  {
-    title: "Cloud migration consulting",
-    description:
-      "Plan moves to public, hybrid, or multi-cloud with clear dependency mapping, data strategy, and risk controls for a smoother cutover.",
-  },
-  {
-    title: "Cloud security advisory",
-    description:
-      "Guide governance, access, and compliance practices suited to your domain so cloud surfaces stay defensible as they grow.",
-  },
-  {
-    title: "Infrastructure assessment and optimization",
-    description:
-      "Find waste and bottlenecks, improve utilization, and strengthen continuity with disaster recovery and workload adaptability.",
-  },
-  {
-    title: "Training and change management",
-    description:
-      "Equip your team to operate what you build — so the cloud estate stays maintainable as standards and demand change.",
-  },
-];
-
-const vendorFactors = [
-  {
-    title: "Technology roadmap",
-    description: "Vendor direction should match your longer-term product and platform goals.",
-  },
-  {
-    title: "Security and trust",
-    description: "How data is protected, audited, and controlled in practice — not just on paper.",
-  },
-  {
-    title: "Reliability and performance",
-    description: "Operational quality that customers and internal teams actually feel.",
-  },
-  {
-    title: "Scalability and flexibility",
-    description: "Room to grow and reshape workloads without painful redesigns every quarter.",
-  },
-  {
-    title: "Integration and lock-in",
-    description: "How cleanly services connect today — and how hard exit or multi-cloud would be later.",
-  },
-  {
-    title: "Cost, SLAs, and support",
-    description: "Pricing model, contracts, and migration support that match how you buy and operate.",
-  },
-];
-
-const platforms = [
-  {
-    title: "AWS",
-    description:
-      "Strong breadth for product platforms, data workloads, and teams that want deep service coverage with clear growth paths.",
-  },
-  {
-    title: "Azure",
-    description:
-      "A natural fit when Microsoft estates, identity, and enterprise tooling already sit at the center of operations.",
-  },
-  {
-    title: "Google Cloud",
-    description:
-      "Compelling for data, analytics, and teams that want clean Kubernetes and modern app delivery patterns.",
-  },
-];
-
-const deliverables = [
-  {
-    title: "Cloud assessment and readiness",
-    description: "A clear read on current setup, gaps, and what must change before adoption accelerates.",
-  },
-  {
-    title: "Business-aligned cloud strategy",
-    description: "Documentation that ties cloud work to product, cost, and operating goals.",
-  },
-  {
-    title: "Model and vendor guidance",
-    description: "Practical recommendations on IaaS / PaaS / SaaS and which providers fit best.",
-  },
-  {
-    title: "Migration blueprint",
-    description: "A phased roadmap for moving workloads with controlled risk and visible dependencies.",
-  },
-  {
-    title: "Security framework",
-    description: "A baseline strategy for protecting cloud environments as they expand.",
-  },
-  {
-    title: "Optimization and efficiency plan",
-    description: "Ongoing tactics for cost, performance, and continuous improvement after go-live.",
-  },
-];
-
-const advantages = [
-  {
-    title: "Cost efficiency",
-    description:
-      "Pay for what you use, reduce heavy upfront infrastructure spend, and align cost with real demand.",
-  },
-  {
-    title: "Flexibility",
-    description:
-      "Adjust capacity quickly without waiting on hardware cycles or long procurement loops.",
-  },
-  {
-    title: "Accessibility",
-    description:
-      "Give distributed teams reliable access to systems and data from the devices they already use.",
-  },
-  {
-    title: "Stronger security baseline",
-    description:
-      "Modern identity, encryption, and monitoring patterns that are easier to standardize at scale.",
-  },
-  {
-    title: "Faster time-to-market",
-    description:
-      "Test and ship without hardware constraints — then integrate and update with less friction.",
-  },
-  {
-    title: "Operational resilience",
-    description:
-      "Backup, recovery, and continuity options that reduce the blast radius of outages and incidents.",
-  },
-];
-
-const techStack = [
-  {
-    category: "Cloud providers",
-    items: ["AWS", "Azure", "Google Cloud Platform", "Hybrid and multi-cloud"],
-  },
-  {
-    category: "Serverless",
-    items: ["AWS Lambda", "Azure Functions", "Google Cloud Functions"],
-  },
-  {
-    category: "Containers and orchestration",
-    items: ["Docker", "Kubernetes", "EKS / AKS / GKE", "ECS"],
-  },
-  {
-    category: "Infrastructure as Code",
-    items: ["Terraform", "CloudFormation", "Pulumi-ready setups"],
-  },
-  {
-    category: "CI/CD and delivery",
-    items: ["GitHub Actions", "GitLab CI", "Azure DevOps", "Jenkins"],
-  },
-  {
-    category: "Data and platforms",
-    items: ["Managed databases", "Object storage", "Messaging", "Observability baselines"],
-  },
-];
-
-const relatedLinks = [
-  {
-    title: "DevOps",
-    href: "/services/devops",
-    description: "Pipelines, environments, and delivery mechanics that make cloud changes repeatable.",
-  },
-  {
-    title: "Cybersecurity",
-    href: "/services/cybersecurity",
-    description: "Deeper assessments when cloud risk and compliance need dedicated review.",
-  },
-  {
-    title: "Software development",
-    href: "/services/software-development",
-    description: "Build cloud-ready products with architecture that can actually scale.",
-  },
-];
-
-const faqs = [
-  {
-    question: "Do you recommend one cloud vendor only?",
-    answer:
-      "No. We help you choose AWS, Azure, GCP, or a mix based on workloads, team skills, cost, and lock-in — not a preferred reseller pitch.",
-  },
-  {
-    question: "How is this different from DevOps?",
-    answer:
-      "Cloud consulting focuses on strategy, migration, platforms, and architecture choices. DevOps focuses on how you deliver and operate changes day to day. Many engagements use both.",
-  },
-  {
-    question: "Can you help if we already run in the cloud?",
-    answer:
-      "Yes. Optimization, security posture, cost control, and modernization of existing estates are common starting points.",
-  },
-  {
-    question: "Do you cover serverless?",
-    answer:
-      "Yes — as part of strategy and architecture decisions where event-driven or function-based patterns reduce cost and ops load without creating hidden complexity.",
-  },
-];
-
-function CloudHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
-          <div className="hidden min-h-[410px] lg:block" />
-
-          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
-            <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.1rem]">
-                Cloud consulting services
-              </h1>
-            </div>
-
-            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Cut through cloud complexity with clear advisory across migration,
-                integration, modernization, and cloud-native apps — so performance and
-                cost move in the right direction.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <a
-            href="#contact-form"
-            className="tap-press group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
-            style={{ backgroundColor: DEEP }}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/14 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10 max-w-[15rem] leading-tight md:max-w-[17rem]">
-              {PRIMARY_CTA}
-            </span>
-            <span
-              className="relative z-10 lg:mt-1 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-              style={{ color: SKY }}
-            >
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-
-          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            <Image
-              src={HERO_IMAGE}
-              alt="Surreal cloud consulting visual with ladders reaching into the sky"
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-              className="scale-[1.04] object-cover object-[55%_40%]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute right-[6%] bottom-0 hidden h-[68%] w-[34%] bg-[#f4f4f4] lg:block"
-              style={{
-                clipPath: "polygon(34% 0, 100% 0, 100% 100%, 0 100%)",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
+import { BenefitsSection, ServicesSection, DeliverablesSection, AdvantagesSection } from "./interactive";
 
 function WhyCloudSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[260px] grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="flex items-center border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-b-0 lg:px-16">
@@ -350,151 +32,9 @@ function WhyCloudSection() {
   );
 }
 
-function BenefitsSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Benefits of cloud consulting
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            Expert guidance for cost-effective cloud decisions — whether you are starting
-            fresh or tightening an estate already in flight.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {benefits.map((item, index) => {
-            const isActive = active === index;
-            const isLast = index === benefits.length - 1;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`min-h-[220px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
-                  index % 2 === 1 ? "md:border-l" : ""
-                } ${index % 3 !== 0 ? "lg:border-l" : ""} ${
-                  index > 0 ? "border-t md:border-t-0" : ""
-                } ${index >= 2 ? "md:border-t" : ""} ${index >= 3 ? "lg:border-t" : ""} ${
-                  isLast ? "md:col-span-2 lg:col-span-1" : ""
-                } ${isActive ? "bg-white" : "hover:bg-white/50"}`}
-              >
-                <motion.div
-                  className="mb-6 h-1 origin-left"
-                  style={{ backgroundColor: DEEP }}
-                  initial={false}
-                  animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: motionEase }}
-                />
-                <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
-                  {item.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.65] tracking-tight text-neutral-700">
-                  {item.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServicesSection() {
-  const [openIndex, setOpenIndex] = useState(0);
-
-  return (
-    <section id="services" className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-full lg:border-b-0 lg:border-r">
-            <Image
-              src={MID_IMAGE}
-              alt="Abstract cloud consulting ring on sand with sky"
-              fill
-              sizes="(max-width: 1024px) 100vw, 46vw"
-              className="object-cover object-[45%_50%]"
-            />
-          </div>
-
-          <div className="flex min-h-[520px] flex-col" style={{ backgroundColor: DEEP }}>
-            <div className="border-b border-white/14 px-6 py-12 md:px-10 lg:px-12">
-              <h2 className="max-w-xl text-3xl leading-[1.08] font-semibold tracking-[-0.045em] text-white md:text-4xl">
-                Our cloud consulting services
-              </h2>
-              <p className="mt-6 max-w-xl text-[15px] leading-[1.72] tracking-tight text-white/72">
-                Strategy through migration, security, optimization, and enablement —
-                Cloud Development, Migration, Serverless, and Platforms folded into one
-                coherent offering. For delivery pipelines, continue into DevOps.
-              </p>
-            </div>
-
-            <div className="flex-1">
-              {consultingServices.map((service, index) => {
-                const isOpen = openIndex === index;
-
-                return (
-                  <div
-                    key={service.title}
-                    className={index > 0 ? "border-t border-white/14" : ""}
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenIndex(isOpen ? -1 : index)}
-                      className="flex min-h-[72px] w-full items-center justify-between gap-6 px-6 py-5 text-left transition-colors duration-300 hover:bg-white/5 md:px-10 lg:px-12"
-                      aria-expanded={isOpen}
-                    >
-                      <span className="text-lg font-semibold tracking-[-0.035em] text-white md:text-xl">
-                        {service.title}
-                      </span>
-                      <span className="text-3xl leading-none font-light text-white/70" aria-hidden="true">
-                        {isOpen ? "−" : "+"}
-                      </span>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          key={`${service.title}-body`}
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.35, ease: motionEase }}
-                          className="overflow-hidden"
-                        >
-                          <p className="max-w-2xl px-6 pb-8 text-[15px] leading-[1.72] tracking-tight text-white/70 md:px-10 lg:px-12">
-                            {service.description}
-                          </p>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function VendorSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <SectionIntro
           title="How to choose the right cloud vendor"
@@ -565,195 +105,9 @@ function PlatformsSection() {
   );
 }
 
-function DeliverablesSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Key deliverables
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            Outcomes you can act on — assessment through strategy, migration, security,
-            and continuous improvement.
-          </p>
-        </div>
-
-        <div>
-          {deliverables.map((item, index) => {
-            const isActive = active === index;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[background-color,min-height] duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:grid-cols-[0.34fr_0.66fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[150px] bg-white" : "min-h-[96px] hover:bg-white/50"}`}
-              >
-                <div className="flex items-center gap-5 px-6 py-6 md:px-10 lg:px-16">
-                  <span
-                    className="text-[13px] font-semibold tracking-[0.12em] tabular-nums"
-                    style={{ color: isActive ? DEEP : "#a3a3a3" }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
-                    {item.title}
-                  </h3>
-                </div>
-                <div className="flex items-center px-6 pb-6 md:px-10 md:py-6 lg:px-16">
-                  <p
-                    className={`max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700 transition-opacity duration-400 ${
-                      isActive ? "opacity-100" : "opacity-55 md:opacity-70"
-                    }`}
-                  >
-                    {item.description}
-                  </p>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CloudCtaSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            <Image
-              src={CTA_IMAGE}
-              alt="Cloud consulting CTA visual with geometric stairs and sky"
-              fill
-              sizes="(max-width: 1024px) 100vw, 54vw"
-              className="scale-[1.05] object-cover object-[40%_45%]"
-            />
-          </div>
-
-          <div
-            className="flex min-h-[340px] items-center px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20"
-            style={{ backgroundColor: DEEP }}
-          >
-            <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.1rem]">
-                Considering a move to the cloud?
-              </h2>
-              <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/75">
-                Let Sofnology cloud consultants analyze your needs and design a practical
-                integration strategy your team can own.
-              </p>
-
-              <a
-                href="#contact-form"
-                className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#0C4A6E] md:px-8"
-                style={{ backgroundColor: SKY }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                />
-                <span className="relative z-10 max-w-[16rem] leading-tight">{PRIMARY_CTA}</span>
-                <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                  <ArrowUpRightIcon />
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function AdvantagesSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
-      <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="min-h-[260px] border-b border-white/14 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]">
-          <div className="max-w-3xl lg:px-16">
-            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
-              Six advantages of cloud computing
-            </h2>
-            <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-white/70">
-              Why cloud remains a practical operating choice — when the architecture and
-              governance are done deliberately.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          {advantages.map((item, index) => {
-            const isActive = active === index;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[220px] text-[#0C4A6E]" : "min-h-[72px] text-white"}`}
-                style={{ backgroundColor: isActive ? SOFT : DEEP }}
-              >
-                <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
-                  <span
-                    className={`text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl ${
-                      isActive ? "" : "text-white/50"
-                    }`}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center px-6 py-7 md:px-10 lg:px-14">
-                  <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] md:text-2xl">
-                    {item.title}
-                  </h3>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      isActive ? "mt-6 max-h-40 opacity-100" : "mt-0 max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="max-w-3xl text-[15px] leading-[1.72] tracking-tight opacity-85">
-                      {item.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function TechStackSection() {
   return (
-    <section id="tech-stack" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="tech-stack" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -797,38 +151,60 @@ function TechStackSection() {
 
 export default function CloudConsultingPage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <CloudHero />
-        <div className="content-rail">
-          <WhyCloudSection />
-          <BenefitsSection />
-          <ServicesSection />
-          <VendorSection />
-          <PlatformsSection />
-          <DeliverablesSection />
-          <CloudCtaSection />
-          <AdvantagesSection />
-          <TechStackSection />
-          <FaqSection faqs={faqs} signColor={DEEP} variant="roomy" />
-          <RelatedSection
-            heading="Related Sofnology work"
-            links={relatedLinks}
-            variant="list"
-            columns={3}
-            actionColor={DEEP}
-          />
-          <ContactSection showIntro={false} accent="sky" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label={PRIMARY_CTA}
-        backgroundColor={DEEP}
-        textColor={"#ffffff"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <SplitStackedHero
+          layout="cta-first"
+          title={hero.title}
+          lede={hero.lede}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          wedge="compact"
+          sheen="soft"
+          ctaArrowColor={hero.ctaArrowColor}
+          ctaMaxWidth={hero.ctaMaxWidth}
+          titleClass={hero.titleClass}
+        />
+      }
+    >
+      <WhyCloudSection />
+      <BenefitsSection />
+      <ServicesSection />
+      <VendorSection />
+      <PlatformsSection />
+      <DeliverablesSection />
+      <SplitImageCta
+        title={cta.title}
+        lede={cta.lede}
+        ctaLabel={cta.ctaLabel}
+        panelBackground={cta.panelBackground}
+        buttonBackground={cta.buttonBackground}
+        buttonText={cta.buttonText}
+        image={cta.image}
+        imageAlt={cta.imageAlt}
+        imageClass={cta.imageClass}
+        sheen="wash"
       />
-      <Footer />
-    </>
+      <AdvantagesSection />
+      <TechStackSection />
+      <FaqSection faqs={faqs.items} signColor={faqs.signColor} variant={faqs.variant} />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
+        variant={related.variant}
+        columns={related.columns}
+        titleSize={related.titleSize}
+      />
+    </InteriorPage>
   );
 }

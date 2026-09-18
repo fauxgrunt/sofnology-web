@@ -15,7 +15,7 @@ const trustPoints = [
 
 export default function HeroTrustBridge() {
   return (
-    <section className="border-b border-neutral-200 bg-[#061a3a] text-white">
+    <section className="border-b border-neutral-200 bg-navy text-white">
       <div className="mx-auto grid max-w-[1440px] grid-cols-1 border-x border-white/10 md:grid-cols-3">
         {trustPoints.map((point, index) => (
           <article

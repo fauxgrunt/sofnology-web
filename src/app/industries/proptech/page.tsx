@@ -1,470 +1,18 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
-import { ArrowUpRightIcon } from "@/components/icons";
-import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
+import {
+  InteriorPage,
+  SplitImageCta,
+  SplitStackedHero,
+} from "@/components/interior";
+import { ORANGE, DEEP, MID_IMAGE, hero, cta, iotItems, approachPoints, techStack, related, faqs, sticky, contact } from "@/content/industries/proptech";
 
-/** Proptech orange — distinct from outsourcing #FF6A00 and automotive coral. */
-const ORANGE = "#F97316";
-const DEEP = "#1C1917";
-const PRIMARY_CTA = "Talk about proptech software";
-
-const HERO_IMAGE = "/proptech-hero.jpg";
-const MID_IMAGE = "/proptech-mid.jpg";
-
-const scenarios = [
-  {
-    id: "scale",
-    title: "Scale your proptech engineering team",
-    challenge:
-      "Your platform is growing, but the team can’t keep pace with integrations, tenant load, compliance updates, mobile releases, and infrastructure across high-load property ops.",
-    role: "Sofnology engineers who understand multi-tenant property models, proptech data shapes, and hardware-aware integrations — plugged into your process so delivery keeps moving.",
-    fit: [
-      "Multi-tenant architectures under real load",
-      "Property data models and PMS-adjacent work",
-      "Mobile, integrations, and ops tooling in parallel",
-    ],
-  },
-  {
-    id: "build",
-    title: "Build your proptech product",
-    challenge:
-      "Off-the-shelf property software doesn’t match your asset types, multi-party flows, or legacy connections. You’re ready to build from a validated concept or MVP.",
-    role: "End-to-end delivery — architecture, full-stack engineering, and integrations with your real estate ecosystem, external services, and hardware where needed.",
-    fit: [
-      "Custom platforms from scratch or MVP scale-up",
-      "Marketplace, leasing, and resident products",
-      "Integrations that make the product operable",
-    ],
-  },
-  {
-    id: "modernize",
-    title: "Modernize your property platform",
-    challenge:
-      "The system is years old. Performance is unstable, features ship slowly, and the business wants modern UX and capabilities without freezing live buildings.",
-    role: "Phased modernization that upgrades stacks and architecture while live operations continue — plus mobile, IoT, and AI capabilities when they earn their place.",
-    fit: [
-      "Legacy API and backend re-architecture",
-      "Staged migration without big-bang cutovers",
-      "New capabilities layered onto what already runs",
-    ],
-  },
-];
-
-const solutions = [
-  {
-    title: "Smart building IoT and hardware",
-    description:
-      "Connect property platforms to cameras, access control, sensors, keyless entry, and related devices through stable APIs — with dashboards and centralized device management across portfolios.",
-    points: [
-      "Hardware and building system integrations",
-      "Real-time device status and alerts",
-      "Portfolio-scale configuration and monitoring",
-    ],
-  },
-  {
-    title: "AI-powered real estate platforms",
-    description:
-      "Leasing assistants, automated communications, lead qualification, recommendations, and workflow automation that reduce manual load across the property lifecycle.",
-    points: [
-      "Conversational and leasing workflows",
-      "Ops automation where it improves conversion",
-      "Practical AI — not a feature sticker",
-    ],
-  },
-  {
-    title: "Data and analytics platforms",
-    description:
-      "A unified layer for property, financial, and building data — so operators and investors work from one source of truth with live analytics and portfolio insight.",
-    points: [
-      "Centralized property and ops data",
-      "Investment and performance dashboards",
-      "Pipelines that stay maintainable",
-    ],
-  },
-  {
-    title: "Property management and tenant platforms",
-    description:
-      "Software for rent, leases, maintenance, tenant communication, and amenity booking — the day-to-day operating system of a property business.",
-    points: [
-      "Lease and rent administration",
-      "Maintenance and resident messaging",
-      "Amenity and events workflows",
-    ],
-  },
-  {
-    title: "Real estate marketplaces",
-    description:
-      "Platforms that connect buyers, sellers, agents, and operators — search, transactions, compliance hooks, and mobile where the market expects it.",
-    points: [
-      "Marketplace architecture",
-      "Search, filter, and transaction flows",
-      "Mobile and compliance-ready paths",
-    ],
-  },
-];
-
-const iotItems = [
-  {
-    title: "Access and security",
-    description: "Keyless entry, cameras, and access-control systems tied into resident and operator workflows.",
-  },
-  {
-    title: "Building sensors",
-    description: "IoT telemetry into analytics, alerts, and operational dashboards for smarter building management.",
-  },
-  {
-    title: "Secure key and device ops",
-    description: "Device management patterns that keep hardware, identity, and property software in sync.",
-  },
-];
-
-const approachPoints = [
-  {
-    title: "Compliance-aware design",
-    description:
-      "Workflows and data handling shaped with real estate and privacy expectations in mind — Fair Housing awareness, GDPR/CCPA-ready patterns, and auditability where it matters.",
-  },
-  {
-    title: "Security as default",
-    description:
-      "Access control, secure storage, and operational discipline for platforms that hold resident, payment, and building data.",
-  },
-  {
-    title: "Multi-tenant by design",
-    description:
-      "Architectures that hold up when properties, tenants, and integrations multiply — not single-building demos.",
-  },
-  {
-    title: "Live-ops modernization",
-    description:
-      "Phased upgrades so property managers and residents keep working while the platform improves underneath.",
-  },
-];
-
-const techStack = [
-  {
-    category: "Product engineering",
-    items: ["React", "TypeScript", "Node.js", "Python", ".NET", "Java"],
-  },
-  {
-    category: "Mobile",
-    items: ["React Native", "Swift", "Kotlin"],
-  },
-  {
-    category: "IoT and hardware",
-    items: ["AWS IoT", "Access control APIs", "Sensors", "Video and streaming"],
-  },
-  {
-    category: "Data",
-    items: ["PostgreSQL", "MongoDB", "Elasticsearch", "ETL pipelines"],
-  },
-  {
-    category: "Integrations",
-    items: ["MLS / IDX", "PMS systems", "Stripe", "Salesforce", "GraphQL"],
-  },
-  {
-    category: "Delivery",
-    items: ["Docker", "Kubernetes", "Terraform", "CI/CD"],
-  },
-];
-
-const relatedLinks = [
-  {
-    title: "Dedicated teams",
-    href: "/engagement/dedicated-teams",
-    description: "A lasting pod when proptech roadmaps run for years, not one release.",
-  },
-  {
-    title: "Staff augmentation",
-    href: "/engagement/staff-augmentation",
-    description: "Add proptech-ready engineers into your existing delivery cadence.",
-  },
-  {
-    title: "Cloud consulting",
-    href: "/services/cloud-consulting",
-    description: "Platform and migration advice for high-load property backends.",
-  },
-  {
-    title: "Ecommerce",
-    href: "/industries/ecommerce",
-    description: "Marketplace and transaction craft when listing and checkout matter.",
-  },
-];
-
-const faqs = [
-  {
-    question: "Do you build proptech platforms from scratch?",
-    answer:
-      "Yes. We support discovery through architecture, build, integrations, launch, and ongoing scaling — whether you’re forming an MVP or replacing a constrained off-the-shelf stack.",
-  },
-  {
-    question: "Can you integrate cameras, locks, and building sensors?",
-    answer:
-      "Yes. Hardware-aware integrations — access control, cameras, sensors, and related devices — are a core part of smart building and resident experience work.",
-  },
-  {
-    question: "Can you modernize a legacy PMS without downtime?",
-    answer:
-      "We use phased migration: re-architect APIs, upgrade frontends and services in stages, and keep property managers and residents productive during the transition.",
-  },
-  {
-    question: "Which engagement model fits proptech best?",
-    answer:
-      "Staff augmentation to fill skill gaps, dedicated teams for long platform evolution, or project outsourcing for a scoped outcome. We’ll help pick based on ownership and timeline.",
-  },
-];
-
-function ProptechHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
-          <div className="hidden min-h-[410px] lg:block" />
-
-          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
-            <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <div>
-                <p className="text-[12px] font-semibold tracking-[0.14em] uppercase text-neutral-500">
-                  Build, scale, and modernize without delivery risk
-                </p>
-                <h1 className="mt-5 max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[3.75rem]">
-                  Real estate software for custom proptech
-                </h1>
-              </div>
-            </div>
-
-            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Sofnology builds and modernizes proptech platforms — AI leasing flows,
-                smart building ops, resident experiences, property management, and
-                IoT-enabled infrastructure — with architecture that holds under real
-                portfolio load.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <a
-            href="#contact-form"
-            className="tap-press group relative flex min-h-[72px] items-center justify-between gap-6 overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-[#1C1917] md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:border-b-0 lg:px-8 lg:py-8 xl:px-12"
-            style={{ backgroundColor: ORANGE }}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/30 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10 max-w-[14rem] leading-tight md:max-w-[16rem]">
-              {PRIMARY_CTA}
-            </span>
-            <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1">
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-
-          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            <Image
-              src={HERO_IMAGE}
-              alt="Abstract proptech skyline of glass and lime geometric forms on green hills"
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-              className="scale-[1.05] object-cover object-[48%_42%]"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute right-[6%] bottom-0 hidden h-[68%] w-[34%] bg-[#f4f4f4] lg:block"
-              style={{
-                clipPath: "polygon(34% 0, 100% 0, 100% 100%, 0 100%)",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ScenariosSection() {
-  const [active, setActive] = useState(0);
-  const scenario = scenarios[active];
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Engagement scenarios we support
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            Scale capacity, build a custom product, or modernize what already runs —
-            pick the path that matches ownership and urgency.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 border-b border-neutral-200 md:grid-cols-3">
-          {scenarios.map((item, index) => {
-            const isActive = active === index;
-
-            return (
-              <button
-                key={item.id}
-                type="button"
-                onClick={() => setActive(index)}
-                className={`min-h-[100px] border-neutral-200 px-6 py-6 text-left text-lg font-semibold tracking-[-0.04em] transition-colors duration-300 md:px-8 ${
-                  index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-                } ${isActive ? "bg-white text-neutral-950" : "text-neutral-500 hover:bg-white/50"}`}
-              >
-                <span
-                  className="mb-3 block h-1 w-10"
-                  style={{ backgroundColor: isActive ? ORANGE : "#d4d4d4" }}
-                />
-                {item.title}
-              </button>
-            );
-          })}
-        </div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={scenario.id}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35, ease: motionEase }}
-            className="grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]"
-          >
-            <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:border-b-0 lg:border-r lg:px-16">
-              <p className="text-[12px] font-semibold tracking-[0.14em] uppercase text-neutral-500">
-                Your challenge
-              </p>
-              <p className="mt-4 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-                {scenario.challenge}
-              </p>
-            </div>
-            <div className="px-6 py-12 md:px-10 lg:px-16">
-              <p className="text-[12px] font-semibold tracking-[0.14em] uppercase" style={{ color: ORANGE }}>
-                Sofnology’s role
-              </p>
-              <p className="mt-4 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-                {scenario.role}
-              </p>
-              <ul className="mt-8 space-y-3 border-t border-neutral-200 pt-8">
-                {scenario.fit.map((line) => (
-                  <li
-                    key={line}
-                    className="text-[15px] leading-[1.55] tracking-tight text-neutral-800"
-                  >
-                    {line}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-    </section>
-  );
-}
-
-function SolutionsSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Custom real estate solutions we develop
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            From smart buildings and AI leasing to PMS, analytics, and marketplaces —
-            shaped for how property businesses actually operate.
-          </p>
-        </div>
-
-        <div>
-          {solutions.map((item, index) => {
-            const isOpen = active === index;
-
-            return (
-              <div
-                key={item.title}
-                className={index > 0 ? "border-t border-neutral-200" : ""}
-              >
-                <button
-                  type="button"
-                  onClick={() => setActive(isOpen ? -1 : index)}
-                  className={`flex w-full items-start justify-between gap-6 px-6 py-7 text-left transition-colors duration-300 md:px-10 lg:px-16 ${
-                    isOpen ? "bg-white" : "hover:bg-white/45"
-                  }`}
-                  aria-expanded={isOpen}
-                >
-                  <div className="flex gap-5 md:gap-8">
-                    <span
-                      className="text-[13px] font-semibold tracking-[0.12em] tabular-nums"
-                      style={{ color: isOpen ? ORANGE : "#a3a3a3" }}
-                    >
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="text-xl font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
-                      {item.title}
-                    </h3>
-                  </div>
-                  <span className="text-3xl leading-none font-light text-neutral-400" aria-hidden="true">
-                    {isOpen ? "−" : "+"}
-                  </span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`${item.title}-body`}
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.35, ease: motionEase }}
-                      className="overflow-hidden bg-white"
-                    >
-                      <div className="grid grid-cols-1 gap-8 px-6 pb-10 md:grid-cols-[0.55fr_0.45fr] md:px-10 lg:px-16 lg:pl-[calc(2rem+3.5rem)]">
-                        <p className="max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                          {item.description}
-                        </p>
-                        <ul className="space-y-3">
-                          {item.points.map((point) => (
-                            <li
-                              key={point}
-                              className="border-b border-neutral-200 pb-3 text-[14px] tracking-tight text-neutral-600 last:border-b-0"
-                            >
-                              {point}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+import { ScenariosSection, SolutionsSection } from "./interactive";
 
 function AiSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
           <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">
@@ -543,7 +91,7 @@ function IotSection() {
 
 function ApproachSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -580,7 +128,7 @@ function ApproachSection() {
 
 function TechStackSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -618,89 +166,55 @@ function TechStackSection() {
   );
 }
 
-function ProptechCtaSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            <Image
-              src={HERO_IMAGE}
-              alt="Proptech abstract landscape with glass architectural forms"
-              fill
-              sizes="(max-width: 1024px) 100vw, 54vw"
-              className="scale-[1.08] object-cover object-[62%_55%]"
-            />
-          </div>
-
-          <div
-            className="flex min-h-[340px] items-center px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20"
-            style={{ backgroundColor: DEEP }}
-          >
-            <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3rem]">
-                Ready to build better proptech software?
-              </h2>
-              <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/75">
-                Tell us whether you need to scale the team, ship a new product, or
-                modernize a live platform — we’ll help shape a practical path.
-              </p>
-
-              <a
-                href="#contact-form"
-                className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#1C1917] md:px-8"
-                style={{ backgroundColor: ORANGE }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/30 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                />
-                <span className="relative z-10 max-w-[16rem] leading-tight">{PRIMARY_CTA}</span>
-                <span className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                  <ArrowUpRightIcon />
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 export default function ProptechPage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <ProptechHero />
-        <div className="content-rail">
-          <ScenariosSection />
-          <SolutionsSection />
-          <AiSection />
-          <IotSection />
-          <ApproachSection />
-          <TechStackSection />
-          <ProptechCtaSection />
-          <FaqSection faqs={faqs} signColor={DEEP} />
-          <RelatedSection
-            heading="Related Sofnology work"
-            links={relatedLinks}
-            accent={ORANGE}
-            actionColor={DEEP}
-            actionLabel="View"
-            titleSize="md"
-          />
-          <ContactSection showIntro={false} accent="orange" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label={PRIMARY_CTA}
-        backgroundColor={ORANGE}
-        textColor={"#1C1917"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <SplitStackedHero
+          title={hero.title}
+          lede={hero.lede}
+          eyebrow={hero.eyebrow}
+          titleClass={hero.titleClass}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          ctaMaxWidth={hero.ctaMaxWidth}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          wedge="compact"
+        />
+      }
+    >
+      <ScenariosSection />
+      <SolutionsSection />
+      <AiSection />
+      <IotSection />
+      <ApproachSection />
+      <TechStackSection />
+      <SplitImageCta
+        title={cta.title}
+        lede={cta.lede}
+        ctaLabel={cta.ctaLabel}
+        panelBackground={cta.panelBackground}
+        buttonBackground={cta.buttonBackground}
+        buttonText={cta.buttonText}
+        image={cta.image}
+        imageAlt={cta.imageAlt}
+        imageClass={cta.imageClass}
       />
-      <Footer />
-    </>
+      <FaqSection faqs={faqs.items} signColor={faqs.signColor} />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
+        titleSize={related.titleSize}
+      />
+    </InteriorPage>
   );
 }

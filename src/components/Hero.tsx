@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { motionDuration, motionEase } from "@/lib/motion";
+import { pageTransition } from "@/lib/motion";
 
 const proof = [
   "Senior-led delivery",
@@ -18,21 +18,21 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative overflow-hidden border-b border-neutral-200 bg-[#f4f4f4] text-neutral-900"
+      className="relative overflow-hidden border-b border-neutral-200 bg-page text-neutral-900"
     >
       <div className="grid grid-cols-1 lg:min-h-[760px] lg:grid-cols-2 lg:items-stretch xl:min-h-[820px]">
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+          initial={false}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: motionDuration.page + 0.08, ease: motionEase }}
+          transition={pageTransition}
           className="flex flex-col border-r border-neutral-200 px-5 pt-6 pb-7 sm:px-6 sm:pt-7 sm:pb-8 md:px-12 lg:min-h-[760px] lg:justify-between lg:px-[clamp(2rem,5vw,6rem)] lg:pt-12 lg:pb-16 xl:min-h-[820px]"
         >
           <div>
             {/* Brand is hero-level on every viewport — not nav-only */}
-            <p className="font-nav text-[1.65rem] leading-none font-semibold tracking-[-0.045em] text-[#061a3a] sm:text-[1.85rem] lg:text-[2.15rem]">
+            <p className="font-nav text-[1.65rem] leading-none font-semibold tracking-[-0.045em] text-navy sm:text-[1.85rem] lg:text-[2.15rem]">
               Sofnology
             </p>
-            <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] text-[#061a3a]/75 uppercase sm:mt-4 sm:text-[12px]">
+            <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] text-navy/75 uppercase sm:mt-4 sm:text-[12px]">
               Clarity through Technology
             </p>
           </div>
@@ -51,7 +51,7 @@ export default function Hero() {
             <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
               <Link
                 href="/#contact"
-                className="tap-press group relative flex min-h-[3.25rem] flex-1 items-center justify-between overflow-hidden bg-[#061a3a] px-5 py-3.5 text-[12px] font-semibold tracking-wider text-white uppercase sm:min-h-14 sm:max-w-md sm:px-6 sm:py-4 sm:text-[11px]"
+                className="tap-press group relative flex min-h-[3.25rem] flex-1 items-center justify-between overflow-hidden bg-navy px-5 py-3.5 text-[12px] font-semibold tracking-wider text-white uppercase sm:min-h-14 sm:max-w-md sm:px-6 sm:py-4 sm:text-[11px]"
               >
                 <span
                   aria-hidden="true"
@@ -64,7 +64,7 @@ export default function Hero() {
               </Link>
               <Link
                 href="/#expertise"
-                className="tap-press inline-flex min-h-11 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-[#061a3a] uppercase transition-colors duration-300 sm:min-h-14 [@media(hover:hover)_and_(pointer:fine)]:hover:border-[#061a3a] [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60"
+                className="tap-press inline-flex min-h-11 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-navy uppercase transition-colors duration-chrome ease-motion sm:min-h-14 [@media(hover:hover)_and_(pointer:fine)]:hover:border-navy [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60"
               >
                 Explore services
               </Link>
@@ -74,11 +74,11 @@ export default function Hero() {
               {proof.map((item) => (
                 <li
                   key={item}
-                  className="flex min-h-9 items-center gap-3 text-[13px] font-medium tracking-tight text-[#061a3a]"
+                  className="flex min-h-9 items-center gap-3 text-[13px] font-medium tracking-tight text-navy"
                 >
                   <span
                     aria-hidden="true"
-                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#061a3a]"
+                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-navy"
                   />
                   {item}
                 </li>
@@ -93,7 +93,7 @@ export default function Hero() {
                 >
                   <span
                     aria-hidden="true"
-                    className="h-1 w-1 shrink-0 rounded-full bg-[#061a3a]"
+                    className="h-1 w-1 shrink-0 rounded-full bg-navy"
                   />
                   {item}
                 </li>
@@ -103,17 +103,16 @@ export default function Hero() {
         </motion.div>
 
         <motion.div
-          initial={reduceMotion ? false : { opacity: 0, scale: 0.98 }}
+          initial={false}
           animate={{ opacity: 1, scale: 1 }}
           transition={{
-            duration: motionDuration.page + 0.12,
+            ...pageTransition,
             delay: reduceMotion ? 0 : 0.08,
-            ease: motionEase,
           }}
           className="relative aspect-[5/3] w-full overflow-hidden sm:aspect-[16/10] md:aspect-auto md:min-h-[480px] lg:min-h-[760px] xl:min-h-[820px]"
         >
           <Image
-            src="/hero-image2.jpeg"
+            src="/hero.jpg"
             alt="Sofnology engineering team at work"
             fill
             priority
@@ -122,7 +121,7 @@ export default function Hero() {
           />
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-[#061a3a]/25 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-[#061a3a]/10"
+            className="absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-navy/10"
           />
         </motion.div>
       </div>

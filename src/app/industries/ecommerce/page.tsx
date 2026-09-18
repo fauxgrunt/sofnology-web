@@ -1,475 +1,18 @@
-"use client";
-
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
-import Image from "next/image";
-import { ArrowUpRightIcon } from "@/components/icons";
-import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
 import RelatedSection from "@/components/sections/RelatedSection";
 import SectionIntro from "@/components/sections/SectionIntro";
+import {
+  InteriorPage,
+  FullBandCta,
+  SplitStackedHero,
+} from "@/components/interior";
+import { MAGENTA, hero, cta, platforms, related, faqs, sticky, contact } from "@/content/industries/ecommerce";
 
-const MAGENTA = "#FF2D6A";
-const DEEP = "#1A1216";
-const SOFT = "#FFD6E3";
-
-const HERO_IMAGE = "/ecommerce-hero.jpg";
-
-const commercePaths = [
-  {
-    title: "Launch and grow a brand",
-    description:
-      "Build a cohesive storefront experience across web and mobile — clear catalog, checkout, and brand presence from the start.",
-    points: ["Customer journey clarity", "Brand-consistent storefront", "Channel-ready foundations"],
-  },
-  {
-    title: "Enterprise commerce transformation",
-    description:
-      "Modernize complex commerce operations with stronger UX, reliable integrations, and systems that connect CRM, ERP, and fulfillment.",
-    points: ["Platform modernization", "CRM and ERP connections", "Operational continuity"],
-  },
-];
-
-const buildTypes = [
-  {
-    title: "Online stores",
-    description:
-      "Custom storefronts with catalog, cart, checkout, and order flows shaped around your brand and operations.",
-    outcomes: ["Catalog and product pages", "Cart and checkout", "Order confirmation flows"],
-  },
-  {
-    title: "B2B and B2C marketplaces",
-    description:
-      "Multi-seller or multi-buyer platforms with roles, listings, and commerce flows that stay usable as volume grows.",
-    outcomes: ["Seller and buyer roles", "Listing and discovery", "Multi-party order flows"],
-  },
-  {
-    title: "Mobile commerce",
-    description:
-      "Mobile apps and mobile-first experiences that connect to your catalog, accounts, and order systems.",
-    outcomes: ["Mobile storefront", "Account and orders", "Push-ready journeys"],
-  },
-  {
-    title: "Custom commerce platforms",
-    description:
-      "Bespoke commerce products when off-the-shelf platforms can’t carry the complexity you actually need.",
-    outcomes: ["Custom pricing rules", "Complex catalogs", "Owned architecture"],
-  },
-];
-
-const capabilities = [
-  {
-    title: "Checkout and payments",
-    description:
-      "Carts, gateways, wallets, and payment paths designed for conversion and reliable order capture.",
-  },
-  {
-    title: "Catalog and PIM",
-    description:
-      "Product information, categories, and enrichment that keep large catalogs consistent and sellable.",
-  },
-  {
-    title: "Inventory and orders",
-    description:
-      "Stock visibility and order processing synced across channels so operations stay accurate in real time.",
-  },
-  {
-    title: "ERP and CRM integration",
-    description:
-      "Connect planning, finance, customer data, and sales tooling into one workable commerce stack.",
-  },
-  {
-    title: "Fulfillment visibility",
-    description:
-      "Status, shipping, and ops surfaces that help teams and customers see what happens after checkout.",
-  },
-  {
-    title: "Sales and marketing systems",
-    description:
-      "CRM, analytics, and campaign hooks that support retention without fracturing the storefront experience.",
-  },
-];
-
-const deliverySteps = [
-  {
-    title: "Discover",
-    description:
-      "Map catalog complexity, channels, integrations, and the conversion paths that matter most.",
-  },
-  {
-    title: "Shape",
-    description:
-      "Define storefront architecture, checkout flow, and the systems the commerce product must connect to.",
-  },
-  {
-    title: "Build",
-    description:
-      "Ship reviewable increments across storefront, catalog, payments, and operational tooling.",
-  },
-  {
-    title: "Optimize",
-    description:
-      "Refine checkout, performance, and integrations as real traffic and order volume reveal what to improve.",
-  },
-];
-
-const platforms = [
-  {
-    category: "Commerce platforms",
-    items: ["Shopify", "Magento", "Custom storefronts", "Headless commerce"],
-  },
-  {
-    category: "Integrations",
-    items: ["Payment gateways", "ERP connectors", "CRM systems", "Shipping APIs"],
-  },
-];
-
-const relatedServices = [
-  {
-    title: "Web development",
-    description: "Storefronts, portals, and product UIs that carry the customer experience.",
-    href: "/services/web-development",
-  },
-  {
-    title: "Mobile development",
-    description: "Commerce apps and mobile journeys connected to your catalog and orders.",
-    href: "/services/mobile-development",
-  },
-  {
-    title: "Backend development",
-    description: "APIs, catalog services, and order systems behind the storefront.",
-    href: "/services/backend-development",
-  },
-  {
-    title: "Fintech",
-    description: "Payments, wallets, and money movement when checkout needs deeper finance craft.",
-    href: "/industries/fintech",
-  },
-];
-
-const faqs = [
-  {
-    question: "Do you build on Shopify and Magento, or only custom platforms?",
-    answer:
-      "Both. We work with established commerce platforms when they fit, and build custom or headless storefronts when your catalog, pricing, or operations need more control.",
-  },
-  {
-    question: "Can you connect ecommerce to our ERP and CRM?",
-    answer:
-      "Yes. Many engagements include payment, inventory, ERP, and CRM integrations so the storefront is not an island from the rest of the business.",
-  },
-  {
-    question: "Do you help with mobile commerce as well as the website?",
-    answer:
-      "Yes. We build mobile-first storefronts and native or cross-platform commerce apps that share catalog, account, and order foundations with the web experience.",
-  },
-];
-
-function EcommerceHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
-          <div className="hidden min-h-[410px] lg:block" />
-
-          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
-            <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
-                Commerce systems built for conversion and operations
-              </h1>
-            </div>
-
-            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Sofnology builds custom ecommerce solutions for brands, retailers, and
-                platforms — streamlining catalog, order, and payment flows while keeping
-                the shopping experience clear.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Mobile: image first, slim CTA under. Desktop: ink CTA + full-bleed bags (no wedge). */}
-        <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <div className="relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]">
-            <Image
-              src={HERO_IMAGE}
-              alt="Yellow shopping bags on a white conveyor in a minimal 3D ecommerce scene"
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-              className="object-cover object-[center_45%]"
-            />
-          </div>
-
-          <a
-            href="#contact"
-            className="tap-press group relative order-2 flex min-h-[72px] items-center justify-between overflow-hidden border-t border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:min-h-[88px] md:px-10 md:text-xl lg:order-1 lg:min-h-[360px] lg:items-start lg:border-t-0 lg:px-8 lg:py-8 xl:px-12"
-            style={{ backgroundColor: DEEP }}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/10 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10">Get in touch</span>
-            <span
-              className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1"
-              style={{ color: MAGENTA }}
-            >
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PathsSection() {
-  const [activePath, setActivePath] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="The path to ecommerce success"
-          lede="Whether you’re launching a brand or transforming an established commerce operation, the work starts from different constraints."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2">
-          {commercePaths.map((path, index) => {
-            const isActive = activePath === index;
-
-            return (
-              <article
-                key={path.title}
-                onClick={() => setActivePath(index)}
-                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActivePath(index); }}
-                onFocus={() => setActivePath(index)}
-                tabIndex={0}
-                className={`min-h-0 cursor-pointer sm:min-h-[240px] md:min-h-[300px] border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-10 lg:px-14 ${
-                  index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-                } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
-              >
-                <span
-                  className="text-4xl font-light tracking-[-0.08em]"
-                  style={{ color: MAGENTA }}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-6 text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
-                  {path.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                  {path.description}
-                </p>
-                <ul className="mt-8 border-t border-neutral-200">
-                  {path.points.map((point) => (
-                    <li
-                      key={point}
-                      className="border-b border-neutral-200 py-3.5 text-[15px] leading-[1.45] tracking-tight text-neutral-800"
-                    >
-                      {point}
-                    </li>
-                  ))}
-                </ul>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function BuildTypesSection() {
-  const [activeType, setActiveType] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="What we build"
-          lede="Storefronts, marketplaces, mobile commerce, and custom platforms — paired with the backend operations commerce actually needs."
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-[0.38fr_0.62fr]">
-          <div>
-            {buildTypes.map((type, index) => {
-              const isActive = activeType === index;
-
-              return (
-                <button
-                  key={type.title}
-                  type="button"
-                  onClick={() => setActiveType(index)}
-                  onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveType(index); }}
-                  className={`flex min-h-[72px] w-full items-center border-neutral-200 px-6 text-left text-lg font-semibold tracking-[-0.03em] transition-colors duration-300 md:px-10 lg:px-12 ${
-                    index > 0 ? "border-t" : ""
-                  } ${isActive ? "text-white" : "text-neutral-500 hover:bg-white/50 hover:text-neutral-950"}`}
-                  style={{ backgroundColor: isActive ? DEEP : "transparent" }}
-                >
-                  {type.title}
-                </button>
-              );
-            })}
-          </div>
-
-          <div className="border-t border-neutral-200 px-6 py-10 md:px-10 lg:border-t-0 lg:border-l lg:px-14">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={buildTypes[activeType].title}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 6 }}
-                transition={{ duration: 0.3, ease: motionEase }}
-              >
-                <div className="mb-6 h-1 w-12" style={{ backgroundColor: MAGENTA }} />
-                <h3 className="text-3xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
-                  {buildTypes[activeType].title}
-                </h3>
-                <p className="mt-6 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                  {buildTypes[activeType].description}
-                </p>
-                <ul className="mt-8 max-w-md border-t border-neutral-200">
-                  {buildTypes[activeType].outcomes.map((outcome) => (
-                    <li
-                      key={outcome}
-                      className="border-b border-neutral-200 py-3.5 text-[15px] leading-[1.45] tracking-tight text-neutral-800"
-                    >
-                      {outcome}
-                    </li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function CapabilitiesSection() {
-  const [activeCapability, setActiveCapability] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="Custom ecommerce capabilities"
-          lede="The systems behind a store that converts — payments, catalog, inventory, and the integrations that keep operations moving."
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {capabilities.map((item, index) => {
-            const isActive = activeCapability === index;
-
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActiveCapability(index)}
-                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveCapability(index); }}
-                onFocus={() => setActiveCapability(index)}
-                tabIndex={0}
-                className={`min-h-[210px] cursor-pointer border-neutral-200 px-6 py-7 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
-                  index % 2 === 1 ? "md:border-l" : ""
-                } ${index % 3 !== 0 ? "lg:border-l" : ""} ${
-                  index > 0 ? "border-t md:border-t-0" : ""
-                } ${index >= 2 ? "md:border-t" : ""} ${index >= 3 ? "lg:border-t" : ""} ${
-                  isActive ? "bg-white" : "hover:bg-white/50"
-                }`}
-              >
-                <motion.div
-                  className="mb-5 h-1 origin-left"
-                  style={{ backgroundColor: MAGENTA }}
-                  initial={false}
-                  animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: motionEase }}
-                />
-                <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
-                  {item.title}
-                </h3>
-                <motion.p
-                  initial={false}
-                  animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 4 }}
-                  transition={{ duration: 0.35, ease: motionEase }}
-                  className="mt-4 text-[15px] leading-[1.6] tracking-tight text-neutral-700"
-                >
-                  {item.description}
-                </motion.p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function DeliverySection() {
-  const [activeStep, setActiveStep] = useState(1);
-
-  return (
-    <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
-      <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <SectionIntro
-          title="How we deliver commerce"
-          lede="A clear path from discovery to optimization — without staffing theater or interview process pages."
-          tone="dark"
-          padding="roomy"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
-          {deliverySteps.map((step, index) => {
-            const isActive = activeStep === index;
-
-            return (
-              <article
-                key={step.title}
-                onClick={() => setActiveStep(index)}
-                onMouseEnter={() => { if (window.matchMedia("(hover: hover)").matches) setActiveStep(index); }}
-                onFocus={() => setActiveStep(index)}
-                tabIndex={0}
-                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[260px] border-white/14 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-7 lg:px-8 ${
-                  index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-                } ${index >= 2 ? "md:border-t lg:border-t-0" : ""} ${
-                  isActive ? "text-[#1A1216]" : "text-white/70 hover:text-white"
-                }`}
-                style={{ backgroundColor: isActive ? SOFT : "transparent" }}
-              >
-                <span
-                  className="text-4xl font-light tracking-[-0.08em]"
-                  style={{ color: isActive ? DEEP : MAGENTA }}
-                >
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                <h3 className="mt-6 text-xl leading-tight font-semibold tracking-[-0.04em]">
-                  {step.title}
-                </h3>
-                <p
-                  className={`mt-4 text-[14px] leading-[1.6] tracking-tight ${
-                    isActive ? "text-[#1A1216]/80" : "text-white/60"
-                  }`}
-                >
-                  {step.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+import { PathsSection, BuildTypesSection, CapabilitiesSection, DeliverySection } from "./interactive";
 
 function PlatformsSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <SectionIntro
           title="Platforms and integrations"
@@ -507,80 +50,51 @@ function PlatformsSection() {
   );
 }
 
-
-
-function EcommerceCtaSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div
-          className="flex min-h-[340px] items-center px-5 py-9 text-white sm:px-6 sm:py-12 md:py-14 md:px-10 lg:min-h-[400px] lg:px-16 xl:px-20"
-          style={{ backgroundColor: DEEP }}
-        >
-          <div className="w-full max-w-4xl">
-            <div className="mb-8 h-1 w-14" style={{ backgroundColor: MAGENTA }} />
-            <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl">
-              Ready to build commerce that converts?
-            </h2>
-            <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
-              Tell us about the catalog, channels, and operational constraints. We’ll help
-              shape a practical ecommerce path.
-            </p>
-
-            <a
-              href="#contact-form"
-              className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-white md:px-8"
-              style={{ backgroundColor: MAGENTA }}
-            >
-              <span
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-              />
-              <span className="relative z-10">Tell us about your project</span>
-              <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <ArrowUpRightIcon />
-              </span>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-
 export default function EcommercePage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <EcommerceHero />
-        <div className="content-rail">
-          <PathsSection />
-          <BuildTypesSection />
-          <CapabilitiesSection />
-          <DeliverySection />
-          <PlatformsSection />
-          <RelatedSection
-            heading="Related Sofnology work"
-            links={relatedServices}
-            accent={MAGENTA}
-            actionColor={DEEP}
-            actionLabel="View service"
-          />
-          <EcommerceCtaSection />
-          <FaqSection faqs={faqs} signColor={DEEP} />
-          <ContactSection showIntro={false} accent="magenta" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label="Get in touch"
-        backgroundColor={MAGENTA}
-        textColor={"#ffffff"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <SplitStackedHero
+          title={hero.title}
+          lede={hero.lede}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          ctaArrowColor={hero.ctaArrowColor}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          layout="image-first"
+          wedge={false}
+          sheen="soft"
+        />
+      }
+    >
+      <PathsSection />
+      <BuildTypesSection />
+      <CapabilitiesSection />
+      <DeliverySection />
+      <PlatformsSection />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
       />
-      <Footer />
-    </>
+      <FullBandCta
+        title={cta.title}
+        lede={cta.lede}
+        ctaLabel={cta.ctaLabel}
+        panelBackground={cta.panelBackground}
+        buttonBackground={cta.buttonBackground}
+        buttonText={cta.buttonText}
+        ruleColor={MAGENTA}
+      />
+      <FaqSection faqs={faqs.items} signColor={faqs.signColor} />
+    </InteriorPage>
   );
 }

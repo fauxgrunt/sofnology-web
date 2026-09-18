@@ -3,8 +3,8 @@
 @theme {
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   /* Vention navbar face = Aeonik Pro; Satoshi is the closest free neo-grotesk match */
-  --font-nav: "Satoshi", var(--font-plus-jakarta), -apple-system, system-ui, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-nav: var(--font-satoshi), var(--font-plus-jakarta), ui-sans-serif, system-ui,
+    sans-serif;
 
   --color-canvas: #fafafa;
   --color-charcoal: #0f172a;
@@ -12,6 +12,20 @@
   --color-cyan-highlight: #06b6d4;
   --color-accent: #2563eb;
   --color-accent-foreground: #0f172a;
+  --color-navy: #061a3a;
+  --color-navy-mid: #0b2a5b;
+  --color-navy-soft: #d8f3ff;
+  --color-page: #f4f4f4;
+  --color-ink: #111111;
+  --color-azure: #2F6BFF;
+  --ease-motion: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-press: 160ms;
+  --duration-chrome: 280ms;
+  --duration-panel: 240ms;
+  --duration-expand: 500ms;
+  --duration-page: 320ms;
+  --duration-sheen: 800ms;
+  --duration-progress: 240ms;
 }
 
 @layer base {
@@ -28,9 +42,9 @@
     1080→1920: type/spacing lerp with clamp.
   */
   :root {
-    --brand-navy: #061a3a;
-    --brand-navy-mid: #0b2a5b;
-    --brand-canvas: #f4f4f4;
+    --brand-navy: var(--color-navy);
+    --brand-navy-mid: var(--color-navy-mid);
+    --brand-canvas: var(--color-page);
     --fluid-vp-min: 1080;
     --fluid-vp-max: 1920;
     --fs-nav: 15px;
@@ -44,10 +58,14 @@
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-top: env(safe-area-inset-top, 0px);
     --touch-min: 44px;
-    /* Motion language — chrome + route enter */
-    --motion-ease: cubic-bezier(0.16, 1, 0.3, 1);
-    --motion-chrome: 280ms;
-    --motion-page: 320ms;
+    --motion-ease: var(--ease-motion);
+    --motion-press: var(--duration-press);
+    --motion-chrome: var(--duration-chrome);
+    --motion-panel: var(--duration-panel);
+    --motion-expand: var(--duration-expand);
+    --motion-page: var(--duration-page);
+    --motion-sheen: var(--duration-sheen);
+    --motion-progress: var(--duration-progress);
   }
 
   @media (min-width: 480px) {
@@ -167,7 +185,7 @@
   }
 
   :focus-visible {
-    outline: 2px solid #061a3a;
+    outline: 2px solid var(--color-navy);
     outline-offset: 3px;
   }
 }
@@ -212,8 +230,8 @@
     -webkit-tap-highlight-color: transparent;
     touch-action: manipulation;
     transition:
-      transform var(--motion-chrome, 280ms) var(--motion-ease, cubic-bezier(0.16, 1, 0.3, 1)),
-      opacity 160ms ease;
+      transform var(--motion-chrome) var(--motion-ease),
+      opacity var(--motion-press) var(--motion-ease);
   }
 
   @media (hover: none) and (pointer: coarse) {
@@ -286,7 +304,7 @@
       left: 0;
       z-index: 30;
       width: var(--content-rail-width);
-      background: #f4f4f4;
+      background: var(--color-page);
     }
 
     .content-rail > section::before {
@@ -343,7 +361,7 @@
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0 1px;
-    transition: background-size 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    transition: background-size var(--motion-page) var(--motion-ease);
   }
 
   @media (hover: hover) and (pointer: fine) {

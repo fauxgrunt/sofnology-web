@@ -27,11 +27,11 @@ const principles = [
 
 export default function OperatingPrinciples() {
   return (
-    <section id="operating-principles" className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section id="operating-principles" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-2">
           <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-r lg:border-b-0 lg:px-16">
-            <p className="text-[15px] font-semibold tracking-[-0.02em] text-[#061a3a]">
+            <p className="text-[15px] font-semibold tracking-[-0.02em] text-navy">
               How we keep work under control
             </p>
             <h2 className="text-fluid-display mt-4 max-w-xl font-semibold tracking-[-0.045em] text-neutral-950 sm:mt-6">
@@ -58,7 +58,7 @@ export default function OperatingPrinciples() {
                 index > 1 ? "border-t lg:border-t-0" : index > 0 ? "border-t md:border-t-0" : ""
               }`}
             >
-              <span className="text-[11px] font-bold tracking-wider text-[#061a3a] uppercase">
+              <span className="text-[11px] font-bold tracking-wider text-navy uppercase">
                 {principle.eyebrow}
               </span>
               <div className="mt-6 sm:mt-auto">
@@ -74,7 +74,7 @@ export default function OperatingPrinciples() {
         </div>
 
         <div className="grid grid-cols-1 border-t border-neutral-200 lg:grid-cols-[0.8fr_1.2fr]">
-          <div className="border-b border-neutral-200 bg-[#061a3a] px-6 py-10 text-white md:px-10 lg:border-r lg:border-b-0 lg:px-12">
+          <div className="border-b border-neutral-200 bg-navy px-6 py-10 text-white md:px-10 lg:border-r lg:border-b-0 lg:px-12">
             <p className="text-[12px] font-semibold tracking-[0.18em] text-white/55 uppercase">
               Senior-led execution
             </p>

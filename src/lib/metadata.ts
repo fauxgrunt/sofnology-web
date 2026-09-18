@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { DEFAULT_DESCRIPTION, SITE_NAME, SITE_URL } from "@/lib/site";
+import { DEFAULT_DESCRIPTION, OG_IMAGE, SITE_NAME, SITE_ROUTES, SITE_URL } from "@/lib/site";
 
 export function pageMetadata({
   title,
@@ -14,7 +14,8 @@ export function pageMetadata({
   const url = `${SITE_URL}${path === "/" ? "" : path}`;
 
   return {
-    title: absoluteTitle,
+    // Short title — root `title.template` appends the site name once.
+    title,
     description,
     alternates: { canonical: url },
     openGraph: {
@@ -24,11 +25,26 @@ export function pageMetadata({
       siteName: SITE_NAME,
       type: "website",
       locale: "en_US",
+      images: [OG_IMAGE],
     },
     twitter: {
       card: "summary_large_image",
       title: absoluteTitle,
       description,
+      images: [OG_IMAGE],
     },
   };
+}
+
+/** Layouts read from SITE_ROUTES so titles, descriptions, and paths cannot drift. */
+export function routeMetadata(path: string): Metadata {
+  const route = SITE_ROUTES.find((item) => item.path === path);
+  if (!route) {
+    throw new Error(`Unknown route metadata path: ${path}`);
+  }
+  return pageMetadata({
+    title: route.title,
+    description: route.description,
+    path: route.path,
+  });
 }

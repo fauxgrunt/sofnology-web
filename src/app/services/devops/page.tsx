@@ -1,422 +1,13 @@
-"use client";
-
-import { useState } from "react";
-import { motion } from "framer-motion";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
-import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { motionEase } from "@/lib/motion";
 import FaqSection from "@/components/sections/FaqSection";
-import SectionIntro from "@/components/sections/SectionIntro";
+import { InteriorPage, SplitImageCta, SplitStackedHero } from "@/components/interior";
+import { AMBER, techStack, faqs, hero, cta, sticky, contact } from "@/content/services/devops";
 
-const AMBER = "#E8A317";
-const DEEP = "#1C1710";
-const SOFT = "#F3E6C8";
-
-const HERO_IMAGE = "/devops-hero.jpg";
-const CTA_IMAGE = "/devops-cta.jpg";
-
-const devopsServices = [
-  {
-    title: "DevOps strategy advisory",
-    description:
-      "Assess delivery setup, goals, and constraints, then shape a practical roadmap for CI/CD, environments, tooling, and ownership.",
-  },
-  {
-    title: "CI/CD implementation",
-    description:
-      "Set up continuous integration and deployment so changes are validated early and releases rely less on manual steps.",
-  },
-  {
-    title: "Infrastructure as Code",
-    description:
-      "Define environments as code so infrastructure can be created, reviewed, versioned, and reproduced consistently.",
-  },
-  {
-    title: "Cloud and migration support",
-    description:
-      "Plan and support AWS, Azure, or GCP delivery work with attention to reliability, cost, and operational readiness.",
-  },
-  {
-    title: "Pipeline optimization",
-    description:
-      "Find bottlenecks in existing workflows and improve automation so builds, tests, and deployments become repeatable.",
-  },
-  {
-    title: "DevSecOps integration",
-    description:
-      "Fold scanning, access control, and secrets handling into delivery without freezing release speed.",
-  },
-];
-
-const pipelineStages = [
-  {
-    title: "Planning",
-    description:
-      "Clarify goals, delivery bottlenecks, toolchain choices, and a phased roadmap your team can actually execute.",
-  },
-  {
-    title: "Coding and version control",
-    description:
-      "Strengthen branching, reviews, standards, and collaboration so code changes stay visible and manageable.",
-  },
-  {
-    title: "Continuous integration",
-    description:
-      "Automate build and validation so every meaningful change is checked early for quality and breakage.",
-  },
-  {
-    title: "Continuous testing",
-    description:
-      "Wire automated checks into the pipeline so feedback arrives while changes are still cheap to fix.",
-  },
-  {
-    title: "Continuous deployment",
-    description:
-      "Reduce manual release risk with consistent deployment paths, environment parity, and clearer rollback options.",
-  },
-  {
-    title: "Monitoring and improvement",
-    description:
-      "Add visibility into health, failures, and delivery metrics so operations feed the next improvement cycle.",
-  },
-];
-
-const engagementModels = [
-  {
-    title: "DevOps from scratch",
-    pain: "No reliable pipeline yet",
-    description:
-      "Build a first CI/CD foundation, environment structure, and operating rhythm for delivery.",
-  },
-  {
-    title: "Revamp and optimization",
-    pain: "Shipping, but noisy and fragile",
-    description:
-      "Clean up pipelines, reduce failures, improve visibility, and cut unnecessary cloud waste.",
-  },
-  {
-    title: "Embedded DevOps support",
-    pain: "Need capacity without hiring delay",
-    description:
-      "Add focused DevOps help for implementation, handover, and ongoing improvement inside your team.",
-  },
-];
-
-const techStack = [
-  {
-    category: "Cloud",
-    items: ["AWS", "Azure", "Google Cloud", "Hybrid-ready setups"],
-  },
-  {
-    category: "CI/CD",
-    items: ["GitHub Actions", "GitLab CI", "Jenkins", "Azure DevOps"],
-  },
-  {
-    category: "Containers",
-    items: ["Docker", "Kubernetes", "Container registries"],
-  },
-  {
-    category: "Infrastructure as Code",
-    items: ["Terraform", "CloudFormation", "Ansible"],
-  },
-  {
-    category: "Monitoring",
-    items: ["CloudWatch", "Datadog-ready setups", "Prometheus", "Logging baselines"],
-  },
-  {
-    category: "Security in delivery",
-    items: ["SAST/DAST checks", "Secrets management", "Access controls", "Dependency scanning"],
-  },
-];
-
-const faqs = [
-  {
-    question: "Do you support cloud and hybrid setups?",
-    answer:
-      "Yes. We can help with cloud-first delivery, hybrid environments, and practical modernization paths based on what your team already runs.",
-  },
-  {
-    question: "How long does a DevOps engagement usually take?",
-    answer:
-      "A focused CI/CD or environment improvement can take a few weeks. Broader operating-model work usually needs a longer phased roadmap.",
-  },
-  {
-    question: "Will you work with our existing tools?",
-    answer:
-      "Wherever possible, yes. We prefer improving what you already use before introducing a new toolchain, unless the current stack is the bottleneck.",
-  },
-  {
-    question: "How does this connect to cybersecurity?",
-    answer:
-      "DevOps work often includes secure delivery practices. For deeper audits and risk assessments, we can connect that work with Sofnology’s cybersecurity services.",
-  },
-];
-
-function DevOpsHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.36fr_0.64fr]">
-          <div className="hidden min-h-[410px] lg:block" />
-
-          <div className="grid min-h-0 grid-cols-1 px-5 py-10 sm:px-6 sm:py-12 md:min-h-[410px] md:px-10 lg:grid-cols-[0.58fr_0.42fr] lg:px-0 lg:py-0">
-            <div className="flex items-start lg:px-8 lg:py-12 xl:px-12">
-              <h1 className="max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.25rem]">
-                DevOps consulting services
-              </h1>
-            </div>
-
-            <div className="mt-8 flex items-end sm:mt-12 lg:mt-0 lg:px-8 lg:py-12 xl:px-12">
-              <p className="max-w-lg text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                Sofnology helps teams connect development and operations with clearer
-                pipelines, more reliable releases, and practical cloud automation —
-                so delivery gets faster without becoming fragile.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
-          <a
-            href="#contact"
-            className="tap-press group relative flex min-h-[72px] items-center justify-between overflow-hidden border-b border-neutral-200 px-6 py-5 text-lg font-semibold tracking-[-0.04em] text-white md:px-10 md:min-h-[88px] md:px-10 md:text-xl lg:min-h-[360px] lg:items-start lg:py-8 lg:border-b-0 lg:px-8 xl:px-12"
-            style={{ backgroundColor: DEEP }}
-          >
-            <span
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/14 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10">Get in touch</span>
-            <span
-              className="relative z-10 lg:mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
-              style={{ color: AMBER }}
-            >
-              <ArrowUpRightIcon />
-            </span>
-          </a>
-
-          <div className="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]">
-            <Image
-              src={HERO_IMAGE}
-              alt="DevOps pipeline visual with amber accents"
-              fill
-              sizes="(max-width: 1024px) 100vw, 66vw"
-              priority
-              className="object-cover object-center"
-            />
-            <div
-              aria-hidden="true"
-              className="absolute right-[8%] bottom-0 hidden h-[72%] w-[38%] bg-[#f4f4f4] lg:block"
-              style={{
-                clipPath: "polygon(34% 0, 100% 0, 100% 100%, 0 100%)",
-              }}
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ServicesSection() {
-  const [activeService, setActiveService] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="Our DevOps consulting services"
-          lede="Strategy, setup, and delivery mechanics that keep environments consistent and releases under control."
-          scale="large"
-          minHeight={200}
-          padding="roomy"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-          {devopsServices.map((service, index) => {
-            const isActive = activeService === index;
-
-            return (
-              <article
-                key={service.title}
-                onClick={() => setActiveService(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActiveService(index);
-
-                }}
-                onFocus={() => setActiveService(index)}
-                tabIndex={0}
-                className={`min-h-[230px] cursor-pointer border-neutral-200 px-6 py-8 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
-                  index % 2 === 1 ? "md:border-l" : ""
-                } ${index % 3 !== 0 ? "lg:border-l" : ""} ${
-                  index > 0 ? "border-t md:border-t-0" : ""
-                } ${index >= 2 ? "md:border-t" : ""} ${index >= 3 ? "lg:border-t" : ""} ${
-                  isActive ? "bg-white" : "hover:bg-white/50"
-                }`}
-              >
-                <motion.div
-                  className="mb-6 h-1 origin-left"
-                  style={{ backgroundColor: DEEP }}
-                  initial={false}
-                  animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.4 }}
-                  transition={{ duration: 0.4, ease: motionEase }}
-                />
-                <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950">
-                  {service.title}
-                </h3>
-                <motion.p
-                  initial={false}
-                  animate={{ opacity: isActive ? 1 : 0.72, y: isActive ? 0 : 4 }}
-                  transition={{ duration: 0.35, ease: motionEase }}
-                  className="mt-5 text-[15px] leading-[1.65] tracking-tight text-neutral-700"
-                >
-                  {service.description}
-                </motion.p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function PipelineSection() {
-  const [activeStage, setActiveStage] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200" style={{ backgroundColor: DEEP }}>
-      <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
-        <div className="min-h-[300px] border-b border-white/14 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:flex lg:flex-col lg:justify-center lg:pl-[42%]">
-          <div className="max-w-3xl lg:px-16">
-            <h2 className="text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] md:text-5xl">
-              Continuous delivery across the DevOps pipeline
-            </h2>
-            <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-white/72">
-              This is the center of the work — the full loop from planning and automation
-              through deployment and monitoring, so improvements compound instead of
-              staying isolated.
-            </p>
-          </div>
-        </div>
-
-        <div>
-          {pipelineStages.map((stage, index) => {
-            const isActive = activeStage === index;
-
-            return (
-              <article
-                key={stage.title}
-                onClick={() => setActiveStage(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActiveStage(index);
-
-                }}
-                onFocus={() => setActiveStage(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-[0.28fr_0.72fr] border-white/14 transition-[min-height,background-color,color] duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] lg:grid-cols-[0.42fr_0.58fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[240px] text-[#101413]" : "min-h-[80px] text-white"}`}
-                style={{ backgroundColor: isActive ? SOFT : DEEP }}
-              >
-                <div className="flex items-start px-6 py-7 md:px-10 lg:px-12">
-                  <span className="text-[2.35rem] sm:text-5xl leading-none font-light tracking-[-0.08em] md:text-6xl">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center px-6 py-7 md:px-10 lg:px-14">
-                  <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] md:text-2xl">
-                    {stage.title}
-                  </h3>
-                  <div
-                    className={`overflow-hidden transition-all duration-500 ${
-                      isActive ? "mt-6 max-h-40 opacity-100" : "mt-0 max-h-0 opacity-0"
-                    }`}
-                  >
-                    <p className="max-w-3xl text-[15px] leading-[1.72] tracking-tight opacity-85">
-                      {stage.description}
-                    </p>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function EngagementSection() {
-  const [activeModel, setActiveModel] = useState(1);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <SectionIntro
-          title="Built for the stage you’re in"
-          lede="Slow releases, fragile deploys, drifting environments, or late security checks — the engagement model should match the problem, not a generic package label."
-          scale="large"
-          minHeight={220}
-          padding="roomy"
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {engagementModels.map((model, index) => {
-            const isActive = activeModel === index;
-
-            return (
-              <article
-                key={model.title}
-                onClick={() => setActiveModel(index)}
-
-                onMouseEnter={() => {
-
-                  if (window.matchMedia("(hover: hover)").matches) setActiveModel(index);
-
-                }}
-                onFocus={() => setActiveModel(index)}
-                tabIndex={0}
-                className={`min-h-0 cursor-pointer sm:min-h-[220px] md:min-h-[280px] border-neutral-200 px-6 py-10 transition-colors duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] md:px-8 lg:px-10 ${
-                  index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-                } ${isActive ? "bg-white" : "hover:bg-white/45"}`}
-              >
-                <motion.div
-                  className="mb-7 h-1 origin-left"
-                  style={{ backgroundColor: DEEP }}
-                  initial={false}
-                  animate={{ scaleX: isActive ? 1 : 0.35, opacity: isActive ? 1 : 0.35 }}
-                  transition={{ duration: 0.4, ease: motionEase }}
-                />
-                <p className="text-[12px] font-semibold tracking-[0.14em] uppercase text-neutral-500">
-                  {model.pain}
-                </p>
-                <h3 className="mt-4 text-2xl leading-tight font-semibold tracking-[-0.045em] text-neutral-950">
-                  {model.title}
-                </h3>
-                <p className="mt-7 text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-                  {model.description}
-                </p>
-              </article>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
+import { ServicesSection, PipelineSection, EngagementSection } from "./interactive";
 
 function TechStackSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -456,7 +47,7 @@ function TechStackSection() {
 
 function DevSecOpsStrip() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid min-h-[280px] grid-cols-1 lg:grid-cols-[0.54fr_0.46fr]">
           <div className="flex items-center border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:border-b-0 lg:px-16">
@@ -495,82 +86,46 @@ function DevSecOpsStrip() {
   );
 }
 
-function DevOpsCtaSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="grid grid-cols-1 lg:grid-cols-[0.46fr_0.54fr]">
-          <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
-            <Image
-              src={CTA_IMAGE}
-              alt="DevOps infrastructure stack visual"
-              fill
-              sizes="(max-width: 1024px) 100vw, 54vw"
-              className="object-cover object-center"
-            />
-          </div>
-
-          <div
-            className="flex min-h-[340px] items-center px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20"
-            style={{ backgroundColor: DEEP }}
-          >
-            <div className="w-full max-w-3xl">
-              <h2 className="max-w-3xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.05em] md:text-5xl lg:text-[3.25rem]">
-                Looking for the right DevOps path for your project?
-              </h2>
-              <p className="mt-7 max-w-2xl text-[15px] leading-[1.72] tracking-tight text-white/78">
-                We can help assess your current delivery setup, recommend high-impact
-                improvements, and build a roadmap your team can own.
-              </p>
-
-              <a
-                href="#contact-form"
-                className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#101413] md:px-8"
-                style={{ backgroundColor: AMBER }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                />
-                <span className="relative z-10">Speak with a DevOps specialist</span>
-                <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                  <ArrowUpRightIcon />
-                </span>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-
 export default function DevOpsPage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <DevOpsHero />
-        <div className="content-rail">
-          <ServicesSection />
-          <PipelineSection />
-          <EngagementSection />
-          <TechStackSection />
-          <DevSecOpsStrip />
-          <DevOpsCtaSection />
-          <FaqSection faqs={faqs} signColor={DEEP} variant="roomy" />
-          <ContactSection showIntro={false} accent="amber" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label="Get in touch"
-        backgroundColor={AMBER}
-        textColor={"#101413"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <SplitStackedHero
+          layout="cta-first"
+          title={hero.title}
+          lede={hero.lede}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          wedge="default"
+          sheen="soft"
+          ctaArrowColor={hero.ctaArrowColor}
+        />
+      }
+    >
+      <ServicesSection />
+      <PipelineSection />
+      <EngagementSection />
+      <TechStackSection />
+      <DevSecOpsStrip />
+      <SplitImageCta
+        title={cta.title}
+        lede={cta.lede}
+        ctaLabel={cta.ctaLabel}
+        panelBackground={cta.panelBackground}
+        buttonBackground={cta.buttonBackground}
+        buttonText={cta.buttonText}
+        image={cta.image}
+        imageAlt={cta.imageAlt}
+        sheen="wash"
       />
-      <Footer />
-    </>
+      <FaqSection faqs={faqs.items} signColor={faqs.signColor} variant={faqs.variant} />
+    </InteriorPage>
   );
 }

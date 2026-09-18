@@ -13,19 +13,13 @@ import { useFocusTrap } from "@/hooks/useFocusTrap";
 import {
   accordionMotion,
   chromeTransition,
-  motionDuration,
-  motionEase,
 } from "@/lib/motion";
 
 const navLinkClass =
-  "font-nav text-fluid-nav font-medium tracking-normal text-[#111111] whitespace-nowrap";
+  "font-nav text-fluid-nav font-medium tracking-normal text-ink whitespace-nowrap";
 
-const megaTransition = {
-  duration: motionDuration.chrome + 0.04,
-  ease: motionEase,
-};
 const underlineTransition =
-  "transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]";
+  "transition-transform duration-chrome ease-motion";
 
 /** Delay before close so cursor can travel into the panel */
 const CLOSE_GRACE_MS = 160;
@@ -145,7 +139,7 @@ export default function Navbar() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: motionDuration.chrome - 0.04, ease: motionEase }}
+            transition={chromeTransition}
             className="fixed inset-x-0 top-[calc(var(--nav-h)+env(safe-area-inset-top,0px))] bottom-0 z-[60] lg:hidden"
             role="dialog"
             aria-modal="true"
@@ -173,9 +167,8 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 8 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
-                          duration: motionDuration.chrome,
+                          ...chromeTransition,
                           delay: 0.03 + index * 0.03,
-                          ease: motionEase,
                         }}
                         className="border-b border-neutral-200/80"
                       >
@@ -183,7 +176,7 @@ export default function Navbar() {
                           <>
                             <button
                               type="button"
-                              className={`tap-press flex min-h-14 w-full items-center justify-between px-5 py-3.5 text-left font-nav text-[17px] font-medium tracking-normal text-[#111111] transition-colors active:bg-[#ececed] ${
+                              className={`tap-press flex min-h-14 w-full items-center justify-between px-5 py-3.5 text-left font-nav text-[17px] font-medium tracking-normal text-ink transition-colors active:bg-[#ececed] ${
                                 isExpanded ? "bg-[#f3f3f4]" : "bg-transparent"
                               }`}
                               aria-expanded={isExpanded}
@@ -197,7 +190,7 @@ export default function Navbar() {
                                 {item.label}
                                 <span
                                   aria-hidden="true"
-                                  className={`absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-[#061a3a] transition-transform duration-400 ${
+                                  className={`absolute inset-x-0 -bottom-1 h-[2px] origin-left bg-navy transition-transform duration-chrome ease-motion ${
                                     isExpanded ? "scale-x-100" : "scale-x-0"
                                   }`}
                                 />
@@ -222,7 +215,7 @@ export default function Navbar() {
                                             <li key={link.label}>
                                               <Link
                                                 href={link.href}
-                                                className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                                className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-ink transition-opacity active:opacity-55"
                                                 onClick={() => setDrawerOpen(false)}
                                               >
                                                 {link.label}
@@ -239,7 +232,7 @@ export default function Navbar() {
                                           <li key={link.label}>
                                             <Link
                                               href={link.href}
-                                              className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-[#111111] transition-opacity active:opacity-55"
+                                              className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-ink transition-opacity active:opacity-55"
                                               onClick={() => setDrawerOpen(false)}
                                             >
                                               {link.label}
@@ -256,7 +249,7 @@ export default function Navbar() {
                                             ? `/${menu.promo.href}`
                                             : menu.promo.href
                                         }
-                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-[#061a3a] px-4 text-[14px] font-medium text-white"
+                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-navy px-4 text-[14px] font-medium text-white"
                                         onClick={() => setDrawerOpen(false)}
                                       >
                                         <span>
@@ -278,7 +271,7 @@ export default function Navbar() {
                                             ? `/${menu.banner.href}`
                                             : menu.banner.href
                                         }
-                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-[#061a3a] px-4 py-3 text-[13px] font-medium text-white"
+                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-navy px-4 py-3 text-[13px] font-medium text-white"
                                         onClick={() => setDrawerOpen(false)}
                                       >
                                         <span className="line-clamp-2 text-white/85">
@@ -297,7 +290,7 @@ export default function Navbar() {
                         ) : (
                           <Link
                             href={item.href}
-                            className="tap-press block min-h-14 px-5 py-3.5 font-nav text-[17px] font-medium tracking-normal text-[#111111] active:bg-[#ececed]"
+                            className="tap-press block min-h-14 px-5 py-3.5 font-nav text-[17px] font-medium tracking-normal text-ink active:bg-[#ececed]"
                             onClick={() => setDrawerOpen(false)}
                           >
                             {item.label}
@@ -368,7 +361,7 @@ export default function Navbar() {
                           )
                         }
                         onFocus={() => item.menu && openMega(item.menu)}
-                        className={`relative flex h-full items-center px-4 transition-colors duration-400 xl:px-5 ${
+                        className={`relative flex h-full items-center px-4 transition-colors duration-chrome ease-motion xl:px-5 ${
                           isOpen ? "bg-[#f3f3f4]" : "bg-transparent hover:bg-[#f0f0f1]"
                         }`}
                       >
@@ -380,7 +373,7 @@ export default function Navbar() {
                         </span>
                         <span
                           aria-hidden="true"
-                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center bg-[#061a3a] xl:inset-x-4 ${underlineTransition} ${
+                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center bg-navy xl:inset-x-4 ${underlineTransition} ${
                             isOpen ? "scale-x-100" : "scale-x-0"
                           }`}
                         />
@@ -388,14 +381,14 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={item.href}
-                        className="group relative flex h-full items-center px-4 transition-colors duration-400 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] xl:px-5"
+                        className="group relative flex h-full items-center px-4 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] xl:px-5"
                       >
                         <span className={`relative z-10 leading-none ${navLinkClass}`}>
                           {item.label}
                         </span>
                         <span
                           aria-hidden="true"
-                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center scale-x-0 bg-[#061a3a] xl:inset-x-4 ${underlineTransition} [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100`}
+                          className={`absolute inset-x-3 bottom-0 z-10 h-[3px] origin-center scale-x-0 bg-navy xl:inset-x-4 ${underlineTransition} [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100`}
                         />
                       </Link>
                     )}
@@ -412,7 +405,7 @@ export default function Navbar() {
             </div>
             <button
               type="button"
-              className="tap-press flex h-full min-h-12 min-w-14 items-center justify-center px-4 text-[#111111] transition-colors active:bg-[#ececed] lg:hidden [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1]"
+              className="tap-press flex h-full min-h-12 min-w-14 items-center justify-center px-4 text-ink transition-colors active:bg-[#ececed] lg:hidden [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1]"
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
               aria-controls="mobile-nav-drawer"
@@ -432,7 +425,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
-              transition={megaTransition}
+              transition={chromeTransition}
               className="absolute inset-x-0 top-full z-50 hidden border-b border-neutral-200 bg-[#f3f3f4] lg:block"
               onMouseEnter={keepOpen}
               onMouseLeave={scheduleClose}

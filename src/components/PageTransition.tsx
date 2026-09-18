@@ -1,24 +1,30 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { pageTransition } from "@/lib/motion";
 
 /**
- * Soft enter for route content. Template remounts on navigation, so this
- * covers the “land” after the progress bar — not a competing full-page show.
+ * First paint must match SSR (no Framer `initial` styles). After that, client
+ * navigations remount this template and can enter softly.
  */
+let allowEnterAnimation = false;
+
 export default function PageTransition({ children }: { children: React.ReactNode }) {
   const reduceMotion = useReducedMotion();
+  const [enter] = useState(allowEnterAnimation);
+
+  useEffect(() => {
+    allowEnterAnimation = true;
+  }, []);
+
+  const shouldAnimate = enter && reduceMotion === false;
 
   return (
     <motion.div
-      initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+      initial={shouldAnimate ? { opacity: 0, y: 10 } : false}
       animate={{ opacity: 1, y: 0 }}
-      transition={
-        reduceMotion
-          ? { duration: 0.01 }
-          : pageTransition
-      }
+      transition={reduceMotion ? { duration: 0.01 } : pageTransition}
     >
       {children}
     </motion.div>

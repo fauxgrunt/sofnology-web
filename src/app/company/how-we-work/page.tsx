@@ -1,188 +1,14 @@
-"use client";
-
-import { useState } from "react";
-import Link from "next/link";
-import Navbar from "@/components/Navbar";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
-import StickyCTA from "@/components/StickyCTA";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
+import RelatedSection from "@/components/sections/RelatedSection";
+import { InteriorPage, StackedHero } from "@/components/interior";
+import { NAVY, ACCENT, DEEP_CTA, MID_IMAGE, hero, cta, principles, processSteps, experiencePoints, related, sticky, contact } from "@/content/company/how-we-work";
 
-const NAVY = "#061a3a";
-const ACCENT = "#2F6BFF";
-const DEEP_CTA = "#1A0A14";
-const PRIMARY_CTA = "Talk through how we’d work";
-
-/** Distinct from Who we are assets; each used once on this page. */
-const HERO_IMAGE = "/Uplift.jpg";
-const MID_IMAGE = "/solutions-startup-standalone.jpg";
-
-
-const models = [
-  {
-    title: "Dedicated development teams",
-    href: "/engagement/dedicated-teams",
-    description:
-      "A team focused on you — tailored skill mix, honest advice on remote fit, and engineers designed to blend with your in-house process.",
-  },
-  {
-    title: "Project-based engagement",
-    href: "/engagement/project-outsourcing",
-    description:
-      "We take ownership end-to-end — analysis, design, build, and QA — so you stay on growth while delivery stays on track.",
-  },
-  {
-    title: "Staff augmentation",
-    href: "/engagement/staff-augmentation",
-    description:
-      "Add specialized capacity beside your team — hard-to-source skills, shared tools, and timelines you can actually hold.",
-  },
-];
-
-const principles = [
-  {
-    title: "Senior-led delivery",
-    description:
-      "Experienced engineers define architecture, technical risks, and delivery checkpoints before build work begins.",
-  },
-  {
-    title: "Transparent milestones",
-    description:
-      "Scopes, weekly progress reviews, and decision logs keep everyone aligned on what is moving, blocked, or changing.",
-  },
-  {
-    title: "Production-ready architecture",
-    description:
-      "Secure deployment, maintainable codebases, cloud readiness, and operational handover from day one.",
-  },
-  {
-    title: "Automation-first thinking",
-    description:
-      "We spot repeatable bottlenecks and build systems that cut manual effort without inventing unnecessary complexity.",
-  },
-];
-
-const processSteps = [
-  {
-    title: "Assess",
-    description:
-      "A conversation about goals and constraints — then we identify the engagement shape and skills that fit.",
-  },
-  {
-    title: "Shape",
-    description:
-      "Architecture, scope, risks, and a milestone plan you can track — before the calendar fills with build noise.",
-  },
-  {
-    title: "Select & kickoff",
-    description:
-      "You meet the people who will do the work. We align tools, rituals, and ownership — then start building.",
-  },
-  {
-    title: "Deliver & care",
-    description:
-      "Iterative delivery with visible progress, then handover and refinement as feedback arrives.",
-  },
-];
-
-const experiencePoints = [
-  {
-    title: "Outcomes over activity",
-    description:
-      "Impact, scalability, and product integrity frame the work — not busy status updates.",
-  },
-  {
-    title: "Built to scale with you",
-    description:
-      "When the roadmap grows, we adjust skill mix and capacity without restarting the relationship from zero.",
-  },
-  {
-    title: "Ready for the long haul",
-    description:
-      "Engagements extend when the partnership is working — continuity beats constant re-onboarding.",
-  },
-];
-
-const relatedLinks = [
-  {
-    title: "Who we are",
-    href: "/company",
-    description: "The Sofnology story without borrowed history or a founder gallery.",
-  },
-  {
-    title: "Solutions for startups",
-    href: "/engagement/solutions-for-startups",
-    description: "When speed and clarity matter more than a giant vendor deck.",
-  },
-  {
-    title: "Solutions for enterprises",
-    href: "/engagement/solutions-for-enterprises",
-    description: "When delivery has to respect governance, risk, and existing teams.",
-  },
-];
-
-function StackedHero() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative h-[280px] overflow-hidden border-b border-neutral-200 sm:h-[340px] md:h-[400px] lg:h-[460px]">
-          <Image
-            src={HERO_IMAGE}
-            alt="Teams collaborating to ship product work"
-            fill
-            sizes="100vw"
-            priority
-            className="object-cover object-[48%_40%]"
-          />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-[#f4f4f4] to-transparent md:w-2/5" />
-        </div>
-
-        <div className="grid grid-cols-1 border-b border-neutral-200 lg:grid-cols-[0.42fr_0.58fr]">
-          <div className="flex items-end border-b border-neutral-200 px-6 py-12 md:px-10 lg:border-b-0 lg:border-r lg:px-16 lg:py-16">
-            <h1 className="max-w-md text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] text-neutral-950 sm:text-4xl md:text-5xl lg:text-[3.35rem]">
-              How we work
-            </h1>
-          </div>
-          <div className="flex items-end px-6 py-12 md:px-10 lg:px-14 lg:py-16">
-            <div>
-              <p
-                className="text-[12px] font-semibold uppercase tracking-[0.16em]"
-                style={{ color: ACCENT }}
-              >
-                Sofnology
-              </p>
-              <p className="mt-5 max-w-xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-                No matter where you are in your trajectory, we help bring the vision to
-                life — beside your in-house talent or as a dedicated pod. Partnerships
-                built to optimize resources and ambitions, not to invent a legacy story.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <a
-          href="#contact-form"
-          className="tap-press group relative flex min-h-[88px] items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.04em] text-white md:px-10 lg:px-16"
-          style={{ backgroundColor: ACCENT }}
-        >
-          <span
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-700 group-hover:left-[115%] group-hover:opacity-100"
-          />
-          <span className="relative z-10">Get in touch</span>
-          <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-            <ArrowUpRightIcon />
-          </span>
-        </a>
-      </div>
-    </section>
-  );
-}
+import { ModelsSection } from "./interactive";
 
 function AudienceMidSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="grid grid-cols-1 lg:grid-cols-[0.42fr_0.58fr]">
           <div className="relative min-h-[220px] overflow-hidden border-b sm:min-h-[280px] md:min-h-[360px] border-neutral-200 lg:min-h-[480px] lg:border-b-0 lg:border-r">
@@ -205,71 +31,6 @@ function AudienceMidSection() {
               methods you can see.
             </p>
           </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ModelsSection() {
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Start from scratch, or grow your team? The choice is yours
-          </h2>
-          <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            Three partnership models — each meant to fit your culture and requirements
-            without forcing a one-size vendor playbook.
-          </p>
-        </div>
-
-        <div>
-          {models.map((item, index) => {
-            const isActive = active === index;
-            return (
-              <article
-                key={item.title}
-                onClick={() => setActive(index)}
-                onMouseEnter={() => {
-                  if (window.matchMedia("(hover: hover)").matches) setActive(index);
-                }}
-                onFocus={() => setActive(index)}
-                tabIndex={0}
-                className={`grid cursor-pointer grid-cols-1 border-neutral-200 transition-[min-height,background-color] duration-600 md:grid-cols-[0.28fr_0.72fr] ${
-                  index > 0 ? "border-t" : ""
-                } ${isActive ? "min-h-[180px] bg-white" : "min-h-[110px] hover:bg-white/45"}`}
-              >
-                <div className="flex items-start gap-5 px-6 py-8 md:px-10 lg:px-12">
-                  <span
-                    className="text-4xl font-light tracking-[-0.08em]"
-                    style={{ color: isActive ? ACCENT : "#a3a3a3" }}
-                  >
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                </div>
-                <div className="flex flex-col justify-center px-6 pb-8 md:px-10 md:py-8 lg:px-14">
-                  <h3 className="text-xl font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 max-w-2xl text-[15px] leading-[1.7] tracking-tight text-neutral-700">
-                    {item.description}
-                  </p>
-                  <Link
-                    href={item.href}
-                    className="mt-5 inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight transition-transform hover:translate-x-1"
-                    style={{ color: ACCENT }}
-                  >
-                    View model
-                    <ArrowUpRightIcon />
-                  </Link>
-                </div>
-              </article>
-            );
-          })}
         </div>
       </div>
     </section>
@@ -316,7 +77,7 @@ function PrinciplesSection() {
 
 function ProcessSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -359,7 +120,7 @@ function ProcessSection() {
 
 function ExperienceSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
@@ -392,7 +153,7 @@ function ExperienceSection() {
 /** Solid proof CTA — no image (avoids reusing assets). */
 function ProofCtaSection() {
   return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
+    <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div
           className="flex flex-col items-stretch gap-8 px-5 py-10 sm:px-6 sm:py-14 md:px-10 md:py-16 lg:flex-row lg:items-end lg:justify-end lg:gap-16 lg:px-16 lg:py-20"
@@ -400,10 +161,10 @@ function ProofCtaSection() {
         >
           <div className="max-w-md text-right lg:text-left">
             <h2 className="text-3xl leading-[1.1] font-semibold tracking-[-0.045em] text-white md:text-4xl lg:text-right">
-              Want to see if we’re the fit?
+              {cta.title}
             </h2>
             <p className="mt-4 text-[15px] leading-[1.65] tracking-tight text-white/70 lg:text-right">
-              One discovery conversation is enough to start.
+              {cta.lede}
             </p>
           </div>
           <a
@@ -415,7 +176,7 @@ function ProofCtaSection() {
               aria-hidden="true"
               className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
             />
-            <span className="relative z-10">Get in touch</span>
+            <span className="relative z-10">{cta.ctaLabel}</span>
             <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
               <ArrowUpRightIcon />
             </span>
@@ -426,76 +187,44 @@ function ProofCtaSection() {
   );
 }
 
-function RelatedSection() {
-  return (
-    <section className="border-b border-neutral-200 bg-[#f4f4f4]">
-      <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-6 py-12 md:px-10 lg:px-16">
-          <h2 className="text-[1.85rem] font-semibold tracking-[-0.045em] sm:text-4xl text-neutral-950 md:text-[2.75rem]">
-            Related
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-3">
-          {relatedLinks.map((link, index) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`group flex min-h-[200px] flex-col justify-between border-neutral-200 px-6 py-9 transition-colors hover:bg-white md:px-8 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              }`}
-            >
-              <div>
-                <div
-                  className="mb-6 h-1 w-10 transition-all group-hover:w-16"
-                  style={{ backgroundColor: ACCENT }}
-                />
-                <h3 className="text-xl font-semibold tracking-[-0.045em] text-neutral-950">
-                  {link.title}
-                </h3>
-                <p className="mt-5 text-[15px] leading-[1.65] text-neutral-700">
-                  {link.description}
-                </p>
-              </div>
-              <span
-                className="mt-8 inline-flex items-center gap-2 text-[14px] font-semibold transition-transform group-hover:translate-x-1"
-                style={{ color: ACCENT }}
-              >
-                View
-                <ArrowUpRightIcon />
-              </span>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
 export default function HowWeWorkPage() {
   return (
-    <>
-      <Navbar />
-      <main id="main-content" className="pb-sticky-cta">
-        <StackedHero />
-        <div className="content-rail">
-          <AudienceMidSection />
-          <ModelsSection />
-          <PrinciplesSection />
-          <ProcessSection />
-          <ExperienceSection />
-          <ProofCtaSection />
-          <RelatedSection />
-          <ContactSection showIntro={false} accent="blue" />
-        </div>
-      </main>
-      <StickyCTA
-        href="#contact-form"
-        label={PRIMARY_CTA}
-        backgroundColor={ACCENT}
-        textColor={"#ffffff"}
+    <InteriorPage
+      sticky={sticky}
+      contact={contact}
+      hero={
+        <StackedHero
+          title={hero.title}
+          lede={<p className="max-w-xl">{hero.lede}</p>}
+          eyebrow={hero.eyebrow}
+          eyebrowColor={hero.eyebrowColor}
+          ctaLabel={hero.ctaLabel}
+          ctaHref={hero.ctaHref}
+          ctaBackground={hero.ctaBackground}
+          ctaText={hero.ctaText}
+          image={hero.image}
+          imageAlt={hero.imageAlt}
+          imageClass={hero.imageClass}
+          split="42/58"
+          titleMax="max-w-md"
+        />
+      }
+    >
+      <AudienceMidSection />
+      <ModelsSection />
+      <PrinciplesSection />
+      <ProcessSection />
+      <ExperienceSection />
+      <ProofCtaSection />
+      <RelatedSection
+        heading={related.heading}
+        links={related.links}
+        accent={related.accent}
+        actionColor={related.actionColor}
+        actionLabel={related.actionLabel}
+        columns={related.columns}
+        titleSize={related.titleSize}
       />
-      <Footer />
-    </>
+    </InteriorPage>
   );
 }
