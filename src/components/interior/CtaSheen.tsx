@@ -5,6 +5,6 @@ type CtaSheenProps = {
 };
 
 /** Interior CTAs now use a single opacity/color cue instead of a diagonal shine. */
-export default function CtaSheen(_props: CtaSheenProps) {
+export default function CtaSheen({}: CtaSheenProps) {
   return null;
 }
