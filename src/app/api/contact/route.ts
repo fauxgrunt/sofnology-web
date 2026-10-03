@@ -15,12 +15,6 @@ function isValidEmail(value: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-function formatBytes(bytes: number) {
-  if (bytes < 1024) return `${bytes} B`;
-  if (bytes < 1024 * 1024) return `${Math.round(bytes / 1024)} KB`;
-  return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
-}
-
 export async function POST(request: Request) {
   try {
     const contentType = request.headers.get("content-type") ?? "";
@@ -34,6 +28,7 @@ export async function POST(request: Request) {
     let consent = false;
     let attachmentName = "";
     let attachmentSize = 0;
+    let attachment: { filename: string; content: Buffer } | undefined;
 
     if (contentType.includes("multipart/form-data")) {
       const form = await request.formData();
@@ -48,6 +43,10 @@ export async function POST(request: Request) {
       if (file instanceof File && file.size > 0) {
         attachmentName = file.name;
         attachmentSize = file.size;
+        attachment = {
+          filename: file.name,
+          content: Buffer.from(await file.arrayBuffer()),
+        };
       }
     } else {
       const body = (await request.json()) as Record<string, unknown>;
@@ -106,25 +105,17 @@ export async function POST(request: Request) {
       );
     }
 
-    const lines = [
-      `Name: ${fullName}`,
-      `Work email: ${workEmail}`,
-      phone ? `Phone: ${phone}` : null,
-      companyWebsite ? `Website: ${companyWebsite}` : null,
-      projectType ? `Project type: ${projectType}` : null,
-      attachmentName
-        ? `Attachment named: ${attachmentName} (${formatBytes(attachmentSize)}) — file was not forwarded; ask them to share a link if needed.`
-        : null,
-      "",
-      message,
-    ].filter((line): line is string => line !== null);
-
     const resend = new Resend(apiKey);
     const from =
       process.env.CONTACT_FROM_EMAIL ?? `${SITE_NAME} <onboarding@resend.dev>`;
     const notification = enquiryNotification({
       fullName,
-      body: lines.join("\n"),
+      workEmail,
+      phone,
+      companyWebsite,
+      projectType,
+      message,
+      attachmentName,
     });
 
     const { error } = await resend.emails.send({
@@ -133,6 +124,8 @@ export async function POST(request: Request) {
       replyTo: workEmail,
       subject: notification.subject,
       text: notification.text,
+      html: notification.html,
+      attachments: attachment ? [attachment] : undefined,
     });
 
     if (error) {

@@ -38,6 +38,7 @@ export default function Hero() {
             alt="Connected software platforms and digital systems"
             fill
             priority
+            quality={92}
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover object-left"
           />

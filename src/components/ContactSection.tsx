@@ -61,8 +61,7 @@ export default function ContactSection({
   const [status, setStatus] = useState<FormStatus>("idle");
   const [statusMessage, setStatusMessage] = useState("");
 
-  const { desktop: sendButtonClass, mobile: sendButtonMobileClass } =
-    contactAccentClasses(accent);
+  const { desktop: sendButtonClass } = contactAccentClasses(accent);
 
   function validate(): Partial<Record<FieldKey, string>> {
     const errors: Partial<Record<FieldKey, string>> = {};
@@ -203,7 +202,7 @@ export default function ContactSection({
           noValidate
           aria-describedby={statusMessage ? statusId : undefined}
         >
-          <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:col-span-3 lg:border-r lg:px-16">
+          <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:col-span-4 lg:px-16">
             <h2
               id={`${formId}-heading`}
               className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950"
@@ -233,9 +232,7 @@ export default function ContactSection({
             )}
           </div>
 
-          <div className="hidden border-b border-neutral-200 lg:block" />
-
-          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
+          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-4 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
               <label className={fieldLabelClass} htmlFor="full-name">
                 Full name
@@ -289,17 +286,7 @@ export default function ContactSection({
             </div>
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`row-span-3 hidden items-center justify-center px-4 text-center text-xl font-semibold tracking-[-0.04em] transition-opacity duration-chrome ease-motion lg:flex disabled:cursor-wait disabled:opacity-70 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${sendButtonClass}`}
-          >
-            <span>
-              {isSubmitting ? "Sending request…" : "Request a reply"}
-            </span>
-          </button>
-
-          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
+          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-4 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
               <label className={fieldLabelClass} htmlFor="phone">
                 Phone
@@ -371,7 +358,7 @@ export default function ContactSection({
             </div>
           </div>
 
-          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
+          <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-4 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
               <label className={fieldLabelClass} htmlFor="company-website">
                 Company website
@@ -417,7 +404,7 @@ export default function ContactSection({
             </div>
           </div>
 
-          <div className="border-b border-neutral-200 lg:col-span-3">
+          <div className="border-b border-neutral-200 lg:col-span-4">
             <label className={fieldLabelClass} htmlFor="message">
               Message
               <span className={fieldHintClass}>Required</span>
@@ -479,13 +466,15 @@ export default function ContactSection({
             )}
           </div>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={`tap-press flex min-h-12 items-center justify-center text-[16px] font-semibold tracking-[-0.02em] sm:min-h-16 sm:text-lg lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
-          >
-            {isSubmitting ? "Sending request…" : "Request a reply"}
-          </button>
+          <div className="px-5 py-6 sm:px-6 md:px-8 lg:col-span-4 lg:px-16">
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`tap-press inline-flex h-12 min-w-[9.5rem] items-center justify-center px-8 text-[16px] font-semibold tracking-[-0.02em] transition-opacity duration-chrome ease-motion disabled:cursor-wait disabled:opacity-70 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${sendButtonClass}`}
+            >
+              {isSubmitting ? "Sending…" : "Send"}
+            </button>
+          </div>
         </form>
       </div>
     </section>
