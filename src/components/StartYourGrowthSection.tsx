@@ -3,24 +3,34 @@ import { ArrowUpRightIcon } from "@/components/icons";
 
 const startingPoints = [
   {
-    title: "Digital growth audit",
-    description:
-      "Start with a focused review of your website, marketing channels, analytics, workflows, and technical gaps so the next move is clear.",
+    title: "Project-based delivery",
+    href: "/how-we-work#project-based",
+    description: "Defined scope, milestones, delivery, testing, and handover.",
   },
   {
-    title: "Custom software build",
-    description:
-      "Build portals, dashboards, SaaS tools, internal systems, and customer-facing platforms around the way your business actually operates.",
+    title: "Dedicated development team",
+    href: "/how-we-work#dedicated-team",
+    description: "A team aligned around the client's ongoing roadmap.",
   },
   {
-    title: "Marketing and conversion sprint",
-    description:
-      "Improve SEO, paid campaigns, landing pages, tracking, content systems, and lead generation with a focused growth push.",
+    title: "Staff augmentation",
+    href: "/how-we-work#staff-augmentation",
+    description: "Add specific engineering capability to an existing team.",
   },
   {
-    title: "Automation and operations system",
-    description:
-      "Connect scattered tools, remove manual handoffs, improve CRM workflows, and create reporting systems that keep teams aligned.",
+    title: "Technical consulting",
+    href: "/how-we-work#technical-consulting",
+    description: "Architecture, assessments, troubleshooting, planning, and technical direction.",
+  },
+  {
+    title: "Managed services",
+    href: "/how-we-work#managed-services",
+    description: "Sofnology operates agreed technical systems or services continuously.",
+  },
+  {
+    title: "Ongoing support and retainers",
+    href: "/how-we-work#ongoing-support",
+    description: "Monthly maintenance, optimization, technical support, and infrastructure support.",
   },
 ];
 
@@ -30,12 +40,10 @@ export default function StartYourGrowthSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
-            Start your growth, your way
+            Ways to work
           </h2>
           <p className="text-fluid-body mt-4 max-w-5xl leading-[1.65] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
-            Whether you need clarity first, a software platform, a stronger marketing
-            engine, or operational automation, Sofnology gives you a practical starting
-            point without forcing every business into the same engagement model.
+            Choose a delivery shape. Company types such as startups or enterprises are not separate models.
           </p>
         </div>
 
@@ -43,7 +51,7 @@ export default function StartYourGrowthSection() {
           {startingPoints.map((point, index) => (
             <Link
               key={point.title}
-              href="/#contact-form"
+              href={point.href}
               className={`tap-press group relative flex min-h-0 flex-col border-neutral-200 bg-page px-5 py-8 text-neutral-950 transition-colors duration-chrome ease-motion sm:min-h-[240px] sm:px-6 sm:py-9 md:min-h-[280px] md:px-10 lg:px-12 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
@@ -67,7 +75,7 @@ export default function StartYourGrowthSection() {
             href="/#contact-form"
             className="tap-press group relative col-span-1 flex min-h-24 items-center justify-between border-t border-neutral-200 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white transition-opacity duration-chrome ease-motion md:col-span-2 md:px-10 lg:px-12 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
           >
-            <span>Start a conversation</span>
+            <span>Start a Project</span>
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
               <ArrowUpRightIcon />
             </span>

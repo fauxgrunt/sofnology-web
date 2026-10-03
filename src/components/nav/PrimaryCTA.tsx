@@ -14,7 +14,7 @@ export default function PrimaryCTA({ fullWidth = false, onClick }: PrimaryCTAPro
         fullWidth ? "min-h-12 w-full px-5" : "h-full min-h-12 shrink-0 px-7 xl:px-9"
       }`}
     >
-      <span>Start a conversation</span>
+      <span>Start a Project</span>
     </Link>
   );
 }

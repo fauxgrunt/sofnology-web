@@ -5,9 +5,9 @@ export const DEEP = "#1A1216";
 export const SOFT = "#FFD6E3";
 
 export const hero = {
-  title: "Commerce systems built for conversion and operations",
+  title: "Retail & E-commerce",
   lede:
-    "Sofnology builds custom ecommerce solutions for brands, retailers, and platforms — streamlining catalog, order, and payment flows while keeping the shopping experience clear.",
+    "We build solutions for retailers and commerce teams — stores, catalogs, and the operations behind an order. Not a claim of running those businesses ourselves.",
   image: "/ecommerce-hero.jpg",
   imageAlt: "Yellow shopping bags on a white conveyor in a minimal 3D ecommerce scene",
   imageClass: "object-cover object-[center_45%]",

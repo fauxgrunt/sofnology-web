@@ -4,21 +4,21 @@ import { brand } from "@/lib/theme";
 
 export const NAVY = brand.navy;
 export const ACCENT = brand.accent;
-export const PRIMARY_CTA = "Start a conversation";
+export const PRIMARY_CTA = "Start a Project";
 
 export const PROMISE_IMAGE = "/enterprise-services.jpg";
 export const JOURNEY_IMAGE = "/digital-growth.jpg";
 
 export const hero = {
-  title: "About us? No — what we do is about you",
+  title: "About Sofnology",
   lede:
-    "Every solution, every engagement, every team we assemble is built to put your product and your business first — with senior judgment and clear ownership, without a borrowed legacy story.",
+    "Sofnology combines senior technical direction with flexible delivery teams. Core architecture and project ownership stay close to Sofnology, while specialized engineers and delivery partners can be added when a project requires specific expertise.",
   image: "/conversation.jpg",
   imageAlt: "Collaborative workspace conversation",
   imageClass: "object-cover object-[42%_35%]",
   eyebrow: "Sofnology",
   eyebrowColor: ACCENT,
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: NAVY,
   ctaText: "#ffffff",
@@ -30,36 +30,41 @@ export const promiseCta = {
   lede:
     "Operating principles, delivery stages, and the promise we fold into every engagement — without a manifesto page or a leadership roster.",
   ctaLabel: "Learn how we work",
-  href: "/company/how-we-work",
+  href: "/how-we-work",
   image: "/enterprise-services.jpg",
   imageAlt: "Engineering collaboration in a modern workspace",
 } as const;
 
 export const cta = {
-  title: "Ready to start a conversation?",
+  title: "Start a Project",
   lede:
-    "Email us or use the form — we’ll take it from there, in person or online, as the engagement needs.",
+    "Tell us what you want to build, improve, automate, or scale.",
   email: SITE_EMAIL,
-  ctaLabel: "Start a conversation",
+  ctaLabel: "Start a Project",
   image: "/digital-growth.jpg",
   imageAlt: "Digital growth delivery — starting a Sofnology engagement",
 } as const;
 
 export const whyPoints = [
   {
-    title: "We exist to ship your product",
-    description:
-      "Sofnology connects business goals with engineering that can actually deliver — custom software, digital products, and teams that stay close to outcomes.",
+    title: "Clarity",
+    description: "The next step, the scope, and the trade-off should be understandable before the work grows.",
   },
   {
-    title: "Trust from how work runs",
-    description:
-      "Senior-led decisions, visible milestones, and production-minded architecture — not invented years, awards, or headcount.",
+    title: "Ownership",
+    description: "Sofnology keeps project ownership and communication, including when a specialist partner joins.",
   },
   {
-    title: "Your success stays; the build evolves",
-    description:
-      "We design for handover and maintainability so the business stays in control after go-live, not locked into tribal knowledge.",
+    title: "Transparency",
+    description: "Progress, blockers, and decisions stay visible. Confidential clients stay unnamed in public.",
+  },
+  {
+    title: "Maintainability",
+    description: "Handover, access, and documentation are part of the delivery, not an afterthought.",
+  },
+  {
+    title: "Business outcomes",
+    description: "The point of the system is the operation it improves, not a stack chosen for appearance.",
   },
 ];
 
@@ -109,7 +114,7 @@ export const related: InteriorRelated = {
   links: [
     {
       title: "How we work",
-      href: "/company/how-we-work",
+      href: "/how-we-work",
       description: "Operating principles, stages, and the habits behind every engagement.",
     },
     {

@@ -3,9 +3,9 @@ import HeroTrustBridge from "@/components/HeroTrustBridge";
 import ExpertiseSection from "@/components/ExpertiseSection";
 import OperatingPrinciples from "@/components/OperatingPrinciples";
 import BusinessUpliftSection from "@/components/BusinessUpliftSection";
-import DeliveryConfidenceSection from "@/components/DeliveryConfidenceSection";
 import StartYourGrowthSection from "@/components/StartYourGrowthSection";
 import FeaturedWorkSection from "@/components/FeaturedWorkSection";
+import IndustriesHome from "@/components/IndustriesHome";
 import FaqSection from "@/components/sections/FaqSection";
 import { InteriorPage } from "@/components/interior";
 import { contact, faqs, sticky } from "@/content/home";
@@ -15,11 +15,11 @@ export default function Home() {
     <InteriorPage hero={<Hero />} sticky={sticky} contact={contact}>
       <HeroTrustBridge />
       <ExpertiseSection />
+      <FeaturedWorkSection />
       <OperatingPrinciples />
       <BusinessUpliftSection />
-      <DeliveryConfidenceSection />
+      <IndustriesHome />
       <StartYourGrowthSection />
-      <FeaturedWorkSection />
       <FaqSection
         faqs={faqs.items}
         signColor={faqs.signColor}

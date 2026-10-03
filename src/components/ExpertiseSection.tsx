@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useState } from "react";
 import Link from "next/link";
@@ -20,102 +20,57 @@ type ExpertiseTab = {
 
 const expertiseTabs: ExpertiseTab[] = [
   {
+    id: "core",
+    label: "Core services",
+    shortLabel: "Services",
+    groups: [
+      {
+        title: "What you can hire",
+        links: [
+          { label: "Software Development", href: "/services/software-development" },
+          { label: "Web Development", href: "/services/web-development" },
+          { label: "Mobile App Development", href: "/services/mobile-development" },
+          { label: "AI & Automation", href: "/services/ai-automation" },
+          { label: "VoIP & Communication Systems", href: "/services/voip-communication" },
+          { label: "Digital Marketing", href: "/services/digital-marketing" },
+          { label: "Cloud & DevOps", href: "/services/cloud-devops" },
+        ],
+      },
+    ],
+  },
+  {
     id: "engineering",
-    label: "Development and product engineering",
+    label: "Engineering capabilities",
     shortLabel: "Engineering",
     groups: [
       {
-        title: "Core engineering services",
+        title: "How the work is built",
         links: [
-          { label: "Custom software development", href: "/services/software-development" },
-          { label: "SaaS platform development", href: "/services/software-development" },
-          { label: "Web application engineering", href: "/services/web-development" },
-          { label: "API and backend systems", href: "/services/backend-development" },
-          { label: "Quality assurance automation", href: "/services/quality-assurance" },
-        ],
-      },
-      {
-        title: "Product delivery",
-        links: [
-          { label: "Product discovery workshops", href: "/engagement/project-outsourcing" },
-          { label: "MVP architecture and delivery", href: "/engagement/solutions-for-startups" },
-          { label: "Legacy product modernization", href: "/engagement/solutions-for-enterprises" },
-          { label: "Technical audits and optimization", href: "/services/software-development" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "automation",
-    label: "Automation and AI workflows",
-    shortLabel: "Automation",
-    groups: [
-      {
-        title: "Operational automation",
-        links: [
-          { label: "Workflow automation", href: "/engagement/solutions-for-ai-companies" },
-          { label: "Internal tools and dashboards", href: "/services/software-development" },
-          { label: "Process orchestration", href: "/engagement/solutions-for-ai-companies" },
-          { label: "AI-assisted business operations", href: "/engagement/solutions-for-ai-companies" },
-        ],
-      },
-      {
-        title: "AI-enabled systems",
-        links: [
-          { label: "AI assistant implementation", href: "/engagement/solutions-for-ai-companies" },
-          { label: "Document and data automation", href: "/engagement/solutions-for-ai-companies" },
-          { label: "Decision-support systems", href: "/services/software-development" },
-          { label: "Automation readiness consulting", href: "/engagement/solutions-for-ai-companies" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "cloud",
-    label: "Cloud, DevOps, and infrastructure",
-    shortLabel: "Cloud",
-    groups: [
-      {
-        title: "Cloud and infrastructure",
-        links: [
-          { label: "Cloud architecture", href: "/services/cloud-consulting" },
-          { label: "Infrastructure modernization", href: "/services/cloud-consulting" },
-          { label: "Secure cloud migration", href: "/services/cloud-consulting" },
-          { label: "Platform reliability engineering", href: "/services/devops" },
-        ],
-      },
-      {
-        title: "Delivery operations",
-        links: [
-          { label: "DevOps implementation", href: "/services/devops" },
-          { label: "CI/CD pipeline automation", href: "/services/devops" },
-          { label: "Observability and monitoring", href: "/services/devops" },
-          { label: "Security hardening", href: "/services/cybersecurity" },
+          { label: "Backend Development", href: "/services/backend-development" },
+          { label: "Frontend Development", href: "/services/frontend-development" },
+          { label: "Mobile & Cross-Platform", href: "/services/mobile-cross-platform" },
+          { label: "AI & Voice AI", href: "/services/ai-voice" },
+          { label: "API & System Integration", href: "/services/api-integration" },
+          { label: "Databases & Data", href: "/services/databases" },
+          { label: "DevOps & Infrastructure", href: "/services/devops-infrastructure" },
+          { label: "All Technologies", href: "/services/technologies" },
         ],
       },
     ],
   },
   {
     id: "platforms",
-    label: "Industry systems and business platforms",
+    label: "Platforms and systems",
     shortLabel: "Platforms",
     groups: [
       {
-        title: "Business platforms",
+        title: "Systems we design or operate",
         links: [
-          { label: "ERP and CRM systems", href: "/services/software-development" },
-          { label: "Operations dashboards", href: "/services/software-development" },
-          { label: "Ecommerce platforms", href: "/industries/ecommerce" },
-          { label: "Customer portals", href: "/services/web-development" },
-        ],
-      },
-      {
-        title: "Industry focus",
-        links: [
-          { label: "Fintech systems", href: "/industries/fintech" },
-          { label: "Healthtech platforms", href: "/industries/healthtech" },
-          { label: "Professional services automation", href: "/services/software-development" },
-          { label: "Enterprise operations software", href: "/engagement/solutions-for-enterprises" },
+          { label: "Cloud & Linux Infrastructure", href: "/services/platforms/cloud-linux" },
+          { label: "VoIP & Contact Center Platforms", href: "/services/platforms/voip" },
+          { label: "Web & SaaS Platforms", href: "/services/platforms/web-saas" },
+          { label: "Business & Enterprise Systems", href: "/services/platforms/business" },
+          { label: "Marketing & Analytics Platforms", href: "/services/platforms/marketing" },
         ],
       },
     ],
@@ -132,12 +87,10 @@ export default function ExpertiseSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-7 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.04em] text-neutral-950">
-            Our expertise
+            Core services
           </h2>
           <p className="mt-3 max-w-5xl text-[16px] leading-[1.55] text-neutral-700 sm:mt-6 sm:text-fluid-body sm:leading-[1.7]">
-            From enterprise software and automation to cloud infrastructure and
-            AI-enabled workflows, Sofnology builds systems designed for clarity,
-            scale, and operational control.
+            Software, web, mobile, AI, voice, digital marketing, and cloud. Engineering and platform pages explain how that work is built.
           </p>
         </div>
 

@@ -6,9 +6,9 @@ export const PRIMARY_CTA = "Talk about healthtech software";
 export const MID_IMAGE = "/healthtech-mid.jpg";
 
 export const hero = {
-  title: "Health innovation, decoded",
+  title: "Healthcare & Healthtech",
   lede:
-    "Sofnology helps health organizations accelerate digital transformation — software that makes clinicians more effective, improves patient outcomes, and stays grounded in security and compliance.",
+    "We build solutions for healthcare teams — including appointment communication, operational software, and systems that take privacy seriously. This is not a claim of decades as a clinical institution.",
   image: "/healthtech-hero.jpg",
   imageAlt: "Abstract healthtech visual with moss, glass panels, and clinical geometry",
   imageClass: "scale-[1.04] object-cover object-[42%_48%]",

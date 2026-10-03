@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+import { focusIndustries } from "@/content/industries/focus";
+import { servicePages } from "@/content/services/catalog";
 import { workItems } from "@/content/work";
 import { SITE_ROUTES, SITE_URL } from "@/lib/site";
 
@@ -12,6 +14,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route.path === "/" ? 1 : route.path.split("/").length <= 2 ? 0.8 : 0.7,
   }));
 
+  const extraPaths = [
+    "/how-we-work",
+    "/privacy",
+    "/terms",
+    ...servicePages.map((page) => page.path),
+    ...focusIndustries.map((industry) => `/industries/${industry.slug}`),
+  ];
+  const extras: MetadataRoute.Sitemap = extraPaths
+    .filter((path) => !SITE_ROUTES.some((route) => route.path === path))
+    .map((path) => ({
+      url: `${SITE_URL}${path}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }));
+
   const work: MetadataRoute.Sitemap = workItems.map((item) => ({
     url: `${SITE_URL}/work/${item.slug}`,
     lastModified,
@@ -19,5 +37,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...routes, ...work];
+  return [...routes, ...extras, ...work];
 }

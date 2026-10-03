@@ -3,7 +3,7 @@ import { brand } from "@/lib/theme";
 
 export const sticky: InteriorSticky = {
   href: "/#contact-form",
-  label: "Start a conversation",
+  label: "Start a Project",
   backgroundColor: brand.navy,
   textColor: "#ffffff",
   pastHeroPx: 320,
@@ -25,7 +25,7 @@ export const faqs: InteriorFaq = {
     {
       question: "Do you publish client case studies?",
       answer:
-        "We publish selected delivered work on the Our work page, without named clients, logos, or invented metrics. If a future project allows a named case study, it will say so. We can share more delivery detail under NDA during discovery.",
+        "Yes. Our Work includes selected projects delivered by Sofnology and members of our delivery team. Some enterprise and confidential projects are presented anonymously where client agreements prevent public identification.",
     },
     {
       question: "What does Sofnology actually help with?",

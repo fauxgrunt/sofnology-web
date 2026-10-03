@@ -7,9 +7,9 @@ export const MAGENTA = "#FF2D8A";
 export const PRIMARY_CTA = "Talk about education software";
 
 export const hero = {
-  title: "Education software development",
+  title: "Education & Associations",
   lede:
-    "Custom education apps for individual learners and institutions — seamless, flexible experiences that hold up in real classrooms and real ops.",
+    "We build solutions for education and membership organisations — including platforms in the spirit of the NAPC membership website. Not a claim of being an educator.",
   image: "/edtech-hero.jpg",
   imageAlt: "Abstract mint tracks with magenta, black, and orange spheres — education software hero",
   imageClass: "scale-[1.02] object-cover object-[55%_50%]",

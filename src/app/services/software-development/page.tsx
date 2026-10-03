@@ -1,36 +1,9 @@
-import { InteriorPage } from "@/components/interior";
-import { sticky, contact } from "@/content/services/software-development";
-import {
-  HowWeWorkSection,
-  EngagementShapesSection,
-  CooperationModelsSection,
-} from "./interactive";
-import {
-  SoftwareHero,
-  FitSignalsSection,
-  ServicesProvidedSection,
-  PlatformCloudSection,
-  IndustriesBand,
-  SoftwareProjectCta,
-  WhySofnologySection,
-  DeliveryApproachSection,
-  TechnologyStackSection,
-} from "./sections";
+import { notFound } from "next/navigation";
+import CoreServiceView from "@/components/services/CoreServiceView";
+import { getService } from "@/content/services/catalog";
 
 export default function SoftwareDevelopmentPage() {
-  return (
-    <InteriorPage sticky={sticky} contact={contact} hero={<SoftwareHero />}>
-      <FitSignalsSection />
-      <ServicesProvidedSection />
-      <PlatformCloudSection />
-      <IndustriesBand />
-      <CooperationModelsSection />
-      <SoftwareProjectCta />
-      <WhySofnologySection />
-      <DeliveryApproachSection />
-      <HowWeWorkSection />
-      <TechnologyStackSection />
-      <EngagementShapesSection />
-    </InteriorPage>
-  );
+  const service = getService("software-development");
+  if (!service) notFound();
+  return <CoreServiceView service={service} />;
 }

@@ -5,9 +5,9 @@ export const DEEP = "#1A1C1F";
 export const SOFT = "#F3E8C4";
 
 export const hero = {
-  title: "Financial software that earns trust",
+  title: "Financial Services & Fintech",
   lede:
-    "Sofnology engineering and advisory for payments, lending, wealth, and embedded finance — secure, scalable products shaped for real operations.",
+    "We build solutions for financial services teams — payments, lending, and operational software shaped around control and auditability. Not a claim of being a licensed institution.",
   image: "/fintech-hero.jpg",
   imageAlt: "Modern glass skyscraper looking upward in a financial district",
   imageClass: "object-cover object-[center_40%]",

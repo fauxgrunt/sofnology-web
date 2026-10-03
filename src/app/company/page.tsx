@@ -27,11 +27,10 @@ function WhySection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="max-w-4xl text-[1.85rem] leading-[1.1] font-semibold sm:text-4xl sm:leading-[1.08] tracking-[-0.045em] text-neutral-950 md:text-5xl">
-            Why Sofnology — without the fake scoreboard
+            What we value
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
-            We help companies innovate and ship with engineering they can trust. No
-            invented years-in-business, IPO tallies, or unicorn math.
+            Clarity, ownership, transparency, maintainability, and business outcomes. No invented headcount, and no leadership profiles until the people can be named for real.
           </p>
         </div>
 
@@ -40,8 +39,8 @@ function WhySection() {
             <article
               key={item.title}
               className={`min-h-0 border-neutral-200 px-5 py-8 sm:min-h-[220px] sm:px-6 sm:py-10 md:min-h-[260px] md:px-8 lg:px-10 ${
-                index > 0 ? "border-t md:border-t-0 md:border-l" : ""
-              }`}
+                index > 0 ? "border-t md:border-t-0" : ""
+              } ${index % 3 !== 0 ? "md:border-l" : ""} ${index >= 3 ? "md:border-t" : ""}`}
             >
               <span
                 className="text-4xl font-light tracking-[-0.08em]"

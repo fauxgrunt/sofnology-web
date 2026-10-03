@@ -30,7 +30,7 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
     path: "/work",
     title: "Our work",
     description:
-      "Selected voice, PBX, and SIP engagements Sofnology has already delivered. Client names stay private.",
+      "Selected projects delivered by Sofnology and members of the delivery team. Confidential work stays anonymous.",
   },
   {
     path: "/company",

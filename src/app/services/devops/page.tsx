@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ArrowUpRightIcon } from "@/components/icons";
 import FaqSection from "@/components/sections/FaqSection";
 import { InteriorPage, SplitImageCta, SplitStackedHero } from "@/components/interior";
@@ -65,8 +66,8 @@ function DevSecOpsStrip() {
             </div>
           </div>
           <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-            <a
-              href="/services/cybersecurity"
+            <Link
+              href="/services/cloud-devops"
               className="group relative flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] text-[#101413] md:px-8"
               style={{ backgroundColor: AMBER }}
             >
@@ -74,11 +75,11 @@ function DevSecOpsStrip() {
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
               />
-              <span className="relative z-10">Explore cybersecurity</span>
+              <span className="relative z-10">Explore Cloud & DevOps</span>
               <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                 <ArrowUpRightIcon />
               </span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { workItems } from "@/content/work";
+import { featuredWork } from "@/content/work";
 
-const featured = workItems.slice(0, 4);
+const featured = featuredWork();
 
 export default function FeaturedWorkSection() {
   return (
@@ -15,9 +15,7 @@ export default function FeaturedWorkSection() {
               Our work
             </h2>
             <p className="text-fluid-body mt-4 max-w-2xl leading-[1.55] text-neutral-700 sm:mt-6 sm:leading-[1.75]">
-              Selected voice, PBX, and SIP jobs already delivered. No invented
-              clients, logos, or scores — only the systems we actually repaired or
-              stood up.
+              Selected projects. Confidential work stays anonymous, and numbers appear only when a record verifies them.
             </p>
           </div>
           <Link
@@ -38,14 +36,16 @@ export default function FeaturedWorkSection() {
               } ${index < 2 && index > 0 ? "lg:border-t-0" : ""}`}
             >
               <Link href={`/work/${item.slug}`} className="group relative block overflow-hidden">
-                <div className="relative min-h-[240px] bg-[#e8e8ea] sm:min-h-[380px] lg:min-h-[480px]">
-                  <Image
-                    src={item.image}
-                    alt={item.imageAlt}
-                    fill
-                    sizes="(max-width: 1024px) 100vw, 720px"
-                    className="object-cover object-center"
-                  />
+                <div className="relative min-h-[240px] bg-navy sm:min-h-[380px] lg:min-h-[480px]">
+                  {item.image ? (
+                    <Image
+                      src={item.image}
+                      alt={item.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 100vw, 720px"
+                      className="object-cover object-center"
+                    />
+                  ) : null}
                   <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/15 to-transparent" />
                   <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
                     <div className="min-w-0">

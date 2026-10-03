@@ -21,7 +21,7 @@ export default function Hero() {
               href="/#contact-form"
               className="tap-press inline-flex min-h-12 items-center bg-navy px-5 text-[16px] font-semibold tracking-[-0.02em] text-white transition-opacity duration-chrome ease-motion sm:min-h-[3.25rem] sm:px-6 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
             >
-              Start a conversation
+              Start a Project
             </Link>
             <Link
               href="/#expertise"
