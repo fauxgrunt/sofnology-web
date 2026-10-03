@@ -44,12 +44,12 @@ export default function FullBandCta({
             </p>
             <a
               href={ctaHref}
-              className="group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] md:px-8"
+              className="tap-press relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between px-6 py-6 text-xl font-semibold tracking-[-0.045em] transition-opacity duration-chrome ease-motion md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
               style={{ backgroundColor: buttonBackground, color: buttonText }}
             >
               <CtaSheen tone={sheen} width="button" />
               <span className="relative z-10">{ctaLabel}</span>
-              <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+              <span className="relative z-10">
                 <ArrowUpRightIcon />
               </span>
             </a>

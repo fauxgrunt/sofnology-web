@@ -1,183 +1,69 @@
-"use client";
-
-import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { accordionMotion } from "@/lib/motion";
+import { workItems } from "@/content/work";
 
-type FeaturedWork = {
-  title: string;
-  summary: string[];
-  imageSrc: string;
-  imageAlt: string;
-  proofPoints: Array<{
-    value: string;
-    label: string;
-  }>;
-  cta: string;
-};
-
-const featuredWork: FeaturedWork[] = [
-  {
-    title: "Business website and lead generation system",
-    summary: [
-      "When a service business needs clearer positioning and a stronger path from visitor to qualified enquiry, the work starts with the full digital journey, not only the website surface.",
-      "Sofnology can connect landing-page structure, analytics, search visibility, campaign readiness, and conversion tracking into one growth system the team can actually measure.",
-    ],
-    imageSrc:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Business website and lead generation planning visual",
-    proofPoints: [
-      { value: "Website", label: "positioning and landing-page structure" },
-      { value: "Tracking", label: "analytics and conversion visibility" },
-      { value: "Growth", label: "campaign-ready acquisition foundation" },
-    ],
-    cta: "Discuss a growth system",
-  },
-  {
-    title: "Custom dashboard and operations portal",
-    summary: [
-      "For teams managing too much work through spreadsheets, scattered tools, or repeated status checks, a focused internal platform can create a clearer operating rhythm.",
-      "The delivery can combine dashboard UX, backend workflows, integrations, role-based access, and handover documentation so the system becomes usable beyond launch day.",
-    ],
-    imageSrc:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Custom dashboard and operations portal visual",
-    proofPoints: [
-      { value: "Portal", label: "centralized operational workspace" },
-      { value: "Data", label: "cleaner reporting and team visibility" },
-      { value: "Workflow", label: "reduced manual handoffs" },
-    ],
-    cta: "Plan an operations portal",
-  },
-  {
-    title: "Automation and CRM workflow modernization",
-    summary: [
-      "When customer touchpoints live across disconnected tools, small delays and manual follow-ups quietly become operational drag.",
-      "Sofnology can review the workflow, connect CRM handoffs, automate repeatable steps, and build reporting pipelines that give the business cleaner visibility.",
-    ],
-    imageSrc:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
-    imageAlt: "Automation and CRM workflow modernization visual",
-    proofPoints: [
-      { value: "CRM", label: "connected lead and customer workflows" },
-      { value: "Automation", label: "repeatable operational steps" },
-      { value: "Reporting", label: "clearer management visibility" },
-    ],
-    cta: "Modernize a workflow",
-  },
-];
+const featured = workItems.slice(0, 4);
 
 export default function FeaturedWorkSection() {
-  const [openIndex, setOpenIndex] = useState(0);
-
   return (
-    <section id="engagement-paths" className="border-b border-neutral-200 bg-page">
+    <section id="work" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
-          <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
-            Example engagement paths
-          </h2>
-          <div className="mt-4 max-w-5xl space-y-3 text-fluid-body leading-[1.7] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
-            <p>
-              These are representative engagement shapes — not published client case
-              studies. Each path shows how Sofnology can organize software, growth, and
-              operations work around a clear business outcome.
+        <div className="flex flex-col gap-6 border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:flex-row md:items-end md:justify-between md:px-10 md:py-14 lg:px-16">
+          <div className="max-w-3xl">
+            <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
+              Our work
+            </h2>
+            <p className="text-fluid-body mt-4 max-w-2xl leading-[1.55] text-neutral-700 sm:mt-6 sm:leading-[1.75]">
+              Selected voice, PBX, and SIP jobs already delivered. No invented
+              clients, logos, or scores — only the systems we actually repaired or
+              stood up.
             </p>
           </div>
+          <Link
+            href="/work"
+            className="tap-press inline-flex min-h-12 shrink-0 items-center gap-2 text-[14px] font-semibold tracking-[-0.02em] text-navy underline decoration-navy/50 underline-offset-4"
+          >
+            View all work
+            <ArrowUpRightIcon className="h-4 w-4" />
+          </Link>
         </div>
 
-        <div>
-          {featuredWork.map((work, index) => {
-            const isOpen = openIndex === index;
-
-            return (
-              <div key={work.title} className="border-b border-neutral-200 last:border-b-0">
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(index)}
-                  className={`tap-press flex w-full items-start justify-between gap-4 px-5 py-4 text-left transition-colors duration-chrome ease-motion active:bg-white/50 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 ${
-                    isOpen ? "bg-white/45" : "[@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35"
-                  }`}
-                  aria-expanded={isOpen}
-                  aria-controls={`engagement-path-${index}`}
-                  id={`engagement-path-trigger-${index}`}
-                >
-                  <span className="text-[17px] leading-[1.25] font-semibold tracking-[-0.035em] text-neutral-950 sm:text-xl sm:leading-tight">
-                    {work.title}
-                  </span>
-                  <span
-                    className="shrink-0 text-2xl leading-none font-light text-navy sm:text-3xl"
-                    aria-hidden="true"
-                  >
-                    {isOpen ? "−" : "+"}
-                  </span>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      id={`engagement-path-${index}`}
-                      role="region"
-                      aria-labelledby={`engagement-path-trigger-${index}`}
-                      {...accordionMotion}
-                      className="overflow-hidden"
-                    >
-                      <div className="grid grid-cols-1 gap-0 px-5 pb-7 sm:px-6 sm:pb-8 md:px-10 lg:grid-cols-2 lg:px-16 lg:pb-12">
-                        <div className="relative aspect-[16/10] overflow-hidden bg-neutral-200 sm:aspect-auto sm:min-h-[280px] lg:min-h-[420px]">
-                          <Image
-                            src={work.imageSrc}
-                            alt={work.imageAlt}
-                            fill
-                            sizes="(max-width: 1024px) 100vw, 50vw"
-                            className="object-cover"
-                          />
-                          <div className="absolute inset-0 bg-white/10" />
-                        </div>
-
-                        <div className="flex flex-col border-neutral-200 pt-6 sm:pt-8 lg:border-l lg:pt-0 lg:pl-16">
-                          <div className="space-y-4 text-[14px] leading-[1.7] tracking-tight text-neutral-700 sm:space-y-5 sm:text-[15px] sm:leading-[1.72]">
-                            {work.summary.map((paragraph) => (
-                              <p key={paragraph}>{paragraph}</p>
-                            ))}
-                          </div>
-
-                          <div className="mt-8 grid grid-cols-1 gap-5 sm:mt-12 sm:gap-8 md:grid-cols-3">
-                            {work.proofPoints.map((point) => (
-                              <div key={point.value}>
-                                <p className="text-2xl leading-none font-light tracking-[-0.045em] text-navy sm:text-3xl">
-                                  {point.value}
-                                </p>
-                                <p className="mt-2 text-[13px] leading-[1.5] tracking-tight text-neutral-600 sm:mt-3">
-                                  {point.label}
-                                </p>
-                              </div>
-                            ))}
-                          </div>
-
-                          <Link
-                            href="/#contact"
-                            className="group relative mt-8 flex min-h-14 items-center justify-between overflow-hidden bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
-                          >
-                            <span
-                              aria-hidden="true"
-                              className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                            />
-                            <span className="relative z-10">{work.cta}</span>
-                            <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                              <ArrowUpRightIcon />
-                            </span>
-                          </Link>
-                        </div>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-            );
-          })}
+        <div className="grid grid-cols-1 lg:grid-cols-2">
+          {featured.map((item, index) => (
+            <article
+              key={item.slug}
+              className={`border-neutral-200 ${index > 0 ? "border-t" : ""} ${
+                index % 2 === 1 ? "lg:border-l" : ""
+              } ${index < 2 && index > 0 ? "lg:border-t-0" : ""}`}
+            >
+              <Link href={`/work/${item.slug}`} className="group relative block overflow-hidden">
+                <div className="relative min-h-[240px] bg-[#e8e8ea] sm:min-h-[380px] lg:min-h-[480px]">
+                  <Image
+                    src={item.image}
+                    alt={item.imageAlt}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 720px"
+                    className="object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/70 via-navy/15 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-5 text-white sm:p-7">
+                    <div className="min-w-0">
+                      <p className="text-[11px] font-semibold tracking-[0.16em] text-white/70 uppercase">
+                        {item.category}
+                      </p>
+                      <h3 className="mt-2 text-xl font-semibold tracking-[-0.045em] sm:text-2xl">
+                        {item.cardTitle}
+                      </h3>
+                    </div>
+                    <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/10">
+                      <ArrowUpRightIcon className="h-4 w-4" />
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            </article>
+          ))}
         </div>
       </div>
     </section>

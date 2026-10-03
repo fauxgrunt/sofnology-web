@@ -5,6 +5,10 @@ import {
   CONTACT_MAX_FILE_LABEL,
   CONTACT_MAX_MESSAGE,
 } from "@/lib/contact";
+import {
+  enquiryAcknowledgement,
+  enquiryNotification,
+} from "@/lib/contact-email";
 import { SITE_EMAIL, SITE_NAME } from "@/lib/site";
 
 function isValidEmail(value: string) {
@@ -118,13 +122,17 @@ export async function POST(request: Request) {
     const resend = new Resend(apiKey);
     const from =
       process.env.CONTACT_FROM_EMAIL ?? `${SITE_NAME} <onboarding@resend.dev>`;
+    const notification = enquiryNotification({
+      fullName,
+      body: lines.join("\n"),
+    });
 
     const { error } = await resend.emails.send({
       from,
       to: SITE_EMAIL,
       replyTo: workEmail,
-      subject: `Sofnology enquiry from ${fullName}`,
-      text: lines.join("\n"),
+      subject: notification.subject,
+      text: notification.text,
     });
 
     if (error) {
@@ -138,10 +146,26 @@ export async function POST(request: Request) {
       );
     }
 
+    const acknowledgement = enquiryAcknowledgement({ fullName });
+    const { error: acknowledgementError } = await resend.emails.send({
+      from,
+      to: workEmail,
+      replyTo: SITE_EMAIL,
+      subject: acknowledgement.subject,
+      text: acknowledgement.text,
+      html: acknowledgement.html,
+    });
+
+    if (acknowledgementError) {
+      console.error("[contact] acknowledgement", acknowledgementError);
+    }
+
     return NextResponse.json({
       ok: true,
-      message:
-        "Thanks — your message was received. A Sofnology teammate will follow up by email within one business day.",
+      acknowledged: !acknowledgementError,
+      message: acknowledgementError
+        ? "Thanks — your message was received. A Sofnology teammate will be in touch soon."
+        : "Thanks — we received your enquiry and emailed you a confirmation. A teammate will be in touch soon.",
     });
   } catch {
     return NextResponse.json(

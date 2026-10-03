@@ -88,7 +88,7 @@ export const hero = {
   imageAlt: "Cybersecurity product visual with shield and teal glass accents",
   imageClass: "object-cover object-center",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: TEAL,
   ctaText: "#ffffff",
   ctaArrowColor: CYAN,

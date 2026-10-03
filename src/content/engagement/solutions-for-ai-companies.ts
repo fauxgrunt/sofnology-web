@@ -16,8 +16,8 @@ export const hero = {
   imageClass: "scale-[1.04] object-cover object-[22%_50%]",
   imageMinClass:
     "relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]",
-  ctaLabel: "Book a discovery call",
-  ctaHref: "#contact",
+  ctaLabel: "Start a conversation",
+  ctaHref: "#contact-form",
   ctaBackground: CYAN,
   ctaText: "#12141A",
 } as const;
@@ -26,7 +26,7 @@ export const cta = {
   title: "You can’t pilot your way out of a pilot",
   lede:
     "We’ll locate where you sit on the five-stage model and name the highest-impact moves next — before you commit more tool spend.",
-  ctaLabel: "Book a discovery call",
+  ctaLabel: "Start a conversation",
   ctaHref: "#contact-form",
   image: "/ai-startup-cta.jpg",
   imageAlt: "3D stacked AI hardware module with cyan energy ring",
@@ -242,7 +242,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Book a discovery call",
+  label: "Start a conversation",
   backgroundColor: CYAN,
   textColor: "#12141A",
 };

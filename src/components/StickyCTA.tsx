@@ -20,7 +20,7 @@ type StickyCTAProps = {
  */
 export default function StickyCTA({
   href = "/#contact-form",
-  label = "Book a discovery call",
+  label = "Start a conversation",
   backgroundColor,
   textColor = "#101413",
   pastHeroPx = 420,
@@ -45,17 +45,23 @@ export default function StickyCTA({
       const threshold = isCoarse ? Math.min(pastHeroPx, 180) : pastHeroPx;
       const pastHero = window.scrollY > threshold;
       const beforeContact = contactTop > window.innerHeight * 0.72;
-      setVisible(pastHero && beforeContact);
+      const viewport = window.visualViewport;
+      const keyboardOpen = Boolean(
+        viewport && viewport.height < window.innerHeight - 140,
+      );
+      setVisible(pastHero && beforeContact && !keyboardOpen);
     };
 
     update();
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
     window.addEventListener("mobile-nav-toggle", update);
+    window.visualViewport?.addEventListener("resize", update);
     return () => {
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
       window.removeEventListener("mobile-nav-toggle", update);
+      window.visualViewport?.removeEventListener("resize", update);
     };
   }, [pastHeroPx]);
 
@@ -63,9 +69,9 @@ export default function StickyCTA({
     <AnimatePresence>
       {visible && (
         <motion.div
-          initial={reduceMotion ? { opacity: 0 } : { y: 72, opacity: 0 }}
+          initial={reduceMotion ? { opacity: 0 } : { y: 12, opacity: 0 }}
           animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
-          exit={reduceMotion ? { opacity: 0 } : { y: 64, opacity: 0 }}
+          exit={reduceMotion ? { opacity: 0 } : { y: 8, opacity: 0 }}
           transition={reduceMotion ? reducedMotionTransition : chromeTransition}
           className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-3 pb-[max(0.65rem,env(safe-area-inset-bottom))] md:px-6 md:pb-[max(1.1rem,env(safe-area-inset-bottom))]"
         >

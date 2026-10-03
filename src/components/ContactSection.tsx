@@ -17,8 +17,13 @@ import {
 const MAX_MESSAGE = CONTACT_MAX_MESSAGE;
 const MAX_FILE_BYTES = CONTACT_MAX_FILE_BYTES;
 
+const fieldLabelClass =
+  "flex items-baseline justify-between gap-3 px-5 pt-3 text-[13px] font-medium tracking-[-0.01em] text-neutral-600 sm:px-6 md:px-8";
+
+const fieldHintClass = "text-[11px] font-normal tracking-normal text-neutral-400";
+
 const inputClass =
-  "w-full bg-transparent px-5 py-4 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-500 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:px-6 sm:py-5 sm:text-[14px] md:px-8";
+  "w-full bg-transparent px-5 pt-1 pb-3.5 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-400 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:px-6 md:px-8";
 
 type ContactSectionProps = {
   showIntro?: boolean;
@@ -130,7 +135,7 @@ export default function ContactSection({
       setStatus("success");
       setStatusMessage(
         data.message ??
-          "Thanks — your message was received. A Sofnology teammate will follow up by email within one business day.",
+          "Thanks — your message was received. A Sofnology teammate will be in touch soon.",
       );
       setFieldErrors({});
       setFullName("");
@@ -175,22 +180,16 @@ export default function ContactSection({
                   to it.
                 </h2>
                 <p className="mt-5 max-w-xl text-fluid-body leading-[1.65] tracking-tight text-white/75 sm:mt-6 sm:leading-[1.7]">
-                  Book a short discovery call. We will clarify the outcome, review the
+                  Tell us about the work. We will clarify the outcome, review the
                   current setup, and outline a practical next step — without a hard pitch.
                 </p>
 
                 <a
                   href="#contact-form"
-                  className="tap-press group relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between overflow-hidden bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8"
+                  className="tap-press mt-8 flex min-h-14 w-full max-w-xl items-center justify-between bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white transition-opacity duration-chrome ease-motion sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                  />
-                  <span className="relative z-10">Book a discovery call</span>
-                  <span className="relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
-                    <ArrowUpRightIcon />
-                  </span>
+                  <span>Start a conversation</span>
+                  <ArrowUpRightIcon />
                 </a>
               </div>
             </div>
@@ -215,7 +214,7 @@ export default function ContactSection({
               Prefer email?{" "}
               <a
                 href={`mailto:${SITE_EMAIL}`}
-                className="font-semibold text-navy underline-offset-4 hover:underline"
+                className="inline-block break-all font-semibold text-navy underline-offset-4 hover:underline"
               >
                 {SITE_EMAIL}
               </a>
@@ -238,15 +237,16 @@ export default function ContactSection({
 
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
-              <label className="sr-only" htmlFor="full-name">
+              <label className={fieldLabelClass} htmlFor="full-name">
                 Full name
+                <span className={fieldHintClass}>Required</span>
               </label>
               <input
                 ref={fullNameRef}
                 id="full-name"
                 name="fullName"
                 className={inputClass}
-                placeholder="Full name *"
+                placeholder=""
                 value={fullName}
                 onChange={(e) => setFullName(e.target.value)}
                 autoComplete="name"
@@ -262,8 +262,9 @@ export default function ContactSection({
               )}
             </div>
             <div>
-              <label className="sr-only" htmlFor="work-email">
+              <label className={fieldLabelClass} htmlFor="work-email">
                 Work email
+                <span className={fieldHintClass}>Required</span>
               </label>
               <input
                 ref={workEmailRef}
@@ -271,7 +272,7 @@ export default function ContactSection({
                 name="workEmail"
                 type="email"
                 className={inputClass}
-                placeholder="Work email *"
+                placeholder=""
                 value={workEmail}
                 onChange={(e) => setWorkEmail(e.target.value)}
                 autoComplete="email"
@@ -291,27 +292,24 @@ export default function ContactSection({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`group relative row-span-3 hidden items-center justify-center overflow-hidden text-xl font-semibold tracking-[-0.04em] transition-opacity duration-300 lg:flex disabled:cursor-wait disabled:opacity-70 ${sendButtonClass}`}
+            className={`row-span-3 hidden items-center justify-center px-4 text-center text-xl font-semibold tracking-[-0.04em] transition-opacity duration-chrome ease-motion lg:flex disabled:cursor-wait disabled:opacity-70 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${sendButtonClass}`}
           >
-            <span
-              aria-hidden="true"
-              className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-[1.03]">
-              {isSubmitting ? "Sending…" : "Send"}
+            <span>
+              {isSubmitting ? "Sending request…" : "Request a reply"}
             </span>
           </button>
 
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
-              <label className="sr-only" htmlFor="phone">
+              <label className={fieldLabelClass} htmlFor="phone">
                 Phone
+                <span className={fieldHintClass}>Optional</span>
               </label>
               <input
                 id="phone"
                 name="phone"
                 className={inputClass}
-                placeholder="Phone (optional)"
+                placeholder=""
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
                 autoComplete="tel"
@@ -319,7 +317,11 @@ export default function ContactSection({
               />
             </div>
             <div>
-              <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 py-4 transition-colors duration-press ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/45 focus-within:bg-white/55 sm:px-6 sm:py-5 md:px-8">
+              <p className={fieldLabelClass}>
+                Attachment
+                <span className={fieldHintClass}>Optional</span>
+              </p>
+              <label className="flex min-h-12 cursor-pointer items-center justify-between gap-4 px-5 pt-1 pb-3.5 transition-colors duration-press ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/45 focus-within:bg-white/55 sm:px-6 md:px-8">
                 <input
                   ref={attachmentRef}
                   type="file"
@@ -353,8 +355,8 @@ export default function ContactSection({
                     }
                   }}
                 />
-                <span className="text-[14px] tracking-tight text-neutral-500">
-                  {selectedFile?.name || `Upload file (optional, max ${CONTACT_MAX_FILE_LABEL})`}
+                <span className="text-[16px] tracking-tight text-neutral-400">
+                  {selectedFile?.name || `Add a file, max ${CONTACT_MAX_FILE_LABEL}`}
                 </span>
                 <UploadIcon />
               </label>
@@ -371,14 +373,15 @@ export default function ContactSection({
 
           <div className="grid grid-cols-1 border-b border-neutral-200 lg:col-span-3 lg:grid-cols-2">
             <div className="border-b border-neutral-200 lg:border-r lg:border-b-0">
-              <label className="sr-only" htmlFor="company-website">
+              <label className={fieldLabelClass} htmlFor="company-website">
                 Company website
+                <span className={fieldHintClass}>Optional</span>
               </label>
               <input
                 id="company-website"
                 name="companyWebsite"
                 className={inputClass}
-                placeholder="Company website"
+                placeholder=""
                 value={companyWebsite}
                 onChange={(e) => setCompanyWebsite(e.target.value)}
                 autoComplete="url"
@@ -386,60 +389,45 @@ export default function ContactSection({
               />
             </div>
             <div>
-              <label className="sr-only" htmlFor="project-type">
+              <label className={fieldLabelClass} htmlFor="project-type">
                 Project type
+                <span className={fieldHintClass}>Optional</span>
               </label>
               <select
                 id="project-type"
                 name="projectType"
                 className={`${inputClass} appearance-none bg-[url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%228%22 fill=%22none%22%3E%3Cpath d=%22M1 1.5 6 6.5 11 1.5%22 stroke=%22%23737373%22 stroke-width=%221.5%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22/%3E%3C/svg%3E')] bg-[length:12px_8px] bg-[position:right_1.25rem_center] bg-no-repeat pr-12 ${
-                  projectType ? "text-neutral-950" : "text-neutral-500"
+                  projectType ? "text-neutral-950" : "text-neutral-400"
                 }`}
                 value={projectType}
                 onChange={(e) => setProjectType(e.target.value)}
                 disabled={isSubmitting}
               >
                 <option value="" disabled>
-                  Project type
+                  Choose one
                 </option>
                 <option>Custom software</option>
-                <option>Digital marketing</option>
-                <option>Automation and workflows</option>
+                <option>Web or mobile app</option>
                 <option>Cloud and infrastructure</option>
-                <option>Mobile app development</option>
-                <option>Web development</option>
-                <option>Frontend development</option>
-                <option>Backend development</option>
-                <option>Fintech</option>
-                <option>Ecommerce</option>
-                <option>Foodtech</option>
-                <option>Automotive</option>
-                <option>Proptech</option>
-                <option>Healthtech</option>
-                <option>Adtech</option>
-                <option>Edtech</option>
-                <option>Cybersecurity</option>
-                <option>DevOps</option>
-                <option>Quality assurance</option>
-                <option>Cloud consulting</option>
-                <option>All technologies</option>
-                <option>Dedicated teams</option>
-                <option>Staff augmentation</option>
+                <option>Automation</option>
+                <option>Digital marketing</option>
+                <option>Security or DevOps</option>
                 <option>Not sure yet</option>
               </select>
             </div>
           </div>
 
           <div className="border-b border-neutral-200 lg:col-span-3">
-            <label className="sr-only" htmlFor="message">
+            <label className={fieldLabelClass} htmlFor="message">
               Message
+              <span className={fieldHintClass}>Required</span>
             </label>
             <textarea
               ref={messageRef}
               id="message"
               name="message"
-              className="min-h-[160px] w-full resize-none bg-transparent px-5 py-5 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-500 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:min-h-[190px] sm:px-6 sm:py-6 sm:text-[14px] md:px-8"
-              placeholder="How can we help you? *"
+              className="min-h-[140px] w-full resize-none bg-transparent px-5 pt-1 pb-4 text-[16px] tracking-tight text-neutral-950 outline-none transition-colors duration-press ease-motion placeholder:text-neutral-400 focus:bg-white/55 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-navy sm:min-h-[180px] sm:px-6 md:px-8"
+              placeholder="What should we look at first?"
               value={message}
               onChange={(e) => setMessage(e.target.value.slice(0, MAX_MESSAGE))}
               maxLength={MAX_MESSAGE}
@@ -463,7 +451,7 @@ export default function ContactSection({
             </div>
           </div>
 
-          {/* Consent before Send — large tap target for mobile */}
+          {/* Consent before submit — large tap target for mobile */}
           <div className="border-b border-neutral-200 px-5 py-5 sm:px-6 md:px-8 lg:col-span-4 lg:px-16">
             <label className="flex min-h-11 cursor-pointer items-start gap-3.5 text-[13px] leading-relaxed tracking-tight text-neutral-600">
               <input
@@ -494,9 +482,9 @@ export default function ContactSection({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`tap-press flex min-h-[3.5rem] items-center justify-center text-lg font-semibold tracking-[-0.04em] sm:min-h-24 sm:text-xl lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
+            className={`tap-press flex min-h-12 items-center justify-center text-[16px] font-semibold tracking-[-0.02em] sm:min-h-16 sm:text-lg lg:hidden disabled:cursor-wait disabled:opacity-70 ${sendButtonMobileClass}`}
           >
-            {isSubmitting ? "Sending…" : "Send"}
+            {isSubmitting ? "Sending request…" : "Request a reply"}
           </button>
         </form>
       </div>

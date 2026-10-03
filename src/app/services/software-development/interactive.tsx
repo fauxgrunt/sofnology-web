@@ -310,7 +310,7 @@ export function CooperationModelsSection() {
             {visibleModels.map((model, index) => (
               <a
                 key={`${model.title}-${activeModel}-${index}`}
-                href="#contact"
+                href="#contact-form"
                 className={`group flex min-h-[330px] flex-col border-neutral-200 px-6 py-8 transition-colors duration-chrome ease-motion hover:bg-white/55 md:px-10 lg:px-12 ${
                   index > 0 ? "md:border-l" : ""
                 }`}

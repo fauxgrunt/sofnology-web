@@ -42,7 +42,7 @@ export default function SplitImageCta({
   layout = "image-left",
   sheen = "strong",
   panelClass = "flex min-h-[340px] items-center px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20",
-  buttonClass = "group relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between overflow-hidden px-6 py-6 text-xl font-semibold tracking-[-0.045em] md:px-8",
+  buttonClass = "tap-press relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between px-6 py-6 text-xl font-semibold tracking-[-0.045em] transition-opacity duration-chrome ease-motion md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90",
   ruleColor,
   titleClass = "max-w-2xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.05em] sm:text-4xl sm:leading-[1.08] md:text-5xl",
 }: SplitImageCtaProps) {
@@ -68,7 +68,7 @@ export default function SplitImageCta({
         >
           <CtaSheen tone={sheen} width="button" />
           <span className="relative z-10">{ctaLabel}</span>
-          <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+          <span className="relative z-10">
             <ArrowUpRightIcon />
           </span>
         </a>

@@ -3,7 +3,7 @@ import type { InteriorContact, InteriorRelated, InteriorFaq, InteriorSticky } fr
 export const LIME = "#C7FF3D";
 export const DEEP = "#101413";
 export const SOFT = "#E8FF9A";
-export const PRIMARY_CTA = "Book a QA discovery call";
+export const PRIMARY_CTA = "Start a conversation";
 
 export const HERO_IMAGE = "/qa-hero.jpg";
 export const CTA_IMAGE = "/qa-cta.jpg";

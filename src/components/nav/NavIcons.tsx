@@ -2,7 +2,7 @@ function Chevron({ open }: { open: boolean }) {
   return (
     <svg
       viewBox="0 0 12 12"
-      className={`ml-1.5 h-2 w-2 shrink-0 transition-transform duration-expand ease-motion ${
+      className={`ml-1.5 h-3.5 w-3.5 shrink-0 transition-transform duration-chrome ease-motion ${
         open ? "rotate-180" : ""
       }`}
       fill="none"
@@ -52,17 +52,17 @@ function MenuToggleIcon({ open }: { open: boolean }) {
   return (
     <span className="relative block h-3.5 w-5" aria-hidden="true">
       <span
-        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-ink transition-all duration-expand ease-motion ${
+        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-ink transition-all duration-chrome ease-motion ${
           open ? "top-[6px] rotate-45" : "top-0 rotate-0"
         }`}
       />
       <span
-        className={`absolute top-[6px] left-0 block h-[1.5px] w-full bg-ink transition-opacity duration-300 ${
+        className={`absolute top-[6px] left-0 block h-[1.5px] w-full bg-ink transition-opacity duration-chrome ease-motion ${
           open ? "opacity-0" : "opacity-100"
         }`}
       />
       <span
-        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-ink transition-all duration-expand ease-motion ${
+        className={`absolute left-0 block h-[1.5px] w-full origin-center bg-ink transition-all duration-chrome ease-motion ${
           open ? "top-[6px] -rotate-45" : "top-[12px] rotate-0"
         }`}
       />

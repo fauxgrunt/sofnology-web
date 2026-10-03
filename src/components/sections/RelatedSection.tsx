@@ -107,8 +107,8 @@ export default function RelatedSection({
               <span
                 className={
                   actionLabel
-                    ? "mt-8 inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight transition-transform duration-300 group-hover:translate-x-1"
-                    : "mt-8 inline-flex transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1"
+                    ? "mt-8 inline-flex items-center gap-2 text-[14px] font-semibold tracking-tight"
+                    : "mt-8 inline-flex"
                 }
                 style={{ color: actionColor }}
               >

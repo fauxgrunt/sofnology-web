@@ -1,10 +1,6 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRightIcon } from "@/components/icons";
-import { pageTransition } from "@/lib/motion";
 
 const focusAreas = [
   {
@@ -38,13 +34,7 @@ export default function BusinessUpliftSection() {
     <section id="business-uplift" className="border-b border-neutral-200 bg-page">
       <div className="border-b border-neutral-200">
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
-          <motion.div
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={pageTransition}
-            className="px-5 pt-10 pb-8 sm:px-6 sm:pt-14 sm:pb-10 md:px-10 lg:px-16 lg:pt-20 lg:pb-16"
-          >
+          <div className="px-5 pt-10 pb-8 sm:px-6 sm:pt-14 sm:pb-10 md:px-10 lg:px-16 lg:pt-20 lg:pb-16">
             <p className="text-[16px] font-semibold tracking-[-0.02em] text-navy">
               Built to uplift your business
             </p>
@@ -52,15 +42,9 @@ export default function BusinessUpliftSection() {
               We build, market, and automate the digital systems that help businesses
               move with clarity.
             </h2>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={false}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-80px" }}
-            transition={{ ...pageTransition, delay: 0.08 }}
-            className="flex items-end px-6 pt-0 pb-14 md:px-10 lg:px-16 lg:pt-20 lg:pb-16"
-          >
+          <div className="flex items-end px-6 pt-0 pb-14 md:px-10 lg:px-16 lg:pt-20 lg:pb-16">
             <div className="max-w-2xl space-y-5 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               <p>
                 Sofnology connects product engineering, automation, cloud systems, and
@@ -74,7 +58,7 @@ export default function BusinessUpliftSection() {
                 technology that can keep pace as the business changes.
               </p>
             </div>
-          </motion.div>
+          </div>
         </div>
       </div>
 
@@ -92,15 +76,8 @@ export default function BusinessUpliftSection() {
 
         <div className="grid grid-cols-1 bg-[#101722] text-white md:grid-cols-2">
           {focusAreas.map((area, index) => (
-            <motion.article
+            <article
               key={area.title}
-              initial={false}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{
-                ...pageTransition,
-                delay: index * 0.06,
-              }}
               className={`group flex min-h-0 flex-col border-white/20 p-6 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/[0.045] sm:min-h-[240px] sm:p-8 md:min-h-[280px] md:p-10 ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
@@ -112,24 +89,20 @@ export default function BusinessUpliftSection() {
                 {area.description}
               </p>
               <Link
-                href="/#contact"
+                href="/#contact-form"
                 className="tap-press mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-chrome ease-motion"
               >
                 {area.link}
               </Link>
-            </motion.article>
+            </article>
           ))}
 
           <Link
-            href="/#contact"
-            className="tap-press group relative col-span-1 flex min-h-28 items-center justify-between overflow-hidden border-t border-white/20 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-8 py-8 text-2xl font-semibold tracking-[-0.045em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-colors duration-chrome ease-motion md:col-span-2 md:px-10"
+            href="/#contact-form"
+            className="tap-press relative col-span-1 flex min-h-28 items-center justify-between border-t border-white/20 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-8 py-8 text-2xl font-semibold tracking-[-0.045em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-opacity duration-chrome ease-motion md:col-span-2 md:px-10 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
           >
-            <span
-              aria-hidden="true"
-              className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-sheen ease-motion group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10">Start building your growth system</span>
-            <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition-all duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-white/15">
+            <span>Start building your growth system</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
               <ArrowUpRightIcon />
             </span>
           </Link>

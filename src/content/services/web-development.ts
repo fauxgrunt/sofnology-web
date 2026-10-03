@@ -13,7 +13,7 @@ export const hero = {
   imageAlt: "Web development product visual with electric blue accents",
   imageClass: "object-cover object-center",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
   ctaArrowColor: BLUE,

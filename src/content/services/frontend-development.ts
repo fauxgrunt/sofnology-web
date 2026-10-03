@@ -197,7 +197,7 @@ export const hero = {
   imageAlt: "Designers collaborating on a colorful UI mockup on a tablet",
   imageClass: "object-cover object-[center_32%]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: CORAL,
   ctaText: "#ffffff",
 } as const;

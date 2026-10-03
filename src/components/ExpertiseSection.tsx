@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { panelMotion } from "@/lib/motion";
+import { motion } from "framer-motion";
 import { handleRovingTabKey } from "@/components/a11y/SelectableCard";
+import { panelTransition } from "@/lib/motion";
 
 type ExpertiseGroup = {
   title: string;
@@ -130,11 +130,11 @@ export default function ExpertiseSection() {
   return (
     <section id="expertise" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="border-b border-neutral-200 px-5 py-8 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
+        <div className="border-b border-neutral-200 px-5 py-7 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.04em] text-neutral-950">
             Our expertise
           </h2>
-          <p className="text-fluid-body mt-3 max-w-5xl leading-[1.6] font-normal tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.7]">
+          <p className="mt-3 max-w-5xl text-[16px] leading-[1.55] text-neutral-700 sm:mt-6 sm:text-fluid-body sm:leading-[1.7]">
             From enterprise software and automation to cloud infrastructure and
             AI-enabled workflows, Sofnology builds systems designed for clarity,
             scale, and operational control.
@@ -161,7 +161,7 @@ export default function ExpertiseSection() {
                       setActiveTabId(expertiseTabs[next].id),
                     )
                   }
-                  className={`tap-press min-h-11 px-4 text-[13px] font-semibold tracking-[-0.02em] transition-colors ${
+                  className={`tap-press min-h-12 px-4 text-[15px] font-semibold tracking-[-0.02em] transition-colors duration-chrome ease-motion ${
                     isActive
                       ? "bg-navy text-white"
                       : "bg-white text-neutral-600 ring-1 ring-neutral-200"
@@ -203,7 +203,7 @@ export default function ExpertiseSection() {
                   >
                     <span
                       aria-hidden="true"
-                      className={`absolute top-1/2 left-0 h-7 w-[3px] -translate-y-1/2 bg-navy transition-opacity duration-200 ${
+                      className={`absolute top-1/2 left-0 h-7 w-[3px] -translate-y-1/2 bg-navy transition-opacity duration-chrome ease-motion ${
                         isActive
                           ? "opacity-100"
                           : "opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-40"
@@ -212,10 +212,10 @@ export default function ExpertiseSection() {
                     {tab.label}
                     <span
                       aria-hidden="true"
-                      className={`absolute top-1/2 right-4 -translate-y-1/2 text-[18px] leading-none transition-all duration-300 ${
+                      className={`absolute top-1/2 right-4 -translate-y-1/2 text-[18px] leading-none transition-opacity duration-chrome ease-motion ${
                         isActive
-                          ? "translate-x-0 opacity-100"
-                          : "-translate-x-1 opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-50"
+                          ? "opacity-100"
+                          : "opacity-0 [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-40"
                       }`}
                     >
                       +
@@ -227,14 +227,15 @@ export default function ExpertiseSection() {
           </div>
 
           <div className="bg-[#f1f1f1]">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.div
-                key={activeTab.id}
-                role="tabpanel"
-                id={`expertise-panel-${activeTab.id}`}
-                aria-labelledby={`expertise-tab-${activeTab.id} expertise-tab-desktop-${activeTab.id}`}
-                {...panelMotion}
-              >
+            <motion.div
+              key={activeTab.id}
+              role="tabpanel"
+              id={`expertise-panel-${activeTab.id}`}
+              aria-labelledby={`expertise-tab-${activeTab.id} expertise-tab-desktop-${activeTab.id}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={panelTransition}
+            >
                 {activeTab.groups.map((group, index) => (
                   <div
                     key={group.title}
@@ -251,7 +252,7 @@ export default function ExpertiseSection() {
                         <Link
                           key={link.label}
                           href={link.href}
-                          className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-press ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:text-navy [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-navy"
+                          className="tap-press inline-flex min-h-11 w-fit items-center text-[15px] font-semibold tracking-[-0.02em] text-neutral-950 underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:text-navy [@media(hover:hover)_and_(pointer:fine)]:hover:decoration-navy"
                         >
                           {link.label}
                         </Link>
@@ -260,7 +261,6 @@ export default function ExpertiseSection() {
                   </div>
                 ))}
               </motion.div>
-            </AnimatePresence>
           </div>
         </div>
       </div>

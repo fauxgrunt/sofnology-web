@@ -12,7 +12,7 @@ export const hero = {
   imageAlt: "Delivery courier checking a phone while holding a basket of fresh groceries",
   imageClass: "scale-[1.06] object-cover object-[42%_28%]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
   ctaArrowColor: LIME,

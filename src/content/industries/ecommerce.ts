@@ -12,7 +12,7 @@ export const hero = {
   imageAlt: "Yellow shopping bags on a white conveyor in a minimal 3D ecommerce scene",
   imageClass: "object-cover object-[center_45%]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
   ctaArrowColor: MAGENTA,

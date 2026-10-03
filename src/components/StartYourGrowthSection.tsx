@@ -43,45 +43,32 @@ export default function StartYourGrowthSection() {
           {startingPoints.map((point, index) => (
             <Link
               key={point.title}
-              href="/#contact"
-              className={`group relative flex min-h-0 flex-col overflow-hidden border-neutral-200 bg-page px-5 py-8 text-neutral-950 transition-colors duration-expand ease-motion sm:min-h-[240px] sm:px-6 sm:py-9 md:min-h-[280px] md:px-10 lg:px-12 ${
+              href="/#contact-form"
+              className={`tap-press group relative flex min-h-0 flex-col border-neutral-200 bg-page px-5 py-8 text-neutral-950 transition-colors duration-chrome ease-motion sm:min-h-[240px] sm:px-6 sm:py-9 md:min-h-[280px] md:px-10 lg:px-12 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white ${
                 index % 2 === 1 ? "md:border-l" : ""
               } ${index > 1 ? "border-t" : index > 0 ? "border-t md:border-t-0" : ""}`}
             >
-              <span
-                aria-hidden="true"
-                className="absolute inset-0 origin-left scale-x-0 bg-navy transition-transform duration-expand ease-motion group-focus-visible:scale-x-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:scale-x-100"
-              />
-              <span
-                aria-hidden="true"
-                className="cta-sheen absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/12 opacity-0 transition-all duration-sheen ease-motion group-focus-visible:left-[120%] group-focus-visible:opacity-100 [@media(hover:hover)_and_(pointer:fine)]:group-hover:left-[120%] [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-100"
-              />
-
-              <div className="relative z-10 flex items-start justify-between gap-8">
-                <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-500 group-focus-visible:text-white group-focus-visible:decoration-white/85 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white [@media(hover:hover)_and_(pointer:fine)]:group-hover:decoration-white/85 md:text-2xl">
+              <div className="flex items-start justify-between gap-8">
+                <h3 className="text-xl leading-tight font-semibold tracking-[-0.04em] underline decoration-neutral-950/60 underline-offset-4 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-navy [@media(hover:hover)_and_(pointer:fine)]:group-hover:decoration-navy/45 md:text-2xl">
                   {point.title}
                 </h3>
-                <span className="mt-1 flex h-9 w-9 items-center justify-center text-neutral-950 transition-all duration-500 group-focus-visible:translate-x-1 group-focus-visible:-translate-y-1 group-focus-visible:bg-white/10 group-focus-visible:text-white [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-white/10 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white">
+                <span className="mt-1 flex h-9 w-9 items-center justify-center text-neutral-950 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-navy">
                   <ArrowUpRightIcon />
                 </span>
               </div>
 
-              <p className="relative z-10 mt-auto max-w-2xl pt-16 text-fluid-body leading-[1.7] tracking-tight text-neutral-700 transition-colors duration-500 group-focus-visible:text-white/82 [@media(hover:hover)_and_(pointer:fine)]:group-hover:text-white/82">
+              <p className="mt-auto max-w-2xl pt-5 text-fluid-body leading-[1.7] tracking-tight text-neutral-700 sm:pt-16">
                 {point.description}
               </p>
             </Link>
           ))}
 
           <Link
-            href="/#contact"
-            className="tap-press group relative col-span-1 flex min-h-24 items-center justify-between overflow-hidden border-t border-neutral-200 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white md:col-span-2 md:px-10 lg:px-12"
+            href="/#contact-form"
+            className="tap-press group relative col-span-1 flex min-h-24 items-center justify-between border-t border-neutral-200 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-6 py-7 text-xl font-semibold tracking-[-0.045em] text-white transition-opacity duration-chrome ease-motion md:col-span-2 md:px-10 lg:px-12 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
           >
-            <span
-              aria-hidden="true"
-              className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/25 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-            />
-            <span className="relative z-10">Book a discovery call</span>
-            <span className="relative z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/10 transition-all duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:bg-white/15">
+            <span>Start a conversation</span>
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
               <ArrowUpRightIcon />
             </span>
           </Link>

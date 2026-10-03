@@ -3,7 +3,7 @@ import { brand } from "@/lib/theme";
 
 export const sticky: InteriorSticky = {
   href: "/#contact-form",
-  label: "Book a discovery call",
+  label: "Start a conversation",
   backgroundColor: brand.navy,
   textColor: "#ffffff",
   pastHeroPx: 320,
@@ -25,7 +25,7 @@ export const faqs: InteriorFaq = {
     {
       question: "Do you publish client case studies?",
       answer:
-        "Not yet as named public case studies. On this site you will find example engagement paths that show how we typically structure work. When we take on a project, we can share relevant past delivery detail under NDA during discovery.",
+        "We publish selected delivered work on the Our work page, without named clients, logos, or invented metrics. If a future project allows a named case study, it will say so. We can share more delivery detail under NDA during discovery.",
     },
     {
       question: "What does Sofnology actually help with?",

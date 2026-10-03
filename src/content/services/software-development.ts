@@ -341,7 +341,7 @@ export const hero = {
   imageAlt: "Sofnology software development team collaborating in a modern office",
   imageClass: "object-cover",
   ctaLabel: "Contact us",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: brand.navy,
   ctaText: "#ffffff",
 } as const;
@@ -360,7 +360,7 @@ export const cta = {
 
 export const sticky: InteriorSticky = {
   href: "/#contact-form",
-  label: "Book a discovery call",
+  label: "Start a conversation",
   backgroundColor: brand.navy,
   textColor: "#ffffff",
 };

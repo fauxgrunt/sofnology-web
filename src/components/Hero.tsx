@@ -1,129 +1,47 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
-import { ArrowUpRightIcon } from "@/components/icons";
-import { pageTransition } from "@/lib/motion";
-
-const proof = [
-  "Senior-led delivery",
-  "Software + growth systems",
-  "Clear ownership & handover",
-];
 
 export default function Hero() {
-  const reduceMotion = useReducedMotion();
-
   return (
     <section
       id="home"
       className="relative overflow-hidden border-b border-neutral-200 bg-page text-neutral-900"
     >
-      <div className="grid grid-cols-1 lg:min-h-[760px] lg:grid-cols-2 lg:items-stretch xl:min-h-[820px]">
-        <motion.div
-          initial={false}
-          animate={{ opacity: 1, y: 0 }}
-          transition={pageTransition}
-          className="flex flex-col border-r border-neutral-200 px-5 pt-6 pb-7 sm:px-6 sm:pt-7 sm:pb-8 md:px-12 lg:min-h-[760px] lg:justify-between lg:px-[clamp(2rem,5vw,6rem)] lg:pt-12 lg:pb-16 xl:min-h-[820px]"
-        >
-          <div>
-            {/* Brand is hero-level on every viewport — not nav-only */}
-            <p className="font-nav text-[1.65rem] leading-none font-semibold tracking-[-0.045em] text-navy sm:text-[1.85rem] lg:text-[2.15rem]">
-              Sofnology
-            </p>
-            <p className="mt-3 text-[11px] font-semibold tracking-[0.18em] text-navy/75 uppercase sm:mt-4 sm:text-[12px]">
-              Clarity through Technology
-            </p>
-          </div>
-
-          <h1 className="text-fluid-hero mt-5 max-w-4xl font-light tracking-[-0.04em] text-neutral-900 sm:mt-7 md:leading-[1.02] lg:mt-0">
-            Enterprise software, engineered clearly
+      <div className="flex min-h-[calc(100svh-var(--nav-h)-env(safe-area-inset-top,0px))] flex-col lg:grid lg:grid-cols-2">
+        <div className="flex shrink-0 flex-col justify-end border-b border-neutral-200 px-5 pt-8 pb-7 sm:px-6 sm:pt-10 sm:pb-8 md:px-12 lg:justify-center lg:border-r lg:border-b-0 lg:px-[clamp(2rem,5vw,6rem)] lg:py-14">
+          <h1 className="text-fluid-hero max-w-[12ch] font-semibold tracking-[-0.05em] text-neutral-950">
+            Clarity through technology
           </h1>
-
-          <div className="mt-5 w-full space-y-4 sm:mt-8 sm:space-y-6 lg:mt-auto lg:space-y-8">
-            <p className="text-fluid-body max-w-xl leading-[1.6] font-normal tracking-tight text-neutral-700 sm:leading-[1.65]">
-              Sofnology builds custom platforms, automation, and digital systems that
-              reduce operational friction — with senior ownership from architecture through
-              handover.
-            </p>
-
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-stretch sm:gap-4">
-              <Link
-                href="/#contact"
-                className="tap-press group relative flex min-h-[3.25rem] flex-1 items-center justify-between overflow-hidden bg-navy px-5 py-3.5 text-[12px] font-semibold tracking-wider text-white uppercase sm:min-h-14 sm:max-w-md sm:px-6 sm:py-4 sm:text-[11px]"
-              >
-                <span
-                  aria-hidden="true"
-                  className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/3 w-1/3 skew-x-[-18deg] bg-white/20 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
-                />
-                <span className="pointer-events-none relative z-10">Book a discovery call</span>
-                <span className="pointer-events-none relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
-                  <ArrowUpRightIcon className="h-4 w-4 shrink-0" />
-                </span>
-              </Link>
-              <Link
-                href="/#expertise"
-                className="tap-press inline-flex min-h-11 items-center justify-center border border-neutral-300 bg-transparent px-5 text-[12px] font-semibold tracking-wider text-navy uppercase transition-colors duration-chrome ease-motion sm:min-h-14 [@media(hover:hover)_and_(pointer:fine)]:hover:border-navy [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/60"
-              >
-                Explore services
-              </Link>
-            </div>
-
-            <ul className="flex flex-col gap-2.5 border-t border-neutral-200 pt-4 lg:hidden">
-              {proof.map((item) => (
-                <li
-                  key={item}
-                  className="flex min-h-9 items-center gap-3 text-[13px] font-medium tracking-tight text-navy"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="h-1.5 w-1.5 shrink-0 rounded-full bg-navy"
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <ul className="mt-2 hidden gap-x-8 gap-y-2 border-t border-neutral-200 pt-6 lg:flex lg:flex-wrap">
-              {proof.map((item) => (
-                <li
-                  key={item}
-                  className="flex items-center gap-2.5 text-[13px] font-medium tracking-tight text-neutral-600"
-                >
-                  <span
-                    aria-hidden="true"
-                    className="h-1 w-1 shrink-0 rounded-full bg-navy"
-                  />
-                  {item}
-                </li>
-              ))}
-            </ul>
+          <p className="mt-4 max-w-md text-[16px] leading-[1.55] text-neutral-700 sm:mt-5 sm:text-[17px] sm:leading-[1.6]">
+            Custom software, cloud, and digital systems for UK and international
+            teams.
+          </p>
+          <div className="mt-7 flex flex-col items-start gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-8">
+            <Link
+              href="/#contact-form"
+              className="tap-press inline-flex min-h-12 items-center bg-navy px-5 text-[16px] font-semibold tracking-[-0.02em] text-white transition-opacity duration-chrome ease-motion sm:min-h-[3.25rem] sm:px-6 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
+            >
+              Start a conversation
+            </Link>
+            <Link
+              href="/#expertise"
+              className="tap-press inline-flex min-h-12 items-center text-[16px] font-semibold tracking-[-0.02em] text-navy underline decoration-navy/35 underline-offset-[5px]"
+            >
+              Explore services
+            </Link>
           </div>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={false}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{
-            ...pageTransition,
-            delay: reduceMotion ? 0 : 0.08,
-          }}
-          className="relative aspect-[5/3] w-full overflow-hidden sm:aspect-[16/10] md:aspect-auto md:min-h-[480px] lg:min-h-[760px] xl:min-h-[820px]"
-        >
+        <div className="relative min-h-[42svh] flex-1 overflow-hidden bg-[#ececee] lg:min-h-0">
           <Image
-            src="/hero.jpg"
-            alt="Sofnology engineering team at work"
+            src="/hero-systems.jpg"
+            alt="Connected software platforms and digital systems"
             fill
             priority
             sizes="(max-width: 1024px) 100vw, 50vw"
-            className="object-cover object-center"
+            className="object-cover object-left"
           />
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-t from-navy/25 via-transparent to-transparent lg:bg-gradient-to-l lg:from-transparent lg:via-transparent lg:to-navy/10"
-          />
-        </motion.div>
+        </div>
       </div>
     </section>
   );

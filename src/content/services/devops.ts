@@ -156,7 +156,7 @@ export const hero = {
   imageAlt: "DevOps pipeline visual with amber accents",
   imageClass: "object-cover object-center",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
   ctaArrowColor: AMBER,

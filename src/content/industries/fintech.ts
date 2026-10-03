@@ -12,7 +12,7 @@ export const hero = {
   imageAlt: "Modern glass skyscraper looking upward in a financial district",
   imageClass: "object-cover object-[center_40%]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: GOLD,
   ctaText: "#1A1C1F",
 } as const;

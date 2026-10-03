@@ -42,7 +42,7 @@ export default function SplitStackedHero({
   title,
   lede,
   ctaLabel,
-  ctaHref = "#contact",
+  ctaHref = "#contact-form",
   ctaBackground,
   ctaText,
   ctaArrowColor,
@@ -111,7 +111,7 @@ export default function SplitStackedHero({
       <CtaSheen tone={sheen} />
       <span className={`relative z-10 ${ctaMaxWidth ?? ""}`}>{ctaLabel}</span>
       <span
-        className="relative z-10 shrink-0 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1 lg:mt-1"
+        className="relative z-10 shrink-0 lg:mt-1"
         style={ctaArrowColor ? { color: ctaArrowColor } : undefined}
       >
         <ArrowUpRightIcon />

@@ -34,14 +34,14 @@ export default function MagentaSplitCta({
         <div className="grid grid-cols-1 lg:grid-cols-[0.34fr_0.66fr]">
           <a
             href={href}
-            className={`group relative flex min-h-0 flex-col justify-between px-6 py-8 text-neutral-950 transition-opacity hover:opacity-95 sm:min-h-[220px] md:min-h-[280px] md:px-8 lg:px-10 ${panelMin}`}
+            className={`tap-press relative flex min-h-0 flex-col justify-between px-6 py-8 text-neutral-950 transition-opacity duration-chrome ease-motion sm:min-h-[220px] md:min-h-[280px] md:px-8 lg:px-10 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${panelMin}`}
             style={{ backgroundColor: background }}
           >
             <div className="flex items-start justify-between gap-4">
               <span className="text-2xl font-semibold tracking-[-0.045em] md:text-3xl">
                 Get in touch
               </span>
-              <span className="mt-1 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+              <span className="mt-1">
                 <ArrowUpRightIcon />
               </span>
             </div>

@@ -27,6 +27,12 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
     description: DEFAULT_DESCRIPTION,
   },
   {
+    path: "/work",
+    title: "Our work",
+    description:
+      "Selected voice, PBX, and SIP engagements Sofnology has already delivered. Client names stay private.",
+  },
+  {
     path: "/company",
     title: "About Sofnology",
     description:

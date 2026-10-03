@@ -265,7 +265,7 @@ export const hero = {
   imageAlt: "Premium mobile app development product visual",
   imageClass: "object-cover object-center",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: LIME,
   ctaText: "#101413",
 } as const;

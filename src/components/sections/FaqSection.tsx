@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { accordionMotion } from "@/lib/motion";
+import AccordionPanel from "@/components/AccordionPanel";
 
 export type Faq = {
   question: string;
@@ -19,7 +18,7 @@ export type Faq = {
 export type FaqVariant = "regular" | "roomy" | "compact" | "responsive" | "home";
 
 const BUTTON =
-  "flex min-h-24 w-full items-center justify-between gap-8 px-6 py-7 text-left transition-colors duration-chrome ease-motion hover:bg-white/35 md:px-10 lg:px-16";
+  "flex min-h-24 w-full items-center justify-between gap-8 px-6 py-7 text-left transition-colors duration-chrome ease-motion md:px-10 lg:px-16 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35";
 const QUESTION =
   "text-xl leading-tight font-semibold tracking-[-0.04em] text-neutral-950 md:text-2xl";
 const HEADING =
@@ -85,7 +84,7 @@ const PRESETS: Record<FaqVariant, Preset> = {
       "max-w-5xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.045em] text-neutral-950 sm:text-4xl sm:leading-[1.08] md:text-5xl",
     lede: "mt-6 max-w-3xl text-[15px] leading-[1.75] tracking-tight text-neutral-700",
     button:
-      "flex min-h-0 w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-chrome ease-motion hover:bg-white/35 sm:min-h-20 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16",
+      "flex min-h-0 w-full items-start justify-between gap-4 px-5 py-5 text-left transition-colors duration-chrome ease-motion sm:min-h-20 sm:items-center sm:gap-8 sm:px-6 sm:py-7 md:px-10 lg:px-16 [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white/35",
     question:
       "text-[16px] leading-[1.3] font-semibold tracking-[-0.04em] text-neutral-950 sm:text-xl sm:leading-tight md:text-2xl",
     sign: "shrink-0 text-2xl leading-none font-light sm:text-4xl",
@@ -181,26 +180,19 @@ export default function FaqSection({
                   </span>
                 </button>
 
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      key={`${faq.question}-answer`}
-                      id={`faq-panel-${index}`}
-                      role="region"
-                      aria-labelledby={`faq-trigger-${index}`}
-                      {...accordionMotion}
-                      className="overflow-hidden"
-                    >
-                      {preset.padAnswerWrapper ? (
-                        <div className={preset.answerWrapper}>
-                          <p className={preset.answer}>{faq.answer}</p>
-                        </div>
-                      ) : (
-                        <p className={preset.answer}>{faq.answer}</p>
-                      )}
-                    </motion.div>
+                <AccordionPanel
+                  id={`faq-panel-${index}`}
+                  labelledBy={`faq-trigger-${index}`}
+                  open={isOpen}
+                >
+                  {preset.padAnswerWrapper ? (
+                    <div className={preset.answerWrapper}>
+                      <p className={preset.answer}>{faq.answer}</p>
+                    </div>
+                  ) : (
+                    <p className={preset.answer}>{faq.answer}</p>
                   )}
-                </AnimatePresence>
+                </AccordionPanel>
               </div>
             );
           })}

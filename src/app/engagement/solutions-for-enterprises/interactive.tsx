@@ -185,7 +185,7 @@ export function ServicesSection() {
                   </Link>
                 ) : (
                   <a
-                    href="#contact"
+                    href="#contact-form"
                     className="group relative mt-10 inline-flex min-h-14 w-full max-w-md items-center justify-between overflow-hidden px-5 py-4 text-[15px] font-semibold tracking-[-0.03em] text-white"
                     style={{ backgroundColor: SLATE }}
                   >

@@ -227,7 +227,7 @@ export const hero = {
   imageAlt: "Backend systems visual with emerald accents",
   imageClass: "object-cover object-center",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: EMERALD,
   ctaText: "#111827",
 } as const;

@@ -49,7 +49,7 @@ export const navItems: NavItemConfig[] = [
     href: "/#start-your-growth",
     menu: "engagement",
   },
-  { id: "portfolio", label: "Example paths", href: "/#engagement-paths" },
+  { id: "portfolio", label: "Our work", href: "/work" },
   { id: "company", label: "Company", href: "/company", menu: "company" },
 ];
 
@@ -116,7 +116,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     banner: {
       text: "Want to start a project but need technical clarity first? Talk through scope with Sofnology.",
       cta: "Talk to us",
-      href: "/#contact",
+      href: "/#contact-form",
     },
   },
   industries: {
@@ -135,7 +135,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
       title: "Not sure where to start?",
       subtitle: "Tell us about the product — we’ll point you to the right engagement.",
       cta: "Start a conversation",
-      href: "/#contact",
+      href: "/#contact-form",
     },
   },
   engagement: {
@@ -152,7 +152,7 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
       title: "Ready to partner?",
       subtitle: "Dedicated pods, staff aug, or full project delivery — pick the fit.",
       cta: "Talk to engineering",
-      href: "/#contact",
+      href: "/#contact-form",
     },
   },
   company: {
@@ -160,14 +160,14 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     links: [
       { label: "Who we are", href: "/company" },
       { label: "How we work", href: "/company/how-we-work" },
-      { label: "Example engagement paths", href: "/#engagement-paths" },
+      { label: "Our work", href: "/work" },
       { label: "Contact", href: "/#contact" },
     ],
     promo: {
       title: "Start with a conversation",
       subtitle: "Tell us the outcome you need — we will outline a practical next step.",
-      cta: "Book a discovery call",
-      href: "/#contact",
+      cta: "Start a conversation",
+      href: "/#contact-form",
     },
   },
 };

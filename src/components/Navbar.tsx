@@ -8,7 +8,13 @@ import NavbarLogo from "@/components/nav/NavbarLogo";
 import NavMegaPanel from "@/components/nav/NavMegaPanel";
 import PrimaryCTA from "@/components/nav/PrimaryCTA";
 import { Chevron, MenuToggleIcon } from "@/components/nav/NavIcons";
-import { navItems, megaMenus, type MenuId } from "@/components/nav/nav-data";
+import {
+  navItems,
+  megaMenus,
+  type MegaMenuConfig,
+  type MenuId,
+  type NavLink,
+} from "@/components/nav/nav-data";
 import { useFocusTrap } from "@/hooks/useFocusTrap";
 import {
   accordionMotion,
@@ -20,6 +26,19 @@ const navLinkClass =
 
 const underlineTransition =
   "transition-transform duration-chrome ease-motion";
+
+function uniqueMenuLinks(menu: MegaMenuConfig): NavLink[] {
+  const seen = new Set<string>();
+  const links: NavLink[] = [];
+  const add = (link: NavLink) => {
+    if (seen.has(link.href)) return;
+    seen.add(link.href);
+    links.push(link);
+  };
+  menu.columns?.forEach((column) => column.links.forEach(add));
+  menu.links?.forEach(add);
+  return links;
+}
 
 /** Delay before close so cursor can travel into the panel */
 const CLOSE_GRACE_MS = 160;
@@ -148,9 +167,9 @@ export default function Navbar() {
             ref={drawerRef}
           >
             <motion.div
-              initial={{ y: -16, opacity: 0 }}
+              initial={{ y: -8, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -10, opacity: 0 }}
+              exit={{ y: -6, opacity: 0 }}
               transition={chromeTransition}
               className="flex h-full flex-col overflow-hidden bg-[#f7f7f8]"
             >
@@ -164,11 +183,11 @@ export default function Navbar() {
                     return (
                       <motion.div
                         key={item.id}
-                        initial={{ opacity: 0, y: 8 }}
+                        initial={{ opacity: 0, y: 4 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{
                           ...chromeTransition,
-                          delay: 0.03 + index * 0.03,
+                          delay: 0.02 + index * 0.02,
                         }}
                         className="border-b border-neutral-200/80"
                       >
@@ -204,85 +223,19 @@ export default function Navbar() {
                                   {...accordionMotion}
                                   className="overflow-hidden bg-[#f3f3f4]"
                                 >
-                                  <div className="space-y-5 px-5 pt-2 pb-6">
-                                    {menu.columns?.map((col) => (
-                                      <div key={col.heading}>
-                                        <p className="mb-3 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase">
-                                          {col.heading}
-                                        </p>
-                                        <ul className="space-y-1">
-                                          {col.links.map((link) => (
-                                            <li key={link.label}>
-                                              <Link
-                                                href={link.href}
-                                                className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-ink transition-opacity active:opacity-55"
-                                                onClick={() => setDrawerOpen(false)}
-                                              >
-                                                {link.label}
-                                              </Link>
-                                            </li>
-                                          ))}
-                                        </ul>
-                                      </div>
+                                  <ul className="px-5 pt-1 pb-4">
+                                    {uniqueMenuLinks(menu).map((link) => (
+                                      <li key={link.href}>
+                                        <Link
+                                          href={link.href}
+                                          className="tap-press block min-h-12 py-3 text-[16px] font-medium tracking-normal text-ink transition-opacity duration-press ease-motion active:opacity-80"
+                                          onClick={() => setDrawerOpen(false)}
+                                        >
+                                          {link.label}
+                                        </Link>
+                                      </li>
                                     ))}
-
-                                    {menu.links && (
-                                      <ul className="space-y-1">
-                                        {menu.links.map((link) => (
-                                          <li key={link.label}>
-                                            <Link
-                                              href={link.href}
-                                              className="tap-press block min-h-11 py-2.5 text-[16px] font-medium tracking-normal text-ink transition-opacity active:opacity-55"
-                                              onClick={() => setDrawerOpen(false)}
-                                            >
-                                              {link.label}
-                                            </Link>
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    )}
-
-                                    {menu.promo && (
-                                      <Link
-                                        href={
-                                          menu.promo.href.startsWith("#")
-                                            ? `/${menu.promo.href}`
-                                            : menu.promo.href
-                                        }
-                                        className="tap-press mt-1 flex min-h-14 items-center justify-between bg-navy px-4 text-[14px] font-medium text-white"
-                                        onClick={() => setDrawerOpen(false)}
-                                      >
-                                        <span>
-                                          <span className="block text-[12px] font-medium tracking-wide text-white/55">
-                                            {menu.promo.title}
-                                          </span>
-                                          <span className="mt-0.5 block">{menu.promo.cta}</span>
-                                        </span>
-                                        <span className="text-[#C7FF3D]" aria-hidden="true">
-                                          ↗
-                                        </span>
-                                      </Link>
-                                    )}
-
-                                    {menu.banner && (
-                                      <Link
-                                        href={
-                                          menu.banner.href.startsWith("#")
-                                            ? `/${menu.banner.href}`
-                                            : menu.banner.href
-                                        }
-                                        className="tap-press flex min-h-12 items-center justify-between gap-3 border-t border-neutral-300/70 bg-navy px-4 py-3 text-[13px] font-medium text-white"
-                                        onClick={() => setDrawerOpen(false)}
-                                      >
-                                        <span className="line-clamp-2 text-white/85">
-                                          {menu.banner.text}
-                                        </span>
-                                        <span className="shrink-0 text-[#C7FF3D]">
-                                          {menu.banner.cta} ↗
-                                        </span>
-                                      </Link>
-                                    )}
-                                  </div>
+                                  </ul>
                                 </motion.div>
                               )}
                             </AnimatePresence>
@@ -422,9 +375,9 @@ export default function Navbar() {
             <motion.div
               key={openMenu}
               id={`mega-panel-${openMenu}`}
-              initial={{ opacity: 0, y: -10 }}
+              initial={{ opacity: 0, y: -4 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -6 }}
+              exit={{ opacity: 0, y: -3 }}
               transition={chromeTransition}
               className="absolute inset-x-0 top-full z-50 hidden border-b border-neutral-200 bg-[#f3f3f4] lg:block"
               onMouseEnter={keepOpen}

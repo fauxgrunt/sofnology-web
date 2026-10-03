@@ -3,7 +3,7 @@ import type { InteriorContact, InteriorRelated, InteriorFaq, InteriorSticky } fr
 export const SKY = "#0EA5E9";
 export const DEEP = "#0C4A6E";
 export const SOFT = "#E0F2FE";
-export const PRIMARY_CTA = "Book a cloud discovery call";
+export const PRIMARY_CTA = "Start a conversation";
 
 export const HERO_IMAGE = "/cloud-hero.jpg";
 export const MID_IMAGE = "/cloud-mid.jpg";

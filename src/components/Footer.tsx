@@ -28,10 +28,10 @@ const industryLinks = [
 
 const supportLinks = [
   { label: "FAQ", href: "/#faq" },
-  { label: "Example paths", href: "/#engagement-paths" },
+  { label: "Our work", href: "/work" },
   { label: "Startups", href: "/engagement/solutions-for-startups" },
   { label: "Enterprises", href: "/engagement/solutions-for-enterprises" },
-  { label: "Book a discovery call", href: "/#contact" },
+  { label: "Start a conversation", href: "/#contact-form" },
 ];
 
 const footerColumns = [
@@ -69,7 +69,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="inline-flex min-h-10 items-center text-[14px] leading-snug tracking-[-0.02em] text-white/82 transition-colors duration-press ease-motion hover:text-white"
+                        className="inline-flex min-h-11 items-center text-[14px] leading-snug tracking-[-0.02em] text-white/82 transition-colors duration-press ease-motion hover:text-white"
                       >
                         {link.label}
                       </Link>
@@ -92,10 +92,10 @@ export default function Footer() {
                     {SITE_EMAIL}
                   </a>
                   <Link
-                    href="/#contact"
+                    href="/#contact-form"
                     className="block transition-colors hover:text-white"
                   >
-                    Book a discovery call
+                    Start a conversation
                   </Link>
                   <p>Remote-first delivery</p>
                 </div>
@@ -144,13 +144,11 @@ export default function Footer() {
               into one practical execution plan for growing businesses.
             </p>
             <Link
-              href="/#contact"
-              className="tap-press group mt-9 flex min-h-14 items-center justify-between bg-page px-5 text-[14px] font-semibold tracking-[-0.02em] text-navy transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white"
+              href="/#contact-form"
+              className="tap-press mt-9 flex min-h-14 items-center justify-between bg-page px-5 text-[14px] font-semibold tracking-[-0.02em] text-navy transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-white"
             >
-              <span>Book a discovery call</span>
-              <span className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-1 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-1">
-                <ArrowUpRightIcon className="h-4 w-4" />
-              </span>
+              <span>Start a conversation</span>
+              <ArrowUpRightIcon className="h-4 w-4" />
             </Link>
           </div>
         </div>
@@ -167,9 +165,7 @@ export default function Footer() {
           </div>
 
           <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/75 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
-            <p suppressHydrationWarning>
-              &copy; {new Date().getFullYear()} Sofnology Solutions. All rights reserved.
-            </p>
+            <p>&copy; 2026 Sofnology Solutions. All rights reserved.</p>
             <a
               href={`mailto:${SITE_EMAIL}?subject=Privacy%20inquiry`}
               className="mt-2 w-fit transition-colors duration-press ease-motion hover:text-white"

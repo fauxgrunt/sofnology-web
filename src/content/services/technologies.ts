@@ -254,7 +254,7 @@ export const cta = {
     "Leverage Sofnology tech expertise to shape the stack — and the engagement model — that fits your product today.",
   ctaLabel: "Choose your collaboration scenario",
   stripLabel: "All cases",
-  stripHref: "/#engagement-paths",
+  stripHref: "/work",
   panelBackground: VIOLET,
   buttonBackground: LIME,
   buttonText: INK,

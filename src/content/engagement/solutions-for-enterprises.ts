@@ -20,7 +20,7 @@ export const hero = {
   titleClass:
     "max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.1rem]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: SLATE,
   ctaText: "#ffffff",
   ctaArrowColor: ICE,
@@ -31,7 +31,7 @@ export const cta = {
   lede:
     "Tell us about the systems, constraints, and outcomes. We’ll help shape a practical path from discovery to durable delivery.",
   ctaLabel: "Reach out to Sofnology",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   image: "/enterprise-cta.jpg",
   imageAlt: "Enterprise partners walking through a modern corporate atrium",
   imageClass: "scale-[1.06] object-cover object-[42%_28%]",
@@ -168,7 +168,7 @@ export const workModels = [
 ];
 
 export const sticky: InteriorSticky = {
-  href: "#contact",
+  href: "#contact-form",
   label: "Get in touch",
   backgroundColor: SLATE,
   textColor: "#ffffff",

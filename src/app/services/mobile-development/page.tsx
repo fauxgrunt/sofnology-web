@@ -57,7 +57,7 @@ function ChecklistSection() {
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-500 group-hover:left-[115%] group-hover:opacity-100"
                   />
-                  <span className="relative z-10">Book a discovery call</span>
+                  <span className="relative z-10">Start a conversation</span>
                   <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <ArrowUpRightIcon />
                   </span>

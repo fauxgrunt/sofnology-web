@@ -1,9 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { accordionMotion } from "@/lib/motion";
 import Image from "next/image";
+import AccordionPanel from "@/components/AccordionPanel";
 
 type DeliveryItem = {
   title: string;
@@ -124,34 +123,28 @@ export default function DeliveryConfidenceSection() {
                     </span>
                   </button>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        id={`delivery-panel-${index}`}
-                        role="region"
-                        aria-labelledby={`delivery-trigger-${index}`}
-                        {...accordionMotion}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-6 pb-8 md:px-10 lg:px-12">
-                          <p className="max-w-2xl text-[14px] leading-[1.72] tracking-tight text-neutral-700">
-                            {item.description}
-                          </p>
+                  <AccordionPanel
+                    id={`delivery-panel-${index}`}
+                    labelledBy={`delivery-trigger-${index}`}
+                    open={isOpen}
+                  >
+                    <div className="px-6 pb-8 md:px-10 lg:px-12">
+                      <p className="max-w-2xl text-[14px] leading-[1.72] tracking-tight text-neutral-700">
+                        {item.description}
+                      </p>
 
-                          <div className="mt-7 grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-2">
-                            {item.points.map((point) => (
-                              <p
-                                key={point}
-                                className="text-[14px] leading-[1.55] tracking-tight text-neutral-700"
-                              >
-                                {point}
-                              </p>
-                            ))}
-                          </div>
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                      <div className="mt-7 grid grid-cols-1 gap-x-12 gap-y-4 md:grid-cols-2">
+                        {item.points.map((point) => (
+                          <p
+                            key={point}
+                            className="text-[14px] leading-[1.55] tracking-tight text-neutral-700"
+                          >
+                            {point}
+                          </p>
+                        ))}
+                      </div>
+                    </div>
+                  </AccordionPanel>
                 </div>
               );
             })}

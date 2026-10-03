@@ -7,19 +7,19 @@ import type { MegaMenuConfig } from "./nav-data";
 import { chromeTransition } from "@/lib/motion";
 
 const linkClass =
-  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-ink transition-opacity duration-300 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80";
+  "font-nav group/link relative inline-block text-fluid-mega font-medium tracking-normal text-ink transition-opacity duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-80";
 
 const headingClass =
   "font-nav mb-7 text-[11px] font-medium tracking-[0.16em] text-neutral-400 uppercase";
 
 const columnVariants = {
-  hidden: { opacity: 0, y: 10 },
+  hidden: { opacity: 0, y: 6 },
   visible: (index: number) => ({
     opacity: 1,
     y: 0,
     transition: {
       ...chromeTransition,
-      delay: 0.06 + index * 0.05,
+      delay: 0.04 + index * 0.03,
     },
   }),
 };
@@ -95,19 +95,10 @@ function PromoCard({
       <Link
         href={href}
         onClick={onNavigate}
-        className="group relative mt-8 inline-flex min-h-12 w-full items-center justify-between overflow-hidden bg-[#C7FF3D] px-4 font-nav text-[13px] font-medium tracking-normal text-[#101413]"
+        className="group relative mt-8 inline-flex min-h-12 w-full items-center justify-between bg-[#C7FF3D] px-4 font-nav text-[13px] font-medium tracking-normal text-[#101413] transition-opacity duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
       >
-        <span
-          aria-hidden="true"
-          className="cta-sheen pointer-events-none absolute inset-y-0 -left-1/4 w-1/4 skew-x-[-18deg] bg-white/35 opacity-0 transition-all duration-sheen ease-motion group-hover:left-[115%] group-hover:opacity-100"
-        />
-        <span className="relative z-10">{promo.cta}</span>
-        <span
-          className="relative z-10 transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-0.5"
-          aria-hidden="true"
-        >
-          ↗
-        </span>
+        <span>{promo.cta}</span>
+        <span aria-hidden="true">↗</span>
       </Link>
     </motion.div>
   );
@@ -133,7 +124,7 @@ function BottomBanner({
       <Link
         href={href}
         onClick={onNavigate}
-        className="group flex min-h-[72px] items-center justify-between gap-6 border-t border-neutral-300/70 bg-navy px-6 py-5 font-nav text-white transition-opacity hover:opacity-95 md:px-8"
+        className="group flex min-h-[72px] items-center justify-between gap-6 border-t border-neutral-300/70 bg-navy px-6 py-5 font-nav text-white transition-opacity duration-chrome ease-motion md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
       >
         <p className="max-w-3xl text-[14px] leading-[1.5] font-medium tracking-normal text-white/90 md:text-[15px]">
           {banner.text}
@@ -141,7 +132,7 @@ function BottomBanner({
         <span className="inline-flex shrink-0 items-center gap-2 text-[13px] font-medium tracking-normal text-[#C7FF3D]">
           {banner.cta}
           <span
-            className="transition-transform duration-300 [@media(hover:hover)_and_(pointer:fine)]:group-hover:translate-x-0.5 [@media(hover:hover)_and_(pointer:fine)]:group-hover:-translate-y-0.5"
+            className="transition-opacity duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:group-hover:opacity-80"
             aria-hidden="true"
           >
             ↗

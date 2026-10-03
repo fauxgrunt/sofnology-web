@@ -14,7 +14,7 @@ export const hero = {
   imageMinClass:
     "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]",
   ctaLabel: "Get in touch",
-  ctaHref: "#contact",
+  ctaHref: "#contact-form",
   ctaBackground: ORANGE,
   ctaText: "#1A1512",
 } as const;

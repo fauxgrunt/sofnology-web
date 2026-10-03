@@ -18,14 +18,14 @@
   --color-page: #f4f4f4;
   --color-ink: #111111;
   --color-azure: #2F6BFF;
-  --ease-motion: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-motion: cubic-bezier(0.33, 1, 0.68, 1);
   --duration-press: 160ms;
-  --duration-chrome: 280ms;
-  --duration-panel: 240ms;
-  --duration-expand: 500ms;
-  --duration-page: 320ms;
-  --duration-sheen: 800ms;
-  --duration-progress: 240ms;
+  --duration-chrome: 360ms;
+  --duration-panel: 340ms;
+  --duration-expand: 400ms;
+  --duration-page: 400ms;
+  --duration-sheen: 550ms;
+  --duration-progress: 280ms;
 }
 
 @layer base {
@@ -49,11 +49,11 @@
     --fluid-vp-max: 1920;
     --fs-nav: 15px;
     --fs-mega: 16px;
-    --fs-cta: 14px;
-    --fs-body: 15px;
-    --fs-display: 2.05rem;
-    --fs-hero: 2.35rem;
-    --nav-h: 3.75rem;
+    --fs-cta: 16px;
+    --fs-body: 16px;
+    --fs-display: 1.85rem;
+    --fs-hero: 2.2rem;
+    --nav-h: 3.5rem;
     --section-py: 3.5rem;
     --safe-bottom: env(safe-area-inset-bottom, 0px);
     --safe-top: env(safe-area-inset-top, 0px);
@@ -106,9 +106,9 @@
         18px
       );
       --fs-cta: clamp(
-        13px,
-        calc(13px + (15 - 13) * ((100vw - 1080px) / 840)),
-        15px
+        15px,
+        calc(15px + (16 - 15) * ((100vw - 1080px) / 840)),
+        16px
       );
       --fs-body: clamp(
         14px,
@@ -161,7 +161,22 @@
     }
 
     .group:active {
-      opacity: 0.92;
+      opacity: 0.97;
+    }
+  }
+
+  .page-enter {
+    animation: page-enter var(--duration-page) var(--ease-motion);
+  }
+
+  @keyframes page-enter {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
     }
   }
 
@@ -218,7 +233,7 @@
 
   .text-fluid-hero {
     font-size: var(--fs-hero);
-    line-height: 1.05;
+    line-height: 1.14;
   }
 
   .h-fluid-nav {
@@ -236,14 +251,14 @@
 
   @media (hover: none) and (pointer: coarse) {
     .tap-press:active {
-      transform: scale(0.97);
-      opacity: 0.9;
+      transform: scale(0.99);
+      opacity: 0.96;
     }
   }
 
   @media (hover: hover) and (pointer: fine) {
     .tap-press:active {
-      transform: scale(0.99);
+      transform: scale(0.995);
     }
   }
 
