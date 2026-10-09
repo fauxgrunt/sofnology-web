@@ -32,7 +32,6 @@ export default function FeaturedWorkSection() {
 
         <div className="grid grid-cols-1 border-t border-neutral-200 lg:grid-cols-2">
           {featured.map((item, index) => {
-            const banner = Boolean(item.image && item.imageWidth && item.imageHeight);
             const photo = item.cardImage ?? item.image;
             return (
             <article
@@ -42,7 +41,7 @@ export default function FeaturedWorkSection() {
               } ${index < 2 && index > 0 ? "lg:border-t-0" : ""}`}
             >
               <Link href={`/work/${item.slug}`} className="group relative block overflow-hidden">
-                {banner ? (
+                {item.image && item.imageWidth && item.imageHeight ? (
                   <>
                     <Image
                       src={item.image}

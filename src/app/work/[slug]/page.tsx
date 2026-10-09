@@ -46,7 +46,9 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
         hero={<WorkGrid initialArea={category.slug} title={category.title} lede={category.description} />}
         sticky={sticky}
         contact={contact}
-      />
+      >
+        {null}
+      </InteriorPage>
     );
   }
   if (!item) notFound();

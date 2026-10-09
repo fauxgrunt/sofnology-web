@@ -156,13 +156,16 @@ export default function Footer() {
 
         <div className="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_480px]">
           <div className="flex min-h-40 items-end px-6 py-9 md:px-10 lg:px-8 xl:px-12">
-            <Image
-              src="/logo-new.png"
-              alt="Sofnology Solutions"
-              width={520}
-              height={120}
-              className="h-auto w-full max-w-[420px] brightness-0 invert"
-            />
+            <div className="inline-flex items-center bg-[#f4f4f4] px-5 py-3.5">
+              <Image
+                src="/new-logo.png"
+                alt="Sofnology Solutions"
+                width={1216}
+                height={327}
+                unoptimized
+                className="h-10 w-auto sm:h-12"
+              />
+            </div>
           </div>
 
           <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/75 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">

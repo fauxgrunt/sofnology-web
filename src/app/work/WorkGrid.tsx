@@ -78,7 +78,6 @@ export default function WorkGrid({
         ) : (
           <div className="grid grid-cols-1 border-t border-neutral-200 lg:grid-cols-2">
             {items.map((item, index) => {
-              const banner = Boolean(item.image && item.imageWidth && item.imageHeight);
               const photo = item.cardImage ?? item.image;
               return (
               <article
@@ -88,7 +87,7 @@ export default function WorkGrid({
                 } ${index === 1 ? "lg:border-t-0" : ""}`}
               >
                 <Link href={`/work/${item.slug}`} className="group relative block overflow-hidden">
-                  {banner ? (
+                  {item.image && item.imageWidth && item.imageHeight ? (
                     <>
                       <Image
                         src={item.image}
