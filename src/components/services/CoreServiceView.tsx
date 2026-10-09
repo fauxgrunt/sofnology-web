@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { InteriorPage, FullBandCta, StackedHero } from "@/components/interior";
+import { InteriorPage, FullBandCta, SplitStackedHero } from "@/components/interior";
 import FaqSection from "@/components/sections/FaqSection";
 import { workBySlugs } from "@/content/work";
 import type { ServicePageData } from "@/content/services/catalog";
@@ -17,10 +17,10 @@ const deliverySteps = [
 ];
 
 const engagementOptions = [
-  { title: "Project-based delivery", href: "/how-we-work#project-based", description: "Defined scope, milestones, delivery, testing, and handover." },
-  { title: "Dedicated team", href: "/how-we-work#dedicated-team", description: "A team aligned around the client's ongoing roadmap." },
-  { title: "Staff augmentation", href: "/how-we-work#staff-augmentation", description: "Add specific engineering capability to an existing team." },
-  { title: "Managed support / retainer", href: "/how-we-work#ongoing-support", description: "Monthly maintenance, optimisation, and technical support." },
+  { title: "Project-based delivery", href: "/how-we-work/project-based-delivery", description: "Defined scope, milestones, delivery, testing, and handover." },
+  { title: "Dedicated team", href: "/how-we-work/dedicated-development-team", description: "A team aligned around the client's ongoing roadmap." },
+  { title: "Staff augmentation", href: "/how-we-work/staff-augmentation", description: "Add specific engineering capability to an existing team." },
+  { title: "Managed support / retainer", href: "/how-we-work/ongoing-support", description: "Monthly maintenance, optimisation, and technical support." },
 ];
 
 const sticky = {
@@ -39,17 +39,20 @@ export default function CoreServiceView({ service }: { service: ServicePageData 
       sticky={sticky}
       contact={{ showIntro: true, accent: "navy" }}
       hero={
-        <StackedHero
+        <SplitStackedHero
           image={service.image}
           imageAlt={service.imageAlt}
-          imageClass="object-cover object-center"
+          imageClass="object-cover object-[center_40%]"
           title={service.title}
           lede={service.lede}
           eyebrow="Sofnology"
-          eyebrowColor={brand.accent}
-          ctaLabel="Discuss your project"
+          eyebrowClass="text-[12px] font-semibold tracking-[0.16em] uppercase"
+          ctaLabel="Start a Project"
           ctaHref="#contact-form"
           ctaBackground={brand.navy}
+          ctaText="#ffffff"
+          wedge="default"
+          imageMinClass="relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]"
         />
       }
     >

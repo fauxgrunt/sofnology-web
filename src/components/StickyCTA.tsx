@@ -20,7 +20,7 @@ type StickyCTAProps = {
  */
 export default function StickyCTA({
   href = "/#contact-form",
-  label = "Start a conversation",
+  label = "Start a Project",
   backgroundColor,
   textColor = "#101413",
   pastHeroPx = 420,
@@ -73,11 +73,11 @@ export default function StickyCTA({
           animate={reduceMotion ? { opacity: 1 } : { y: 0, opacity: 1 }}
           exit={reduceMotion ? { opacity: 0 } : { y: 8, opacity: 0 }}
           transition={reduceMotion ? reducedMotionTransition : chromeTransition}
-          className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-3 pb-[max(0.65rem,env(safe-area-inset-bottom))] md:px-6 md:pb-[max(1.1rem,env(safe-area-inset-bottom))]"
+          className="pointer-events-none fixed inset-x-0 bottom-0 z-30 px-0 pb-[env(safe-area-inset-bottom)] md:px-6 md:pb-[max(1.1rem,env(safe-area-inset-bottom))] lg:hidden"
         >
           <Link
             href={href}
-            className="tap-press pointer-events-auto mx-auto flex h-[3.25rem] max-w-lg items-center justify-between gap-4 px-5 text-[15px] font-semibold tracking-[-0.03em] ring-1 ring-black/5 md:h-16 md:max-w-xl md:px-6 md:text-base"
+            className="tap-press pointer-events-auto flex h-14 w-full items-center justify-between gap-4 px-5 text-[16px] font-semibold tracking-[-0.03em] md:mx-auto md:h-16 md:max-w-xl md:px-6 md:text-base md:ring-1 md:ring-black/5"
             style={{ backgroundColor, color: textColor }}
           >
             <span className="truncate">{label}</span>

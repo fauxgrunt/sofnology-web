@@ -2,7 +2,7 @@ import type { InteriorContact, InteriorFaq, InteriorRelated, InteriorSticky } fr
 
 export const CORAL = "#FF6B4A";
 export const DEEP = "#1A1512";
-export const PRIMARY_CTA = "Talk about automotive software";
+export const PRIMARY_CTA = "Start a Project";
 
 export const hero = {
   title: "Automotive software development",
@@ -236,8 +236,8 @@ export const related: InteriorRelated = {
     },
     {
       title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting engineering pod when automotive roadmaps run for years, not sprints.",
+      href: "/how-we-work/dedicated-development-team",
+      description: "A lasting engineering team when automotive roadmaps run for years, not sprints.",
     },
   ],
 };

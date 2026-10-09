@@ -17,9 +17,9 @@ export const faqs: InteriorFaq = {
   id: "faq",
   signColor: brand.navy,
   variant: "home",
-  heading: "FAQs: Clear answers before we start",
+  heading: "Before you start a project",
   lede:
-    "The first conversation should focus on your business goals, not basic uncertainty about process, pricing, ownership, or how the work is managed. These answers cover the questions most teams ask before starting with Sofnology.",
+    "Scope, price, ownership, and who runs the work. These are the questions teams ask before they send a brief.",
   collapsible: false,
   items: [
     {
@@ -30,7 +30,7 @@ export const faqs: InteriorFaq = {
     {
       question: "What does Sofnology actually help with?",
       answer:
-        "Sofnology helps businesses improve the digital layer of their operations. That can include custom software, websites, automation, cloud systems, analytics, digital marketing, conversion improvements, and the workflows that connect them.",
+        "Calls, forms, and repeat tasks are already eating the day. Sofnology builds the software, the voice and telephony path, the automation, and the digital marketing that sit on that work.",
     },
     {
       question: "Do you only build custom software?",
@@ -45,7 +45,7 @@ export const faqs: InteriorFaq = {
     {
       question: "How quickly can a project start?",
       answer:
-        "Smaller audits, landing page improvements, automation reviews, and focused sprints can usually start quickly once the scope is clear. Larger software or growth-system builds need a short discovery phase so the plan, ownership, and delivery milestones are properly defined.",
+        "A landing page, an automation review, or a telephony fault can start once the scope is clear. A larger software build needs a short discovery first, so the plan, the owner, and the milestones are agreed before delivery.",
     },
     {
       question: "Can you improve an existing website, app, or workflow?",
@@ -55,7 +55,7 @@ export const faqs: InteriorFaq = {
     {
       question: "Do you handle digital marketing as well as development?",
       answer:
-        "Yes. We support digital marketing work such as SEO, paid campaigns, landing pages, analytics, conversion tracking, content systems, and growth reporting. The advantage is that marketing and technical delivery can be planned together instead of operating separately.",
+        "Yes. SEO, paid search, landing pages, and conversion tracking sit with the same company that builds the site, so the page and the campaign are planned together.",
     },
     {
       question: "Who owns the final work?",

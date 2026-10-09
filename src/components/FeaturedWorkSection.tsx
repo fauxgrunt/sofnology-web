@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRightIcon } from "@/components/icons";
+import WorkFilterSelect from "@/components/WorkFilterSelect";
 import { featuredWork } from "@/content/work";
 
 const featured = featuredWork();
@@ -9,7 +10,7 @@ export default function FeaturedWorkSection() {
   return (
     <section id="work" className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="flex flex-col gap-6 border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:flex-row md:items-end md:justify-between md:px-10 md:py-14 lg:px-16">
+        <div className="flex flex-col gap-6 px-5 py-10 sm:px-6 sm:py-12 md:flex-row md:items-end md:justify-between md:px-10 md:py-14 lg:px-16">
           <div className="max-w-3xl">
             <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
               Our work
@@ -27,8 +28,13 @@ export default function FeaturedWorkSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {featured.map((item, index) => (
+        <WorkFilterSelect value="featured" />
+
+        <div className="grid grid-cols-1 border-t border-neutral-200 lg:grid-cols-2">
+          {featured.map((item, index) => {
+            const banner = Boolean(item.image && item.imageWidth && item.imageHeight);
+            const photo = item.cardImage ?? item.image;
+            return (
             <article
               key={item.slug}
               className={`border-neutral-200 ${index > 0 ? "border-t" : ""} ${
@@ -36,10 +42,23 @@ export default function FeaturedWorkSection() {
               } ${index < 2 && index > 0 ? "lg:border-t-0" : ""}`}
             >
               <Link href={`/work/${item.slug}`} className="group relative block overflow-hidden">
-                <div className="relative min-h-[240px] bg-navy sm:min-h-[380px] lg:min-h-[480px]">
-                  {item.image ? (
+                {banner ? (
+                  <>
                     <Image
                       src={item.image}
+                      alt={item.imageAlt}
+                      width={item.imageWidth}
+                      height={item.imageHeight}
+                      sizes="(max-width: 1024px) 100vw, 720px"
+                      className="h-auto w-full"
+                    />
+                    <h3 className="sr-only">{item.cardTitle}</h3>
+                  </>
+                ) : (
+                <div className="relative min-h-[240px] bg-navy sm:min-h-[380px] lg:min-h-[480px]">
+                  {photo ? (
+                    <Image
+                      src={photo}
                       alt={item.imageAlt}
                       fill
                       sizes="(max-width: 1024px) 100vw, 720px"
@@ -61,9 +80,11 @@ export default function FeaturedWorkSection() {
                     </span>
                   </div>
                 </div>
+                )}
               </Link>
             </article>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

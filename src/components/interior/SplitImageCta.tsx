@@ -41,13 +41,13 @@ export default function SplitImageCta({
   imageSizes = "(max-width: 1024px) 100vw, 54vw",
   layout = "image-left",
   sheen = "strong",
-  panelClass = "flex min-h-[340px] items-center px-6 py-12 text-white md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20",
-  buttonClass = "tap-press relative mt-14 flex min-h-20 w-full max-w-xl items-center justify-between px-6 py-6 text-xl font-semibold tracking-[-0.045em] transition-opacity duration-chrome ease-motion md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90",
+  panelClass = "flex min-h-0 items-center px-5 py-8 text-white sm:px-6 sm:py-12 md:min-h-[340px] md:px-10 lg:min-h-[430px] lg:px-16 xl:px-20",
+  buttonClass = "tap-press relative mt-8 flex min-h-14 w-full max-w-xl items-center justify-between px-5 py-4 text-lg font-semibold tracking-[-0.045em] transition-opacity duration-chrome ease-motion sm:mt-14 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90",
   ruleColor,
   titleClass = "max-w-2xl text-[1.85rem] leading-[1.1] font-semibold tracking-[-0.05em] sm:text-4xl sm:leading-[1.08] md:text-5xl",
 }: SplitImageCtaProps) {
   const imageBox = (
-    <div className="relative min-h-[340px] overflow-hidden border-b border-neutral-200 lg:min-h-[430px] lg:border-b-0">
+    <div className="relative min-h-[200px] overflow-hidden border-b border-neutral-200 sm:min-h-[260px] md:min-h-[340px] lg:min-h-[430px] lg:border-b-0">
       <Image src={image} alt={imageAlt} fill sizes={imageSizes} className={imageClass} />
     </div>
   );

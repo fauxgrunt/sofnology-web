@@ -6,16 +6,13 @@ export const NAVY = brand.navy;
 export const ACCENT = brand.accent;
 export const PRIMARY_CTA = "Start a Project";
 
-export const PROMISE_IMAGE = "/enterprise-services.jpg";
-export const JOURNEY_IMAGE = "/digital-growth.jpg";
-
 export const hero = {
   title: "About Sofnology",
   lede:
-    "Sofnology combines senior technical direction with flexible delivery teams. Core architecture and project ownership stay close to Sofnology, while specialized engineers and delivery partners can be added when a project requires specific expertise.",
-  image: "/conversation.jpg",
-  imageAlt: "Collaborative workspace conversation",
-  imageClass: "object-cover object-[42%_35%]",
+    "Sofnology is a services company. Software, voice and telephony, automation, and digital marketing stay in one practice, so a client can understand the system, own it, and keep it.",
+  image: "/about-sofnology.jpg",
+  imageAlt: "Frosted glass panels in a white room, with one blue line of light passing through them",
+  imageClass: "object-cover object-center",
   eyebrow: "Sofnology",
   eyebrowColor: ACCENT,
   ctaLabel: "Start a Project",
@@ -25,82 +22,71 @@ export const hero = {
 } as const;
 
 export const promiseCta = {
-  title: "See how we work",
-  overlay: "Curious how we keep work under control?",
+  title: "Pick the model that matches the job",
   lede:
-    "Operating principles, delivery stages, and the promise we fold into every engagement — without a manifesto page or a leadership roster.",
-  ctaLabel: "Learn how we work",
+    "A defined project, a team for a longer roadmap, a specialist added to your team, advice before a build, or a system we keep running.",
+  ctaLabel: "How we work",
   href: "/how-we-work",
-  image: "/enterprise-services.jpg",
-  imageAlt: "Engineering collaboration in a modern workspace",
 } as const;
 
 export const cta = {
   title: "Start a Project",
-  lede:
-    "Tell us what you want to build, improve, automate, or scale.",
+  lede: "Tell us the software, the calls, the repeat work, or the marketing you want taken on.",
   email: SITE_EMAIL,
   ctaLabel: "Start a Project",
-  image: "/digital-growth.jpg",
-  imageAlt: "Digital growth delivery — starting a Sofnology engagement",
 } as const;
 
 export const whyPoints = [
   {
     title: "Clarity",
-    description: "The next step, the scope, and the trade-off should be understandable before the work grows.",
+    description: "A system should be explainable to the people who run the business.",
   },
   {
-    title: "Ownership",
-    description: "Sofnology keeps project ownership and communication, including when a specialist partner joins.",
+    title: "One practice",
+    description:
+      "Software, voice and telephony, automation, and digital marketing are one company, judged by the same standard.",
   },
   {
-    title: "Transparency",
-    description: "Progress, blockers, and decisions stay visible. Confidential clients stay unnamed in public.",
+    title: "Accountability",
+    description:
+      "You hire one company, and that company answers for the result. Sofnology stays responsible for the work you agreed to, so you always know who stands behind it.",
   },
   {
-    title: "Maintainability",
-    description: "Handover, access, and documentation are part of the delivery, not an afterthought.",
+    title: "Restraint",
+    description:
+      "What we say in public is work a client can open and read.",
   },
   {
-    title: "Business outcomes",
-    description: "The point of the system is the operation it improves, not a stack chosen for appearance.",
+    title: "Continuity",
+    description: "What is built is meant to remain in the client’s hands.",
   },
 ];
+
+export const focusHeading = "Where clients start";
+export const focusIntro =
+  "Three kinds of work. Open the one that matches what you need done.";
 
 export const focusAreas = [
   {
-    title: "Custom software",
+    title: "Software and products",
     description:
-      "Platforms shaped to how your business runs — not a forced off-the-shelf template.",
+      "Your team is working around the tools. We build the software the business actually runs on.",
+    href: "/services/software-development",
+    action: "Software development",
   },
   {
-    title: "Digital products",
+    title: "Voice and automation",
     description:
-      "Web, mobile, and backend systems built to ship, scale, and stay maintainable.",
+      "Calls and repeat tasks are eating the day. We put that work into a system your people can trust.",
+    href: "/services/ai-automation",
+    action: "AI and automation",
   },
   {
-    title: "Engineering partnerships",
+    title: "Digital marketing",
     description:
-      "Dedicated teams, staff augmentation, and project delivery with clear ownership.",
-  },
-];
-
-export const conversationSteps = [
-  {
-    title: "Start by email or form",
-    description:
-      "Share the problem, the product, or the constraint. Early contact stays simple — no need to meet a full cast on day one.",
-  },
-  {
-    title: "Discovery conversation",
-    description:
-      "A focused call or in-person meeting to clarify goals, scope shape, and whether we’re the right fit.",
-  },
-  {
-    title: "Then the right people join",
-    description:
-      "Once the engagement is scoped, the engineers and leads on your work are introduced — when it matters, not for a public roster.",
+      "The product is ready, and the right people are not finding it. Digital marketing stays with the same company that builds the product.",
+    href: "/services/digital-marketing",
+    action: "Digital marketing",
   },
 ];
 
@@ -115,17 +101,17 @@ export const related: InteriorRelated = {
     {
       title: "How we work",
       href: "/how-we-work",
-      description: "Operating principles, stages, and the habits behind every engagement.",
+      description: "Six models for taking the work on.",
     },
     {
-      title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting pod when the roadmap runs longer than a single project.",
+      title: "Our work",
+      href: "/work",
+      description: "Projects Sofnology has delivered.",
     },
     {
       title: "Software development",
       href: "/services/software-development",
-      description: "End-to-end product engineering from discovery through release.",
+      description: "Product engineering, from the first scope through release.",
     },
   ],
 };

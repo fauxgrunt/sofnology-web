@@ -187,7 +187,7 @@ export default function ContactSection({
                   href="#contact-form"
                   className="tap-press mt-8 flex min-h-14 w-full max-w-xl items-center justify-between bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-5 py-4 text-base font-semibold tracking-[-0.04em] text-white transition-opacity duration-chrome ease-motion sm:mt-12 sm:min-h-20 sm:px-6 sm:py-6 sm:text-xl sm:tracking-[-0.045em] md:px-8 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
                 >
-                  <span>Start a conversation</span>
+                  <span>Start a Project</span>
                   <ArrowUpRightIcon />
                 </a>
               </div>
@@ -470,7 +470,7 @@ export default function ContactSection({
             <button
               type="submit"
               disabled={isSubmitting}
-              className={`tap-press inline-flex h-12 min-w-[9.5rem] items-center justify-center px-8 text-[16px] font-semibold tracking-[-0.02em] transition-opacity duration-chrome ease-motion disabled:cursor-wait disabled:opacity-70 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${sendButtonClass}`}
+              className={`tap-press inline-flex h-12 w-full items-center justify-center px-8 text-[16px] font-semibold tracking-[-0.02em] transition-opacity duration-chrome ease-motion disabled:cursor-wait disabled:opacity-70 sm:w-auto sm:min-w-[9.5rem] [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90 ${sendButtonClass}`}
             >
               {isSubmitting ? "Sending…" : "Send"}
             </button>

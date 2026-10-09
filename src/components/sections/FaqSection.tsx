@@ -172,7 +172,7 @@ export default function FaqSection({
                 >
                   <span className={preset.question}>{faq.question}</span>
                   <span
-                    className={preset.sign}
+                    className={`${preset.sign} faq-sign`}
                     style={{ color: signColor }}
                     aria-hidden="true"
                   >

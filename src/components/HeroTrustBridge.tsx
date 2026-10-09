@@ -1,11 +1,11 @@
 const trustPoints = [
   {
-    label: "Founder-led technical direction",
-    detail: "Architecture, scope, and delivery decisions stay close to senior ownership.",
+    label: "Senior technical direction",
+    detail: "Architecture, scope, and delivery decisions stay with the people doing the work.",
   },
   {
-    label: "Software plus growth execution",
-    detail: "Engineering, automation, cloud, and digital marketing stay connected.",
+    label: "Software, voice, and digital marketing",
+    detail: "Engineering, telephony, automation, and digital marketing stay in one practice.",
   },
   {
     label: "Clear handover and control",

@@ -294,6 +294,12 @@
     }
   }
 
+  @media (min-width: 1024px) {
+    .pb-sticky-cta {
+      padding-bottom: 0;
+    }
+  }
+
   @media (min-width: 1280px) {
     .content-rail {
       --content-rail-width: 72px;
@@ -385,3 +391,118 @@
     }
   }
 }
+
+/* Dark mode. Tokens flip text and borders. Solid white surfaces become elevated panels.
+   Text sitting on an inline brand color (lime, amber, navy) keeps its own contrast. */
+html.dark {
+  color-scheme: dark;
+  --color-page: #121418;
+  --color-ink: #f4f4f5;
+  --color-canvas: #121418;
+  --color-neutral-950: #f4f4f5;
+  --color-neutral-900: #e7e7ea;
+  --color-neutral-800: #d6d6dc;
+  --color-neutral-700: #c2c2ca;
+  --color-neutral-600: #a7a7b1;
+  --color-neutral-500: #9696a1;
+  --color-neutral-400: #9b9ba6;
+  --color-neutral-200: #343b46;
+  --color-neutral-100: #1c2128;
+  --color-neutral-50: #181c22;
+  --brand-canvas: #121418;
+}
+
+html.dark body {
+  background: #121418;
+  color: #f4f4f5;
+}
+
+html.dark .bg-white,
+html.dark .hover\:bg-white:hover {
+  background-color: #1c2128;
+}
+
+html.dark .bg-white\/55,
+html.dark .bg-white\/50,
+html.dark .bg-white\/45,
+html.dark .bg-white\/40,
+html.dark .hover\:bg-white\/55:hover,
+html.dark .hover\:bg-white\/50:hover,
+html.dark .hover\:bg-white\/45:hover,
+html.dark .hover\:bg-white\/40:hover,
+html.dark .hover\:bg-white\/35:hover {
+  background-color: #262c36;
+}
+
+html.dark .bg-\[\#f7f7f8\],
+html.dark .bg-\[\#f7f7f8\]\/92,
+html.dark .bg-\[\#f3f3f4\],
+html.dark .bg-\[\#f1f1f1\],
+html.dark .bg-\[\#ececee\],
+html.dark .bg-\[\#e8e8ea\] {
+  background-color: #171b22;
+}
+
+html.dark header {
+  background-color: rgb(18 20 24 / 0.92);
+}
+
+html.dark .theme-toggle {
+  border-color: rgb(255 255 255 / 0.14);
+  color: #f4f4f5;
+}
+
+html.dark .theme-toggle:active,
+html.dark .theme-toggle:hover {
+  background-color: rgb(255 255 255 / 0.08);
+}
+
+html.dark .text-navy {
+  color: #c5d7ff;
+}
+
+html.dark .decoration-navy\/50,
+html.dark .decoration-navy\/35,
+html.dark .decoration-navy\/45 {
+  text-decoration-color: rgb(197 215 255 / 0.55);
+}
+
+html.dark .bg-navy,
+html.dark .bg-navy-mid {
+  color: #ffffff;
+}
+
+html.dark a.bg-navy,
+html.dark button.bg-navy,
+html.dark a.bg-navy-mid,
+html.dark button.bg-navy-mid {
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.35);
+}
+
+html.dark .faq-sign {
+  color: #f4f4f5 !important;
+}
+
+html.dark .bg-navy .text-navy,
+html.dark .bg-navy-mid .text-navy {
+  color: #ffffff;
+}
+
+html.dark header img {
+  filter: brightness(0) invert(1);
+}
+
+html.dark .content-rail > section::before {
+  background: #343b46;
+}
+
+html.dark [style*="background-color:#B8F25A"] .text-\[\#0B3D2E\],
+html.dark [style*="background-color:#B8F25A"] .text-\[\#0B3D2E\]\/80,
+html.dark [style*="background-color:#C7FF3D"] .text-\[\#101413\],
+html.dark [style*="background-color:#D4F06A"] .text-\[\#101413\],
+html.dark [style*="background"].text-\[\#101413\],
+html.dark [style*="background"].text-\[\#0B3D2E\] {
+  color: #101413;
+}
+
+

@@ -337,8 +337,8 @@ export const hero = {
   title: "Software development services",
   lede:
     "Sofnology designs and builds custom software, internal systems, portals, dashboards, and integrations that reduce operational friction and give growing businesses a clearer technical foundation.",
-  image: "/conversation.jpg",
-  imageAlt: "Sofnology software development team collaborating in a modern office",
+  image: "/software-development.jpg",
+  imageAlt: "Team reviewing a product on a laptop in a bright office",
   imageClass: "object-cover",
   ctaLabel: "Contact us",
   ctaHref: "#contact-form",
@@ -350,7 +350,7 @@ export const cta = {
   title: "Looking for software development services for your business?",
   lede:
     "Share the system, workflow, or product you need to improve. Sofnology can help you clarify the scope, shape a practical delivery plan, and start moving with senior technical guidance.",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   image: "/software-development.jpg",
   imageAlt: "Software team reviewing a product workflow together",
   panelBackground: "#555a5a",
@@ -360,7 +360,7 @@ export const cta = {
 
 export const sticky: InteriorSticky = {
   href: "/#contact-form",
-  label: "Start a conversation",
+  label: "Start a Project",
   backgroundColor: brand.navy,
   textColor: "#ffffff",
 };

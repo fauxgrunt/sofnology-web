@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 import { focusIndustries } from "@/content/industries/focus";
 import { servicePages } from "@/content/services/catalog";
-import { workItems } from "@/content/work";
+import { workCategories, workItems } from "@/content/work";
 import { SITE_ROUTES, SITE_URL } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
 
   const work: MetadataRoute.Sitemap = workItems.map((item) => ({
-    url: `${SITE_URL}/work/${item.slug}`,
+    url: `${SITE_URL}/work/${slug}`,
     lastModified,
     changeFrequency: "monthly",
     priority: 0.7,

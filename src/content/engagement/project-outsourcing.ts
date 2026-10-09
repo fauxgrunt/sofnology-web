@@ -12,8 +12,8 @@ export const hero = {
   imageAlt: "Professional working on a laptop in a bright modern office",
   imageClass: "scale-[1.08] object-cover object-[62%_28%]",
   imageMinClass:
-    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]",
-  ctaLabel: "Get in touch",
+    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: ORANGE,
   ctaText: "#1A1512",
@@ -118,7 +118,7 @@ export const engagementModels = [
       "Engineers join your existing cadence",
       "Best for velocity gaps and specialist skills",
     ],
-    ctaLabel: "Talk about staff augmentation",
+    ctaLabel: "Start a Project",
     ctaHref: "/engagement/staff-augmentation",
     current: false,
   },
@@ -126,15 +126,15 @@ export const engagementModels = [
     id: "dedicated",
     title: "Dedicated teams",
     summary:
-      "A standing Sofnology pod that stays with your product over time, beyond a single project boundary.",
+      "A standing Sofnology team that stays with your product over time, beyond a single project boundary.",
     bestFor:
       "When you need a lasting product team — not a one-off delivery — that grows with the roadmap.",
     points: [
       "Longer-horizon product partnership",
-      "Stable pod across features and releases",
+      "Stable team across features and releases",
       "Best for continuous product development",
     ],
-    ctaLabel: "Talk about dedicated teams",
+    ctaLabel: "Start a Project",
     ctaHref: "/engagement/dedicated-teams",
     current: false,
   },
@@ -186,14 +186,14 @@ export const faqs: InteriorFaq = {
     {
       question: "What kinds of projects fit this model?",
       answer:
-        "MVPs, custom product builds, platform upgrades, and contained digital initiatives where you want a partner to take the reins — not just fill seats — until a defined release is in market.",
+        "An MVP, a product build, or a platform upgrade where you want one partner to own the release.",
     },
   ],
 };
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: ORANGE,
   textColor: "#1A1512",
 };

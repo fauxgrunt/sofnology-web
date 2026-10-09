@@ -35,8 +35,22 @@ export type WorkItem = {
   scope: string;
   value: string;
   image?: string;
+  /** Listing and homepage crop when the case-study image carries its own headline. */
+  cardImage?: string;
+  /** Intrinsic size. When set, the case-study hero shows the full graphic instead of cropping it. */
+  imageWidth?: number;
+  imageHeight?: number;
   imageAlt: string;
   note?: string;
+  /** Ordered path shown on the case study. No production screens. */
+  stepsHeading?: string;
+  steps?: Array<{ title: string; description: string }>;
+  /** Illustrated path. An example, not a transcript or a production screen. */
+  example?: Array<{ title: string; description: string }>;
+  /** Replaces the default four snapshot labels when the case study needs its own. */
+  snapshot?: Array<[string, string]>;
+  outcomes?: Array<{ title: string; description: string }>;
+  ctaLabel?: string;
   relatedServices: Array<{ title: string; href: string }>;
 };
 
@@ -48,11 +62,205 @@ export const areaFilters: Array<{ id: "all" | "featured" | WorkArea; label: stri
   { id: "ai", label: "AI & automation" },
   { id: "voip", label: "VoIP & communications" },
   { id: "web", label: "Web & digital" },
-  { id: "growth", label: "Digital growth" },
+  { id: "growth", label: "Digital Marketing" },
   { id: "cloud", label: "Cloud & infrastructure" },
 ];
 
+export const workCategories: Array<{
+  slug: "featured" | WorkArea;
+  title: string;
+  description: string;
+}> = [
+  {
+    slug: "featured",
+    title: "Featured Work",
+    description: "Selected projects. Confidential work stays anonymous, and numbers appear only when a record verifies them.",
+  },
+  {
+    slug: "software",
+    title: "Software & Platforms",
+    description: "Custom software and platform work. Confidential projects stay anonymous.",
+  },
+  {
+    slug: "mobile",
+    title: "Mobile Applications",
+    description: "iOS, Android, and cross-platform applications delivered for clients.",
+  },
+  {
+    slug: "ai",
+    title: "AI & Automation",
+    description: "Voice assistants and automation connected to the systems a business already runs.",
+  },
+  {
+    slug: "voip",
+    title: "VoIP & Communications",
+    description: "PBX, contact-center, SIP, and voice-platform work.",
+  },
+  {
+    slug: "web",
+    title: "Web & Digital",
+    description: "Websites and digital platforms delivered for clients.",
+  },
+  {
+    slug: "growth",
+    title: "Digital Marketing",
+    description: "Websites, search, and advertising where a client can be named.",
+  },
+  {
+    slug: "cloud",
+    title: "Cloud & Infrastructure",
+    description: "Linux, cloud, and infrastructure work for live environments.",
+  },
+];
+
+export function getWorkCategory(slug: string) {
+  return workCategories.find((category) => category.slug === slug);
+}
+
+export function workCategoryPath(area: string) {
+  if (!area || area === "all") return "/work";
+  return `/work/${area}`;
+}
+
 export const workItems: WorkItem[] = [
+  {
+    slug: "ai-appointment-assistant-healthcare",
+    title: "AI appointment assistant for healthcare",
+    cardTitle: "AI appointment assistant",
+    category: "Healthcare",
+    area: "ai",
+    featured: true,
+    summary:
+      "A voice assistant that takes an appointment call, looks up a doctor and an open time, and confirms the booking through the hospital system.",
+    industry: "Healthcare",
+    services: ["AI & Automation", "AI & Voice AI"],
+    platforms: ["Voice assistant", "Hospital management system"],
+    technologies: ["Voice AI", "Speech", "APIs"],
+    challenge:
+      "Appointment requests were still a phone conversation that a person had to finish: which doctor, which time, and whether the hospital system had the slot. The organisation needed that conversation connected to the system of record without publishing the organisation, the software, or any patient record.",
+    built:
+      "A voice assistant on the phone call. It looks up the doctor and availability, sends the booking through the hospital system’s API, and speaks the confirmation back on the same call.",
+    capabilities: [
+      {
+        title: "Doctor search",
+        description: "The caller can ask for a doctor or a specialty, and the assistant looks that up.",
+      },
+      {
+        title: "Availability",
+        description: "Open times come from the hospital system, not from a script read off a page.",
+      },
+      {
+        title: "Hospital-system API",
+        description: "The booking is written through the system’s API. The product name stays private.",
+      },
+      {
+        title: "Spoken confirmation",
+        description: "The caller hears the reserved time on the call, instead of waiting for a separate message.",
+      },
+    ],
+    steps: [
+      { title: "Patient", description: "Someone needs an appointment." },
+      { title: "Phone call", description: "They call, the way they already reach the organisation." },
+      { title: "AI voice assistant", description: "The assistant holds the conversation on the call." },
+      { title: "Doctor / availability lookup", description: "It finds the doctor and an open time." },
+      { title: "HMS API", description: "The booking is written through the hospital system’s API." },
+      { title: "Appointment workflow", description: "The booking is written into that workflow." },
+      { title: "Voice confirmation", description: "The caller hears the confirmed time on the same call." },
+    ],
+    stepsHeading: "How the booking moves",
+    approach:
+      "The published view is the call path, not a screenshot of the live product. No patient data, no internal hospital-system screen, and no organisation or software name is included.",
+    scope:
+      "Voice assistant, doctor and availability lookup, the API connection into the hospital management system, the appointment workflow, and the spoken confirmation.",
+    value:
+      "A caller can ask for a doctor, hear what is open, and receive a spoken confirmation while the booking lands in the hospital system. No volume or success rate is published.",
+    image: "/Portfolio/ai-appointment-assistant-healthcare.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A woman on a phone in a clinic corridor, for the AI appointment assistant",
+    note: "Confidential healthcare project. The organisation, its hospital system, and patient records are not shown.",
+    relatedServices: [
+      { title: "AI & Automation", href: "/services/ai-automation" },
+      { title: "AI & Voice AI", href: "/services/ai-voice" },
+      { title: "Healthcare", href: "/industries/healthtech" },
+    ],
+  },
+  {
+    slug: "ai-voice-hr-self-service",
+    title: "AI voice assistant for HR self-service",
+    cardTitle: "AI voice assistant for HR",
+    category: "Enterprise",
+    area: "ai",
+    featured: true,
+    summary:
+      "A voice assistant on the company phone line. A verified employee can start a supported HR workflow, and the HR system stays the record.",
+    industry: "Enterprise / HR technology",
+    services: ["AI & Automation", "VoIP & Communication Systems", "API & System Integration"],
+    platforms: ["Voice assistant", "Enterprise HR platform", "PBX"],
+    technologies: ["Voice AI", "Speech-to-text", "Text-to-speech", "Asterisk", "SIP", "REST API"],
+    snapshot: [
+      ["Industry", "Enterprise / HR technology"],
+      ["Solution", "AI voice assistant"],
+      ["Integrations", "HR platform APIs and telephony"],
+      ["Delivery", "Voice AI, API integration, and workflow automation"],
+    ],
+    challenge:
+      "The HR platform already held the workflows, but everyday requests still meant a login, a menu, and a form. The aim was to let an employee do a supported HR action on a phone call, with a check on who is calling before anything employee-specific runs.",
+    built:
+      "A voice assistant on the existing telephone path. It hears the request, verifies the caller, calls the HR platform’s API, and speaks the result back. The HR platform stays the system of record.",
+    capabilities: [
+      { title: "AI voice assistant", description: "The employee talks. The assistant is not a fixed phone menu." },
+      { title: "Employee verification", description: "Protected actions wait until the caller is checked, including against a registered number." },
+      { title: "HR platform integration", description: "The assistant calls the HR system the company already uses." },
+      { title: "Leave workflow", description: "A supported leave request can be collected on the call and submitted through the API." },
+      { title: "Movement request", description: "The assistant gathers what that workflow needs and sends it to the HR platform." },
+      { title: "Other employee requests", description: "Meal requests and other approved actions, where the API for that action exists." },
+      { title: "Telephony", description: "Inbound calls through the organisation’s PBX and SIP path, not a separate app the employee must install." },
+      { title: "Voice confirmation", description: "The employee hears what the HR system returned, on the same call." },
+    ],
+    stepsHeading: "How it works",
+    steps: [
+      { title: "Employee", description: "Someone needs a supported HR action." },
+      { title: "Phone call", description: "They call the number already used for the organisation." },
+      { title: "AI voice assistant", description: "The assistant takes the request in ordinary speech." },
+      { title: "Verification", description: "The caller is checked before an employee-specific action runs." },
+      { title: "HRM API", description: "The request is submitted through the HR platform’s API." },
+      { title: "HR action", description: "The supported workflow is submitted. The HR system keeps the record." },
+      { title: "Voice confirmation", description: "The employee hears the result on the call." },
+    ],
+    example: [
+      { title: "Employee", description: "“I need to apply for leave tomorrow.” An example, not a stored call." },
+      { title: "AI assistant", description: "It recognises the request and asks for what that workflow requires." },
+      { title: "Verification", description: "It confirms who is calling before the request is sent." },
+      { title: "HR platform API", description: "It submits the supported request and reads the response." },
+      { title: "Confirmation", description: "The employee hears the result by voice." },
+    ],
+    approach:
+      "The assistant is a conversational layer on the phone system and the HR APIs. It can run a defined function, not only answer a question. Nothing on this page is a production screen, an employee record, or a named product.",
+    scope:
+      "Voice assistant, caller verification, API connection to the existing HR platform, supported leave, movement, and other approved requests, telephony on the existing PBX, and a spoken confirmation.",
+    value:
+      "Common HR actions can start on a phone call. The organisation keeps its HR platform. No usage, time-saved, or adoption figures are published.",
+    outcomes: [
+      { title: "Easier employee access", description: "A supported HR action can start as a phone conversation." },
+      { title: "Less portal navigation", description: "The employee does not have to find the module and the form first." },
+      { title: "The HR system stays", description: "The assistant does not replace the platform that holds the record." },
+      { title: "Room for more workflows", description: "Another approved action can be added when its API exists." },
+    ],
+    image: "/Portfolio/ai-voice-hr-self-service.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A man on an office phone, for the HR voice assistant",
+    note: "Client confidentiality. This describes work delivered by the technical leadership behind Sofnology. The organisation, the HR product, and employee information are withheld.",
+    ctaLabel: "Discuss an AI automation project",
+    relatedServices: [
+      { title: "AI & Automation", href: "/services/ai-automation" },
+      { title: "VoIP & Communication Systems", href: "/services/voip-communication" },
+      { title: "API & System Integration", href: "/services/api-integration" },
+      { title: "Software Development", href: "/services/software-development" },
+      { title: "Business & Enterprise Systems", href: "/services/platforms/business" },
+    ],
+  },
   {
     slug: "ai-voice-business-automation",
     title: "AI voice assistant and business automation",
@@ -81,44 +289,52 @@ export const workItems: WorkItem[] = [
       "Sofnology handled diagnosis and repair of the voice path: TTS, SIP trunking, and local IP telephony settings.",
     value:
       "The voice path was restored. The existing stack stayed in place.",
-    image: "/Portfolio/1.jpg",
-    imageAlt: "Studio still life of an IP phone, headset, glass signal panes, and a laptop",
+    image: "/Portfolio/ai-voice-business-automation.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A woman in a headset with a notebook, for the voice and automation work",
     relatedServices: [
       { title: "AI & Automation", href: "/services/ai-automation" },
       { title: "VoIP & Communication Systems", href: "/services/voip-communication" },
     ],
   },
   {
-    slug: "fix-fensterreinigung-mobile-app",
-    title: "Fix-Fensterreinigung mobile app",
-    cardTitle: "Fix-Fensterreinigung mobile app",
+    slug: "fix-fensterreinigung",
+    title: "Fix-Fensterreinigung",
+    cardTitle: "Fix-Fensterreinigung",
     category: "Mobile",
     area: "mobile",
     featured: true,
-    summary: "iOS and Android field-service app from a shared Flutter codebase, backed by PHP and MySQL.",
+    summary:
+      "Cross-platform app delivery, backend integration, store publishing, and performance-focused digital support for a German cleaning-services business.",
     industry: "Professional & field services",
-    services: ["Mobile App Development"],
-    platforms: ["iOS", "Android"],
-    technologies: ["Flutter", "iOS", "Android", "PHP", "MySQL"],
+    services: ["Mobile App Development", "Web Development"],
+    platforms: ["iOS", "Android", "Website"],
+    technologies: ["Flutter", "iOS", "Android", "PHP", "MySQL", "WordPress"],
     challenge:
-      "A field-service business needed a mobile tool its teams could use on both iPhone and Android without two separate codebases.",
+      "Fix-Fensterreinigung needed the field work and the public site to sit together. The team needed one app on iPhone and Android, a backend that app could use, and a website for the cleaning business. Two mobile codebases would have split the same job.",
     built:
-      "A cross-platform application for day-to-day field work, connected to a PHP and MySQL backend.",
+      "A Flutter app for day-to-day field work, connected to a PHP and MySQL backend, with the website on WordPress. Releases went out through the App Store and Google Play.",
     capabilities: [
-      { title: "Shared mobile codebase", description: "Flutter delivery for iOS and Android." },
-      { title: "Business-system connection", description: "The app talks to the operational backend rather than sitting apart from it." },
-      { title: "Store release support", description: "Publishing and release work for the Apple and Google stores." },
+      { title: "Shared mobile codebase", description: "One Flutter app for iOS and Android, in the language the customer already uses." },
+      { title: "Backend integration", description: "The app uses the PHP and MySQL side of the business rather than a separate copy of the work." },
+      { title: "Website", description: "The public site stays on WordPress, next to the app." },
+      { title: "Store publishing", description: "Release work for the App Store and Google Play." },
     ],
     approach:
-      "One Flutter codebase, with native store requirements handled at release time. No usage or revenue figures are published here.",
+      "One Flutter codebase, with each store’s release requirements handled when the build goes out. The website remains WordPress. Install totals and performance percentages are left off this page.",
     scope:
-      "Mobile application delivery for Fix-Fensterreinigung: Flutter, iOS, Android, and the PHP/MySQL connection.",
+      "Flutter app for iOS and Android, the PHP and MySQL connection, the WordPress website, and store publishing for Fix-Fensterreinigung.",
     value:
-      "The business has a mobile app its field teams can run on both major phone platforms.",
-    imageAlt: "Fix-Fensterreinigung mobile app",
+      "Field teams can run the same app on both major phone platforms, and the business has a website beside it. No usage or performance figures are published.",
+    image: "/Portfolio/fix-fensterreinigung.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A window cleaner on a phone, squeegee against wet glass",
     relatedServices: [
       { title: "Mobile App Development", href: "/services/mobile-development" },
       { title: "Mobile & Cross-Platform", href: "/services/mobile-cross-platform" },
+      { title: "Web Development", href: "/services/web-development" },
     ],
   },
   {
@@ -144,52 +360,69 @@ export const workItems: WorkItem[] = [
       { title: "Handover", description: "Training and early post-go-live support so the system did not stall." },
     ],
     approach:
-      "Asterisk-based contact-center engineering, with SIP and the operational API surface treated as part of the same system. The client is not named.",
+      "Asterisk-based contact-center engineering, with SIP and the operational API treated as one system.",
     scope:
       "Implementation, campaign setup, load checks, admin training, and early live support.",
     value:
       "The contact center was running, and the operators had a path to keep it that way.",
-    image: "/Portfolio/7.jpg",
-    imageAlt: "Studio still life of a dialer core with a lead hopper feeding in and agent stations fanning out",
+    image: "/Portfolio/custom-pbx-contact-center.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A man in a headset at a laptop, for the contact-center platform",
     relatedServices: [
       { title: "VoIP & Communication Systems", href: "/services/voip-communication" },
       { title: "VoIP & Contact Center Platforms", href: "/services/platforms/voip" },
     ],
   },
   {
-    slug: "yanming-digital-growth",
-    title: "Yanming washer repair — selected delivery experience",
-    cardTitle: "Yanming digital growth",
-    category: "Digital growth",
+    slug: "yanming-washer-repair",
+    title: "Yanming Washer Repair",
+    cardTitle: "Yanming Washer Repair",
+    category: "Digital marketing",
     area: "growth",
     featured: true,
     summary:
-      "Website and paid-search work delivered by members of the Sofnology team.",
-    industry: "Professional & field services",
+      "Website, Google Ads, SEO, and conversion tracking for a washer-repair business in Singapore.",
+    industry: "Home services",
     services: ["Digital Marketing", "Web Development"],
-    platforms: ["Google Ads", "Website"],
-    technologies: ["Google Ads", "SEO", "GTM", "Website optimization"],
+    platforms: ["Google Ads", "Google Tag Manager", "Website"],
+    technologies: ["Google Ads", "SEO", "GTM", "Analytics", "Search Console"],
     challenge:
-      "A local service business needed its website and paid search to work as one acquisition system, not as separate campaigns and pages.",
+      "Yanming Washer Repair needed more than a brochure site. People searching for a repair already have a problem, so the website, paid search, and enquiry path had to work as one system. Broad campaigns would spend the budget on searches that were not useful.",
     built:
-      "Website and landing-page improvements connected to Google Ads, SEO, and conversion tracking through Google Tag Manager.",
+      "A business website for washing-machine repair and electrical services, structured Google Ads around those services, and tracking through Google Tag Manager so calls and enquiries can be reviewed with the campaigns.",
     capabilities: [
-      { title: "Paid search", description: "Campaign structure around the services people actually search for." },
-      { title: "Tracking", description: "Tag Manager and conversion events so enquiries can be seen." },
-      { title: "Page improvements", description: "Website changes aimed at the same enquiries the ads were buying." },
+      {
+        title: "Search-focused acquisition",
+        description: "Campaigns, ad groups, and phrase and exact-match keywords aimed at people already looking for a repair.",
+      },
+      {
+        title: "Website and advertising together",
+        description: "Service pages, contact actions, and landing pages aligned with the searches the ads were buying.",
+      },
+      {
+        title: "Conversion measurement",
+        description: "Google Tag Manager, Ads conversion tracking, and analytics so website actions are visible.",
+      },
+      {
+        title: "Ongoing optimisation",
+        description: "Search terms, negative keywords, budget, tracking, and the site reviewed as the campaigns run.",
+      },
     ],
     approach:
-      "Selected delivery experience. This is work delivered by members of the Sofnology team. It is not published as a Sofnology client until the engagement is formally confirmed and permission to use the brand is received.",
+      "The customer path runs from a search, through Google Ads or organic results, to a relevant page, then a call, WhatsApp, or enquiry. Those actions feed tracking and the next round of campaign and page changes. Performance figures are left out until they come from the Ads account or the business’s own records.",
     scope:
-      "Website optimisation, paid search, SEO, and conversion tracking. No performance numbers are stated.",
+      "Website setup and maintenance, Google Ads account and search campaigns, keyword and search-term management, SEO, Google Tag Manager, and ongoing campaign management for Yanming Washer Repair in Singapore.",
     value:
-      "The site and the paid-search setup were brought into one measurable acquisition path.",
-    note:
-      "Selected delivery experience. Not published as a Sofnology client until engagement and brand permission are confirmed.",
-    imageAlt: "Yanming washer repair digital growth",
+      "The website, advertising, and measurement sit in one acquisition system, so relevance, wasted search traffic, and enquiry paths can be adjusted from what actually happens.",
+    image: "/Portfolio/yanming-washer-repair.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A technician kneeling at an open washing machine, for Yanming Washer Repair",
     relatedServices: [
       { title: "Digital Marketing", href: "/services/digital-marketing" },
       { title: "Web Development", href: "/services/web-development" },
+      { title: "Marketing & Analytics Platforms", href: "/services/platforms/marketing" },
     ],
   },
   {
@@ -216,7 +449,10 @@ export const workItems: WorkItem[] = [
       "Described as the delivered platform. The association’s product is not claimed as Sofnology’s.",
     scope: "Website, membership, and forms for NAPC.",
     value: "Members and staff have one digital platform for the association’s public and membership activity.",
-    imageAlt: "NAPC membership website",
+    image: "/Portfolio/napc-membership-website.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A woman with a notebook in a meeting room, for the NAPC membership website",
     relatedServices: [{ title: "Web Development", href: "/services/web-development" }],
   },
   {
@@ -239,11 +475,13 @@ export const workItems: WorkItem[] = [
       { title: "Notifications and reminders", description: "The same platform used for operational messages, not only sales campaigns." },
       { title: "Reporting", description: "A view of what was attempted and what connected." },
     ],
-    approach: "The client is not named. No volume or answer-rate figures are published.",
+    approach: "Outbound calling, message flows, and a report of what connected. No volume or answer-rate figures are published.",
     scope: "Voice broadcasting platform: telephony, automation, and reporting.",
     value: "Outbound voice could be run as a repeatable operation.",
-    image: "/Portfolio/2.jpg",
-    imageAlt: "Studio still life of IP phones feeding a single calling path through glass panes",
+    image: "/Portfolio/voice-broadcasting-platform.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A man beside a microphone, for the voice broadcasting platform",
     relatedServices: [{ title: "VoIP & Communication Systems", href: "/services/voip-communication" }],
   },
   {
@@ -268,8 +506,10 @@ export const workItems: WorkItem[] = [
     approach: "Anonymized. The client’s product is described as the delivered softphone, not claimed as Sofnology’s own product.",
     scope: "Flutter SIP softphone for mobile.",
     value: "Users can make SIP calls from the mobile app.",
-    image: "/Portfolio/6.jpg",
-    imageAlt: "Studio still life of an IP phone on a bidirectional SIP path",
+    image: "/Portfolio/flutter-sip-softphone.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A woman looking at a phone by a window, for the Flutter SIP softphone",
     relatedServices: [
       { title: "Mobile App Development", href: "/services/mobile-development" },
       { title: "VoIP & Communication Systems", href: "/services/voip-communication" },
@@ -298,7 +538,10 @@ export const workItems: WorkItem[] = [
     approach: "The client is anonymized. No uptime percentage is claimed.",
     scope: "Linux, deployment, and server administration.",
     value: "The workload had a production environment that could be operated after delivery.",
-    imageAlt: "Linux and cloud infrastructure delivery",
+    image: "/Portfolio/linux-cloud-infrastructure.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A woman standing beside server racks, for the Linux and cloud work",
     relatedServices: [
       { title: "Cloud & DevOps", href: "/services/cloud-devops" },
       { title: "Cloud & Linux Infrastructure", href: "/services/platforms/cloud-linux" },
@@ -321,11 +564,13 @@ export const workItems: WorkItem[] = [
       { title: "Live diagnosis", description: "Faults reproduced on the running system." },
       { title: "Narrow repair", description: "Only the broken path was changed." },
     ],
-    approach: "Hourly production support. The client is not named.",
+    approach: "Hourly production support on the FreePBX system that was already live.",
     scope: "FreePBX diagnosis and repair.",
     value: "The PBX stayed in place and the faults did not.",
-    image: "/Portfolio/3.jpg",
-    imageAlt: "Studio still life of a PBX appliance with glass extension discs",
+    image: "/Portfolio/freepbx-diagnosis.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A man at a desk phone, for the FreePBX repair",
     relatedServices: [{ title: "VoIP & Communication Systems", href: "/services/voip-communication" }],
   },
   {
@@ -345,11 +590,13 @@ export const workItems: WorkItem[] = [
       { title: "Trunk build", description: "Carrier interconnect for the local endpoints." },
       { title: "Routing", description: "Calls enter and leave through one path." },
     ],
-    approach: "Implementation engagement. The client is not named.",
+    approach: "The trunk and the inbound and outbound routing, documented for the team that keeps it.",
     scope: "SIP trunk design and stand-up.",
     value: "The trunk was live and the routing was documented.",
-    image: "/Portfolio/5.jpg",
-    imageAlt: "Studio still life of a desk phone and a calling path",
+    image: "/Portfolio/sip-trunking-implementation.jpg",
+    imageWidth: 1920,
+    imageHeight: 1080,
+    imageAlt: "A man on a desk phone, for the SIP trunking work",
     relatedServices: [{ title: "VoIP & Communication Systems", href: "/services/voip-communication" }],
   },
 ];

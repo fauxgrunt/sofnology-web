@@ -196,7 +196,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "Designers collaborating on a colorful UI mockup on a tablet",
   imageClass: "object-cover object-[center_32%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: CORAL,
   ctaText: "#ffffff",
@@ -226,7 +226,7 @@ export const related: InteriorRelated = {
 };
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: CORAL,
   textColor: "#ffffff",
 };

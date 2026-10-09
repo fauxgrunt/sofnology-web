@@ -11,7 +11,7 @@ export const hero = {
   image: "/fintech-hero.jpg",
   imageAlt: "Modern glass skyscraper looking upward in a financial district",
   imageClass: "object-cover object-[center_40%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: GOLD,
   ctaText: "#1A1C1F",
@@ -123,7 +123,7 @@ export const workSteps = [
       "Clarify domain, risks, MVP boundaries, and architecture options before heavy build spend.",
   },
   {
-    title: "Build pod",
+    title: "Build team",
     description:
       "Ship the product surface and systems in reviewable increments with clear ownership.",
   },
@@ -208,7 +208,7 @@ export const faqs: InteriorFaq = {
 };
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: GOLD,
   textColor: "#1A1C1F",
 };

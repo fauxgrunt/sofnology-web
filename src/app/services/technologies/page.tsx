@@ -54,7 +54,7 @@ export default function TechnologiesPage() {
       contact={{ showIntro: true, accent: "navy" }}
       hero={
         <StackedHero
-          image="/enterprise-services.jpg"
+          image="/technologies-hero.jpg"
           imageAlt="Engineering workspace"
           imageClass="object-cover object-center"
           title="All technologies"

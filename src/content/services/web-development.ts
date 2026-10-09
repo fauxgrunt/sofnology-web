@@ -12,7 +12,7 @@ export const hero = {
   image: "/web-dev-hero.jpg",
   imageAlt: "Web development product visual with electric blue accents",
   imageClass: "object-cover object-center",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -199,7 +199,7 @@ export const faqs: InteriorFaq = {
 };
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: BLUE,
   textColor: "#ffffff",
 };

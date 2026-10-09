@@ -41,9 +41,8 @@ export default function OperatingPrinciples() {
 
           <div className="flex items-end px-5 py-9 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
             <p className="max-w-2xl text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-              For a growing agency, trust should come from how the work is run. We
-              use clear ownership, visible progress, and production-minded decisions
-              to keep every engagement grounded.
+              You should be able to see the scope, the next decision, and who owns
+              the result. That is how a project stays on the work you agreed to.
             </p>
           </div>
         </div>
@@ -94,9 +93,9 @@ export default function OperatingPrinciples() {
 
             <div className="px-6 py-10 md:px-10 lg:px-12">
               <p className="text-[15px] leading-[1.75] tracking-tight text-neutral-700">
-                That creates a cleaner client experience: fewer vague promises, clearer
-                trade-offs, and practical handover decisions that help the business stay
-                in control after delivery.
+                Trade-offs are named while the work is still open, and the handover
+                is part of the agreement, so the business can run the system after
+                delivery.
               </p>
             </div>
           </div>

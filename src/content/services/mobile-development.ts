@@ -264,7 +264,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "Premium mobile app development product visual",
   imageClass: "object-cover object-center",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: LIME,
   ctaText: "#101413",
@@ -283,7 +283,7 @@ export const cta = {
 } as const;
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: LIME,
   textColor: "#101413",
 };

@@ -21,7 +21,7 @@ export default function PrivacyPage() {
           imageClass="object-cover object-center"
           title="Privacy Policy"
           lede="This page describes the information the website form collects and what Sofnology does with it."
-          ctaLabel="Contact"
+          ctaLabel="Email Sofnology"
           ctaHref={`mailto:${SITE_EMAIL}`}
           ctaBackground={brand.navy}
         />

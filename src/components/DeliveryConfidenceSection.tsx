@@ -12,9 +12,9 @@ type DeliveryItem = {
 
 const deliveryItems: DeliveryItem[] = [
   {
-    title: "Launch with a clear technical foundation",
+    title: "A plan that still holds at release",
     description:
-      "From the first discussion, we turn business needs into a practical delivery plan with architecture, QA, deployment, and maintainability considered early.",
+      "The first conversation names the system, the constraints, and who owns the result. Architecture, testing, and handover are part of that plan.",
     points: [
       "Discovery and scope definition",
       "Architecture and integration planning",
@@ -25,9 +25,9 @@ const deliveryItems: DeliveryItem[] = [
     ],
   },
   {
-    title: "Turn traffic into measurable growth",
+    title: "Digital marketing tied to the page",
     description:
-      "Marketing work is connected to the same operational reality as your product, so campaigns, landing pages, analytics, and conversions can be measured together.",
+      "Ads and search only count when the page can take the enquiry. Tracking sits on the calls and forms the business actually wants.",
     points: [
       "SEO and content direction",
       "Paid campaign landing pages",
@@ -38,9 +38,9 @@ const deliveryItems: DeliveryItem[] = [
     ],
   },
   {
-    title: "Remove manual bottlenecks",
+    title: "Repeat work that still moves by hand",
     description:
-      "We identify repeatable work inside your business and replace fragile manual handoffs with automation, integrations, and clearer operational visibility.",
+      "The same request is retyped between the phone, the CRM, and a spreadsheet. Automation connects those steps where the API already exists.",
     points: [
       "Workflow automation",
       "CRM and business system integration",
@@ -51,9 +51,9 @@ const deliveryItems: DeliveryItem[] = [
     ],
   },
   {
-    title: "Stay informed, aligned, and in control",
+    title: "You can see where the work is",
     description:
-      "Every engagement is structured around visible progress, clear ownership, and practical communication, so the work does not drift away from business priorities.",
+      "Scope, milestones, and the next decision stay visible. The project does not depend on asking for a status.",
     points: [
       "Weekly progress visibility",
       "Milestone-based delivery",
@@ -73,7 +73,7 @@ export default function DeliveryConfidenceSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <div className="border-b border-neutral-200 px-5 py-10 sm:px-6 sm:py-12 md:px-10 md:py-14 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">
-            Digital growth delivery without doubt
+            The build, the marketing, and the handover stay one record
           </h2>
         </div>
 
@@ -82,7 +82,7 @@ export default function DeliveryConfidenceSection() {
             <div className="relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[320px] md:min-h-[460px] lg:min-h-[420px]">
               <Image
                 src="/digital-growth.jpg"
-                alt="Sofnology team reviewing delivery and growth systems"
+                alt="A working session on a delivery plan"
                 fill
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 className="object-cover"

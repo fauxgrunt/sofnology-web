@@ -116,14 +116,15 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
   work: {
     layout: "list-promo",
     links: [
-      { label: "Featured Work", href: "/work?area=featured" },
-      { label: "Software & Platforms", href: "/work?area=software" },
-      { label: "Mobile Applications", href: "/work?area=mobile" },
-      { label: "AI & Automation", href: "/work?area=ai" },
-      { label: "VoIP & Communications", href: "/work?area=voip" },
-      { label: "Web & Digital", href: "/work?area=web" },
-      { label: "Digital Growth", href: "/work?area=growth" },
-      { label: "Cloud & Infrastructure", href: "/work?area=cloud" },
+      { label: "All work", href: "/work" },
+      { label: "Featured Work", href: "/work/featured" },
+      { label: "Software & Platforms", href: "/work/software" },
+      { label: "Mobile Applications", href: "/work/mobile" },
+      { label: "AI & Automation", href: "/work/ai" },
+      { label: "VoIP & Communications", href: "/work/voip" },
+      { label: "Web & Digital", href: "/work/web" },
+      { label: "Digital Marketing", href: "/work/growth" },
+      { label: "Cloud & Infrastructure", href: "/work/cloud" },
     ],
     promo: {
       title: "Selected delivered work",
@@ -135,16 +136,16 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
   engagement: {
     layout: "list-promo",
     links: [
-      { label: "Project-Based Delivery", href: "/how-we-work#project-based" },
-      { label: "Dedicated Development Team", href: "/how-we-work#dedicated-team" },
-      { label: "Staff Augmentation", href: "/how-we-work#staff-augmentation" },
-      { label: "Technical Consulting", href: "/how-we-work#technical-consulting" },
-      { label: "Managed Services", href: "/how-we-work#managed-services" },
-      { label: "Ongoing Support & Retainers", href: "/how-we-work#ongoing-support" },
+      { label: "Project-Based Delivery", href: "/how-we-work/project-based-delivery" },
+      { label: "Dedicated Development Team", href: "/how-we-work/dedicated-development-team" },
+      { label: "Staff Augmentation", href: "/how-we-work/staff-augmentation" },
+      { label: "Technical Consulting", href: "/how-we-work/technical-consulting" },
+      { label: "Managed Services", href: "/how-we-work/managed-services" },
+      { label: "Ongoing Support & Retainers", href: "/how-we-work/ongoing-support" },
     ],
     promo: {
       title: "One way of working",
-      subtitle: "Scope, team shape, and support live on one page until a model needs its own.",
+      subtitle: "Six delivery shapes. Each one has its own page.",
       cta: "See how we work",
       href: "/how-we-work",
     },
@@ -154,7 +155,6 @@ export const megaMenus: Record<MenuId, MegaMenuConfig> = {
     links: [
       { label: "About Sofnology", href: "/company" },
       { label: "How We Work", href: "/how-we-work" },
-      { label: "Contact", href: "/#contact" },
     ],
     promo: {
       title: "Start a project",

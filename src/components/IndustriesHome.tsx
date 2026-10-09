@@ -18,7 +18,7 @@ export default function IndustriesHome() {
         <div className="border-b border-neutral-200 px-5 py-9 sm:px-6 md:px-10 lg:px-16">
           <h2 className="text-fluid-display font-semibold tracking-[-0.045em] text-neutral-950">Industries</h2>
           <p className="mt-4 max-w-3xl text-[16px] leading-[1.7] text-neutral-700">
-            We build solutions for these industries. The pages describe the work, not a claim of decades in each field.
+            The industry is the setting. The page is the software, the calls, or the marketing Sofnology has already delivered there.
           </p>
         </div>
         <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">

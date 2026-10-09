@@ -11,13 +11,13 @@ export const MID_IMAGE = "/solutions-startup-standalone.jpg";
 export const hero = {
   title: "How we work",
   lede:
-    "No matter where you are in your trajectory, we help bring the vision to life — beside your in-house talent or as a dedicated pod. Partnerships built to optimize resources and ambitions, not to invent a legacy story.",
+    "A defined project, a team on a longer roadmap, or a specialist added to the team you already have. Sofnology keeps the agreement either way.",
   image: "/uplift.jpg",
   imageAlt: "Teams collaborating to ship product work",
   imageClass: "object-cover object-[48%_40%]",
   eyebrow: "Sofnology",
   eyebrowColor: ACCENT,
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: ACCENT,
   ctaText: "#ffffff",
@@ -26,7 +26,7 @@ export const hero = {
 export const cta = {
   title: "Want to see if we’re the fit?",
   lede: "One discovery conversation is enough to start.",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   panelBackground: DEEP_CTA,
   buttonBackground: ACCENT,
   buttonText: "#fff",
@@ -35,19 +35,19 @@ export const cta = {
 export const models = [
   {
     title: "Dedicated development teams",
-    href: "/engagement/dedicated-teams",
+    href: "/how-we-work/dedicated-development-team",
     description:
       "A team focused on you — tailored skill mix, honest advice on remote fit, and engineers designed to blend with your in-house process.",
   },
   {
     title: "Project-based engagement",
-    href: "/engagement/project-outsourcing",
+    href: "/how-we-work/project-based-delivery",
     description:
       "We take ownership end-to-end — analysis, design, build, and QA — so you stay on growth while delivery stays on track.",
   },
   {
     title: "Staff augmentation",
-    href: "/engagement/staff-augmentation",
+    href: "/how-we-work/staff-augmentation",
     description:
       "Add specialized capacity beside your team — hard-to-source skills, shared tools, and timelines you can actually hold.",
   },
@@ -128,7 +128,7 @@ export const related: InteriorRelated = {
     {
       title: "Who we are",
       href: "/company",
-      description: "The Sofnology story without borrowed history or a founder gallery.",
+      description: "What Sofnology stands for. The brand, separate from how an engagement is run.",
     },
     {
       title: "Solutions for startups",

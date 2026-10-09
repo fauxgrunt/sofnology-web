@@ -1,6 +1,8 @@
 import { notFound } from "next/navigation";
 import { InteriorPage, StackedHero } from "@/components/interior";
+import RichServiceView from "@/components/services/rich/RichServiceView";
 import { focusIndustries, getFocusIndustry } from "@/content/industries/focus";
+import { getRichPage } from "@/content/rich";
 import { pageMetadata } from "@/lib/metadata";
 import { brand } from "@/lib/theme";
 
@@ -23,9 +25,10 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const industry = getFocusIndustry(slug);
   if (!industry) return {};
+  const rich = getRichPage(`/industries/${industry.slug}`);
   return pageMetadata({
-    title: industry.title,
-    description: industry.lede,
+    title: rich?.title ?? industry.title,
+    description: rich?.description ?? industry.lede,
     path: `/industries/${industry.slug}`,
   });
 }
@@ -35,6 +38,8 @@ export default async function FocusIndustryPage({ params }: { params: Promise<{ 
   if (taken.has(slug)) notFound();
   const industry = getFocusIndustry(slug);
   if (!industry) notFound();
+  const rich = getRichPage(`/industries/${industry.slug}`);
+  if (rich) return <RichServiceView page={rich} />;
 
   return (
     <InteriorPage
@@ -48,7 +53,7 @@ export default async function FocusIndustryPage({ params }: { params: Promise<{ 
       contact={{ showIntro: true, accent: "navy" }}
       hero={
         <StackedHero
-          image="/enterprise-services.jpg"
+          image="/frontend-hero.jpg"
           imageAlt={industry.title}
           imageClass="object-cover object-center"
           title={industry.title}

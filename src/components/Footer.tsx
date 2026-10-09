@@ -6,7 +6,6 @@ import { SITE_EMAIL } from "@/lib/site";
 const companyLinks = [
   { label: "About Sofnology", href: "/company" },
   { label: "How We Work", href: "/how-we-work" },
-  { label: "Contact", href: "/#contact" },
 ];
 
 const serviceLinks = [
@@ -30,17 +29,17 @@ const industryLinks = [
 ];
 
 const workLinks = [
-  { label: "Featured Work", href: "/work?area=featured" },
-  { label: "AI & Automation", href: "/work?area=ai" },
-  { label: "Mobile", href: "/work?area=mobile" },
-  { label: "VoIP", href: "/work?area=voip" },
-  { label: "Digital Growth", href: "/work?area=growth" },
+  { label: "All work", href: "/work" },
+  { label: "Featured Work", href: "/work/featured" },
+  { label: "AI & Automation", href: "/work/ai" },
+  { label: "Mobile", href: "/work/mobile" },
+  { label: "VoIP", href: "/work/voip" },
+  { label: "Digital Marketing", href: "/work/growth" },
 ];
 
 const supportLinks = [
   { label: "Start a Project", href: "/#contact-form" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", href: "/#contact" },
 ];
 
 const legalLinks = [
@@ -101,7 +100,7 @@ export default function Footer() {
               </div>
             ))}
 
-            <div className="col-span-2 grid grid-cols-1 gap-10 border-t border-white/10 pt-10 md:col-span-3 md:grid-cols-3">
+            <div className="col-span-2 grid grid-cols-1 gap-10 border-t border-white/10 pt-10 md:col-span-3 md:grid-cols-2">
               <div>
                 <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/70">
                   Contact
@@ -109,13 +108,13 @@ export default function Footer() {
                 <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
                   <a
                     href={`mailto:${SITE_EMAIL}`}
-                    className="block transition-colors hover:text-white"
+                    className="block min-h-11 py-1 break-all transition-colors hover:text-white"
                   >
                     {SITE_EMAIL}
                   </a>
                   <Link
                     href="/#contact-form"
-                    className="block transition-colors hover:text-white"
+                    className="flex min-h-11 items-center transition-colors hover:text-white"
                   >
                     Start a Project
                   </Link>
@@ -134,36 +133,16 @@ export default function Footer() {
                 </div>
               </div>
 
-              <div>
-                <h3 className="text-[12px] font-semibold tracking-[-0.01em] text-white/70">
-                  Connect
-                </h3>
-                <div className="mt-5 space-y-3 text-[14px] leading-relaxed tracking-[-0.02em] text-white/82">
-                  <a
-                    href={`mailto:${SITE_EMAIL}`}
-                    className="block transition-colors hover:text-white"
-                  >
-                    Email the team
-                  </a>
-                  <Link
-                    href="/#contact-form"
-                    className="block transition-colors hover:text-white"
-                  >
-                    Send a project brief
-                  </Link>
-                </div>
-              </div>
             </div>
           </div>
 
           <div className="border-t border-white/10 px-6 py-12 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
             <h3 className="max-w-sm text-[18px] leading-[1.35] font-semibold tracking-[-0.04em] text-white">
-              Build cleaner systems, sharper campaigns, and a digital operation that is
-              easier to run.
+              Software, voice, and digital marketing, under one company.
             </h3>
             <p className="mt-5 max-w-md text-[13px] leading-relaxed tracking-[-0.01em] text-white/75">
-              Sofnology connects software, automation, cloud, and digital marketing
-              into one practical execution plan for growing businesses.
+              Sofnology takes on the system you already run: the software, the
+              calls, the repeat work, and the digital marketing that should match them.
             </p>
             <Link
               href="/#contact-form"
@@ -188,10 +167,10 @@ export default function Footer() {
 
           <div className="flex flex-col justify-end border-t border-white/10 px-6 py-9 text-[12px] leading-relaxed tracking-[-0.01em] text-white/75 md:px-10 lg:border-t-0 lg:border-l lg:px-8 xl:px-10">
             <p>&copy; 2026 Sofnology Solutions. All rights reserved.</p>
-            <Link href="/privacy" className="mt-2 w-fit transition-colors duration-press ease-motion hover:text-white">
+            <Link href="/privacy" className="mt-2 flex min-h-11 w-fit items-center transition-colors duration-press ease-motion hover:text-white">
               Privacy Policy
             </Link>
-            <Link href="/terms" className="mt-2 w-fit transition-colors duration-press ease-motion hover:text-white">
+            <Link href="/terms" className="flex min-h-11 w-fit items-center transition-colors duration-press ease-motion hover:text-white">
               Terms of Use
             </Link>
           </div>

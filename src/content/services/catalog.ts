@@ -50,19 +50,19 @@ export const servicePages: ServicePageData[] = [
     title: "Custom Software Development",
     description:
       "Software designed around real business workflows, from internal systems and APIs to customer-facing platforms.",
-    lede: "We design and build software around real business workflows — from internal systems and APIs to customer-facing platforms and SaaS products.",
-    image: "/enterprise-services.jpg",
-    imageAlt: "Engineering collaboration in a modern workspace",
+    lede: "The business is already running on spreadsheets, inboxes, and tools that do not talk. We design and build the software, the APIs, and the product around that work.",
+    image: "/software-development.jpg",
+    imageAlt: "Team reviewing a product on a laptop in a bright office",
     group: "core",
     cards: [
-      { title: "Custom Software Development", description: "Business-specific software designed around operational requirements." },
-      { title: "SaaS Product Development", description: "Multi-user and subscription-based software platforms." },
-      { title: "Backend & API Development", description: "Backend systems, APIs, authentication, business logic, and integrations." },
-      { title: "Enterprise Applications", description: "Internal platforms, operational systems, dashboards, and business applications." },
-      { title: "System Integration", description: "Connect existing software, APIs, databases, CRM, ERP, and external platforms." },
-      { title: "Legacy System Modernization", description: "Improve or rebuild older applications and infrastructure." },
-      { title: "MVP & Product Development", description: "Turn an idea into a functional first product that can be tested and expanded." },
-      { title: "Software Testing & QA", description: "Functional testing, API testing, regression testing, and QA automation." },
+      { title: "Custom Software Development", description: "The team is working around the tools. We build the system the business actually runs on." },
+      { title: "SaaS Product Development", description: "More than one customer needs to sign in, pay, and use the same product." },
+      { title: "Backend & API Development", description: "The screen is not the product. The API, the sign-in, and the rules underneath are." },
+      { title: "Enterprise Applications", description: "An internal system for the people who already do the work: records, roles, and the daily screens." },
+      { title: "System Integration", description: "The CRM, the database, and the phone system still do not share a record." },
+      { title: "Legacy System Modernization", description: "The old application still runs the business. It needs to keep running while it is brought forward." },
+      { title: "MVP & Product Development", description: "You need a first version a real user can try, then a path to extend it." },
+      { title: "Software Testing & QA", description: "A release should fail in testing, not in the hands of the people who use it." },
     ],
     problems: ["Manual business processes", "Disconnected software", "Legacy systems", "Scaling limitations", "Missing integrations"],
     technologies: ["PHP", "Python", "Node.js", "JavaScript / TypeScript", "REST APIs", "MySQL", "PostgreSQL", "Redis", "Docker", "Linux", "Cloud platforms"],
@@ -79,7 +79,7 @@ export const servicePages: ServicePageData[] = [
     imageAlt: "Digital product workspace",
     group: "core",
     cards: [
-      { title: "Business Website Development", description: "Professional websites designed around credibility, enquiries, and business growth." },
+      { title: "Business Website Development", description: "A customer cannot tell what you do, or the enquiry never reaches a person." },
       { title: "Custom Web Applications", description: "Browser-based business software and customer-facing applications." },
       { title: "Customer & Member Portals", description: "Secure portals for customers, employees, members, or partners." },
       { title: "Dashboard Development", description: "Operational, reporting, analytics, and management dashboards." },
@@ -90,7 +90,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Outdated websites", "Enquiries that never reach the team", "Content nobody can update", "Portals bolted on later"],
     technologies: ["JavaScript / TypeScript", "React", "Next.js", "PHP", "CMS platforms", "MySQL", "PostgreSQL"],
-    workSlugs: ["napc-membership-website", "yanming-digital-growth"],
+    workSlugs: ["napc-membership-website", "yanming-washer-repair"],
     faqs: faqs("web development"),
   },
   {
@@ -114,7 +114,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Two native codebases", "Field teams still on paper", "Apps that cannot reach the business system", "Store releases that stall"],
     technologies: ["Flutter", "iOS", "Android", "PHP", "MySQL", "REST APIs", "SIP"],
-    workSlugs: ["fix-fensterreinigung-mobile-app", "flutter-sip-softphone"],
+    workSlugs: ["fix-fensterreinigung", "flutter-sip-softphone"],
     faqs: faqs("mobile apps"),
   },
   {
@@ -138,7 +138,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Repetitive manual work", "Assistants that cannot reach the phone system", "Knowledge trapped in documents", "Customer service that does not scale"],
     technologies: ["Voice AI", "Speech-to-text", "Text-to-speech", "REST APIs", "SIP", "Python", "Node.js"],
-    workSlugs: ["ai-voice-business-automation"],
+    workSlugs: ["ai-appointment-assistant-healthcare", "ai-voice-hr-self-service", "ai-voice-business-automation"],
     faqs: faqs("AI and automation"),
   },
   {
@@ -151,7 +151,7 @@ export const servicePages: ServicePageData[] = [
     imageAlt: "Studio still of a voice platform stack",
     group: "core",
     cards: [
-      { title: "Custom IP PBX", description: "Business communication platforms built around custom requirements." },
+      { title: "Custom IP PBX", description: "The phone system does not match how the company actually takes calls." },
       { title: "Contact Center Solutions", description: "Inbound and outbound contact-center environments." },
       { title: "SIP Trunk Integration", description: "Carrier, DID, SIP trunk, routing, and interoperability configuration." },
       { title: "IVR & Call Routing", description: "Interactive voice response, queues, ring groups, routing logic, and fallback flows." },
@@ -163,7 +163,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Calls that fail in one direction", "Trunks that were never finished", "Contact centers nobody was trained to run", "AI voice that sounds broken on a real handset"],
     technologies: ["Asterisk", "FreePBX", "VICIdial", "Issabel", "SIP", "PJSIP", "WebRTC", "ARI", "AMI", "AGI", "RTP", "Linux", "REST API"],
-    workSlugs: ["custom-pbx-contact-center", "voice-broadcasting-platform", "flutter-sip-softphone"],
+    workSlugs: ["ai-voice-hr-self-service", "custom-pbx-contact-center", "voice-broadcasting-platform", "flutter-sip-softphone"],
     faqs: faqs("VoIP and communication systems"),
   },
   {
@@ -172,11 +172,11 @@ export const servicePages: ServicePageData[] = [
     title: "Digital Marketing",
     description: "Google Ads, SEO, tracking, and landing pages planned with the website they send people to.",
     lede: "We plan and run acquisition work that stays tied to the website: paid search, SEO, tracking, and the pages people actually land on.",
-    image: "/digital-growth.jpg",
-    imageAlt: "Digital growth workspace",
+    image: "/digital-marketing-hero.jpg",
+    imageAlt: "Marketer reviewing a campaign layout on a desktop in a quiet studio",
     group: "core",
     cards: [
-      { title: "Google Ads Management", description: "Ongoing management and optimization of paid-search campaigns." },
+      { title: "Google Ads Management", description: "Spend is going out, and the search terms do not match the work you want." },
       { title: "Google Ads Account Setup", description: "Campaign architecture, keyword planning, ad groups, targeting, and account configuration." },
       { title: "SEO & Local SEO", description: "Improve organic search visibility and local search presence." },
       { title: "Google Tag Manager & Conversion Tracking", description: "Configure measurable website actions, conversions, calls, forms, and marketing events." },
@@ -188,7 +188,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Ads with no landing page", "Forms that are not tracked", "SEO detached from the service the business sells", "Reports nobody can act on"],
     technologies: ["Google Ads", "Google Analytics", "Google Tag Manager", "Google Search Console", "SEO tools", "CMS platforms"],
-    workSlugs: ["yanming-digital-growth"],
+    workSlugs: ["yanming-washer-repair"],
     faqs: faqs("digital marketing"),
   },
   {
@@ -197,12 +197,12 @@ export const servicePages: ServicePageData[] = [
     title: "Cloud & DevOps",
     description: "Linux, cloud, deployment, monitoring, backup, and server security for production systems.",
     lede: "We put applications on production infrastructure and keep that infrastructure operable — Linux, cloud, deployment, monitoring, and handover.",
-    image: "/enterprise-services.jpg",
+    image: "/devops-hero.jpg",
     imageAlt: "Infrastructure and engineering workspace",
     group: "core",
     cards: [
       { title: "Linux Server Administration", description: "Production Linux server configuration and ongoing administration." },
-      { title: "Cloud Infrastructure", description: "Cloud environments designed around application requirements." },
+      { title: "Cloud Infrastructure", description: "The application is ready, and nobody can say where it should run." },
       { title: "Server Migration", description: "Move applications, databases, and workloads between environments." },
       { title: "Application Deployment", description: "Production deployment of websites, APIs, software, and infrastructure." },
       { title: "Containers & CI/CD", description: "Docker, automated deployments, and repeatable release workflows." },
@@ -223,7 +223,7 @@ export const servicePages: ServicePageData[] = [
     title: "Backend Development",
     description: "APIs, business logic, authentication, and database-backed applications.",
     lede: "Backend work is how the services above stay reliable: APIs, business rules, sign-in, and the data underneath.",
-    image: "/enterprise-services.jpg",
+    image: "/backend-hero.jpg",
     imageAlt: "Engineering workspace",
     group: "engineering",
     cards: [
@@ -237,7 +237,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Business rules trapped in the interface", "APIs that cannot be trusted", "Permissions added after launch"],
     technologies: ["Node.js", "PHP", "Python", "REST APIs", "MySQL", "PostgreSQL", "Redis"],
-    workSlugs: ["fix-fensterreinigung-mobile-app", "napc-membership-website"],
+    workSlugs: ["fix-fensterreinigung", "napc-membership-website"],
     faqs: faqs("backend development"),
   },
   {
@@ -260,7 +260,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Interfaces that only work on a laptop", "Admin tools nobody can use", "Frontends detached from the API"],
     technologies: ["TypeScript", "React", "Next.js", "CSS"],
-    workSlugs: ["napc-membership-website", "yanming-digital-growth"],
+    workSlugs: ["napc-membership-website", "yanming-washer-repair"],
     faqs: faqs("frontend development"),
   },
   {
@@ -283,7 +283,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Separate iOS and Android teams for one product", "Apps that cannot call the API", "Releases stuck outside the stores"],
     technologies: ["Flutter", "Dart", "iOS", "Android", "REST APIs"],
-    workSlugs: ["fix-fensterreinigung-mobile-app", "flutter-sip-softphone"],
+    workSlugs: ["fix-fensterreinigung", "flutter-sip-softphone"],
     faqs: faqs("cross-platform mobile"),
   },
   {
@@ -307,7 +307,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["A model with no access to the business", "Voice that fails on a handset", "Assistants that answer outside their brief"],
     technologies: ["Speech-to-text", "Text-to-speech", "SIP", "REST APIs", "Python"],
-    workSlugs: ["ai-voice-business-automation"],
+    workSlugs: ["ai-appointment-assistant-healthcare", "ai-voice-hr-self-service", "ai-voice-business-automation"],
     faqs: faqs("voice AI"),
   },
   {
@@ -316,7 +316,7 @@ export const servicePages: ServicePageData[] = [
     title: "API & System Integration",
     description: "REST, webhooks, CRM, ERP, payments, telephony, and sign-in connected on purpose.",
     lede: "Integration is how separate products start behaving as one operation.",
-    image: "/enterprise-services.jpg",
+    image: "/web-dev-hero.jpg",
     imageAlt: "Systems integration workspace",
     group: "engineering",
     cards: [
@@ -331,7 +331,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Data retyped between tools", "Telephony that never reaches the CRM", "Payments handled off to the side"],
     technologies: ["REST", "Webhooks", "OAuth", "SIP", "JSON"],
-    workSlugs: ["ai-voice-business-automation", "flutter-sip-softphone"],
+    workSlugs: ["ai-voice-hr-self-service", "ai-voice-business-automation", "flutter-sip-softphone"],
     faqs: faqs("system integration"),
   },
   {
@@ -340,7 +340,7 @@ export const servicePages: ServicePageData[] = [
     title: "Databases & Data",
     description: "MySQL, MariaDB, PostgreSQL, Redis, migrations, reporting, and backups.",
     lede: "Data work covers the databases the applications already depend on: design, migration, queries, reporting, and recovery.",
-    image: "/enterprise-services.jpg",
+    image: "/technologies-hero.jpg",
     imageAlt: "Data and engineering workspace",
     group: "engineering",
     cards: [
@@ -355,7 +355,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Reports that lock the application", "Migrations with no rollback", "Backups that were never tested"],
     technologies: ["MySQL", "MariaDB", "PostgreSQL", "Redis", "SQL"],
-    workSlugs: ["fix-fensterreinigung-mobile-app"],
+    workSlugs: ["fix-fensterreinigung"],
     faqs: faqs("databases"),
   },
   {
@@ -364,7 +364,7 @@ export const servicePages: ServicePageData[] = [
     title: "DevOps & Infrastructure",
     description: "Linux, Docker, CI/CD, web servers, monitoring, networking, and hardening.",
     lede: "This is the engineering view of Cloud & DevOps: how servers, containers, and releases are actually run.",
-    image: "/enterprise-services.jpg",
+    image: "/cloud-hero.jpg",
     imageAlt: "Infrastructure workspace",
     group: "engineering",
     cards: [
@@ -388,7 +388,7 @@ export const servicePages: ServicePageData[] = [
     title: "Cloud & Linux Infrastructure",
     description: "The server, database, deployment, monitoring, backup, and security layer under an application.",
     lede: "Platforms we design, integrate, or operate: Linux servers, cloud environments, web servers, databases, and the deployment path around them.",
-    image: "/enterprise-services.jpg",
+    image: "/cloud-hero.jpg",
     imageAlt: "Server and cloud workspace",
     group: "platform",
     cards: [
@@ -428,7 +428,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["A phone system and a contact center that do not meet", "AI voice added without a working trunk"],
     technologies: ["Asterisk", "FreePBX", "VICIdial", "SIP", "WebRTC"],
-    workSlugs: ["custom-pbx-contact-center", "voice-broadcasting-platform", "ai-voice-business-automation"],
+    workSlugs: ["ai-voice-hr-self-service", "custom-pbx-contact-center", "voice-broadcasting-platform", "ai-voice-business-automation"],
     faqs: faqs("voice platforms"),
   },
   {
@@ -460,7 +460,7 @@ export const servicePages: ServicePageData[] = [
     title: "Business & Enterprise Systems",
     description: "Internal software, workflows, CRM and ERP connections, reporting, and automation.",
     lede: "Operational systems: internal software, workflows, CRM and ERP connections, reporting, and the automation between them.",
-    image: "/enterprise-services.jpg",
+    image: "/frontend-hero.jpg",
     imageAlt: "Business systems workspace",
     group: "platform",
     cards: [
@@ -474,7 +474,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Work passed by email", "CRM and operations that never meet"],
     technologies: ["REST APIs", "MySQL", "PostgreSQL", "Webhooks"],
-    workSlugs: ["napc-membership-website", "ai-voice-business-automation"],
+    workSlugs: ["ai-voice-hr-self-service", "napc-membership-website", "ai-voice-business-automation"],
     faqs: faqs("business systems"),
   },
   {
@@ -498,7 +498,7 @@ export const servicePages: ServicePageData[] = [
     ],
     problems: ["Campaigns with no conversion record", "A website the ads do not match"],
     technologies: ["Google Ads", "Google Analytics", "Google Tag Manager", "Search Console"],
-    workSlugs: ["yanming-digital-growth"],
+    workSlugs: ["yanming-washer-repair"],
     faqs: faqs("marketing platforms"),
   },
 ];

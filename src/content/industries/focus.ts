@@ -9,13 +9,13 @@ export const focusIndustries: FocusIndustry[] = [
   {
     slug: "professional-services",
     title: "Professional & Field Services",
-    lede: "We build solutions for service businesses — mobile tools for field teams, websites that take enquiries, and the operations behind them. Fix-Fensterreinigung is one mobile example. Yanming-type service work is described as selected delivery experience until a client engagement and brand permission are confirmed.",
+    lede: "We build for service businesses: mobile tools for people on the job, websites that take an enquiry, and the operations behind both.",
     examples: ["Field-service mobile apps", "Enquiry websites", "Job and scheduling workflows"],
   },
   {
     slug: "telecom",
     title: "Telecom & Communications",
-    lede: "We build solutions for voice and communications: PBX, contact centers, SIP, WebRTC, broadcasting, and communication APIs. This is delivered work, not a claim of decades as a carrier.",
+    lede: "Calls fail in one direction, or the contact center was never finished. Sofnology builds PBX, contact centers, SIP, WebRTC, broadcasting, and the APIs around them.",
     examples: ["PBX and contact centers", "SIP trunking", "Voice broadcasting", "Softphones"],
   },
   {

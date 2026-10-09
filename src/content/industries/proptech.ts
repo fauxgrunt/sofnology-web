@@ -15,7 +15,7 @@ export const hero = {
   imageClass: "scale-[1.05] object-cover object-[48%_42%]",
   titleClass:
     "mt-5 max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[3.75rem]",
-  ctaLabel: "Talk about proptech software",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: ORANGE,
   ctaText: "#1C1917",
@@ -26,7 +26,7 @@ export const cta = {
   title: "Ready to build better proptech software?",
   lede:
     "Tell us whether you need to scale the team, ship a new product, or modernize a live platform — we’ll help shape a practical path.",
-  ctaLabel: "Talk about proptech software",
+  ctaLabel: "Start a Project",
   image: "/proptech-hero.jpg",
   imageAlt: "Proptech abstract landscape with glass architectural forms",
   imageClass: "scale-[1.08] object-cover object-[62%_55%]",
@@ -201,8 +201,8 @@ export const related: InteriorRelated = {
   links: [
     {
       title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting pod when proptech roadmaps run for years, not one release.",
+      href: "/how-we-work/dedicated-development-team",
+      description: "A lasting team when proptech roadmaps run for years, not one release.",
     },
     {
       title: "Staff augmentation",
@@ -250,7 +250,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Talk about proptech software",
+  label: "Start a Project",
   backgroundColor: ORANGE,
   textColor: "#1C1917",
 };

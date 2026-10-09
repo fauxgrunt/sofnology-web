@@ -11,7 +11,7 @@ export default function PrimaryCTA({ fullWidth = false, onClick }: PrimaryCTAPro
       href="/#contact-form"
       onClick={onClick}
       className={`tap-press relative flex items-center justify-center bg-navy font-nav text-[16px] font-semibold tracking-[-0.02em] text-white whitespace-nowrap transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-navy-mid lg:text-fluid-cta lg:font-medium lg:tracking-normal ${
-        fullWidth ? "min-h-12 w-full px-5" : "h-full min-h-12 shrink-0 px-7 xl:px-9"
+        fullWidth ? "min-h-12 w-full px-5" : "h-full min-h-12 shrink-0 px-5 xl:px-8"
       }`}
     >
       <span>Start a Project</span>

@@ -4,7 +4,7 @@ export const SLATE = "#3D4F5F";
 export const DEEP = "#1A1F24";
 export const ICE = "#D7E2EA";
 
-export const SERVICES_IMAGE = "/enterprise-services.jpg";
+export const SERVICES_IMAGE = "/frontend-hero.jpg";
 export const OUTCOMES_IMAGE = "/digital-growth.jpg";
 export const CTA_IMAGE = "/enterprise-cta.jpg";
 
@@ -16,10 +16,10 @@ export const hero = {
   imageAlt: "Enterprise stakeholders collaborating around documents and a laptop",
   imageClass: "scale-[1.12] object-cover object-[52%_28%]",
   imageMinClass:
-    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]",
+    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]",
   titleClass:
     "max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.1rem]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: SLATE,
   ctaText: "#ffffff",
@@ -136,7 +136,7 @@ export const workModels = [
     title: "Staff augmentation",
     description: "Experts integrate with your existing team. You pick the skills and scale as demand evolves.",
     points: [
-      "Plug into your current squad",
+      "Plug into your current team",
       "Choose the skills you need",
       "Flexible capacity as priorities shift",
     ],
@@ -145,7 +145,7 @@ export const workModels = [
   },
   {
     title: "Dedicated teams",
-    description: "A Sofnology pod dedicated to your initiative — you steer priorities with full support for ongoing needs.",
+    description: "A Sofnology team dedicated to your initiative — you steer priorities with full support for ongoing needs.",
     points: [
       "Team focused on your work",
       "Direct control of priorities",
@@ -169,7 +169,7 @@ export const workModels = [
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: SLATE,
   textColor: "#ffffff",
 };

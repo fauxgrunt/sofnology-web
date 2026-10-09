@@ -28,7 +28,7 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
   },
   {
     path: "/work",
-    title: "Our work",
+    title: "All work",
     description:
       "Selected projects delivered by Sofnology and members of the delivery team. Confidential work stays anonymous.",
   },
@@ -36,7 +36,7 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
     path: "/company",
     title: "About Sofnology",
     description:
-      "Who Sofnology is, how we work, and how we partner with growing companies on software and systems.",
+      "What Sofnology stands for: a services company for software, communication, and growth, held as one practice.",
   },
   {
     path: "/company/how-we-work",
@@ -55,6 +55,12 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
     title: "Web App Development",
     description:
       "Web products that help businesses present clearly, operate efficiently, and scale.",
+  },
+  {
+    path: "/services/digital-marketing",
+    title: "Digital Marketing",
+    description:
+      "Google Ads, SEO, tracking, and landing pages planned with the website they send people to.",
   },
   {
     path: "/services/mobile-development",
@@ -137,33 +143,33 @@ export const SITE_ROUTES: Array<{ path: string; title: string; description: stri
     description: "Marketing and adtech platforms that sharpen acquisition and brand presence.",
   },
   {
-    path: "/engagement/solutions-for-startups",
-    title: "Solutions for Startups",
-    description: "MVP and product engineering partnerships for early-stage teams.",
+    path: "/how-we-work/project-based-delivery",
+    title: "Project-Based Delivery",
+    description: "A scoped outcome from discovery through release, with milestones, testing, and handover.",
   },
   {
-    path: "/engagement/solutions-for-enterprises",
-    title: "Solutions for Enterprises",
-    description: "Enterprise software delivery with clear ownership and operational control.",
+    path: "/how-we-work/dedicated-development-team",
+    title: "Dedicated Development Team",
+    description: "A Sofnology team that stays on one product roadmap.",
   },
   {
-    path: "/engagement/solutions-for-ai-companies",
-    title: "Solutions for AI Companies",
-    description: "Product and platform engineering for AI-native companies.",
-  },
-  {
-    path: "/engagement/dedicated-teams",
-    title: "Dedicated Teams",
-    description: "A lasting Sofnology pod embedded in your product roadmap.",
-  },
-  {
-    path: "/engagement/staff-augmentation",
+    path: "/how-we-work/staff-augmentation",
     title: "Staff Augmentation",
-    description: "Senior engineers plugged into your team without rebuilding hiring.",
+    description: "Specialists added to a team that already runs delivery.",
   },
   {
-    path: "/engagement/project-outsourcing",
-    title: "Project Outsourcing",
-    description: "Scoped project delivery with clear milestones and handover.",
+    path: "/how-we-work/technical-consulting",
+    title: "Technical Consulting",
+    description: "Architecture, assessments, troubleshooting, planning, and technical direction.",
+  },
+  {
+    path: "/how-we-work/managed-services",
+    title: "Managed Services",
+    description: "Sofnology operates agreed technical systems on a continuing basis.",
+  },
+  {
+    path: "/how-we-work/ongoing-support",
+    title: "Ongoing Support and Retainers",
+    description: "Monthly maintenance, optimization, technical support, and infrastructure support.",
   },
 ];

@@ -39,7 +39,7 @@ export default function MagentaSplitCta({
           >
             <div className="flex items-start justify-between gap-4">
               <span className="text-2xl font-semibold tracking-[-0.045em] md:text-3xl">
-                Get in touch
+                Start a Project
               </span>
               <span className="mt-1">
                 <ArrowUpRightIcon />

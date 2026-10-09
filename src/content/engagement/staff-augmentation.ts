@@ -13,7 +13,7 @@ export const hero = {
   imageClass: "scale-[1.06] object-cover object-[48%_32%]",
   titleClass:
     "max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4rem]",
-  ctaLabel: "Talk about staff augmentation",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -25,7 +25,7 @@ export const cta = {
   title: "Ready to augment your staff?",
   lede:
     "Tell us the skills you need. We’ll shortlist engineers who fit your stack, culture, and operating rhythm — you interview and decide.",
-  ctaLabel: "Talk about staff augmentation",
+  ctaLabel: "Start a Project",
   image: "/web-dev-cta.jpg",
   imageAlt: "Team collaboration for staff augmentation engagement",
   imageClass: "scale-[1.05] object-cover object-[45%_40%]",
@@ -48,7 +48,7 @@ export const wins = [
   {
     title: "Less admin, more flexibility",
     description:
-      "Sofnology handles employment overhead. You scale seats up or down as demand shifts — without permanent-hire lock-in.",
+      "Sofnology handles employment overhead. You add or remove specialists as demand shifts, without a permanent hire for a temporary gap.",
   },
 ];
 
@@ -92,7 +92,7 @@ export const comparisonModels = [
     ],
     points: [
       "Natural fit with your in-house culture and tools",
-      "Scale seats fast as requirements change",
+      "Add a specialist as requirements change",
       "You manage the people day to day",
     ],
   },
@@ -100,10 +100,10 @@ export const comparisonModels = [
     id: "dedicated",
     title: "Dedicated teams",
     summary:
-      "A cross-functional Sofnology pod focused on your product — lasting partnership beyond filling a few seats.",
+      "A cross-functional Sofnology team focused on your product, when one specialist is not enough.",
     bestFor: [
       "Large, long-term product work that may scale over time",
-      "When local hiring is too slow or costly for a full squad",
+      "When local hiring is too slow or costly for a full team",
     ],
     points: [
       "Undivided focus on one product roadmap",
@@ -201,7 +201,7 @@ export const related: InteriorRelated = {
     {
       title: "Dedicated teams",
       href: "/engagement/dedicated-teams",
-      description: "When you need a standing product pod — not just individual seats in your process.",
+      description: "When you need a standing product team, not one specialist inside the team you already run.",
     },
     {
       title: "Project outsourcing",
@@ -223,7 +223,7 @@ export const faqs: InteriorFaq = {
     {
       question: "How is staff augmentation different from dedicated teams?",
       answer:
-        "Staff augmentation adds people into your existing process and backlog — you keep day-to-day ownership. Dedicated teams are a Sofnology-owned pod focused on your product, often cross-functional, for longer-horizon work.",
+        "Staff augmentation adds people into your existing process and backlog — you keep day-to-day ownership. Dedicated teams are a Sofnology-owned team focused on your product, often cross-functional, for longer-horizon work.",
     },
     {
       question: "Who manages the engineers day to day?",
@@ -245,7 +245,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Talk about staff augmentation",
+  label: "Start a Project",
   backgroundColor: DEEP,
   textColor: "#ffffff",
 };

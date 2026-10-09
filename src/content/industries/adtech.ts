@@ -2,7 +2,7 @@ import type { InteriorContact, InteriorFaq, InteriorRelated, InteriorSticky } fr
 
 export const MAGENTA = "#FF2D8A";
 export const DEEP = "#1A0A12";
-export const PRIMARY_CTA = "Talk about martech or adtech";
+export const PRIMARY_CTA = "Start a Project";
 export const HERO_IMAGE = "/adtech-hero.jpg";
 
 export const hero = {
@@ -14,7 +14,7 @@ export const hero = {
   imageClass: "scale-[1.03] object-cover object-[58%_45%]",
   eyebrow: "Sofnology",
   eyebrowColor: MAGENTA,
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: MAGENTA,
   ctaText: "#ffffff",
@@ -131,8 +131,8 @@ export const related: InteriorRelated = {
     },
     {
       title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting pod when the ad stack evolves every quarter.",
+      href: "/how-we-work/dedicated-development-team",
+      description: "A lasting team when the ad stack evolves every quarter.",
     },
   ],
 };

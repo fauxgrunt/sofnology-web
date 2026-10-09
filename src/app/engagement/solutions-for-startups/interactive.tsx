@@ -161,7 +161,7 @@ export function PartnershipModelsSection() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
         <SectionIntro
           title="Our partnership models"
-          lede="Capacity inside your team, a lasting pod, or full project ownership — choose how you want to work."
+          lede="Capacity inside your team, a lasting team, or full project ownership — choose how you want to work."
           tone="dark"
           minHeight={160}
         />
@@ -243,7 +243,7 @@ export function PartnershipModelsSection() {
                   <span className="relative z-10">
                     {partnershipModels[active].href.startsWith("/")
                       ? "View project outsourcing"
-                      : "Talk about this model"}
+                      : "Start a Project"}
                   </span>
                   <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                     <ArrowUpRightIcon />

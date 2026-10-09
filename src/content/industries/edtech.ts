@@ -4,7 +4,7 @@ import type { InteriorContact, InteriorFaq, InteriorRelated, InteriorSticky } fr
 export const MINT = "#7DDBA3";
 export const DEEP = "#12241C";
 export const MAGENTA = "#FF2D8A";
-export const PRIMARY_CTA = "Talk about education software";
+export const PRIMARY_CTA = "Start a Project";
 
 export const hero = {
   title: "Education & Associations",
@@ -18,7 +18,7 @@ export const hero = {
   gradientClass: "absolute inset-0 bg-gradient-to-r from-[#12241C]/55 via-[#12241C]/15 to-transparent",
   titleClass:
     "mt-3 text-[1.85rem] leading-[1.08] font-semibold tracking-[-0.055em] sm:mt-5 sm:text-4xl md:text-5xl lg:text-[3.5rem]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: MINT,
   ctaText: DEEP,
@@ -198,8 +198,8 @@ export const related: InteriorRelated = {
     },
     {
       title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting pod when the curriculum product ships every term.",
+      href: "/how-we-work/dedicated-development-team",
+      description: "A lasting team when the curriculum product ships every term.",
     },
   ],
 };

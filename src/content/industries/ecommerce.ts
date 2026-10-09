@@ -11,7 +11,7 @@ export const hero = {
   image: "/ecommerce-hero.jpg",
   imageAlt: "Yellow shopping bags on a white conveyor in a minimal 3D ecommerce scene",
   imageClass: "object-cover object-[center_45%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -189,7 +189,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: MAGENTA,
   textColor: "#ffffff",
 };

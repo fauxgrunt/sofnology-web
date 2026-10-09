@@ -11,7 +11,7 @@ export const hero = {
   image: "/foodtech-hero.jpg",
   imageAlt: "Delivery courier checking a phone while holding a basket of fresh groceries",
   imageClass: "scale-[1.06] object-cover object-[42%_28%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -200,7 +200,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: DEEP,
   textColor: "#ffffff",
 };

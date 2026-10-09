@@ -6,13 +6,13 @@ export const DEEP = "#243B55";
 export const hero = {
   title: "Dedicated development teams",
   lede:
-    "A Sofnology squad focused entirely on your product — composed for the work, integrated with your process, and built to stay with the roadmap without the drag of traditional hiring.",
-  image: "/enterprise-services.jpg",
+    "A Sofnology team focused entirely on your product — composed for the work, integrated with your process, and built to stay with the roadmap without the drag of traditional hiring.",
+  image: "/web-dev-hero.jpg",
   imageAlt: "Engineering team collaborating in a modern workspace",
   imageClass: "scale-[1.06] object-cover object-[58%_35%]",
   titleClass:
     "max-w-3xl text-[2.35rem] leading-[1.06] font-semibold tracking-[-0.055em] sm:text-5xl sm:leading-[1.04] sm:tracking-[-0.06em] text-neutral-950 md:text-6xl lg:text-[4.1rem]",
-  ctaLabel: "Talk about a dedicated team",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -23,8 +23,8 @@ export const hero = {
 export const cta = {
   title: "Ready for a team that stays with the product?",
   lede:
-    "We’ll help shape the pod, roles, and operating rhythm so you get focus and continuity — not another short-term hiring scramble.",
-  ctaLabel: "Talk about a dedicated team",
+    "We’ll help shape the team, roles, and operating rhythm so you get focus and continuity — not another short-term hiring scramble.",
+  ctaLabel: "Start a Project",
   image: "/enterprise-cta.jpg",
   imageAlt: "Team collaboration for dedicated development engagement",
   imageClass: "scale-[1.05] object-cover object-[42%_40%]",
@@ -38,7 +38,7 @@ export const comparisonModels = [
     id: "dedicated",
     title: "Dedicated team",
     summary:
-      "A cross-functional Sofnology squad assigned exclusively to your product — an extension of your team that stays with the roadmap.",
+      "A cross-functional Sofnology team assigned exclusively to your product — an extension of your team that stays with the roadmap.",
     bestFor: [
       "Long-term product work with evolving scope",
       "Expanding capacity without in-house hiring overhead",
@@ -65,12 +65,12 @@ export const comparisonModels = [
     ],
     pros: [
       "Fast access to specific skills",
-      "Flexible ramp without building a full pod",
+      "Flexible ramp without building a full team",
       "Lower overhead than permanent hires",
     ],
     cons: [
       "You still carry management load",
-      "Too much reliance on external seats can create continuity risk",
+      "A string of short specialist placements can lose the context a product needs",
     ],
     href: "/engagement/staff-augmentation",
   },
@@ -99,7 +99,7 @@ export const fitScenarios = [
   {
     title: "Complex product builds",
     description:
-      "Multiple technologies and domains in one roadmap — a stable squad beats rotating freelancers.",
+      "Multiple technologies and domains in one roadmap — a stable team beats rotating freelancers.",
   },
   {
     title: "Long-term initiatives",
@@ -109,7 +109,7 @@ export const fitScenarios = [
   {
     title: "Startups and new products",
     description:
-      "Shifting markets and requirements — a dedicated pod can pivot without restarting hiring every quarter.",
+      "Shifting markets and requirements — a dedicated team can pivot without restarting hiring every quarter.",
   },
   {
     title: "Scale-up capacity",
@@ -132,7 +132,7 @@ export const perks = [
   {
     title: "Focused commitment",
     description:
-      "The squad works your product — not a rotating queue of unrelated clients — so context sticks.",
+      "The team works your product — not a rotating queue of unrelated clients — so context sticks.",
   },
   {
     title: "Long-horizon cost efficiency",
@@ -152,7 +152,7 @@ export const perks = [
   {
     title: "Faster path to velocity",
     description:
-      "A ready, matched pod shortens the gap between decision and shipping capacity.",
+      "A ready, matched team shortens the gap between decision and shipping capacity.",
   },
   {
     title: "Scalability without drama",
@@ -180,7 +180,7 @@ export const hireSteps = [
   {
     title: "Onboard into your world",
     description:
-      "Context on product, codebase, processes, and culture — so the pod is useful from week one.",
+      "Context on product, codebase, processes, and culture — so the team is useful from week one.",
   },
   {
     title: "Govern with clear reporting",
@@ -190,7 +190,7 @@ export const hireSteps = [
   {
     title: "Improve and rescale",
     description:
-      "Feedback loops and an agile operating model let us grow, shrink, or reshape the squad as needed.",
+      "Feedback loops and an agile operating model let us grow, shrink, or reshape the team as needed.",
   },
 ];
 
@@ -208,7 +208,7 @@ export const mistakes = [
   {
     problem: "Light technical vetting",
     solution:
-      "Use interviews, work samples, and past delivery evidence before locking the pod.",
+      "Use interviews, work samples, and past delivery evidence before locking the team.",
   },
   {
     problem: "No project management spine",
@@ -223,7 +223,7 @@ export const mistakes = [
   {
     problem: "No scalability plan",
     solution:
-      "Choose a partner who can reshape the squad as scope and growth change.",
+      "Choose a partner who can reshape the team as scope and growth change.",
   },
 ];
 
@@ -236,7 +236,7 @@ export const related: InteriorRelated = {
     {
       title: "Project outsourcing",
       href: "/engagement/project-outsourcing",
-      description: "When you need a scoped outcome owned through release — not a standing product pod.",
+      description: "When you need a scoped outcome owned through release — not a standing product team.",
     },
     {
       title: "Solutions for startups",
@@ -258,7 +258,7 @@ export const faqs: InteriorFaq = {
     {
       question: "How is a dedicated team different from staff augmentation?",
       answer:
-        "Staff augmentation adds people into your existing process. A dedicated team is a Sofnology-owned pod focused on your product — often cross-functional — that can own larger slices of delivery while still integrating with your stakeholders.",
+        "Staff augmentation adds people into your existing process. A dedicated team is a Sofnology-owned team focused on your product — often cross-functional — that can own larger slices of delivery while still integrating with your stakeholders.",
     },
     {
       question: "How is this different from project outsourcing?",
@@ -268,7 +268,7 @@ export const faqs: InteriorFaq = {
     {
       question: "Can we interview every engineer?",
       answer:
-        "Yes. We shortlist candidates against your requirements; you interview and approve before anyone joins the pod.",
+        "Yes. We shortlist candidates against your requirements; you interview and approve before anyone joins the team.",
     },
     {
       question: "How quickly can a team start?",
@@ -280,7 +280,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Talk about a dedicated team",
+  label: "Start a Project",
   backgroundColor: DEEP,
   textColor: "#ffffff",
 };

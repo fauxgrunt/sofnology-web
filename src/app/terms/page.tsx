@@ -21,7 +21,7 @@ export default function TermsPage() {
           imageClass="object-cover object-center"
           title="Terms of Use"
           lede="The website describes services. A project starts only when both sides agree scope, price, and handover in writing."
-          ctaLabel="Contact"
+          ctaLabel="Email Sofnology"
           ctaHref={`mailto:${SITE_EMAIL}`}
           ctaBackground={brand.navy}
         />

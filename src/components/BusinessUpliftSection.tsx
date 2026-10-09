@@ -6,26 +6,30 @@ const focusAreas = [
   {
     title: "Custom software for daily operations",
     description:
-      "Web platforms, portals, dashboards, SaaS tools, and internal systems shaped around how your team actually works.",
-    link: "Explore software delivery",
+      "The team is working around the tools. Web platforms, portals, and internal systems built for how the work already runs.",
+    href: "/services/software-development",
+    link: "Software development",
   },
   {
-    title: "Digital marketing built around outcomes",
+    title: "Digital marketing tied to the site",
     description:
-      "SEO, paid campaigns, content systems, analytics, and conversion improvements connected to real business growth.",
-    link: "Plan growth channels",
+      "People search, click, and land on a page that does not take the enquiry. Ads, SEO, and tracking stay with that page.",
+    href: "/services/digital-marketing",
+    link: "Digital marketing",
   },
   {
-    title: "Automation that removes friction",
+    title: "Automation and voice",
     description:
-      "CRM integrations, workflow automation, reporting pipelines, and AI-assisted tools where they improve efficiency.",
-    link: "Find automation gaps",
+      "Calls and repeat tasks are eating the day. Voice, workflows, and the systems they have to reach.",
+    href: "/services/ai-automation",
+    link: "AI and automation",
   },
   {
-    title: "Cloud systems ready to scale",
+    title: "Cloud the team can operate",
     description:
-      "Secure infrastructure, reliable deployments, business integrations, and operational handover for long-term growth.",
-    link: "Review technical foundation",
+      "A server or a deploy that only one person understands. Linux, cloud, and a handover the team can run.",
+    href: "/services/cloud-devops",
+    link: "Cloud and DevOps",
   },
 ];
 
@@ -36,26 +40,24 @@ export default function BusinessUpliftSection() {
         <div className="mx-auto grid max-w-[1440px] grid-cols-1 lg:grid-cols-2">
           <div className="px-5 pt-10 pb-8 sm:px-6 sm:pt-14 sm:pb-10 md:px-10 lg:px-16 lg:pt-20 lg:pb-16">
             <p className="text-[16px] font-semibold tracking-[-0.02em] text-navy">
-              Built to uplift your business
+              One practice
             </p>
             <h2 className="text-fluid-display mt-6 max-w-5xl font-semibold tracking-[-0.045em] text-neutral-950">
-              We build, market, and automate the digital systems that help businesses
-              move with clarity.
+              Software, calls, and digital marketing are already one operation.
+              They should have one company on them.
             </h2>
           </div>
 
           <div className="flex items-end px-6 pt-0 pb-14 md:px-10 lg:px-16 lg:pt-20 lg:pb-16">
             <div className="max-w-2xl space-y-5 text-[15px] leading-[1.75] tracking-tight text-neutral-700">
               <p>
-                Sofnology connects product engineering, automation, cloud systems, and
-                digital marketing into one delivery model. That means the software you
-                build, the workflows you run, and the channels that bring in customers
-                can support the same business direction.
+                Sofnology builds the software, runs the voice and automation, and
+                plans the digital marketing against the same pages and the same
+                enquiries.
               </p>
               <p>
-                The result is not a stack of disconnected services. It is a practical
-                growth system: clearer operations, stronger customer reach, and
-                technology that can keep pace as the business changes.
+                The software, the calls, the automation, and the digital marketing
+                answer to the same company. A change in one does not leave the others behind.
               </p>
             </div>
           </div>
@@ -66,7 +68,7 @@ export default function BusinessUpliftSection() {
         <div className="relative aspect-[16/11] overflow-hidden border-b border-neutral-200 sm:aspect-auto sm:min-h-[420px] md:min-h-[520px] lg:min-h-[560px] lg:border-r lg:border-b-0">
           <Image
             src="/uplift.jpg"
-            alt="Sofnology team planning digital growth systems"
+            alt="A working session around software, calls, and digital marketing"
             fill
             sizes="(max-width: 1024px) 100vw, 50vw"
             className="object-cover"
@@ -89,7 +91,7 @@ export default function BusinessUpliftSection() {
                 {area.description}
               </p>
               <Link
-                href="/#contact-form"
+                href={area.href}
                 className="tap-press mt-auto pt-10 text-[14px] font-semibold text-white underline decoration-white/70 underline-offset-4 transition-colors duration-chrome ease-motion"
               >
                 {area.link}
@@ -101,7 +103,7 @@ export default function BusinessUpliftSection() {
             href="/#contact-form"
             className="tap-press relative col-span-1 flex min-h-28 items-center justify-between border-t border-white/20 bg-gradient-to-r from-navy-mid via-[#16457f] to-navy-mid px-8 py-8 text-2xl font-semibold tracking-[-0.045em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)] transition-opacity duration-chrome ease-motion md:col-span-2 md:px-10 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
           >
-            <span>Start building your growth system</span>
+            <span>Start a Project</span>
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/10">
               <ArrowUpRightIcon />
             </span>

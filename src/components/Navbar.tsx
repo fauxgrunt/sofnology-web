@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import NavbarLogo from "@/components/nav/NavbarLogo";
 import NavMegaPanel from "@/components/nav/NavMegaPanel";
 import PrimaryCTA from "@/components/nav/PrimaryCTA";
+import ThemeToggle from "@/components/ThemeToggle";
 import { Chevron, MenuToggleIcon } from "@/components/nav/NavIcons";
 import {
   navItems,
@@ -270,7 +271,7 @@ export default function Navbar() {
       <div className="relative" ref={navRef}>
         <div className="mx-auto flex h-fluid-nav max-w-[1440px] items-stretch border-x border-neutral-200">
           {/* Brand zone — keep compact on phones so the menu button has room */}
-          <div className="flex min-w-0 flex-1 items-stretch border-r border-neutral-200 sm:max-w-[300px] md:max-w-[340px] lg:w-[min(42vw,380px)] lg:max-w-none lg:flex-none xl:w-[380px]">
+          <div className="flex min-w-0 flex-1 items-stretch border-r border-neutral-200 sm:max-w-[300px] md:max-w-[340px] lg:w-[200px] lg:max-w-none lg:flex-none xl:w-[300px] 2xl:w-[380px]">
             <div className="flex min-w-0 flex-1 items-center">
               <NavbarLogo />
             </div>
@@ -314,7 +315,7 @@ export default function Navbar() {
                           )
                         }
                         onFocus={() => item.menu && openMega(item.menu)}
-                        className={`relative flex h-full items-center px-4 transition-colors duration-chrome ease-motion xl:px-5 ${
+                        className={`relative flex h-full items-center px-3 transition-colors duration-chrome ease-motion xl:px-5 ${
                           isOpen ? "bg-[#f3f3f4]" : "bg-transparent hover:bg-[#f0f0f1]"
                         }`}
                       >
@@ -334,7 +335,7 @@ export default function Navbar() {
                     ) : (
                       <Link
                         href={item.href}
-                        className="group relative flex h-full items-center px-4 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] xl:px-5"
+                        className="group relative flex h-full items-center px-3 transition-colors duration-chrome ease-motion [@media(hover:hover)_and_(pointer:fine)]:hover:bg-[#f0f0f1] xl:px-5"
                       >
                         <span className={`relative z-10 leading-none ${navLinkClass}`}>
                           {item.label}
@@ -352,7 +353,8 @@ export default function Navbar() {
           </nav>
 
           {/* Action zone */}
-          <div className="ml-auto flex shrink-0 items-stretch border-l border-neutral-200">
+          <div className="relative z-10 ml-auto flex shrink-0 items-stretch border-l border-neutral-200 bg-[#f7f7f8]">
+            <ThemeToggle />
             <div className="hidden lg:flex">
               <PrimaryCTA />
             </div>

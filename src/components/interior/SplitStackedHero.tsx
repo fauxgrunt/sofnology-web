@@ -50,7 +50,7 @@ export default function SplitStackedHero({
   imageAlt,
   imageClass,
   layout = "cta-first",
-  wedge = "default",
+  wedge = false,
   sheen = "strong",
   tone = "light",
   shellColor = "#12141A",
@@ -69,12 +69,13 @@ export default function SplitStackedHero({
   const imageBox = (
     <div
       className={
-        imageMinClass ??
-        (inverted
-          ? "relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]"
-          : imageFirst
-            ? "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]"
-            : "relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]")
+        imageMinClass
+          ? imageMinClass
+            : inverted
+              ? "relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]"
+              : imageFirst
+                ? "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]"
+                : "relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[360px]"
       }
       style={inverted ? { backgroundColor: "#0A0B0E" } : undefined}
     >
@@ -86,13 +87,13 @@ export default function SplitStackedHero({
         priority
         className={imageClass}
       />
-      {wedge && !inverted && (
+      {wedge && !inverted ? (
         <div
           aria-hidden="true"
           className={WEDGE[wedge]}
           style={{ clipPath: "polygon(34% 0, 100% 0, 100% 100%, 0 100%)" }}
         />
-      )}
+      ) : null}
     </div>
   );
 

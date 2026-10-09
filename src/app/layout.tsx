@@ -4,6 +4,7 @@ import "./globals.css";
 import SkipToContent from "@/components/SkipToContent";
 import NavigationProgress from "@/components/NavigationProgress";
 import MotionProvider from "@/components/motion/MotionProvider";
+import DarkContrast from "@/components/DarkContrast";
 import JsonLd from "@/components/JsonLd";
 import { siteJsonLd } from "@/lib/json-ld";
 import { DEFAULT_DESCRIPTION, OG_IMAGE, SITE_NAME, SITE_ROUTES, SITE_URL } from "@/lib/site";
@@ -55,13 +56,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${plusJakarta.variable} ${satoshi.variable}`}>
+    <html lang="en" className={`${plusJakarta.variable} ${satoshi.variable}`} suppressHydrationWarning>
       <head>
         <JsonLd data={siteJsonLd()} />
       </head>
       <body className="font-sans">
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{if(localStorage.getItem("sofnology-theme")==="dark"){document.documentElement.classList.add("dark");document.documentElement.style.colorScheme="dark"}}catch(e){}})();`,
+          }}
+        />
         <SkipToContent />
         <NavigationProgress />
+        <DarkContrast />
         <MotionProvider>{children}</MotionProvider>
       </body>
     </html>

@@ -12,8 +12,8 @@ export const hero = {
   imageAlt: "Engineers collaborating on a product interface in a modern loft office",
   imageClass: "scale-[1.12] object-cover object-[55%_22%]",
   imageMinClass:
-    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[420px]",
-  ctaLabel: "Get in touch",
+    "relative order-1 min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:order-2 lg:min-h-[360px]",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: WINE,
   ctaText: "#ffffff",
@@ -56,7 +56,7 @@ export const startupServices = [
     title: "Scaling mature startups",
     description:
       "Product is in market and the next stage needs more engineering depth and leadership — without losing speed.",
-    points: ["Engineering team expansion", "Leadership support", "Reliability and growth systems"],
+    points: ["Engineering team expansion", "Leadership support", "Systems the business already runs"],
   },
   {
     title: "MVP development",
@@ -112,7 +112,7 @@ export const partnershipModels = [
   {
     title: "Dedicated teams",
     description:
-      "A standing Sofnology pod that stays with your product — faster time-to-market and a wider skill mix than local hiring alone.",
+      "A standing Sofnology team that stays with your product — faster time-to-market and a wider skill mix than local hiring alone.",
     idealFor: [
       "Ongoing products with room to expand",
       "Need for multiple specializations quickly",
@@ -150,14 +150,14 @@ export const faqs: InteriorFaq = {
     {
       question: "Which engagement model is best for a first build?",
       answer:
-        "Many first collaborations fit project-based delivery. If you already run a backlog and need capacity, staff augmentation or a dedicated pod may fit better — we’ll help you choose.",
+        "Many first collaborations fit project-based delivery. If you already run a backlog and need capacity, staff augmentation or a dedicated team may fit better — we’ll help you choose.",
     },
   ],
 };
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: WINE,
   textColor: "#ffffff",
 };

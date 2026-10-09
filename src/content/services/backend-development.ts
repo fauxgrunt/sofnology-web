@@ -226,7 +226,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "Backend systems visual with emerald accents",
   imageClass: "object-cover object-center",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: EMERALD,
   ctaText: "#111827",
@@ -255,7 +255,7 @@ export const related: InteriorRelated = {
 };
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: EMERALD,
   textColor: "#111827",
 };

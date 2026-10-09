@@ -7,19 +7,27 @@ import { InteriorPage } from "@/components/interior";
 import RelatedSection from "@/components/sections/RelatedSection";
 import { pageMetadata } from "@/lib/metadata";
 import { brand } from "@/lib/theme";
-import { contact, getWork, relatedWork, sticky, workItems } from "@/content/work";
+import { contact, getWork, getWorkCategory, relatedWork, sticky, workCategories, workItems } from "@/content/work";
+import WorkGrid from "../WorkGrid";
 
 type WorkPageProps = {
   params: Promise<{ slug: string }>;
 };
 
 export function generateStaticParams() {
-  return workItems.map((item) => ({ slug: item.slug }));
+  return [
+    ...workItems.map((item) => ({ slug: item.slug })),
+    ...workCategories.map((category) => ({ slug: category.slug })),
+  ];
 }
 
 export async function generateMetadata({ params }: WorkPageProps): Promise<Metadata> {
   const { slug } = await params;
+  const category = getWorkCategory(slug);
   const item = getWork(slug);
+  if (category && !item) {
+    return pageMetadata({ title: category.title, description: category.description, path: `/work/${category.slug}` });
+  }
   if (!item) return pageMetadata({ title: "Our work", path: "/work" });
   return pageMetadata({
     title: item.title,
@@ -30,7 +38,17 @@ export async function generateMetadata({ params }: WorkPageProps): Promise<Metad
 
 export default async function WorkCasePage({ params }: WorkPageProps) {
   const { slug } = await params;
+  const category = getWorkCategory(slug);
   const item = getWork(slug);
+  if (!item && category) {
+    return (
+      <InteriorPage
+        hero={<WorkGrid initialArea={category.slug} title={category.title} lede={category.description} />}
+        sticky={sticky}
+        contact={contact}
+      />
+    );
+  }
   if (!item) notFound();
 
   const related = relatedWork(item.slug).map((entry) => ({
@@ -39,7 +57,7 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
     href: `/work/${entry.slug}`,
   }));
 
-  const snapshot = [
+  const snapshot = item.snapshot ?? [
     ["Industry", item.industry],
     ["Services", item.services.join(", ")],
     ["Platforms", item.platforms.join(", ")],
@@ -53,8 +71,26 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
       hero={
         <section className="border-b border-neutral-200 bg-page">
           <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-            <div className="relative aspect-[16/9] min-h-[240px] overflow-hidden border-b border-neutral-200 bg-navy sm:min-h-[360px] lg:min-h-[480px]">
-              {item.image ? (
+            <div
+              className={`relative overflow-hidden border-b border-neutral-200 bg-[#f4f7fb] ${
+                item.imageWidth && item.imageHeight
+                  ? ""
+                  : !item.image && item.steps?.length
+                    ? ""
+                    : "h-[240px] w-full bg-navy sm:h-[360px] lg:h-[480px]"
+              }`}
+            >
+              {item.image && item.imageWidth && item.imageHeight ? (
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  width={item.imageWidth}
+                  height={item.imageHeight}
+                  priority
+                  sizes="(max-width: 1440px) 100vw, 1440px"
+                  className="h-auto w-full"
+                />
+              ) : item.image ? (
                 <Image
                   src={item.image}
                   alt={item.imageAlt}
@@ -63,6 +99,27 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
                   sizes="(max-width: 1440px) 100vw, 1440px"
                   className="object-cover object-center"
                 />
+              ) : item.steps?.length ? (
+                <ol
+                  aria-label={item.stepsHeading ?? "How it works"}
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7"
+                >
+                  {item.steps.map((step, index) => (
+                    <li
+                      key={step.title}
+                      className={`px-5 py-6 sm:px-6 ${index > 0 ? "border-t border-neutral-200 sm:border-t-0" : ""} ${
+                        index % 2 === 1 ? "sm:border-l" : ""
+                      } ${index >= 2 ? "sm:border-t lg:border-t-0" : ""} ${index % 4 !== 0 ? "lg:border-l" : ""} ${
+                        index >= 4 ? "lg:border-t xl:border-t-0" : ""
+                      } ${index % 7 !== 0 ? "xl:border-l" : ""}`}
+                    >
+                      <p className="text-[12px] font-semibold tracking-[0.14em] text-navy uppercase">
+                        {String(index + 1).padStart(2, "0")}
+                      </p>
+                      <p className="mt-3 text-[15px] font-semibold tracking-[-0.03em] text-neutral-950">{step.title}</p>
+                    </li>
+                  ))}
+                </ol>
               ) : (
                 <div className="flex h-full items-end p-8 sm:p-12">
                   <p className="max-w-xl text-3xl font-semibold tracking-[-0.04em] text-white sm:text-5xl">{item.cardTitle}</p>
@@ -86,7 +143,7 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
               href="#contact-form"
               className="tap-press flex min-h-[80px] items-center justify-between bg-navy px-5 py-6 text-lg font-semibold tracking-[-0.04em] text-white sm:px-6 md:px-10 lg:px-16"
             >
-              <span>Have a similar challenge? Talk to us.</span>
+              <span>{item.ctaLabel ?? "Have a similar challenge? Talk to us."}</span>
               <ArrowUpRightIcon />
             </Link>
           </div>
@@ -123,12 +180,69 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
         </div>
       </section>
 
+      {item.steps?.length ? (
+        <section className="border-b border-neutral-200 bg-page">
+          <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
+            <h2 className="border-b border-neutral-200 px-5 py-8 text-2xl font-semibold tracking-[-0.04em] sm:px-6 md:px-10 lg:px-16">
+              {item.stepsHeading ?? "How it works"}
+            </h2>
+            <ol className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4">
+              {item.steps.map((step, index) => (
+                <li
+                  key={step.title}
+                  className={`px-5 py-7 sm:px-6 md:px-8 ${
+                    index > 0 ? "border-t border-neutral-200 sm:border-t-0" : ""
+                  } ${index % 2 === 1 ? "sm:border-l" : ""} ${index >= 2 ? "sm:border-t xl:border-t-0" : ""} ${
+                    index % 4 !== 0 ? "xl:border-l" : ""
+                  } ${index >= 4 ? "xl:border-t" : ""}`}
+                >
+                  <p className="text-[12px] font-semibold tracking-[0.14em] text-navy uppercase">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-lg font-semibold tracking-[-0.03em] text-neutral-950">{step.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-neutral-700">{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      ) : null}
+
+      {item.example?.length ? (
+        <section className="border-b border-neutral-200 bg-page">
+          <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
+            <h2 className="border-b border-neutral-200 px-5 py-8 text-2xl font-semibold tracking-[-0.04em] sm:px-6 md:px-10 lg:px-16">
+              Example use case
+            </h2>
+            <ol className="grid grid-cols-1 md:grid-cols-5">
+              {item.example.map((step, index) => (
+                <li
+                  key={step.title}
+                  className={`px-5 py-7 sm:px-6 md:px-6 ${index > 0 ? "border-t border-neutral-200 md:border-t-0 md:border-l" : ""}`}
+                >
+                  <p className="text-[12px] font-semibold tracking-[0.14em] text-navy uppercase">
+                    {String(index + 1).padStart(2, "0")}
+                  </p>
+                  <h3 className="mt-3 text-lg font-semibold tracking-[-0.03em] text-neutral-950">{step.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-neutral-700">{step.description}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
+        </section>
+      ) : null}
+
       <section className="border-b border-neutral-200 bg-page">
         <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
           <h2 className="border-b border-neutral-200 px-5 py-8 text-2xl font-semibold tracking-[-0.04em] sm:px-6 md:px-10 lg:px-16">Key capabilities</h2>
           <div className="grid md:grid-cols-3">
             {item.capabilities.map((capability, index) => (
-              <article key={capability.title} className={`px-5 py-8 sm:px-6 md:px-8 ${index > 0 ? "border-t border-neutral-200 md:border-t-0 md:border-l" : ""}`}>
+              <article
+                key={capability.title}
+                className={`border-neutral-200 px-5 py-8 sm:px-6 md:px-8 ${index > 0 ? "border-t md:border-t-0" : ""} ${
+                  index % 3 !== 0 ? "md:border-l" : ""
+                } ${index >= 3 ? "md:border-t" : ""}`}
+              >
                 <h3 className="text-lg font-semibold text-neutral-950">{capability.title}</h3>
                 <p className="mt-3 text-[15px] leading-relaxed text-neutral-700">{capability.description}</p>
               </article>
@@ -154,6 +268,16 @@ export default async function WorkCasePage({ params }: WorkPageProps) {
         <div className="mx-auto max-w-[1440px] border-x border-neutral-200 px-5 py-10 sm:px-6 md:px-10 lg:px-16">
           <h2 className="text-2xl font-semibold tracking-[-0.04em] text-neutral-950">Business value</h2>
           <p className="mt-4 max-w-3xl text-[16px] leading-[1.75] text-neutral-700">{item.value}</p>
+          {item.outcomes?.length ? (
+            <div className="mt-8 grid gap-px border border-neutral-200 bg-neutral-200 sm:grid-cols-2">
+              {item.outcomes.map((outcome) => (
+                <article key={outcome.title} className="bg-page px-5 py-6 sm:px-6">
+                  <h3 className="text-lg font-semibold tracking-[-0.03em] text-neutral-950">{outcome.title}</h3>
+                  <p className="mt-2 text-[15px] leading-relaxed text-neutral-700">{outcome.description}</p>
+                </article>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 

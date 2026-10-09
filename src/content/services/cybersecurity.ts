@@ -87,7 +87,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "Cybersecurity product visual with shield and teal glass accents",
   imageClass: "object-cover object-center",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: TEAL,
   ctaText: "#ffffff",
@@ -107,7 +107,7 @@ export const cta = {
 } as const;
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: CYAN,
   textColor: "#101413",
 };

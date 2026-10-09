@@ -217,7 +217,7 @@ export function HowWeWorkSection() {
       <div className="mx-auto max-w-[1440px] border-x border-white/10 text-white">
         <SectionIntro
           title="How we work with enterprises"
-          lede="Capacity inside your team, a dedicated pod, or full outsourcing — pick the ownership model that fits the initiative."
+          lede="Capacity inside your team, a dedicated team, or full outsourcing — pick the ownership model that fits the initiative."
           tone="dark"
           minHeight={160}
         />

@@ -129,7 +129,7 @@ export function FitSection() {
           </h2>
           <p className="mt-7 max-w-3xl text-[15px] leading-[1.72] tracking-tight text-neutral-700">
             Best for extended timelines, evolving scope, and work that needs a stable,
-            specialized squad.
+            specialized team.
           </p>
         </div>
 

@@ -2,26 +2,26 @@ import type { InteriorContact, InteriorFaq, InteriorRelated, InteriorSticky } fr
 
 export const LIME = "#B8F25A";
 export const DEEP = "#0B3D2E";
-export const PRIMARY_CTA = "Talk about healthtech software";
+export const PRIMARY_CTA = "Start a Project";
 export const MID_IMAGE = "/healthtech-mid.jpg";
 
 export const hero = {
   title: "Healthcare & Healthtech",
   lede:
-    "We build solutions for healthcare teams — including appointment communication, operational software, and systems that take privacy seriously. This is not a claim of decades as a clinical institution.",
+    "Patients still book by phone, and the clinic still runs on a system that was not built for that call. Sofnology builds the appointment path, the operational software, and the privacy controls around them.",
   image: "/healthtech-hero.jpg",
   imageAlt: "Abstract healthtech visual with moss, glass panels, and clinical geometry",
   imageClass: "scale-[1.04] object-cover object-[42%_48%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: LIME,
   ctaText: "#0B3D2E",
 } as const;
 
 export const cta = {
-  title: "Ready to shape the healthcare of tomorrow?",
+  title: "The booking still depends on a person picking up",
   lede:
-    "Tell us about the care setting, the users, and the compliance constraints — we’ll help shape a practical build path.",
+    "Tell us the care setting, who calls, and what the system of record has to keep. We will say whether a voice path, a software build, or both fit.",
   ctaLabel: PRIMARY_CTA,
   ctaHref: "#contact-form",
 } as const;
@@ -154,6 +154,11 @@ export const related: InteriorRelated = {
   titleSize: "md",
   links: [
     {
+      title: "AI appointment assistant",
+      href: "/work/ai-appointment-assistant-healthcare",
+      description: "Anonymous healthcare case study: a voice assistant that books through the hospital system.",
+    },
+    {
       title: "Cybersecurity",
       href: "/services/cybersecurity",
       description: "Deeper assessments when health data risk needs dedicated review.",
@@ -170,8 +175,8 @@ export const related: InteriorRelated = {
     },
     {
       title: "Dedicated teams",
-      href: "/engagement/dedicated-teams",
-      description: "A lasting pod when healthtech roadmaps run for years, not sprints.",
+      href: "/how-we-work/dedicated-development-team",
+      description: "A lasting team when healthtech roadmaps run for years, not sprints.",
     },
   ],
 };

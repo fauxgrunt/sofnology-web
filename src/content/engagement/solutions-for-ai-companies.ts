@@ -15,8 +15,8 @@ export const hero = {
   imageAlt: "Exploded 3D precision module with cyan glowing core",
   imageClass: "scale-[1.04] object-cover object-[22%_50%]",
   imageMinClass:
-    "relative aspect-[16/11] overflow-hidden sm:aspect-auto sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]",
-  ctaLabel: "Start a conversation",
+    "relative min-h-[220px] overflow-hidden sm:min-h-[280px] md:min-h-[360px] lg:min-h-[440px]",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: CYAN,
   ctaText: "#12141A",
@@ -26,7 +26,7 @@ export const cta = {
   title: "You can’t pilot your way out of a pilot",
   lede:
     "We’ll locate where you sit on the five-stage model and name the highest-impact moves next — before you commit more tool spend.",
-  ctaLabel: "Start a conversation",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   image: "/ai-startup-cta.jpg",
   imageAlt: "3D stacked AI hardware module with cyan energy ring",
@@ -242,7 +242,7 @@ export const faqs: InteriorFaq = {
 
 export const sticky: InteriorSticky = {
   href: "#contact-form",
-  label: "Start a conversation",
+  label: "Start a Project",
   backgroundColor: CYAN,
   textColor: "#12141A",
 };

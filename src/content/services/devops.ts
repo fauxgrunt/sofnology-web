@@ -155,7 +155,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "DevOps pipeline visual with amber accents",
   imageClass: "object-cover object-center",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: DEEP,
   ctaText: "#ffffff",
@@ -175,7 +175,7 @@ export const cta = {
 } as const;
 
 export const sticky: InteriorSticky = {
-  label: "Get in touch",
+  label: "Start a Project",
   backgroundColor: AMBER,
   textColor: "#101413",
 };

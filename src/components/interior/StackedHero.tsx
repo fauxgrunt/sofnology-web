@@ -47,7 +47,7 @@ export default function StackedHero({
   return (
     <section className="border-b border-neutral-200 bg-page">
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
-        <div className="relative h-[280px] overflow-hidden border-b border-neutral-200 sm:h-[340px] md:h-[400px] lg:h-[460px]">
+        <div className="relative h-[220px] overflow-hidden border-b border-neutral-200 sm:h-[280px] md:h-[340px] lg:h-[400px]">
           <Image
             src={image}
             alt={imageAlt}
@@ -56,7 +56,6 @@ export default function StackedHero({
             priority
             className={imageClass}
           />
-          <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-page to-transparent md:w-2/5" />
         </div>
 
         <div className={`grid grid-cols-1 border-b border-neutral-200 ${splitClass}`}>

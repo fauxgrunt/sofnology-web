@@ -17,7 +17,7 @@ export function ScenariosSection() {
       <div className="mx-auto max-w-[1440px] border-x border-neutral-200">
         <SectionIntro
           title="When this model fits"
-          lede="Three common situations where owning delivery as a scoped project beats filling seats."
+          lede="Three situations where one partner should own the release, rather than adding a specialist to a team you already run."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-3">

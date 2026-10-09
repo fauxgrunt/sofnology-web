@@ -4,7 +4,7 @@ import type { InteriorContact, InteriorRelated, InteriorSticky } from "@/lib/int
 export const LIME = "#C7FF3D";
 export const INK = "#101413";
 export const VIOLET = "#6B5B95";
-export const PRIMARY_CTA = "Talk about your stack";
+export const PRIMARY_CTA = "Start a Project";
 
 /** One appearance each. */
 export const HERO_IMAGE = "/technologies-hero.jpg";
@@ -170,21 +170,21 @@ export const scenarios = [
     title: "Staff augmentation",
     description:
       "Need specialized capacity fast? Engineers who plug into your tools and rituals — without inventing a fake “CVs in 48 hours” guarantee.",
-    href: "/engagement/staff-augmentation",
+    href: "/how-we-work/staff-augmentation",
     cta: "View staff augmentation",
   },
   {
     title: "Dedicated teams",
     description:
       "Multiple roles around one product — analysts, design, engineering, QA, DevOps — focused entirely on your roadmap.",
-    href: "/engagement/dedicated-teams",
+    href: "/how-we-work/dedicated-development-team",
     cta: "View dedicated teams",
   },
   {
     title: "Project-based engagement",
     description:
       "Entrust delivery end-to-end — scope, build, quality, and communication — while you stay on the business.",
-    href: "/engagement/project-outsourcing",
+    href: "/how-we-work/project-based-delivery",
     cta: "View project outsourcing",
   },
 ];
@@ -236,7 +236,7 @@ export const hero = {
   image: HERO_IMAGE,
   imageAlt: "Abstract modular technology forms in violet and lime",
   imageClass: "scale-[1.02] object-cover object-[60%_45%]",
-  ctaLabel: "Get in touch",
+  ctaLabel: "Start a Project",
   ctaHref: "#contact-form",
   ctaBackground: LIME,
   ctaText: INK,

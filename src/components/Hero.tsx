@@ -13,13 +13,13 @@ export default function Hero() {
             Clarity through technology
           </h1>
           <p className="mt-4 max-w-md text-[16px] leading-[1.55] text-neutral-700 sm:mt-5 sm:text-[17px] sm:leading-[1.6]">
-            Custom software, cloud, and digital systems for UK and international
-            teams.
+            Software, voice and telephony, automation, and digital marketing for
+            the work your team already runs.
           </p>
-          <div className="mt-7 flex flex-col items-start gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-8">
+          <div className="mt-7 flex flex-col items-stretch gap-3 sm:mt-9 sm:flex-row sm:items-center sm:gap-8">
             <Link
               href="/#contact-form"
-              className="tap-press inline-flex min-h-12 items-center bg-navy px-5 text-[16px] font-semibold tracking-[-0.02em] text-white transition-opacity duration-chrome ease-motion sm:min-h-[3.25rem] sm:px-6 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
+              className="tap-press inline-flex min-h-12 w-full items-center justify-center bg-navy px-5 text-[16px] font-semibold tracking-[-0.02em] text-white transition-opacity duration-chrome ease-motion sm:w-auto sm:min-h-[3.25rem] sm:justify-start sm:px-6 [@media(hover:hover)_and_(pointer:fine)]:hover:opacity-90"
             >
               Start a Project
             </Link>

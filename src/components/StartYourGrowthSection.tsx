@@ -4,33 +4,33 @@ import { ArrowUpRightIcon } from "@/components/icons";
 const startingPoints = [
   {
     title: "Project-based delivery",
-    href: "/how-we-work#project-based",
-    description: "Defined scope, milestones, delivery, testing, and handover.",
+    href: "/how-we-work/project-based-delivery",
+    description: "You have a piece of work with an end. Scope, build, testing, and handover stay in one agreement.",
   },
   {
     title: "Dedicated development team",
-    href: "/how-we-work#dedicated-team",
-    description: "A team aligned around the client's ongoing roadmap.",
+    href: "/how-we-work/dedicated-development-team",
+    description: "The roadmap does not stop at one release. A team stays on it.",
   },
   {
     title: "Staff augmentation",
-    href: "/how-we-work#staff-augmentation",
-    description: "Add specific engineering capability to an existing team.",
+    href: "/how-we-work/staff-augmentation",
+    description: "Your team is already in place. You need one specific skill added to it.",
   },
   {
     title: "Technical consulting",
-    href: "/how-we-work#technical-consulting",
-    description: "Architecture, assessments, troubleshooting, planning, and technical direction.",
+    href: "/how-we-work/technical-consulting",
+    description: "You need a decision before more building: architecture, a fault, or a plan.",
   },
   {
     title: "Managed services",
-    href: "/how-we-work#managed-services",
-    description: "Sofnology operates agreed technical systems or services continuously.",
+    href: "/how-we-work/managed-services",
+    description: "A system should keep running. Sofnology operates what you agree to hand over.",
   },
   {
     title: "Ongoing support and retainers",
-    href: "/how-we-work#ongoing-support",
-    description: "Monthly maintenance, optimization, technical support, and infrastructure support.",
+    href: "/how-we-work/ongoing-support",
+    description: "The work is already live. A monthly agreement covers maintenance, support, and improvement.",
   },
 ];
 
@@ -43,7 +43,7 @@ export default function StartYourGrowthSection() {
             Ways to work
           </h2>
           <p className="text-fluid-body mt-4 max-w-5xl leading-[1.65] tracking-tight text-neutral-700 sm:mt-6 sm:leading-[1.75]">
-            Choose a delivery shape. Company types such as startups or enterprises are not separate models.
+            Open the model that matches the job in front of you.
           </p>
         </div>
 
